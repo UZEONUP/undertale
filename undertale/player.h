@@ -33,7 +33,7 @@ class player :
 private:
 	tagPlayer _player;
 	int _count;
-
+	int _index;
 
 public:
 	HRESULT init();

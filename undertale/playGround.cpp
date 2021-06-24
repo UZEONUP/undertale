@@ -15,15 +15,24 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	
+
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_mfRc = RectMake(200, 200, 100, 100);
+
 
 	ImageManager::GetInstance()->AddImage("TestObject", L"TrapObject.png");
 	ImageManager::GetInstance()->AddFrameImage("TestFrameObject",
 		L"Bomb.png", 3, 1);
+
+	
+
 	
 	ImageManager::GetInstance()->AddImage("머펫", L"머펫이미지/idle.bmp");
 	ImageManager::GetInstance()->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
+
+
+
 
 	_muffet = ImageManager::GetInstance()->FindImage("머펫");
 	_backGround = ImageManager::GetInstance()->FindImage("시작스테이지");
@@ -49,6 +58,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
+	
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
@@ -75,6 +85,7 @@ void playGround::update()
 //그리기 전용
 void playGround::render()
 {	
+	
 	Vector2 v(100, 100);
 	Vector2	v2(500, 500);
 
@@ -130,9 +141,8 @@ void playGround::render()
 
 		Vector2 t(200, 200);
 		Vector2 t2(500, 500);
-
-		LineMake(_hdc, t, t2, angle,200);
-
+		
+		//LineMake(_hdc, t, t2, angle,200);
 	}
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();

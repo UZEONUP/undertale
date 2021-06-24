@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
+
 struct tagRRect
 {
 	RECT rc;
@@ -14,12 +15,13 @@ private:
 	float angle;
 	float an2;
 
+	
+
 	RECT _backRc;
 	RECT _mfRc;
 
 	Image* _muffet;
 	Image* _backGround;
-
 
 public:
 	playGround();
@@ -30,4 +32,69 @@ public:
 	virtual void update();
 	virtual void render();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
