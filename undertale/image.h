@@ -40,7 +40,9 @@ private:
 	virtual ~Image();
 	Image operator = (const Image& image) {}
 public:
-	void Render(const Vector2& position);
+	void Render(const float X, const float Y, const float scaleW = 1.f, const float scalseH = 1.f,
+		const float degreeAngle = 0.f, const float rotateCenterX = 0.f, const float rotateCenterY = 0.f,
+		const float transX = 0.f, const float transY = 0.f);
 	void FrameRender(const Vector2& position, const int frameX, const int frameY);
 
 	void ResetRenderOption();
