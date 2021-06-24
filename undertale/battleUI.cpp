@@ -26,8 +26,10 @@ HRESULT battleUI::init()
 	_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, 150, 150);
 	
 	_heart = ImageManager::GetInstance()->AddImage("하트", L"UI_하트_20_20.png"); 
-
+	isTalk = true;
 	_menu_count = 0;
+
+	_di = new dialouge;
 
 	return S_OK;
 }
@@ -48,6 +50,13 @@ void battleUI::update()
 		_menu_count++;
 		if (_menu_count > 3) _menu_count = 3;
 	}
+	
+	if (isTalk) 
+	{
+		
+	}
+
+
 }
 
 void battleUI::render()
