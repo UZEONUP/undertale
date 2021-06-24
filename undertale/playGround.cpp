@@ -14,6 +14,8 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+	_player = new player;
+	_player->init();
 
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_mfRc = RectMake(200, 200, 100, 100);
@@ -54,6 +56,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
+	_player->update();
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
@@ -151,6 +154,7 @@ void playGround::render()
 
 		LineMake(_hdc, t, t2, angle,200);
 
+		_player->render();
 
 		_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
 

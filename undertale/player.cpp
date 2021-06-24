@@ -3,14 +3,14 @@
 
 HRESULT player::init()
 {
-	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
+	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
-	ImageManager::GetInstance()->AddImage("LEFT", L"frisk/left.png");
-	ImageManager::GetInstance()->AddImage("RIGHT", L"frisk/right.png");
-	ImageManager::GetInstance()->AddImage("UP", L"frisk/up.png");
-	ImageManager::GetInstance()->AddImage("DOWN", L"frisk/down.png");
+	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
 
 	_player.x = WINSIZEX / 2;
 	_player.y = WINSIZEY / 2;
@@ -40,7 +40,7 @@ void player::update()
 		if (_count % 5 == 0)
 		{
 			_player.currentFrameX++;
-			if (_player.currentFrameX > 1)_player.currentFrameX = 0;
+			if (_player.currentFrameX >=_player.img->GetMaxFrameX())_player.currentFrameX = 0;
 			_player.currentFrameY = 0;
 		}
 		break;
@@ -50,7 +50,7 @@ void player::update()
 		if (_count % 5 == 0)
 		{
 			_player.currentFrameX++;
-			if (_player.currentFrameX > 1)_player.currentFrameX = 0;
+			if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
 			_player.currentFrameY = 0;
 		}
 		break;
@@ -60,7 +60,7 @@ void player::update()
 		if (_count % 5 == 0)
 		{
 			_player.currentFrameX++;
-			if (_player.currentFrameX > 3)_player.currentFrameX = 0;
+			if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
 			_player.currentFrameY = 0;
 		}
 		break;
@@ -70,9 +70,29 @@ void player::update()
 		if (_count % 5 == 0)
 		{
 			_player.currentFrameX++;
-			if (_player.currentFrameX > 3)_player.currentFrameX = 0;
+			if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
 			_player.currentFrameY = 0;
 		}
+		break;
+
+	case LEFT:
+		_player.img = ImageManager::GetInstance()->FindImage("LEFT");
+		_player.currentFrameX = 0;
+		break;
+
+	case RIGHT:
+		_player.img = ImageManager::GetInstance()->FindImage("RIGHT");
+		_player.currentFrameX = 0;
+		break;
+
+	case UP:
+		_player.img = ImageManager::GetInstance()->FindImage("UP");
+		_player.currentFrameX = 0;
+		break;
+
+	case DOWN:
+		_player.img = ImageManager::GetInstance()->FindImage("DOWN");
+		_player.currentFrameX = 0;
 		break;
 	}
 
@@ -81,26 +101,39 @@ void player::update()
 		_player.state = LEFT_MOVE;
 		_player.x -= _player.speed;
 	}
+	if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	{
+		_player.state = LEFT;
+	}
+
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player.state = RIGHT_MOVE;
 		_player.x += _player.speed;
 	}
+	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	{
+		_player.state = RIGHT;
+	}
+
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_player.state = UP_MOVE;
 		_player.y -= _player.speed;
+	}
+	if (KEYMANAGER->isOnceKeyUp(VK_UP))
+	{
+		_player.state = UP;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_player.state = DOWN_MOVE;
 		_player.y += _player.speed;
 	}
-
-	
-	
-
-
+	if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+	{
+		_player.state = DOWN;
+	}
 	_player.rc = RectMakeCenter(_player.x, _player.y, 100,100);
 }
 
@@ -108,8 +141,7 @@ void player::render()
 {
 	
 	_player.rc = RectMakeCenter(_player.x,_player.y, 100,100);
-	_player.img->FrameRender(Vector2(_player.rc.left, _player.rc.top),_player.currentFrameX,_player.currentFrameY);
-	
-	D2DRENDER->DrawRectangle(_player.rc, D2DRenderer::DefaultBrush::Red, 1.f);
+	_player.img->FrameRender(_player.rc.left, _player.rc.top,_player.currentFrameX,_player.currentFrameY, 2.f, 2.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+
 	
 }
