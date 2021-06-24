@@ -22,12 +22,13 @@ HRESULT playGround::init()
 	ImageManager::GetInstance()->AddFrameImage("TestFrameObject",
 		L"Bomb.png", 3, 1);
 	
-	ImageManager::GetInstance()->AddImage("¸ÓÆê", L"¸ÓÆêÀÌ¹ÌÁö/idle.bmp");
+	ImageManager::GetInstance()->AddImage("¸ÓÆê", L"¸ÓÆêÀÌ¹ÌÁö/idle.png");
 	ImageManager::GetInstance()->AddImage("½ÃÀÛ½ºÅ×ÀÌÁö", L"½ºÅ×ÀÌÁöÀÌ¹ÌÁö/start stage.png");
+	ImageManager::GetInstance()->AddFrameImage("¸ÓÆê¿ôÀ½", L"¸ÓÆêÀÌ¹ÌÁö/lauhing.png", 5, 1);
 
 	_muffet = ImageManager::GetInstance()->FindImage("¸ÓÆê");
 	_backGround = ImageManager::GetInstance()->FindImage("½ÃÀÛ½ºÅ×ÀÌÁö");
-
+	_muffetFrame = ImageManager::GetInstance()->FindImage("¸ÓÆê¿ôÀ½");
 
 	rc.x = 40;
 	rc.y = 40;
@@ -36,7 +37,11 @@ HRESULT playGround::init()
 	angle = 0;
 	an2 = 0;
 
+	_fCount = 0;
+	_currentFrameX = 0;
 
+	_x = WINSIZEX/2;
+	_y = WINSIZEY/2;
 	return S_OK;
 }
 
@@ -52,23 +57,36 @@ void playGround::update()
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		rc.x -= 5.0f;
+		_x -= 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		rc.x += 5.0f;
+		_x += 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		rc.y -= 5.0f;
+		_y -= 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		rc.y += 5.0f;
+		_y += 5.0f;
 	}
 	rc.rc = RectMakeCenter(rc.x, rc.y, 100, 100);
 	angle++;
 	an2 += 2;
+
+	_fCount++;
+
+	if (_fCount % 10 == 0)
+	{
+		_currentFrameX++;
+
+		if (_currentFrameX >= _muffetFrame->GetMaxFrameX()) _currentFrameX = 0;
+		
+	}
+
+	_angle += 2;
+
 	//rcrc.SetLeftTopPos(5, 5);
 }
 
@@ -82,7 +100,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		
-		_backGround->Render(_backRc.left, _backRc.top, 1, 1, 45.f, 0, 0, 0, 0);
+		_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
 
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);
@@ -126,13 +144,17 @@ void playGround::render()
 		Image* frameImage = ImageManager::GetInstance()->FindImage("TestFrameObject");
 		
 		frameImage->SetAlpha(0.3f);
-		frameImage->FrameRender(Vector2(WINSIZEX / 2, WINSIZEY / 2), 0, 0);
+		frameImage->FrameRender(WINSIZEX / 2, WINSIZEY / 2, 0, 0);
 
 		Vector2 t(200, 200);
 		Vector2 t2(500, 500);
 
 		LineMake(_hdc, t, t2, angle,200);
 
+
+		_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
+
+		_muffetFrame->FrameRender(200, 200, _currentFrameX, 0);
 	}
 	//¹é¹öÆÛ¿¡ ±×¸° ³»¿ëµéÀ» È­¸é¿¡ »Ñ·Á¶ó~
 	D2DRENDER->EndRender();
