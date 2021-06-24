@@ -46,6 +46,12 @@
     <Filter Include="playGround\player">
       <UniqueIdentifier>{601a1978-5fbd-4737-ba65-3e2f872d9050}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy">
+      <UniqueIdentifier>{d3532a44-2321-4dc7-99c0-ef2ea278cf6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage">
+      <UniqueIdentifier>{04e69a46-cbfd-4c5e-b051-7a1828f137be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -120,17 +126,17 @@
     <ClInclude Include="player.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
-    <ClInclude Include="battleUI.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="muffet.h">
+      <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="dialouge.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="testScene.h">
-      <Filter>playGround</Filter>
+    <ClInclude Include="startStage.h">
+      <Filter>playGround\stage</Filter>
     </ClInclude>
-    <ClInclude Include="testscene2.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="stageManager.h">
+      <Filter>playGround\stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,17 +197,17 @@
     <ClCompile Include="player.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
-    <ClCompile Include="battleUI.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="muffet.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="dialouge.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="testScene.cpp">
-      <Filter>playGround</Filter>
+    <ClCompile Include="startStage.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
-    <ClCompile Include="testscene2.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="stageManager.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
