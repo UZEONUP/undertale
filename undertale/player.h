@@ -40,5 +40,8 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+
+	RECT getRect() { return _player.rc; }
 };
 

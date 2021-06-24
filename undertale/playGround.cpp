@@ -14,8 +14,8 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
-	_player = new player;
-	_player->init();
+	//_player = new player;
+	//_player->init();
 
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_mfRc = RectMake(200, 200, 100, 100);
@@ -44,6 +44,11 @@ HRESULT playGround::init()
 
 	_x = WINSIZEX/2;
 	_y = WINSIZEY/2;
+
+	SCENEMANAGER->addScene("테스트", new testScene);
+	SCENEMANAGER->addScene("테스트2", new testscene2);
+	SCENEMANAGER->changeScene("테스트");
+
 	return S_OK;
 }
 
@@ -56,7 +61,9 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	_player->update();
+	//_player->update();
+	
+	
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
@@ -89,7 +96,7 @@ void playGround::update()
 	}
 
 	_angle += 2;
-
+	SCENEMANAGER->update();
 	//rcrc.SetLeftTopPos(5, 5);
 }
 
@@ -154,11 +161,12 @@ void playGround::render()
 
 		LineMake(_hdc, t, t2, angle,200);
 
-		_player->render();
+		//_player->render();
 
-		_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
+		//_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
 
-		_muffetFrame->FrameRender(200, 200, _currentFrameX, 0);
+		//_muffetFrame->FrameRender(200, 200, _currentFrameX, 0);
+		SCENEMANAGER->render();
 	}
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();

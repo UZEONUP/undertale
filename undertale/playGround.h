@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
+#include "testScene.h"
+#include "testscene2.h"
 
 
 struct tagRRect
@@ -16,7 +18,7 @@ private:
 	float angle;
 	float an2;
 
-	player* _player;
+	//player* _player;
 	
 
 	RECT _backRc;

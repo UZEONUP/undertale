@@ -120,6 +120,18 @@
     <ClInclude Include="player.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
+    <ClInclude Include="battleUI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="dialouge.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="testScene.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="testscene2.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -178,6 +190,18 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="battleUI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="dialouge.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="testScene.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="testscene2.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

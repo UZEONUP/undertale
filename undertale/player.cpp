@@ -15,8 +15,8 @@ HRESULT player::init()
 	_player.x = WINSIZEX / 2;
 	_player.y = WINSIZEY / 2;
 	_player.speed = 3.0f;
-	_player.img = ImageManager::GetInstance()->FindImage("DOWN_MOVE");
-	_player.state = DOWN_MOVE;
+	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
+	_player.state = DOWN;
 	_player.rc = RectMakeCenter(_player.x,_player.y, 100, 100);
 	_player.currentFrameX = 0;
 	_player.currentFrameY = 0;
@@ -135,13 +135,14 @@ void player::update()
 		_player.state = DOWN;
 	}
 	_player.rc = RectMakeCenter(_player.x, _player.y, 100,100);
+
+
+	
 }
 
 void player::render()
 {
-	
 	_player.rc = RectMakeCenter(_player.x,_player.y, 100,100);
 	_player.img->FrameRender(_player.rc.left, _player.rc.top,_player.currentFrameX,_player.currentFrameY, 2.f, 2.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 
-	
 }
