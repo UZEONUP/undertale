@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+
 enum STATE
 {
 	LEFT,
@@ -18,6 +19,9 @@ struct tagPlayer
 	RECT rc;
 	STATE state;
 	
+	int currentHP;
+	
+	
 	float x, y;
 	float speed;
 	float angle;
@@ -25,6 +29,7 @@ struct tagPlayer
 	int currentFrameX;
 	int currentFrameY;
 
+	bool isBattle;
 
 };
 class player :
@@ -32,9 +37,13 @@ class player :
 {
 private:
 	tagPlayer _player;
+	tagPlayer _heart;
+
 	int _count;
 	int _index;
 
+	RECT _enemy;
+	
 public:
 	HRESULT init();
 	virtual void release();
@@ -43,5 +52,12 @@ public:
 
 
 	RECT getRect() { return _player.rc; }
+	tagPlayer getHeart() {return _heart;}
+	//void setHeart(Image* heart) { _heart.img = heart; }
+	
+
+
+
+
 };
 

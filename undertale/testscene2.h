@@ -8,7 +8,7 @@ class testscene2 :
 private :
 	player* _player;
 	
-	RECT _enemyRect;
+	
 
 public:
 

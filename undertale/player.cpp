@@ -12,6 +12,10 @@ HRESULT player::init()
 	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png",1,1);
 	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
 
+	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.bmp", 1, 1);
+
+
+
 	_player.x = WINSIZEX / 2;
 	_player.y = WINSIZEY / 2;
 	_player.speed = 3.0f;
@@ -144,5 +148,5 @@ void player::render()
 {
 	_player.rc = RectMakeCenter(_player.x,_player.y, 100,100);
 	_player.img->FrameRender(_player.rc.left, _player.rc.top,_player.currentFrameX,_player.currentFrameY, 2.f, 2.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-
+	
 }

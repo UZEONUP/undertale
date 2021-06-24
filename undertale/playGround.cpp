@@ -110,7 +110,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		
-		_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
+		//_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
 
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);
