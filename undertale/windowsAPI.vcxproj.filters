@@ -147,6 +147,9 @@
     <ClInclude Include="randomFunction.h">
       <Filter>2DGameFramework\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="iniDataManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -223,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="dialouge.cpp">
       <Filter>playGround\battleUI</Filter>
+    </ClCompile>
+    <ClCompile Include="iniDataManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
