@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
 
 struct tagRRect
 {
@@ -13,6 +14,8 @@ private:
 	tagRRect rc;
 	float angle;
 	float an2;
+
+	player* _player;
 
 public:
 	playGround();
