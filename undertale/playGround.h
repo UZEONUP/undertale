@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
-#include "battleUI.h"
+#include "player.h"
+
 
 struct tagRRect
 {
@@ -15,12 +16,22 @@ private:
 	float angle;
 	float an2;
 
+	player* _player;
+	
+
 	RECT _backRc;
 	RECT _mfRc;
 
 	Image* _muffet;
 	Image* _backGround;
-	battleUI* _battleUI;
+	Image* _muffetFrame;
+
+	int _fCount;
+	int _currentFrameX;
+
+	float _x, _y;
+
+	float _angle;
 
 public:
 	playGround();
@@ -31,4 +42,69 @@ public:
 	virtual void update();
 	virtual void render();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
