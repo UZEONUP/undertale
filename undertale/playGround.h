@@ -22,6 +22,14 @@ private:
 
 	Image* _muffet;
 	Image* _backGround;
+	Image* _muffetFrame;
+
+	int _fCount;
+	int _currentFrameX;
+
+	float _x, _y;
+
+	float _angle;
 
 public:
 	playGround();

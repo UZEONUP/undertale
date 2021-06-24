@@ -15,28 +15,20 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
-	
-
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_mfRc = RectMake(200, 200, 100, 100);
-
 
 	ImageManager::GetInstance()->AddImage("TestObject", L"TrapObject.png");
 	ImageManager::GetInstance()->AddFrameImage("TestFrameObject",
 		L"Bomb.png", 3, 1);
-
 	
-
-	
-	ImageManager::GetInstance()->AddImage("머펫", L"머펫이미지/idle.bmp");
+	ImageManager::GetInstance()->AddImage("머펫", L"머펫이미지/idle.png");
 	ImageManager::GetInstance()->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
-
-
-
+	ImageManager::GetInstance()->AddFrameImage("머펫웃음", L"머펫이미지/lauhing.png", 5, 1);
 
 	_muffet = ImageManager::GetInstance()->FindImage("머펫");
 	_backGround = ImageManager::GetInstance()->FindImage("시작스테이지");
-
+	_muffetFrame = ImageManager::GetInstance()->FindImage("머펫웃음");
 
 	rc.x = 40;
 	rc.y = 40;
@@ -45,7 +37,11 @@ HRESULT playGround::init()
 	angle = 0;
 	an2 = 0;
 
+	_fCount = 0;
+	_currentFrameX = 0;
 
+	_x = WINSIZEX/2;
+	_y = WINSIZEY/2;
 	return S_OK;
 }
 
@@ -58,34 +54,45 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		rc.x -= 5.0f;
+		_x -= 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		rc.x += 5.0f;
+		_x += 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		rc.y -= 5.0f;
+		_y -= 5.0f;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		rc.y += 5.0f;
+		_y += 5.0f;
 	}
 	rc.rc = RectMakeCenter(rc.x, rc.y, 100, 100);
 	angle++;
 	an2 += 2;
+
+	_fCount++;
+
+	if (_fCount % 10 == 0)
+	{
+		_currentFrameX++;
+
+		if (_currentFrameX >= _muffetFrame->GetMaxFrameX()) _currentFrameX = 0;
+		
+	}
+
+	_angle += 2;
+
 	//rcrc.SetLeftTopPos(5, 5);
 }
 
 //그리기 전용
 void playGround::render()
 {	
-	
 	Vector2 v(100, 100);
 	Vector2	v2(500, 500);
 
@@ -93,7 +100,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		
-		_backGround->Render(_backRc.left, _backRc.top, 1, 1, 45.f, 0, 0, 0, 0);
+		_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
 
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);
@@ -137,12 +144,17 @@ void playGround::render()
 		Image* frameImage = ImageManager::GetInstance()->FindImage("TestFrameObject");
 		
 		frameImage->SetAlpha(0.3f);
-		frameImage->FrameRender(Vector2(WINSIZEX / 2, WINSIZEY / 2), 0, 0);
+		frameImage->FrameRender(WINSIZEX / 2, WINSIZEY / 2, 0, 0);
 
 		Vector2 t(200, 200);
 		Vector2 t2(500, 500);
-		
-		//LineMake(_hdc, t, t2, angle,200);
+
+		LineMake(_hdc, t, t2, angle,200);
+
+
+		_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
+
+		_muffetFrame->FrameRender(200, 200, _currentFrameX, 0);
 	}
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();

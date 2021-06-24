@@ -65,21 +65,23 @@ Image::~Image()
 }
 /********************************************************************************
 ## PerfeactRender ##
+@@기본렌더는 x,y값만 입력@@
+@@렌더는 left, top 기준@@
 *********************************************************************************/
 void Image::Render(const float X, const float Y, const float scaleW, const float scalseH,
-	const float degreeAngle, const float rotateCenterX, const float rotateCenterY,
+	const float degreeAngle, const float rotateX, const float rotateY,
 	const float transX, const float transY)
 {
 	//RECT rect = rc;
 
 	//스케일 행렬을 만들어준다
-	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scalseH, D2D1::Point2F(0, 0));
+	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scalseH, D2D1::Point2F(X, Y));
 	//회전 행렬을 만들어준다. 
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(rotateCenterX, rotateCenterY));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX, Y + rotateY));
 	//이동 행렬을 만들어준다.
 	D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
-	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, mSize.x, mSize.y);
+	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
 
 	D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform(scaleMatrix * rotateMatrix * translateMatrix);
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
@@ -89,18 +91,21 @@ void Image::Render(const float X, const float Y, const float scaleW, const float
 /********************************************************************************
 ## PerfeactFrameRender ##
 *********************************************************************************/
-void Image::FrameRender(const Vector2& position, const int frameX, const int frameY)
+void Image::FrameRender(const float X, const float Y, const int frameX, const int frameY,
+	const float scaleW, const float scalseH,
+	const float degreeAngle, const float rotateX, const float rotateY,
+	const float transX, const float transY)
 {
 	//현재 프레임인덱스 
 	int frame = frameY * mMaxFrameX + frameX;
 	Vector2 size = mSize * mScale;
 
-	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(mScale, mScale, D2D1::Point2F(size.x / 2.f, size.y / 2.f));
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(mAngle, D2D1::Point2F(size.x / 2.f, size.y / 2.f));
-	D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(position.x - size.x / 2.f, position.y - size.y / 2.f);
+	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scalseH, D2D1::Point2F(X, Y));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX,Y + rotateY));
+	D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 	//그릴 영역 세팅 
-	D2D1_RECT_F dxArea = D2D1::RectF(0.0f, 0.0f, size.x, size.y);
+	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
 	D2D1_RECT_F dxSrc = D2D1::RectF((float)mFrameInfo[frame].x, (float)mFrameInfo[frame].y,
 		(float)(mFrameInfo[frame].x + mFrameInfo[frame].width),
 		(float)(mFrameInfo[frame].y + mFrameInfo[frame].height));
