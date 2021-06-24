@@ -156,6 +156,7 @@
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
+    <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="muffet.cpp" />

@@ -36,6 +36,7 @@ using namespace UJN_UTIL;
 #include "soundManager.h"
 #include "sceneManager.h"
 #include "txtData.h"
+#include "iniDataManager.h"
 
 
 //MS VS버전이 올라가면서 기존의 문자열 함수의 안정성을 올리기위해
@@ -61,6 +62,7 @@ using namespace UJN_UTIL;
 #define SCENEMANAGER sceneManager::getSingleton()
 //#define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
+#define INIDATA	iniDataManager::getSingleton()
 #define OBJECTMANAGER ObjectManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}

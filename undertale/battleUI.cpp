@@ -68,7 +68,7 @@ void battleUI::render()
 		5.F
 	);
 
-	_menu_off[0]->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY - 50);
+	_menu_off[0]->Render(0, 0, 1, 1, 0, 0, 0, 20,		WINSIZEY - 50);
 	_menu_off[1]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 150, WINSIZEY - 50);
 	_menu_off[2]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 300, WINSIZEY - 50);
 	_menu_off[3]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 450, WINSIZEY - 50);
@@ -79,22 +79,22 @@ void battleUI::render()
 	if (_menu_count == 0) 
 	{
 		_menu_on[0]->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY - 50);
-		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30, WINSIZEY - 40);
+		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30,		 WINSIZEY - 40);
 	}
 	if (_menu_count == 1) 
 	{
-		_menu_on[1]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 150, WINSIZEY - 50);
-		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 150, WINSIZEY - 40);
+		_menu_on[1]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 150,	WINSIZEY - 50);
+		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 150,		WINSIZEY - 40);
 	}
 	if (_menu_count == 2) 
 	{
-		_menu_on[2]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 300, WINSIZEY - 50);
-		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 300, WINSIZEY - 40);
+		_menu_on[2]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 300,	 WINSIZEY - 50);
+		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 300,		 WINSIZEY - 40);
 	}
 	if (_menu_count == 3) 
 	{
-		_menu_on[3]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 450, WINSIZEY - 50);
-		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 450, WINSIZEY - 40);
+		_menu_on[3]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 450,	 WINSIZEY - 50);
+		_heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 450,		 WINSIZEY - 40);
 	}
 	
 }
