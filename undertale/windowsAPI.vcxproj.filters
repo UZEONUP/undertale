@@ -43,6 +43,9 @@
     <Filter Include="2DGameFramework\txtData">
       <UniqueIdentifier>{431e51a5-80a3-453e-b6b4-0a46c07862b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\battle">
+      <UniqueIdentifier>{9c270cce-4a52-4ee5-b704-4062b7d532d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -114,6 +117,12 @@
     <ClInclude Include="line.h">
       <Filter>2DGameFramework\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="battleUI.h">
+      <Filter>playGround\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="dialouge.h">
+      <Filter>playGround\battle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -169,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="line.cpp">
       <Filter>2DGameFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="battleUI.cpp">
+      <Filter>playGround\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="dialouge.cpp">
+      <Filter>playGround\battle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

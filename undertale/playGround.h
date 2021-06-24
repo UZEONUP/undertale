@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "battleUI.h"
 
 struct tagRRect
 {
@@ -19,7 +20,7 @@ private:
 
 	Image* _muffet;
 	Image* _backGround;
-
+	battleUI* _battleUI;
 
 public:
 	playGround();

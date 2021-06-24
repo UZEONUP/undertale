@@ -35,7 +35,8 @@ HRESULT playGround::init()
 
 	angle = 0;
 	an2 = 0;
-
+	_battleUI = new battleUI;
+	_battleUI->init();
 
 	return S_OK;
 }
@@ -70,6 +71,7 @@ void playGround::update()
 	angle++;
 	an2 += 2;
 	//rcrc.SetLeftTopPos(5, 5);
+	_battleUI->update();
 }
 
 //그리기 전용
@@ -132,7 +134,7 @@ void playGround::render()
 		Vector2 t2(500, 500);
 
 		LineMake(_hdc, t, t2, angle,200);
-
+		_battleUI->render();
 	}
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();
