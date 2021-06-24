@@ -15,17 +15,27 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
+	_mfRc = RectMake(200, 200, 100, 100);
 
 	ImageManager::GetInstance()->AddImage("TestObject", L"TrapObject.png");
 	ImageManager::GetInstance()->AddFrameImage("TestFrameObject",
 		L"Bomb.png", 3, 1);
 	
+	ImageManager::GetInstance()->AddImage("머펫", L"머펫이미지/idle.bmp");
+	ImageManager::GetInstance()->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
+
+	_muffet = ImageManager::GetInstance()->FindImage("머펫");
+	_backGround = ImageManager::GetInstance()->FindImage("시작스테이지");
+
+
 	rc.x = 40;
 	rc.y = 40;
 	rc.rc = RectMakeCenter(rc.x,rc.y, 100, 100);
 
 	angle = 0;
 	an2 = 0;
+
 
 	return S_OK;
 }
@@ -69,9 +79,11 @@ void playGround::render()
 	Vector2	v2(500, 500);
 
 	//백버퍼 초기화
-	D2DRENDER->BeginRender(D2D1::ColorF::Yellow);
+	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		
+		_backGround->Render(_backRc.left, _backRc.top, 1, 1, 45.f, 0, 0, 0, 0);
+
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);
 		
