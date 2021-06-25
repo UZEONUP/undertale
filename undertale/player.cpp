@@ -99,17 +99,17 @@ void player::update()
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player.state = LEFT_MOVE;
-		//_player.x -= _player.speed;
+		_player.x -= _player.speed;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 	{
-		//_player.state = LEFT;
+		_player.state = LEFT;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player.state = RIGHT_MOVE;
-		//_player.x += _player.speed;
+		_player.x += _player.speed;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 	{
@@ -119,7 +119,7 @@ void player::update()
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_player.state = UP_MOVE;
-		//_player.y -= _player.speed;
+		_player.y -= _player.speed;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_UP))
 	{
@@ -128,7 +128,7 @@ void player::update()
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_player.state = DOWN_MOVE;
-		//_player.y += _player.speed;
+		_player.y += _player.speed;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
 	{

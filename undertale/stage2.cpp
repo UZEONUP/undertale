@@ -8,6 +8,7 @@ HRESULT stage2::init()
 
 
 	_setRect = new stageRect;
+	_setRect->release();
 
 	_setRect->setGround(0, 600, 240, 600);
 	_setRect->setGround(400, 600, 240, 600);
@@ -22,6 +23,7 @@ void stage2::release()
 
 void stage2::update()
 {
+	_setRect->update();
 }
 
 void stage2::render()
