@@ -55,6 +55,12 @@
     <Filter Include="playGround\battleUI">
       <UniqueIdentifier>{01c4329c-e301-4d30-8137-ddf5d2f5d6fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\stage\stageset">
+      <UniqueIdentifier>{31eba3f3-0f11-4fde-8780-ac2a31bb50b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage\stage1~">
+      <UniqueIdentifier>{becce4fe-0af0-42e1-8156-783b93119572}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -129,9 +135,6 @@
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="startStage.h">
-      <Filter>playGround\stage</Filter>
-    </ClInclude>
     <ClInclude Include="stageManager.h">
       <Filter>playGround\stage</Filter>
     </ClInclude>
@@ -150,14 +153,14 @@
     <ClInclude Include="iniDataManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="testScene.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="stageRect.h">
+      <Filter>playGround\stage\stageset</Filter>
     </ClInclude>
-    <ClInclude Include="undyne.h">
-      <Filter>playGround\enemy</Filter>
+    <ClInclude Include="stage2.h">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
-    <ClInclude Include="testscene2.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="startStage.h">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,9 +227,6 @@
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="startStage.cpp">
-      <Filter>playGround\stage</Filter>
-    </ClCompile>
     <ClCompile Include="stageManager.cpp">
       <Filter>playGround\stage</Filter>
     </ClCompile>
@@ -239,14 +239,14 @@
     <ClCompile Include="iniDataManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="testScene.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="stageRect.cpp">
+      <Filter>playGround\stage\stageset</Filter>
     </ClCompile>
-    <ClCompile Include="testscene2.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="stage2.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
-    <ClCompile Include="undyne.cpp">
-      <Filter>playGround\enemy</Filter>
+    <ClCompile Include="startStage.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

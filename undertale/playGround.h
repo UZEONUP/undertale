@@ -1,8 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
-#include "testScene.h"
-#include "testscene2.h"
+#include "stageManager.h"
+#include "startStage.h"
 
 
 struct tagRRect
@@ -18,22 +18,15 @@ private:
 	float angle;
 	float an2;
 
+	
+
 	player* _player;
 	
 
 	RECT _backRc;
-	RECT _mfRc;
-
-	Image* _muffet;
-	Image* _backGround;
-	Image* _muffetFrame;
-
-	int _fCount;
-	int _currentFrameX;
-
-	float _x, _y;
-
-	float _angle;
+	
+	stageManager* _sm;
+	startStage* _stage1;
 
 
 public:
