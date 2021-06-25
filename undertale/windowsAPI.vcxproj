@@ -169,6 +169,11 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage2.h" />
+    <ClInclude Include="stage3.h" />
+    <ClInclude Include="stage4.h" />
+    <ClInclude Include="stage5.h" />
+    <ClInclude Include="stage6.h" />
+    <ClInclude Include="stage7.h" />
     <ClInclude Include="stageManager.h" />
     <ClInclude Include="stageRect.h" />
     <ClInclude Include="startStage.h" />
@@ -202,6 +207,11 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage2.cpp" />
+    <ClCompile Include="stage3.cpp" />
+    <ClCompile Include="stage4.cpp" />
+    <ClCompile Include="stage5.cpp" />
+    <ClCompile Include="stage6.cpp" />
+    <ClCompile Include="stage7.cpp" />
     <ClCompile Include="stageManager.cpp" />
     <ClCompile Include="stageRect.cpp" />
     <ClCompile Include="startStage.cpp" />

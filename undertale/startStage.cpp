@@ -35,6 +35,7 @@ void startStage::release()
 
 void startStage::update()
 {
+	_setRect->update();
 }
 
 void startStage::render()

@@ -162,10 +162,19 @@
     <ClInclude Include="startStage.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
-    <ClInclude Include="undyne.h">
-      <Filter>playGround\enemy</Filter>
+    <ClInclude Include="stage3.h">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
-    <ClInclude Include="undybattle.h">
+    <ClInclude Include="stage4.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage5.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage6.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage7.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
   </ItemGroup>
@@ -254,10 +263,19 @@
     <ClCompile Include="startStage.cpp">
       <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
-    <ClCompile Include="undyne.cpp">
-      <Filter>playGround\enemy</Filter>
+    <ClCompile Include="stage3.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
-    <ClCompile Include="undybattle.cpp">
+    <ClCompile Include="stage4.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage5.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage6.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage7.cpp">
       <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>
