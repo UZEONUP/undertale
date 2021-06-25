@@ -12,6 +12,14 @@ HRESULT stage2::init()
 	_setRect->setGround(0, 600, 240, 600);
 	_setRect->setGround(400, 600, 240, 600);
 
+	_player = new player;
+	_player->init();
+
+	_undy = new undyne;
+	_undy->init();
+
+	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
+
 	return S_OK;
 }
 
@@ -22,6 +30,24 @@ void stage2::release()
 
 void stage2::update()
 {
+	float x = _player->getX();
+	float y = _player->getY();
+	float angle;
+
+	RECT temp;
+	if (IntersectRect(&temp, &_player->getRect(), &_undy->getRect()))
+		_player->setBattlechk(true);
+
+
+	if (_player->getBattlechk())
+	{
+		_player->setHeart(x, y);
+		//_player->setOn(true);
+	}
+
+
+	_player->update();
+	_undy->update();
 }
 
 void stage2::render()
@@ -34,4 +60,12 @@ void stage2::render()
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
 	}
+
+	
+	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
+	_player->render();
+	_undy->render();
+	char str[128];
+	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());
+	TextOut(_hdc, 300, 300, str, strlen(str));
 }

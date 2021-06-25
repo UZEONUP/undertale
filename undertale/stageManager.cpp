@@ -8,9 +8,11 @@ HRESULT stageManager::init()
 	_stage1->init();
 	_stage2 = new stage2;
 	//_stage2->init();
+	_undybattle = new undybattle;
 
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
 	sceneManager::getSingleton()->addScene("stage2", new stage2);
+	sceneManager::getSingleton()->addScene("undbattle", new undybattle);
 
 
 	sceneManager::getSingleton()->changeScene("stage1");
@@ -36,6 +38,7 @@ void stageManager::update()
 
 	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("undbattle")) _undybattle->update();
 
 }
 
@@ -43,5 +46,6 @@ void stageManager::render()
 {
 	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("undbattle")) _undybattle->render();
 
 }

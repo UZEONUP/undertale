@@ -19,8 +19,6 @@ HRESULT playGround::init()
 	_sm->init();
 	
 
-	_player = new player;
-	_player->init();
 
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	
@@ -53,7 +51,6 @@ void playGround::update()
 	gameNode::update();
 
 	_sm->update();
-	_player->update();
 	
 
 
@@ -129,7 +126,7 @@ void playGround::render()
 
 		LineMake(_hdc, t, t2, angle,200);
 
-		_player->render();
+
 
 		
 	}

@@ -46,6 +46,9 @@ private:
 	int _wt;
 	int _timer;
 	
+	int _blink;
+	bool _name;
+	
 public:
 	HRESULT init();
 	virtual void release();
@@ -62,5 +65,9 @@ public:
 	void setPlayerY(float y) { _player.y = y; }
 
 	void setHeart(float x, float y);
+	float getHX() { return _heart.x; }
+	float getHY() { return _heart.y; }
+	RECT getHRect() { return _heart.rc; }
+
 };
 

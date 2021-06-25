@@ -162,6 +162,12 @@
     <ClInclude Include="startStage.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
+    <ClInclude Include="undyne.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="undybattle.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -246,6 +252,12 @@
       <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
     <ClCompile Include="startStage.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="undyne.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="undybattle.cpp">
       <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>

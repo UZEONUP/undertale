@@ -29,8 +29,8 @@ HRESULT player::init()
 	_player.isBattle = false;
 	_heart.img = ImageManager::GetInstance()->FindImage("RED");
 	_heart.currentFrameX = 0;
-	_heart.x = _player.x - 2;
-	_heart.y = _player.y +10;
+	
+	_blink = 0;
 	_index = 0;
 	_timer = 0;
 	return S_OK;
@@ -152,7 +152,26 @@ void player::update()
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
 	}
 
-	
+	/*_heart.x = _player.x - 2;
+	_heart.y = _player.y + 10;*/
+
+	if (!_name)
+	{
+		_heart.img->SetAlpha(0);
+	}
+	else
+	{
+		_heart.img->SetAlpha(1);
+	}
+
+	if (_blink >= 3)
+	{
+		
+		_heart.angle = GetAngle(_heart.x, _heart.y, WINSIZEX / 2, WINSIZEY / 2);
+		_heart.x -= cosf(_heart.angle) * -_player.speed;
+		_heart.y -= -sinf(_heart.angle) * -_player.speed;
+		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
+	}
 }
 
 void player::render()
@@ -172,24 +191,35 @@ void player::render()
 void player::setHeart(float x, float y)
 {
 	_heart.rc = RectMakeCenter(_heart.x,_heart.y, 20, 20);
-
-	_wt = TIMEMANAGER->getWorldTime() + 3;
 	
 	_timer++;
-	if (_timer <= 200)
+	if (_blink < 3)
 	{
-		if (_wt > TIMEMANAGER->getWorldTime())
+		if (_timer % 10 == 0)
 		{
-			if (_wt % 2 == 0) _heart.img->SetAlpha(0);
+			if (!_name)
+			{
+				_name = true;
+				_timer = 0;
+			}
+			else
+			{
+				_blink++;
+				_name = false;
+				_timer = 0;
+			}
 		}
+		_heart.x = _player.x;
+		_heart.y = _player.y;
 	}
-	else
+	if(_blink ==3)
 	{
 		_player.deletepl = true;
-		
-		_heart.x -= 5;
-		_heart.y -= 5;
+		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
+		_name = true;
 	}
 }
+
+
 
 
