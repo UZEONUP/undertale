@@ -47,8 +47,8 @@ using namespace UJN_UTIL;
 #define WINNAME (LPCTSTR)(TEXT("우전없"))
 #define WINSTARTX	50
 #define WINSTARTY	50
-#define WINSIZEX	640				
-#define WINSIZEY	480
+#define WINSIZEX	1400				
+#define WINSIZEY	1080
 #define BACKGROUNDX
 #define BACKGROUNDY
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU

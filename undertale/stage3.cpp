@@ -9,8 +9,11 @@ HRESULT stage3::init()
 
 	_setRect = new stageRect;
 	_setRect->release();
-	/*_setRect->setGround(0, 600, 240, 600);
-	_setRect->setGround(400, 600, 240, 600);*/
+	_setRect->setGround(0, 280, 40, 160);
+	_setRect->setGround(40, 440, 400, 40);
+	_setRect->setGround(520, 440, 80, 40);
+	_setRect->setGround(600, 280, 40, 160);
+	_setRect->setGround(160, 240, 440, 40);
 
 	return S_OK;
 }
@@ -30,9 +33,9 @@ void stage3::render()
 	_backGround->Render(0, 0, 2.f, 2.f);
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
-		/*for (int i = 0; i < _setRect->getvGround().size(); i++)
+		for (int i = 0; i < _setRect->getvGround().size(); i++)
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
-		}*/
+		}
 	}
 }
