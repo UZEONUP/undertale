@@ -55,6 +55,12 @@
     <Filter Include="playGround\battleUI">
       <UniqueIdentifier>{01c4329c-e301-4d30-8137-ddf5d2f5d6fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\stage\stageset">
+      <UniqueIdentifier>{31eba3f3-0f11-4fde-8780-ac2a31bb50b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage\stage1~">
+      <UniqueIdentifier>{becce4fe-0af0-42e1-8156-783b93119572}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -129,9 +135,6 @@
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="startStage.h">
-      <Filter>playGround\stage</Filter>
-    </ClInclude>
     <ClInclude Include="stageManager.h">
       <Filter>playGround\stage</Filter>
     </ClInclude>
@@ -149,6 +152,15 @@
     </ClInclude>
     <ClInclude Include="iniDataManager.h">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="stageRect.h">
+      <Filter>playGround\stage\stageset</Filter>
+    </ClInclude>
+    <ClInclude Include="stage2.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="startStage.h">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +227,6 @@
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="startStage.cpp">
-      <Filter>playGround\stage</Filter>
-    </ClCompile>
     <ClCompile Include="stageManager.cpp">
       <Filter>playGround\stage</Filter>
     </ClCompile>
@@ -229,6 +238,15 @@
     </ClCompile>
     <ClCompile Include="iniDataManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="stageRect.cpp">
+      <Filter>playGround\stage\stageset</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="startStage.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

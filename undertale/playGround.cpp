@@ -14,6 +14,11 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+
+	_sm = new stageManager;
+	_sm->init();
+	
+
 	_player = new player;
 	_player->init();
 
@@ -24,8 +29,6 @@ HRESULT playGround::init()
 	ImageManager::GetInstance()->AddFrameImage("TestFrameObject",
 		L"Bomb.png", 3, 1);
 	
-	ImageManager::GetInstance()->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
-	_backGround = ImageManager::GetInstance()->FindImage("시작스테이지");
 
 
 	rc.x = 40;
@@ -48,9 +51,13 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	_player->update();
 
+	_sm->update();
+	_player->update();
 	
+
+
+
 	rc.rc = RectMakeCenter(rc.x, rc.y, 100, 100);
 	angle++;
 	an2 += 2;
@@ -69,7 +76,9 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		
-		_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
+		_sm->render();
+
+
 
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);

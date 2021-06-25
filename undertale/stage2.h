@@ -1,14 +1,12 @@
 #pragma once
 #include "gameNode.h"
-#include "startStage.h"
-#include "stage2.h"
+#include "stageRect.h"
 
-
-class stageManager : public gameNode
+class stage2 : public gameNode
 {
-	startStage* _stage1;
-	stage2* _stage2;
+	stageRect* _setRect;
 
+	Image* _backGround;
 
 public :
 	virtual HRESULT init();
