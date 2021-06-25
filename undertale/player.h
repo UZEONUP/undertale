@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "undyne.h"
 
 enum STATE
 {
@@ -18,10 +19,7 @@ struct tagPlayer
 	Image* img;
 	RECT rc;
 	STATE state;
-	
 	int currentHP;
-	
-	
 	float x, y;
 	float speed;
 	float angle;
@@ -30,6 +28,7 @@ struct tagPlayer
 	int currentFrameY;
 
 	bool isBattle;
+	bool deletepl;
 
 };
 class player :
@@ -42,7 +41,10 @@ private:
 	int _count;
 	int _index;
 
-	RECT _enemy;
+	undyne* _undy;
+
+	int _wt;
+	int _timer;
 	
 public:
 	HRESULT init();
@@ -52,12 +54,13 @@ public:
 
 
 	RECT getRect() { return _player.rc; }
-	tagPlayer getHeart() {return _heart;}
-	//void setHeart(Image* heart) { _heart.img = heart; }
-	
+	bool getBattlechk() { return _player.isBattle; }
+	void setBattlechk(bool isBattle) { _player.isBattle = isBattle; }
+	float getX() { return _player.x; }
+	float getY() { return _player.y; }
+	void setPlayerX(float x) { _player.x = x; }
+	void setPlayerY(float y) { _player.y = y; }
 
-
-
-
+	void setHeart(float x, float y);
 };
 

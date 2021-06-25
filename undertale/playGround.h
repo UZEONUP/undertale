@@ -18,7 +18,7 @@ private:
 	float angle;
 	float an2;
 
-	//player* _player;
+	player* _player;
 	
 
 	RECT _backRc;
@@ -34,6 +34,7 @@ private:
 	float _x, _y;
 
 	float _angle;
+
 
 public:
 	playGround();

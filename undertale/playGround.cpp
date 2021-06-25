@@ -14,8 +14,7 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
-	//_player = new player;
-	//_player->init();
+
 
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_mfRc = RectMake(200, 200, 100, 100);
@@ -61,7 +60,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-	//_player->update();
+
 	
 	
 
@@ -109,8 +108,7 @@ void playGround::render()
 	//백버퍼 초기화
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
-		
-		//_backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
+	 _backGround->Render(_backRc.left, _backRc.top, 2.f, 2.f);
 
 		RECT rect;
 		rect = RectMakeCenter(10, 10, 100, 100);
@@ -161,7 +159,7 @@ void playGround::render()
 
 		LineMake(_hdc, t, t2, angle,200);
 
-		//_player->render();
+	
 
 		//_muffet->Render(_x, _y, 2, 2, _angle, 20, 20);
 

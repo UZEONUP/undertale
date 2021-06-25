@@ -177,6 +177,7 @@
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="txtData.h" />
+    <ClInclude Include="undyne.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="windowsAPI.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="undyne.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="windowsAPI.cpp" />
