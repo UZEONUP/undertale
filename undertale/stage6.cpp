@@ -25,7 +25,11 @@ void stage6::update()
 
 void stage6::render()
 {
-	_backGround->Render(0, 0, 2.f, 2.f);
+	/*No.¼öÁ¤
+	_backGround->Render(0, 0, 2.f, 2.f);*/
+
+	_backGround->Render(0, 0);
+
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		/*for (int i = 0; i < _setRect->getvGround().size(); i++)
