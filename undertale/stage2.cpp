@@ -42,7 +42,6 @@ void stage2::update()
 	if (_player->getBattlechk())
 	{
 		_player->setHeart(x, y);
-		//_player->setOn(true);
 	}
 
 

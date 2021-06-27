@@ -155,7 +155,7 @@ void player::update()
 	/*_heart.x = _player.x - 2;
 	_heart.y = _player.y + 10;*/
 
-	if (!_name)
+	if (!_imageON)
 	{
 		_heart.img->SetAlpha(0);
 	}
@@ -178,10 +178,18 @@ void player::render()
 {
 	if (!_player.deletepl)
 	{
-		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
+		_player.rc = RectMakeCenter(_player.x, _player.y, 80, 120);
 		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, 2.f, 2.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	}
 	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY, 1.2f, 1.2f, 0.f, 0.f, 0.f, 0.f, 0.f);
+
+	D2DRENDER->DrawRectangle
+	(
+		_player.rc,
+		D2DRenderer::DefaultBrush::Red,
+		1.f
+		//angle
+	);
 	
 	char str[128];
 	sprintf_s(str, " wt : %f WT : %f", _wt,TIMEMANAGER->getWorldTime());
@@ -197,15 +205,15 @@ void player::setHeart(float x, float y)
 	{
 		if (_timer % 10 == 0)
 		{
-			if (!_name)
+			if (!_imageON)
 			{
-				_name = true;
+				_imageON = true;
 				_timer = 0;
 			}
 			else
 			{
 				_blink++;
-				_name = false;
+				_imageON = false;
 				_timer = 0;
 			}
 		}
@@ -216,7 +224,7 @@ void player::setHeart(float x, float y)
 	{
 		_player.deletepl = true;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
-		_name = true;
+		_imageON = true;
 	}
 }
 

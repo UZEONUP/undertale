@@ -47,7 +47,7 @@ private:
 	int _timer;
 	
 	int _blink;
-	bool _name;
+	bool _imageON;
 	
 public:
 	HRESULT init();
