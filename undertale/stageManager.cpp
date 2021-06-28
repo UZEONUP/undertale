@@ -56,6 +56,12 @@ void stageManager::update()
 		_stage3->init();
 		_pl->init();
 	}
+	if (_pl->getChangeScene())
+	{
+		sceneManager::getSingleton()->changeScene("stage3");
+		_stage3->init();
+		_pl->init();
+	}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
 	{
 		sceneManager::getSingleton()->changeScene("stage4");

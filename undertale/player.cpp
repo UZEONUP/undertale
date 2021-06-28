@@ -195,6 +195,11 @@ void player::update()
 		_heart.y -= -sinf(_heart.angle) * -_player.speed;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
 	}
+	if (_heart.x >= WINSIZEX / 2 + 5)
+	{
+		_player.changeScene = true;
+	}
+
 	CAMERAMANAGER->updateCamera( _player.x, _player.y);
 }
 

@@ -30,7 +30,7 @@ struct tagPlayer
 
 	bool isBattle;
 	bool deletepl;
-
+	bool changeScene;
 };
 
 class stageManager;
@@ -41,6 +41,8 @@ class player :
 private:
 	tagPlayer _player;
 	tagPlayer _heart;
+
+
 
 	int _count;
 	int _index;
@@ -67,6 +69,7 @@ public:
 	RECT getBRect() { return _player.balpan; }
 	bool getBattlechk() { return _player.isBattle; }
 	void setBattlechk(bool isBattle) { _player.isBattle = isBattle; }
+	bool getChangeScene() { return _player.changeScene; }
 	float getX() { return _player.x; }
 	float getY() { return _player.y; }
 	void setPlayerX(float x) { _player.x = x; }
@@ -78,5 +81,6 @@ public:
 	RECT getHRect() { return _heart.rc; }
 
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
+
 };
 

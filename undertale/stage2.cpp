@@ -46,7 +46,6 @@ void stage2::update()
 	}
 
 
-	_player->update();
 	_undy->update();
 }
 
@@ -55,7 +54,7 @@ void stage2::render()
 	/*No.¼öÁ¤
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->mapRender(-10, -800);
+	_backGround->mapRender(-10, -400);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -67,7 +66,6 @@ void stage2::render()
 
 	
 	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
-	_player->render();
 	_undy->render();
 	char str[128];
 	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());

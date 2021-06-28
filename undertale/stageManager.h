@@ -8,6 +8,8 @@
 #include "stage6.h"
 #include "stage7.h"
 #include "stageRect.h"
+#include "player.h"
+
 
 class player;
 
