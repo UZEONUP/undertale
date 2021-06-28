@@ -177,6 +177,12 @@
     <ClInclude Include="stage7.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
+    <ClInclude Include="undyne.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="undybattle.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -277,6 +283,12 @@
     </ClCompile>
     <ClCompile Include="stage7.cpp">
       <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="undybattle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="undyne.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

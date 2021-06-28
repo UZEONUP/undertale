@@ -13,7 +13,7 @@ HRESULT stage2::init()
 	_setRect->setGround(400, 600, 240, 600);
 
 	_player = new player;
-	_player->init();
+	_player->init(WINSIZEX/2,WINSIZEY/2);
 
 	_undy = new undyne;
 	_undy->init();
@@ -37,7 +37,7 @@ void stage2::update()
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &_undy->getRect()))
 		_player->setBattlechk(true);
-
+	
 
 	if (_player->getBattlechk())
 	{
@@ -64,11 +64,7 @@ void stage2::render()
 		}
 	}
 
-	
 	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
 	_player->render();
 	_undy->render();
-	char str[128];
-	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());
-	TextOut(_hdc, 300, 300, str, strlen(str));
 }

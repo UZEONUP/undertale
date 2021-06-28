@@ -72,40 +72,36 @@ void playGround::render()
 	//백버퍼 초기화
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
-		
 		_sm->render();
-
-
-
-		RECT rect;
-		rect = RectMakeCenter(10, 10, 100, 100);
-		
-		D2DRENDER->DrawRectangle
-		(
-			rc.rc,
-			D2DRenderer::DefaultBrush::Red,
-			1.f
-			//angle
-		);
-		
-		D2DRENDER->FillRectangle
-		(
-			rect,
-			D2DRenderer::DefaultBrush::Red
-			//an2
-		);
+		//RECT rect;
+		//rect = RectMakeCenter(10, 10, 100, 100);
+		//
+		//D2DRENDER->DrawRectangle
+		//(
+		//	rc.rc,
+		//	D2DRenderer::DefaultBrush::Red,
+		//	1.f
+		//	//angle
+		//);
+		//
+		//D2DRENDER->FillRectangle
+		//(
+		//	rect,
+		//	D2DRenderer::DefaultBrush::Red
+		//	//an2
+		//);
 		ID2D1SolidColorBrush* brush = nullptr;
 		D2D1_COLOR_F brushColor = { 1, 0, 1, 1 };
 		//D2D1_COLOR_F brushABC = { 1,0,1,1 }; 이런식으로 사용해도 됨
 		D2DRENDERTARGET->CreateSolidColorBrush(brushColor, &brush);
 
-		D2DRENDERTARGET->DrawLine
+		/*D2DRENDERTARGET->DrawLine
 		(
 			D2D1::Point2F(v.x,v.y),
 			D2D1::Point2F(v2.x,v2.y),
 			brush,
 			1.f
-		);
+		);*/
 	
 		brush->Release(); //릴리즈로 해주는 이유는 라이브러리생성을 지우는거기 때문
 		//Image* image = ImageManager::GetInstance()->FindImage("TestObject");

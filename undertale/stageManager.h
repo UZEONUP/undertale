@@ -7,7 +7,7 @@
 #include "stage5.h"
 #include "stage6.h"
 #include "stage7.h"
-
+#include "undybattle.h"
 
 class stageManager : public gameNode
 {
@@ -19,6 +19,7 @@ class stageManager : public gameNode
 	stage6* _stage6;
 	stage7* _stage7;
 
+	undybattle* _undyb;
 
 public :
 	virtual HRESULT init();
