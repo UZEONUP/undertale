@@ -70,6 +70,7 @@ public:
 	virtual void update();
 	virtual void render();
 
+	//bool compare(tagPlayer* a, tagPlayer* b);
 
 	RECT getRect() { return _player.rc; }
 	RECT getBRect() { return _player.balpan; }

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "player.h"
 #include "stageManager.h"
+#include <vector>
+#include <algorithm>
 
 HRESULT player::init()
 {
@@ -76,11 +78,18 @@ void player::release()
 	_vObject.clear();
 }
 
+bool compare(tagPlayer * a, tagPlayer * b)
+{
+	return a->rc.bottom < b->rc.bottom;
+}
+
 void player::update()
 {
 	for (int i = 0; i < _vObject.size(); i++)
 	{
 		_vObject[i]->count++;
+
+		sort(_vObject.begin(), _vObject.end(), compare);
 
 		if (_vObject[i]->count % 10 == 0)
 		{
@@ -271,6 +280,8 @@ void player::render()
 	
 	
 }
+
+
 
 void player::setHeart(float x, float y)
 {
