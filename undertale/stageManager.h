@@ -8,6 +8,10 @@
 #include "stage6.h"
 #include "stage7.h"
 
+#include "stageRect.h"
+
+class player;
+
 class stageManager : public gameNode
 {
 	startStage* _stage1;
@@ -17,7 +21,9 @@ class stageManager : public gameNode
 	stage5* _stage5;
 	stage6* _stage6;
 	stage7* _stage7;
-
+	
+	player* _pl;
+	stageRect* _stageRect;
 
 
 public :
@@ -25,5 +31,10 @@ public :
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void collision();
+
+	void linkPlayer(player* player) { _pl = player; }
+	void linkStageRect(stageRect* sr) { _stageRect = sr; }
 };
 

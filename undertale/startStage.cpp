@@ -8,7 +8,8 @@ HRESULT startStage::init()
 
 	CAMERAMANAGER->setMapCamera(1360, 520);
 
-
+	/*_player = new player;
+	_player->init(WINSIZEX/2, WINSIZEY/2);*/
 
 	_setRect = new stageRect;
 
@@ -39,7 +40,7 @@ void startStage::release()
 void startStage::update()
 {
 	_setRect->update();
-
+	//_player->update();
 }
 
 void startStage::render()
@@ -49,7 +50,7 @@ void startStage::render()
 
 	_backGround->mapRender(0, 0);
 
-
+	//_player->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)

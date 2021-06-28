@@ -31,6 +31,9 @@ struct tagPlayer
 	bool deletepl;
 
 };
+
+class stageManager;
+
 class player :
 	public gameNode
 {
@@ -48,6 +51,8 @@ private:
 	
 	int _blink;
 	bool _imageON;
+
+	stageManager* _sm;
 	
 public:
 	HRESULT init();
@@ -70,5 +75,6 @@ public:
 	float getHY() { return _heart.y; }
 	RECT getHRect() { return _heart.rc; }
 
+	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 };
 
