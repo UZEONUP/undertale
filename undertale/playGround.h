@@ -1,5 +1,9 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
+#include "stageManager.h"
+#include "startStage.h"
+
 
 struct tagRRect
 {
@@ -14,11 +18,15 @@ private:
 	float angle;
 	float an2;
 
-	RECT _backRc;
-	RECT _mfRc;
+	
 
-	Image* _muffet;
-	Image* _backGround;
+	player* _player;
+	
+
+	RECT _backRc;
+	
+	stageManager* _sm;
+	startStage* _stage1;
 
 
 public:
@@ -30,4 +38,69 @@ public:
 	virtual void update();
 	virtual void render();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

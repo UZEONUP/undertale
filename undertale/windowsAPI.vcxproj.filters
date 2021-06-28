@@ -43,8 +43,23 @@
     <Filter Include="2DGameFramework\txtData">
       <UniqueIdentifier>{431e51a5-80a3-453e-b6b4-0a46c07862b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2DGameFramework\camera">
-      <UniqueIdentifier>{e9239f37-b4ed-417e-b0a9-4b9761bec99b}</UniqueIdentifier>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{601a1978-5fbd-4737-ba65-3e2f872d9050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy">
+      <UniqueIdentifier>{d3532a44-2321-4dc7-99c0-ef2ea278cf6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage">
+      <UniqueIdentifier>{04e69a46-cbfd-4c5e-b051-7a1828f137be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\battleUI">
+      <UniqueIdentifier>{01c4329c-e301-4d30-8137-ddf5d2f5d6fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage\stageset">
+      <UniqueIdentifier>{31eba3f3-0f11-4fde-8780-ac2a31bb50b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\stage\stage1~">
+      <UniqueIdentifier>{becce4fe-0af0-42e1-8156-783b93119572}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +75,6 @@
     <ClInclude Include="windowsAPI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="commonMacroFunction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="gameNode.h">
       <Filter>2DGameFramework</Filter>
     </ClInclude>
@@ -71,9 +83,6 @@
     </ClInclude>
     <ClInclude Include="singletonBase.h">
       <Filter>2DGameFramework\SingletonBase</Filter>
-    </ClInclude>
-    <ClInclude Include="randomFunction.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="keyManager.h">
       <Filter>2DGameFramework\Manager</Filter>
@@ -117,8 +126,62 @@
     <ClInclude Include="line.h">
       <Filter>2DGameFramework\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>2DGameFramework\camera</Filter>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="muffet.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="stageManager.h">
+      <Filter>playGround\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="dialouge.h">
+      <Filter>playGround\battleUI</Filter>
+    </ClInclude>
+    <ClInclude Include="battleUI.h">
+      <Filter>playGround\battleUI</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>2DGameFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="iniDataManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="stageRect.h">
+      <Filter>playGround\stage\stageset</Filter>
+    </ClInclude>
+    <ClInclude Include="stage2.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="startStage.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage3.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage4.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage5.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage6.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="stage7.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="undyne.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="undybattle.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,8 +239,56 @@
     <ClCompile Include="line.cpp">
       <Filter>2DGameFramework\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>2DGameFramework\camera</Filter>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="muffet.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="stageManager.cpp">
+      <Filter>playGround\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="battleUI.cpp">
+      <Filter>playGround\battleUI</Filter>
+    </ClCompile>
+    <ClCompile Include="dialouge.cpp">
+      <Filter>playGround\battleUI</Filter>
+    </ClCompile>
+    <ClCompile Include="iniDataManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="stageRect.cpp">
+      <Filter>playGround\stage\stageset</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="startStage.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage3.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage4.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage5.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage6.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="stage7.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="undybattle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="undyne.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

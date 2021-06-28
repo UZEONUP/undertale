@@ -14,6 +14,8 @@ private:
 	static gameNode* _currentScene;
 	mapSceneList _mSceneList;
 
+	string _currentSceneName;
+
 public:
 	sceneManager();
 	~sceneManager();
@@ -26,6 +28,12 @@ public:
 	gameNode* addScene(string sceneName, gameNode* scene);
 
 	HRESULT changeScene(string sceneName);
+
+	bool isCurrentScene(string sceneName)
+	{
+		if (_currentSceneName == sceneName) return true;
+		else return false;
+	}
 
 };
 
