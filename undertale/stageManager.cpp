@@ -48,6 +48,7 @@ void stageManager::update()
 	//테스트 용 스테이지 전환 ================================================
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F2))
 	{
+		_stage1->release();
 		sceneManager::getSingleton()->changeScene("stage2");
 		_stage2->init();
 		_pl->init();
@@ -98,10 +99,10 @@ void stageManager::update()
 
 		if (sceneRect(_stage1->getSceneRect()))
 		{
-			_stage1->release();
+			
 			sceneManager::getSingleton()->changeScene("stage2");
-			_pl->init();
 			_stage2->init();
+			_pl->init();
 		}
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->update();

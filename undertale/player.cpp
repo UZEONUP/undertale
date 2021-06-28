@@ -17,17 +17,15 @@ HRESULT player::init()
 	/*_undy = new undyne;
 	_undy->init();*/
 
-	/*setPlayerX(WINSIZEX / 2);
-	setPlayerY(WINSIZEY / 2);*/
 	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
-		_player.x = WINSIZEX /2 ;
-		_player.y = 1000;
+		_player.x = WINSIZEX /2+20 ;
+		_player.y = 950;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
 	{
 		_player.x = 100;
-		_player.y = 100;
+		_player.y = 1000;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
 	{
@@ -195,11 +193,6 @@ void player::update()
 		_heart.y -= -sinf(_heart.angle) * -_player.speed;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
 	}
-	if (_heart.x >= WINSIZEX / 2 + 5)
-	{
-		_player.changeScene = true;
-	}
-
 	CAMERAMANAGER->updateCamera( _player.x, _player.y);
 }
 
