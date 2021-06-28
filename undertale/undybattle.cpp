@@ -4,7 +4,7 @@
 HRESULT undybattle::init()
 {
 	_bui = new battleUI;
-	_bui->init();
+	_bui->init(2);
 	ImageManager::GetInstance()->AddFrameImage("und_hair", L"Undyne/Und_battle_hair.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("und_head", L"Undyne/Und_battle_head1.png", 1, 1);
 	ImageManager::GetInstance()->AddFrameImage("und_torso", L"Undyne/Und_Torso.png", 1, 1);

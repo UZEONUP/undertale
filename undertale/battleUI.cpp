@@ -9,7 +9,7 @@ battleUI::~battleUI()
 {
 }
 
-HRESULT battleUI::init()
+HRESULT battleUI::init(int bossName)
 {
 	_menu_off[0] = ImageManager::GetInstance()->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
 	_menu_off[1] = ImageManager::GetInstance()->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
@@ -54,9 +54,32 @@ HRESULT battleUI::init()
 	_word_count2 = 0;
 	_word_speed = 0;
 	talk_main_start("샌즈_메인", 1);
-	talk_bubble_start("샌즈_말풍선", 1);
+	
 	//폰트추가
 	D2DRENDER->AddTextFormat(L"-윤디자인웹돋움");
+
+	if (bossName == 0) 
+	{
+		_boss_select = "언다인_말풍선";
+		_boss_name = L"* 언다인";
+	}
+	if (bossName == 1) 
+	{
+		_boss_select = "샌즈_말풍선";
+		_boss_name = L"* 샌즈";
+	}
+	if (bossName == 2) 
+	{
+		_boss_select = "머펫_말풍선";
+		_boss_name = L"* 머펫";
+	}
+	if (bossName == 3) 
+	{
+		_boss_select = "아스리엘_말풍선";
+		_boss_name = L"* 아스리엘";
+	}
+	talk_bubble_start(_boss_select, 1);
+;
 	return S_OK;
 }
 
@@ -168,7 +191,7 @@ void battleUI::update()
 				_word_count2 = 0;
 				//이니데이터 title값을 변경해주기위해 int to string 변환
 				_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
-				_str_bubble = INIDATA->loadDataString2("28기", "샌즈_말풍선", _title_char2);
+				_str_bubble = INIDATA->loadDataString2("28기", _boss_select, _title_char2);
 			}
 			//자비(살려주기)일때도 대사의 길이가 같으면 다음대사로
 			if (_isMercy && _word_count2 == strlen(_word_cut2) && _word_count2 >= 3)
@@ -205,8 +228,8 @@ void battleUI::update()
 	}
 
 	//메뉴 카운터2에 따른 텍스트 출력
-	if (_menu_input1_count == 1) menu_select = L" * 보스이름";
-	if (_menu_input1_count == 2) menu_select = L" * 보스이름";
+	if (_menu_input1_count == 1) menu_select = _boss_name;
+	if (_menu_input1_count == 2) menu_select = _boss_name;
 	if (_menu_input1_count == 3) menu_select = L" * 아이템 목록";
 	if (_menu_input1_count == 4 && !_isMercy) menu_select = L" * 살려주기";
 	//공격 실행 시 공격바 움직임
@@ -334,7 +357,7 @@ void battleUI::render()
 	if (isTurn == TALK_MAIN)
 	{
 		/*	D2DRENDER->RenderText(100, 300, ConverCtoWC(_word_cut), 20);*/
-		D2DRENDER->RenderTextField(50, 150, ConverCtoWC(_word_cut), D2D1::ColorF::White, 20, 500, 200, 1,
+		D2DRENDER->RenderTextField(50, 150, ConverCtoWC(_word_cut), D2D1::ColorF::White, 11, 500, 200, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//말풍선
@@ -343,7 +366,7 @@ void battleUI::render()
 		/*	D2DRENDER->RenderText(450, 100, ConverCtoWC(_word_cut2), (0, 0, 0), 1, 20, DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");*/
 
 
-		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 20, 180, 100, 1,
+		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 11, 180, 100, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 
 
@@ -368,7 +391,7 @@ void battleUI::main_rect_control_default(bool expandOrReduce)
 	}
 	_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, _main_rc.width_max, _main_rc.height_max);
 }
-//메인 전투 렉트 컨트롤함수 커스터마이징			 (늘릴지 줄일지 여부,	 크기변환 속도,	최소 혹은 최대 넓이,	최소 혹은 최대 높이)
+//메인 전투 렉트 컨트롤함수 커스터마이징(늘릴지 줄일지 여부,	 크기변환 속도,	최소 혹은 최대 넓이,	최소 혹은 최대 높이)
 void battleUI::main_rect_control_customizing(bool expandOrReduce, int speed, int maxSizeWidth, int maxSizeHeight)
 {
 	if (expandOrReduce)
@@ -430,7 +453,6 @@ void battleUI::talk_bubble_end(int endNum)
 	if (endNum == _title_int2 && _word_count2 == strlen(_word_cut2) && _word_count2 >= 3)
 	{
 		isTurn = INGAME;
-
 	}
 }
 

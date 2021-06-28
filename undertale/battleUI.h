@@ -83,11 +83,14 @@ private:
 	int _word_speed;
 
 
+	const char* _boss_select;
+	const wchar_t* _boss_name;
+
 public:
 	battleUI();
 	~battleUI();
 
-	virtual HRESULT init();
+	virtual HRESULT init(int bossName);
 	virtual void release();
 	virtual void update();
 	virtual void render();
