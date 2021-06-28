@@ -99,9 +99,9 @@ void stageManager::update()
 	float y = _pl->getY();
 	float angle;
 
-	RECT temp;
+	/*RECT temp;
 	if (IntersectRect(&temp, &_pl->getRect(), &_un->getRect()))
-		_pl->setBattlechk(true);
+		_pl->setBattlechk(true);*/
 
 	if (_pl->getBattlechk())
 	{

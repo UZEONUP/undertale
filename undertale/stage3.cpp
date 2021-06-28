@@ -16,7 +16,7 @@ HRESULT stage3::init()
 	_setRect->setGround(600, 280, 40, 160);
 	_setRect->setGround(160, 240, 440, 40);
 
-	_sceneRect = RectMake(50, 220, 100, 20);
+	_sceneRect = RectMake(440, 480, 100, 20);
 	return S_OK;
 }
 

@@ -19,20 +19,30 @@ HRESULT player::init()
 	/*_undy = new undyne;
 	_undy->init();*/
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	if (sceneManager::getSingleton()->isCurrentScene("stage2")) //산
 	{
 		_player.x = WINSIZEX / 2 + 20;
 		_player.y = 950;
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
+	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))//위로 올라감
 	{
-		_player.x = 100;
-		_player.y = 1000;
+		_player.x = 475;
+		_player.y = 400;
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
+	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))//상점 가기 전
 	{
-		_player.x = 100;
-		_player.y = 100;
+		_player.x = 300;
+		_player.y = 400;
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage6"))//엘베
+	{
+		_player.x = WINSIZEX / 2;
+		_player.y = 700;
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage7"))//마지막 스테이지
+	{
+		_player.x = WINSIZEX / 2 + 20;
+		_player.y = 1120;
 	}
 	else
 	{
