@@ -21,6 +21,7 @@ HRESULT stage2::init()
 
 	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
 
+	_sceneRect = RectMake(270, 900, 90, 40);
 	return S_OK;
 }
 
@@ -55,7 +56,7 @@ void stage2::render()
 	/*No.¼öÁ¤
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->mapRender(-10, -800);
+	_backGround->mapRender(-0, -0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -63,6 +64,7 @@ void stage2::render()
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
+		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	

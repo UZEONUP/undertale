@@ -98,7 +98,18 @@ void stageManager::update()
 			_stage2->init();
 		}
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	{
+		_stage2->update();
+
+		if (sceneRect(_stage2->getSceneRect()))
+		{
+			_stage2->release();
+			sceneManager::getSingleton()->changeScene("stage3");
+			_pl->init();
+			_stage3->init();
+		}
+	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->update();

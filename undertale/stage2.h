@@ -15,6 +15,8 @@ class stage2 : public gameNode
 	player* _player;
 	undyne* _undy;
 
+	RECT _sceneRect;
+
 public :
 	virtual HRESULT init();
 	virtual void release();
@@ -22,5 +24,6 @@ public :
 	virtual void render();
 
 	player* getPlayer() { return _player; }
+	RECT getSceneRect() { return _sceneRect; }
 };
 

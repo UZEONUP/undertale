@@ -21,8 +21,8 @@ HRESULT player::init()
 	setPlayerY(WINSIZEY / 2);*/
 	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
-		_player.x = WINSIZEX /2 ;
-		_player.y = 800;
+		_player.x = 300;
+		_player.y = 300;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
 	{
