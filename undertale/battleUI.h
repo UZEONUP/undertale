@@ -25,6 +25,7 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
+	RECT _fill;
 
 	Image* _menu_off[4];
 	Image* _menu_on[4];
