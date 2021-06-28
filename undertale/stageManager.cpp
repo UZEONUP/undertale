@@ -117,6 +117,8 @@ void stageManager::update()
 		if (sceneRect(_stage1->getSceneRect()))
 		{
 			_stage1->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage2");
 			_stage2->init();
 			_pl->init();
@@ -131,6 +133,8 @@ void stageManager::update()
 		if (sceneRect(_stage2->getSceneRect()))
 		{
 			_stage2->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage3");
 			_pl->init();
 			_stage3->init();
@@ -145,6 +149,8 @@ void stageManager::update()
 		if (sceneRect(_stage3->getSceneRect()))
 		{
 			_stage3->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage4");
 			_pl->init();
 			_stage4->init();
@@ -159,6 +165,8 @@ void stageManager::update()
 		if (sceneRect(_stage4->getSceneRect()))
 		{
 			_stage4->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage5");
 			_pl->init();
 			_stage5->init();
@@ -166,6 +174,8 @@ void stageManager::update()
 		else if (sceneRect(_stage4->getSceneRect2()))
 		{
 			_stage4->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage6");
 			_pl->init();
 			_stage6->init();
@@ -178,6 +188,8 @@ void stageManager::update()
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
 			_stage5->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage4");
 			_pl->init();
 			_stage4->init();
@@ -192,6 +204,8 @@ void stageManager::update()
 		if (sceneRect(_stage6->getSceneRect()))
 		{
 			_stage6->release();
+			_pl->release();
+
 			sceneManager::getSingleton()->changeScene("stage7");
 			_pl->init();
 			_stage7->init();
@@ -201,6 +215,7 @@ void stageManager::update()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7"))
 	{
 		_stage7->update();
+
 		linkStageRect(_stage7->getStageRect());
 
 	}

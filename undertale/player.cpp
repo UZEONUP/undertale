@@ -51,15 +51,18 @@ HRESULT player::init()
 
 	_vObject.push_back(&_player);
 
-	
-	ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
-	_undy.x = WINSIZEX / 2;
-	_undy.y = 800;
-	_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
-	_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
-	_undy.currentFrameX = _undy.currentFrameY = 0;
+	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	{
+		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
+		_undy.x = WINSIZEX / 2;
+		_undy.y = 800;
+		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
+		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
+		_undy.currentFrameX = _undy.currentFrameY = 0;
 
-	_vObject.push_back(&_undy);
+		_vObject.push_back(&_undy);
+
+	}
 	
 	_blink = 0;
 	_index = 0;
@@ -70,6 +73,7 @@ HRESULT player::init()
 
 void player::release()
 {
+	_vObject.clear();
 }
 
 void player::update()
