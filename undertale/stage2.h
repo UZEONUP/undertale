@@ -4,6 +4,8 @@
 #include "player.h"
 #include "undyne.h"
 
+class player;
+
 class stage2 : public gameNode
 {
 	stageRect* _setRect;

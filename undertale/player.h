@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "undyne.h"
+#include <vector>
 
 enum STATE
 {
@@ -41,7 +42,7 @@ class player :
 private:
 	tagPlayer _player;
 	tagPlayer _heart;
-
+	tagPlayer* _object;
 
 
 	int _count;
@@ -56,6 +57,9 @@ private:
 	bool _imageON;
 
 	stageManager* _sm;
+
+	vector<tagPlayer*>			 _vObject;
+	vector<tagPlayer*>::iterator _viObject;
 	
 public:
 	HRESULT init();

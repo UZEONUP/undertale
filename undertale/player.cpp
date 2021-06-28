@@ -22,7 +22,7 @@ HRESULT player::init()
 	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		_player.x = WINSIZEX /2 ;
-		_player.y = 800;
+		_player.y = 1000;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
 	{
