@@ -17,6 +17,44 @@ void stageRect::release()
 void stageRect::update()
 {
 	//여기에 충돌 (못지나가는)
+	//RECT temp;
+
+	//RECT plRc = _pl->getRect();
+
+
+	//for (int i = 0; i < _vGround.size(); i++)
+	//{
+	//	RECT groundRect = _stageRect->getvGround()[i].rc;
+
+	//	if (IntersectRect(&temp, &plRc, &groundRect))
+	//	{
+	//		float width = (temp.right - temp.left);
+	//		float height = (temp.bottom - temp.top);
+
+	//		float playerX = _pl->getX();
+	//		float playerY = _pl->getY();
+
+	//		bool _pt;
+
+	//		//수직 수평
+	//		(width > height) ? _pt = false : _pt = true;
+
+	//		if (_pt) // 수평
+	//		{
+	//			//왼쪽에 있나
+	//			if (plRc.left < groundRect.left) _pl->setPlayerX(playerX -= width);
+	//			//오른쪽에 있나
+	//			if (plRc.right > groundRect.right) _pl->setPlayerX(playerX += width);
+	//		}
+	//		else if (!_pt) //수직
+	//		{
+	//			//위에 있나
+	//			if (plRc.top < groundRect.top) _pl->setPlayerY(playerY -= height);
+	//			//아래에 있나
+	//			if (plRc.bottom > groundRect.bottom) _pl->setPlayerY(playerY += height);
+	//		}
+	//	}
+	//}
 }
 
 void stageRect::render()
