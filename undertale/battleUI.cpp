@@ -166,9 +166,9 @@ void battleUI::update()
 			{
 				_title_int2++;
 				_word_count2 = 0;
+				//이니데이터 title값을 변경해주기위해 int to string 변환
 				_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
 				_str_bubble = INIDATA->loadDataString2("28기", "샌즈_말풍선", _title_char2);
-				//이니데이터 title값을 변경해주기위해 int to string 변환
 			}
 			//자비(살려주기)일때도 대사의 길이가 같으면 다음대사로
 			if (_isMercy && _word_count2 == strlen(_word_cut2) && _word_count2 >= 3)
@@ -268,6 +268,8 @@ void battleUI::update()
 
 void battleUI::render()
 {
+	
+
 	//선택창 텍스트
 	if (_menu_input1_count != 0 && !_isMercy)
 	{
@@ -352,15 +354,15 @@ void battleUI::main_rect_control_default(bool expandOrReduce)
 {
 	if (expandOrReduce)
 	{
-		_main_rc.width_max += 10;
-		_main_rc.height_max += 10;
+		_main_rc.width_max += 15;
+		_main_rc.height_max += 15;
 		if (_main_rc.width_max >= 520) _main_rc.width_max = 520;
 		if (_main_rc.height_max >= 160) _main_rc.height_max = 160;
 	}
 	else
 	{
-		_main_rc.width_max -= 10;
-		_main_rc.height_max -= 10;
+		_main_rc.width_max -= 15;
+		_main_rc.height_max -= 15;
 		if (_main_rc.width_max <= 150) _main_rc.width_max = 150;
 		if (_main_rc.height_max <= 150) _main_rc.height_max = 150;
 	}
