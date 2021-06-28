@@ -22,6 +22,10 @@ HRESULT stageManager::init()
 	this->linkPlayer(_pl);
 	_pl->linkStageManager(this);
 
+	_un = new undyne;
+	_un->init();
+	
+
 	//_stage2->init();
 
 	cout << "»ï" << endl;
@@ -59,6 +63,12 @@ void stageManager::update()
 		_stage3->init();
 		_pl->init();
 	}
+	/*if (_pl->getChangeScene())
+	{
+		sceneManager::getSingleton()->changeScene("stage3");
+		_stage3->init();
+		_pl->init();
+	}*/
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
 	{
 		sceneManager::getSingleton()->changeScene("stage4");
@@ -83,6 +93,19 @@ void stageManager::update()
 	{
 		sceneManager::getSingleton()->changeScene("undybattle");
 		_undybattle->init();
+	}
+
+	float x = _pl->getX();
+	float y = _pl->getY();
+	float angle;
+
+	RECT temp;
+	if (IntersectRect(&temp, &_pl->getRect(), &_un->getRect()))
+		_pl->setBattlechk(true);
+
+	if (_pl->getBattlechk())
+	{
+		_pl->setHeart(x, y);
 	}
 	//=======================================================================
 

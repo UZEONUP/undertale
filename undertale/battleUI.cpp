@@ -21,7 +21,7 @@ HRESULT battleUI::init()
 	_menu_on[3] = ImageManager::GetInstance()->AddImage("자비_on", L"UI이미지/UI_자비_활성화_110_42.png");
 	_heart = ImageManager::GetInstance()->AddImage("하트", L"UI이미지/UI_하트_20_20.png");
 	_speechBubble = ImageManager::GetInstance()->AddImage("말풍선오른쪽", L"UI이미지/UI_말풍선_오른쪽_237_104.png");
-	_attack_ground = ImageManager::GetInstance()->AddImage("전투판", L"UI이미지/UI_공격타이밍판_600_147.png");
+	_attack_ground = ImageManager::GetInstance()->AddImage("전투판", L"UI이미지/UI_공격타이밍판_540_132.png");
 
 	ImageManager::GetInstance()->AddImage("전투바_화이트", L"UI이미지/UI_공격타이밍바_10_151.png");
 	ImageManager::GetInstance()->AddImage("전투바_블랙", L"UI이미지/UI_공격타이밍바_black_10_151.png");
@@ -239,8 +239,8 @@ void battleUI::update()
 	if (enemy_attack_count >= 200)
 	{
 		enemy_attack_count = 0;
-		_word_count = 0;
 		isTurn = TALK_MAIN;
+		_word_count = 0;
 	}
 	//말풍선 대화중, 미니게임중이면 메인 전투창 크기를 줄임
 	if (isTurn == TALK_BUBBLE || isTurn == INGAME)main_rect_control_default(false);
@@ -271,7 +271,7 @@ void battleUI::render()
 	//선택창 텍스트
 	if (_menu_input1_count != 0 && !_isMercy)
 	{
-		D2DRENDER->RenderText(120, 250, menu_select, 20);
+		D2DRENDER->RenderText(120, 250, menu_select, 20, D2DRenderer::DefaultBrush::White);
 	}
 	//공격 시 이미지
 	if (_isAttack_start)
@@ -294,7 +294,7 @@ void battleUI::render()
 	_menu_off[2]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 300, WINSIZEY - 50);
 	_menu_off[3]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 450, WINSIZEY - 50);
 	//말풍선
-	if (isTurn == TALK_BUBBLE)	_speechBubble->Render(0, 0, 1, 1, 0, 0, 0, 400, 80);
+	if (isTurn == TALK_BUBBLE)	_speechBubble->Render(0, 0, 1, 1, 0, 0, 0, 340, 80);
 
 
 	//메뉴 선택에 따른 이미지
@@ -332,7 +332,7 @@ void battleUI::render()
 	if (isTurn == TALK_MAIN)
 	{
 		/*	D2DRENDER->RenderText(100, 300, ConverCtoWC(_word_cut), 20);*/
-		D2DRENDER->RenderTextField(50, 200, ConverCtoWC(_word_cut), D2D1::ColorF::White, 20, 500, 200, 1,
+		D2DRENDER->RenderTextField(50, 150, ConverCtoWC(_word_cut), D2D1::ColorF::White, 20, 500, 200, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//말풍선
@@ -341,7 +341,7 @@ void battleUI::render()
 		/*	D2DRENDER->RenderText(450, 100, ConverCtoWC(_word_cut2), (0, 0, 0), 1, 20, DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");*/
 
 
-		D2DRENDER->RenderTextField(450, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 20, 180, 100, 1,
+		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 20, 180, 100, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 
 
@@ -354,7 +354,7 @@ void battleUI::main_rect_control_default(bool expandOrReduce)
 	{
 		_main_rc.width_max += 10;
 		_main_rc.height_max += 10;
-		if (_main_rc.width_max >= 600) _main_rc.width_max = 600;
+		if (_main_rc.width_max >= 520) _main_rc.width_max = 520;
 		if (_main_rc.height_max >= 160) _main_rc.height_max = 160;
 	}
 	else

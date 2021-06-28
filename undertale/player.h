@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "undyne.h"
+#include <vector>
 
 enum STATE
 {
@@ -30,7 +31,7 @@ struct tagPlayer
 
 	bool isBattle;
 	bool deletepl;
-
+	bool changeScene;
 };
 
 class stageManager;
@@ -41,6 +42,8 @@ class player :
 private:
 	tagPlayer _player;
 	tagPlayer _heart;
+	tagPlayer* _object;
+
 
 	int _count;
 	int _index;
@@ -49,12 +52,15 @@ private:
 
 	int _wt;
 	int _timer;
-	
+
 	int _blink;
 	bool _imageON;
 
 	stageManager* _sm;
-	
+
+	vector<tagPlayer*>			 _vObject;
+	vector<tagPlayer*>::iterator _viObject;
+
 public:
 	HRESULT init();
 	HRESULT init(float x, float y);
@@ -67,6 +73,7 @@ public:
 	RECT getBRect() { return _player.balpan; }
 	bool getBattlechk() { return _player.isBattle; }
 	void setBattlechk(bool isBattle) { _player.isBattle = isBattle; }
+	bool getChangeScene() { return _player.changeScene; }
 	float getX() { return _player.x; }
 	float getY() { return _player.y; }
 	void setPlayerX(float x) { _player.x = x; }
@@ -78,5 +85,7 @@ public:
 	RECT getHRect() { return _heart.rc; }
 
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
-};
 
+	vector<tagPlayer*> getVobject() { return _vObject; }
+
+};

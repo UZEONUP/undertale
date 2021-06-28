@@ -4,8 +4,8 @@
 HRESULT undyne::init()
 {
 	ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
-	_fullbody.x = WINSIZEX / 2 - 390;
-	_fullbody.y = WINSIZEY / 2 - 225;
+	_fullbody.x = WINSIZEX / 2;
+	_fullbody.y = 800;
 	_fullbody.rc = RectMakeCenter(_fullbody.x, _fullbody.y, 80, 100);
 	_fullbody.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
 	_fullbody.currentFrameX = _fullbody.currentFrameY = 0;

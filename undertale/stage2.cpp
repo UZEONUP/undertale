@@ -34,22 +34,6 @@ void stage2::release()
 
 void stage2::update()
 {
-	float x = _player->getX();
-	float y = _player->getY();
-	float angle;
-
-	RECT temp;
-	if (IntersectRect(&temp, &_player->getRect(), &_undy->getRect()))
-		_player->setBattlechk(true);
-
-
-	if (_player->getBattlechk())
-	{
-		_player->setHeart(x, y);
-	}
-
-
-	_player->update();
 	_undy->update();
 }
 
@@ -71,7 +55,6 @@ void stage2::render()
 
 	
 	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
-	_player->render();
 	_undy->render();
 	char str[128];
 	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());

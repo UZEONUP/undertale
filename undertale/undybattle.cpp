@@ -15,14 +15,14 @@ HRESULT undybattle::init()
 	ImageManager::GetInstance()->AddFrameImage("battleback", L"Undyne/BATTLE_BACKGROUND.png", 1, 1);
 
 	_torso.x = WINSIZEX/2;
-	_torso.y = WINSIZEY/2 - 200;
+	_torso.y = WINSIZEY/2 - 100 ;
 	_torso.rc = RectMakeCenter(_torso.x, _torso.y, 100, 60);
 	_torso.img = ImageManager::GetInstance()->FindImage("und_torso");
 	_torso.currentFrameX = _torso.currentFrameY = 0;
 	
 
-	_head.x = _torso.x;
-	_head.y = _torso.y - 50;
+	_head.x = _torso.x-1;
+	_head.y = _torso.y - 65;
 	_head.rc = RectMakeCenter(_head.x, _head.y, 40, 40);
 	_head.img = ImageManager::GetInstance()->FindImage("und_head");
 	_head.currentFrameX = _head.currentFrameY = 0;
@@ -33,7 +33,7 @@ HRESULT undybattle::init()
 	_hair.img = ImageManager::GetInstance()->FindImage("und_hair");
 	_hair.currentFrameX = _hair.currentFrameY = 0;
 
-	_leftArm.x = _torso.x - 60;
+	_leftArm.x = _torso.x - 80;
 	_leftArm.y = _torso.y;
 	_leftArm.rc = RectMakeCenter(_leftArm.x, _leftArm.y, 20, 30);
 	_leftArm.img = ImageManager::GetInstance()->FindImage("und_leftarm");
@@ -46,15 +46,15 @@ HRESULT undybattle::init()
 	_rightArm.currentFrameX = _rightArm.currentFrameY = 0;
 
 
-	_belly.x = _torso.x;
+	_belly.x = _torso.x-5;
 	_belly.y = _torso.y + 40;
 	_belly.rc = RectMakeCenter(_belly.x, _belly.y, 40, 20);
 	_belly.img = ImageManager::GetInstance()->FindImage("und_belly");
 	_belly.currentFrameX = _belly.currentFrameY = 0;
 
 
-	_legs.x = _belly.x;
-	_legs.y = _belly.y + 30;
+	_legs.x = _belly.x-10;
+	_legs.y = _belly.y + 40;
 	_legs.rc = RectMakeCenter(_legs.x, _legs.y, 20, 40);
 	_legs.img = ImageManager::GetInstance()->FindImage("und_legs");
 	_legs.currentFrameX = _legs.currentFrameY = 0;
@@ -64,8 +64,6 @@ HRESULT undybattle::init()
 	{
 		background[i] = RectMakeCenter(i * 100 + 500, WINSIZEY / 2 - 200, 100, 200);
 	}
-
-
 
 	return S_OK;
 }
@@ -84,11 +82,6 @@ void undybattle::update()
 		if (_hair.currentFrameX >= _hair.img->GetMaxFrameX())_hair.currentFrameX = 0;
 		_hair.currentFrameY = 0;
 	}
-
-
-
-
-
 }
 
 void undybattle::render()
@@ -152,13 +145,14 @@ void undybattle::render()
 		);
 	}
 	
-	_hair.img->FrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_head.img->FrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_torso.img->FrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_leftArm.img->FrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_rightArm.img->FrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_belly.img->FrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_legs.img->FrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-
+	
+	_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_rightArm.img->bossFrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_hair.img->bossFrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_head.img->bossFrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	
 	_bui->render();
 }

@@ -19,7 +19,7 @@ HRESULT player::init()
 
 	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
-		_player.x = WINSIZEX /2+20 ;
+		_player.x = WINSIZEX / 2 + 20;
 		_player.y = 950;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
@@ -48,6 +48,8 @@ HRESULT player::init()
 	_player.isBattle = false;
 	_heart.img = ImageManager::GetInstance()->FindImage("RED");
 	_heart.currentFrameX = 0;
+
+
 	
 	_blink = 0;
 	_index = 0;
@@ -192,6 +194,10 @@ void player::update()
 		_heart.x -= cosf(_heart.angle) * -_player.speed;
 		_heart.y -= -sinf(_heart.angle) * -_player.speed;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
+		if (_heart.x >= WINSIZEX / 2 + 100 || _heart.x <= WINSIZEX / 2 - 100)
+		{
+			_player.changeScene = true;
+		}
 	}
 	CAMERAMANAGER->updateCamera( _player.x, _player.y);
 }
