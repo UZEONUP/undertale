@@ -10,11 +10,14 @@ HRESULT stage2::init()
 
 	_setRect = new stageRect;
 
-	_setRect->setGround(0, 600, 240, 600);
-	_setRect->setGround(400, 600, 240, 600);
+	_setRect->setGround(0, 200, 230, 1000);
+	_setRect->setGround(400, 200, 240, 1000);
 
 	_player = new player;
 	_player->init();
+
+	_sceneRect = RectMake(250, 600, 70, 30);
+
 
 	_undy = new undyne;
 	_undy->init();
@@ -63,6 +66,7 @@ void stage2::render()
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
+		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	

@@ -24,6 +24,8 @@ public :
 	virtual void render();
 
 	player* getPlayer() { return _player; }
+	stageRect* getStageRect() { return _setRect; }
+
 	RECT getSceneRect() { return _sceneRect; }
 };
 

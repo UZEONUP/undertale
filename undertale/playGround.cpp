@@ -43,13 +43,11 @@ void playGround::update()
 	_sm->update();
 	CAMERAMANAGER->update();
 	CAMERAMANAGER->mousePoint();
-
 }
 
 //그리기 전용
 void playGround::render()
 {
-
 	//백버퍼 초기화
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 

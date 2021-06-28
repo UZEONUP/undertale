@@ -93,7 +93,7 @@ void stageManager::update()
 
 		if (sceneRect(_stage1->getSceneRect()))
 		{
-			
+			_stage1->release();
 			sceneManager::getSingleton()->changeScene("stage2");
 			_stage2->init();
 			_pl->init();
@@ -103,6 +103,8 @@ void stageManager::update()
 	{
 		_stage2->update();
 
+		linkStageRect(_stage2->getStageRect());
+
 		if (sceneRect(_stage2->getSceneRect()))
 		{
 			_stage2->release();
@@ -111,10 +113,57 @@ void stageManager::update()
 			_stage3->init();
 		}
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
+	{
+		_stage3->update();
+
+		linkStageRect(_stage3->getStageRect());
+
+		if (sceneRect(_stage3->getSceneRect()))
+		{
+			_stage3->release();
+			sceneManager::getSingleton()->changeScene("stage4");
+			_pl->init();
+			_stage4->init();
+		}
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
+	{
+		_stage4->update();
+
+		linkStageRect(_stage4->getStageRect());
+
+		if (sceneRect(_stage4->getSceneRect()))
+		{
+			_stage4->release();
+			sceneManager::getSingleton()->changeScene("stage5");
+			_pl->init();
+			_stage5->init();
+		}
+		else if (sceneRect(_stage4->getSceneRect2()))
+		{
+			_stage4->release();
+			sceneManager::getSingleton()->changeScene("stage6");
+			_pl->init();
+			_stage6->init();
+		}
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage5"))
+	{
+		_stage5->update();
+
+		if (KEYMANAGER->isOnceKeyDown('X'))
+		{
+			_stage5->release();
+			sceneManager::getSingleton()->changeScene("stage4");
+			_pl->init();
+			_stage4->init();
+		}
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage6"))
+	{
+		_stage6->update();
+	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
 

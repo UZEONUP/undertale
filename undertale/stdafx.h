@@ -48,8 +48,8 @@ using namespace UJN_UTIL;
 #define WINNAME (LPCTSTR)(TEXT("우전없"))
 #define WINSTARTX	350
 #define WINSTARTY	50
-#define WINSIZEX	580			
-#define WINSIZEY	480
+#define WINSIZEX	1600			
+#define WINSIZEY	900
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define RND randomFunction::getSingleton()

@@ -17,6 +17,5 @@ public :
 
 	stageRect* getStageRect() { return _setRect; }
 	RECT getSceneRect() { return _sceneRect; }
-
 };
 
