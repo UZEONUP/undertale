@@ -7,6 +7,7 @@
 #include "stage5.h"
 #include "stage6.h"
 #include "stage7.h"
+#include "undybattle.h"
 #include "stageRect.h"
 #include "player.h"
 
@@ -22,7 +23,8 @@ class stageManager : public gameNode
 	stage5* _stage5;
 	stage6* _stage6;
 	stage7* _stage7;
-	
+	undybattle* _undybattle;
+
 	player* _pl;
 	stageRect* _stageRect;
 

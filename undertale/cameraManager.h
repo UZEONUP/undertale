@@ -45,6 +45,7 @@ public:
 	float getX() { return _x; }
 	float getY() { return _y; }
 	tagCamera getCameraInfo() { return _camera; }
-
+	
+	void mousePoint();
 };
 

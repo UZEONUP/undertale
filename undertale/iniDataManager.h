@@ -13,7 +13,7 @@ private:
 	
 
 	char dataBuffer[256];
-
+	char dataBuffer2[256];
 
 public:
 	iniDataManager();
@@ -25,6 +25,8 @@ public:
 	
 
 	char* loadDataString(const char* fileName, const char* subject, const char* title);
+	
+	char* loadDataString2(const char* fileName, const char* subject, const char* title);
 
 	int loadDataInterger(const char* fileName, const char* subject, const char* title);
 

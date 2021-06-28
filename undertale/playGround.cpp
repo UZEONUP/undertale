@@ -42,6 +42,7 @@ void playGround::update()
 
 	_sm->update();
 	CAMERAMANAGER->update();
+	CAMERAMANAGER->mousePoint();
 
 }
 
