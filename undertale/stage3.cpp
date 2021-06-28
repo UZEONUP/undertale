@@ -34,7 +34,7 @@ void stage3::render()
 	/*No.¼öÁ¤
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->Render(0, 0);
+	_backGround->mapRender(0, 0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

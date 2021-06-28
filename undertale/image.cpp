@@ -131,10 +131,11 @@ void Image::FrameRender(const float X, const float Y, const int frameX, const in
 	//최종행렬 세팅
 	//D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform( rotateMatrix * translateMatrix);
 	//렌더링 요청
+	mAlpha -= 0.01f;
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha,
 		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, &dxSrc);
 
-	this->ResetRenderOption();
+	if(mAlpha<=0)this->ResetRenderOption();
 }
 
 /********************************************************************************

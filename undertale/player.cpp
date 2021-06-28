@@ -44,7 +44,7 @@ HRESULT player::init()
 	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
 	_player.state = DOWN;
 	_player.rc = RectMakeCenter(_player.x,_player.y, 40, 60);
-	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);  // 캐릭터 하단의 발판.
+	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);  // 캐릭터 하단의 발판.
 	_player.currentFrameX = 0;
 	_player.currentFrameY = 0;
 	_player.isBattle = false;
@@ -172,7 +172,7 @@ void player::update()
 			break;
 		}
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
+		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
 	}
 
 	/*_heart.x = _player.x - 2;
@@ -204,7 +204,7 @@ void player::render()
 	{
 		//
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
+		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
 		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	}
 	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);

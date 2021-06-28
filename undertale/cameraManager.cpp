@@ -114,17 +114,14 @@ void cameraManager::updateCamera(float x, float y)
 	if (y - _camera.height * 0.5 < 0)
 	{
 		y = 0;
-		cout << "ÀÏ" << endl;
 	}
 	else if (y + _camera.height * (1 - 0.5) > _map.height)
 	{
 		y = _map.height - _camera.height;
-		cout << "ÀÌ" << endl;
 	}
 	else
 	{
 		y -= _camera.height*0.5;
-		cout << "»ï" << endl;
 	}
 
 	//°»½Å

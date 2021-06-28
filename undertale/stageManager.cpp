@@ -18,8 +18,12 @@ HRESULT stageManager::init()
 
 	_pl = new player;
 	_pl->init();
+	this->linkPlayer(_pl);
+	_pl->linkStageManager(this);
+
 	//_stage2->init();
 
+	cout << "»ï" << endl;
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
 	sceneManager::getSingleton()->addScene("stage2", new stage2);
 	sceneManager::getSingleton()->addScene("stage3", new stage3);

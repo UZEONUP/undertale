@@ -7,7 +7,6 @@
 #include "stage5.h"
 #include "stage6.h"
 #include "stage7.h"
-
 #include "stageRect.h"
 
 class player;
