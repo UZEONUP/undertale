@@ -11,7 +11,7 @@ struct tagBullet
 	float fireX, fireY;
 	float speed;
 	bool isFire;
-
+	
 };
 class bullet :
 	public gameNode
