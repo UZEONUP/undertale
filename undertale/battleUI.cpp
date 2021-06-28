@@ -20,7 +20,7 @@ HRESULT battleUI::init()
 	_menu_on[2] = ImageManager::GetInstance()->AddImage("아이템_on", L"UI이미지/UI_아이템_활성화_110_42.png");
 	_menu_on[3] = ImageManager::GetInstance()->AddImage("자비_on", L"UI이미지/UI_자비_활성화_110_42.png");
 	_heart = ImageManager::GetInstance()->AddImage("하트", L"UI이미지/UI_하트_20_20.png");
-	_speechBubble = ImageManager::GetInstance()->AddImage("말풍선오른쪽", L"UI이미지/UI_말풍선_오른쪽_237_104.png");
+	_speechBubble = ImageManager::GetInstance()->AddImage("말풍선오른쪽", L"UI이미지/UI_말풍선_오른쪽_237_130.png");
 	_attack_ground = ImageManager::GetInstance()->AddImage("전투판", L"UI이미지/UI_공격타이밍판_540_132.png");
 
 	ImageManager::GetInstance()->AddImage("전투바_화이트", L"UI이미지/UI_공격타이밍바_10_151.png");
