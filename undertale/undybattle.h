@@ -18,7 +18,7 @@ class undybattle :
 	public gameNode
 {
 private:
-	int _count;
+	int _count = 0;
 
 	tagUndyne _head;
 	tagUndyne _hair;
