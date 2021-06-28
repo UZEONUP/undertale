@@ -18,11 +18,11 @@ HRESULT stage7::init()
 	_setRect->setGround(440, 1000, 80, 40);
 	_setRect->setGround(520, 960, 40, 46);
 	_setRect->setGround(560, 0, 80, 1200);
-	_setRect->setGround(80, 190, 40, 90);
-	_setRect->setGround(120, 86, 400, 86);
+	_setRect->setGround(80, 230, 40, 90);
+	_setRect->setGround(120, 150, 400, 86);
 	_setRect->setGround(200, 1040, 80, 160);
 	_setRect->setGround(360, 1040, 80, 160);
-	_setRect->setGround(520, 190, 40, 90);
+	_setRect->setGround(520, 230, 40, 90);
 
 	return S_OK;
 }
