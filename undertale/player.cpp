@@ -17,17 +17,15 @@ HRESULT player::init()
 	/*_undy = new undyne;
 	_undy->init();*/
 
-	/*setPlayerX(WINSIZEX / 2);
-	setPlayerY(WINSIZEY / 2);*/
 	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
-		_player.x = 300;
-		_player.y = 300;
+		_player.x = WINSIZEX /2+20 ;
+		_player.y = 950;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
 	{
 		_player.x = 100;
-		_player.y = 100;
+		_player.y = 1000;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
 	{

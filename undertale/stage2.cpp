@@ -6,7 +6,7 @@ HRESULT stage2::init()
 	ImageManager::GetInstance()->AddImage("언다인스테이지", L"스테이지이미지/undyne stage.png");
 	_backGround = ImageManager::GetInstance()->FindImage("언다인스테이지");
 
-	CAMERAMANAGER->setMapCamera(640, 1280);
+	CAMERAMANAGER->setMapCamera(640, 980);
 
 	_setRect = new stageRect;
 
@@ -21,7 +21,6 @@ HRESULT stage2::init()
 
 	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
 
-	_sceneRect = RectMake(270, 900, 90, 40);
 	return S_OK;
 }
 
@@ -56,7 +55,7 @@ void stage2::render()
 	/*No.수정
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->mapRender(-0, -0);
+	_backGround->mapRender(-10, -250);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -64,7 +63,6 @@ void stage2::render()
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
-		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	

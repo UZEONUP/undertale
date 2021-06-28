@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="asriel.h" />
     <ClInclude Include="battleUI.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
@@ -190,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="asriel.cpp" />
     <ClCompile Include="battleUI.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
