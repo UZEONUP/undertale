@@ -28,5 +28,6 @@ public:
 
 
 	RECT getRect() { return _fullbody.rc; }
+	tagUndy getUndy() { return _fullbody; }
 };
 

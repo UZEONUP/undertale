@@ -34,7 +34,7 @@ void stage2::release()
 
 void stage2::update()
 {
-	_undy->update();
+	//_undy->update();
 }
 
 void stage2::render()
@@ -55,7 +55,7 @@ void stage2::render()
 
 	
 	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
-	_undy->render();
+	//_undy->render();
 	char str[128];
 	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());
 	TextOut(_hdc, 300, 300, str, strlen(str));

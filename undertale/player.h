@@ -22,12 +22,14 @@ struct tagPlayer
 	RECT balpan;
 	STATE state;
 	int currentHP;
+	int maxHP;
 	float x, y;
 	float speed;
 	float angle;
 	
 	int currentFrameX;
 	int currentFrameY;
+	int count;
 
 	bool isBattle;
 	bool deletepl;
@@ -42,13 +44,13 @@ class player :
 private:
 	tagPlayer _player;
 	tagPlayer _heart;
-	tagPlayer* _object;
-
+	tagPlayer _object;
+	tagPlayer _undy;
 
 	int _count;
 	int _index;
 
-	undyne* _undy;
+	//undyne* _undy;
 
 	int _wt;
 	int _timer;

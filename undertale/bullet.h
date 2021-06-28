@@ -11,10 +11,34 @@ struct tagBullet
 	float fireX, fireY;
 	float speed;
 	bool isFire;
-	
+	int damage;
+
 };
 class bullet :
 	public gameNode
 {
+private:
+	vector<tagBullet>			_vBullet;
+	vector<tagBullet>::iterator _viBullet;
+	tagBullet _bullet;
+	const char* _imageName;
+	
+public:
+
+	bullet() {};
+	~bullet() {};
+
+	HRESULT init(const char* imageName);
+	void release();
+	void update();
+	void render();
+
+	void fire();
+	void move();
+
+	void removeBullet();
+
+
+
 };
 

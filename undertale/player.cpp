@@ -49,7 +49,17 @@ HRESULT player::init()
 	_heart.img = ImageManager::GetInstance()->FindImage("RED");
 	_heart.currentFrameX = 0;
 
+	_vObject.push_back(&_player);
 
+	
+	ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
+	_undy.x = WINSIZEX / 2;
+	_undy.y = 800;
+	_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
+	_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
+	_undy.currentFrameX = _undy.currentFrameY = 0;
+
+	_vObject.push_back(&_undy);
 	
 	_blink = 0;
 	_index = 0;
@@ -64,13 +74,35 @@ void player::release()
 
 void player::update()
 {
+	for (int i = 0; i < _vObject.size(); i++)
+	{
+		_vObject[i]->count++;
+
+		if (_vObject[i]->count % 10 == 0)
+		{
+			_vObject[i]->currentFrameX++;
+			if (_vObject[i]->currentFrameX >= _vObject[i]->img->GetMaxFrameX()) _vObject[i]->currentFrameX = 0;
+			_vObject[i]->currentFrameY = 0;
+
+			_vObject[i]->count = 0;
+		}
+		_vObject[i]->rc = RectMakeCenter(_vObject[i]->x, _vObject[i]->y, 100, 100);
+	}
 	
-	//_undy->update();
-	
+	/*_undy.count++;
+
+	if (_count % 5 == 0)
+	{
+		_undy.currentFrameX++;
+		if (_undy.currentFrameX >= _undy.img->GetMaxFrameX())_undy.currentFrameX = 0;
+		_undy.currentFrameY = 0;
+	}
+*/
+
 
 	if (!_player.isBattle)
 	{
-		_count++;
+		//_player.count++;
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_player.state = LEFT_MOVE;
@@ -113,7 +145,7 @@ void player::update()
 		{
 		case LEFT_MOVE:
 			_player.img = ImageManager::GetInstance()->FindImage("LEFT_MOVE");
-			if (_count % 5 == 0)
+			if (_player.count % 5 == 0)
 			{
 				_player.currentFrameX++;
 				if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
@@ -123,7 +155,7 @@ void player::update()
 
 		case RIGHT_MOVE:
 			_player.img = ImageManager::GetInstance()->FindImage("RIGHT_MOVE");
-			if (_count % 5 == 0)
+			if (_player.count % 5 == 0)
 			{
 				_player.currentFrameX++;
 				if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
@@ -133,7 +165,7 @@ void player::update()
 
 		case UP_MOVE:
 			_player.img = ImageManager::GetInstance()->FindImage("UP_MOVE");
-			if (_count % 5 == 0)
+			if (_player.count % 5 == 0)
 			{
 				_player.currentFrameX++;
 				if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
@@ -143,7 +175,7 @@ void player::update()
 
 		case DOWN_MOVE:
 			_player.img = ImageManager::GetInstance()->FindImage("DOWN_MOVE");
-			if (_count % 5 == 0)
+			if (_player.count % 5 == 0)
 			{
 				_player.currentFrameX++;
 				if (_player.currentFrameX >= _player.img->GetMaxFrameX())_player.currentFrameX = 0;
@@ -204,14 +236,18 @@ void player::update()
 
 void player::render()
 {
-	if (!_player.deletepl)
+	for (int i = 0; i < _vObject.size(); i++)
 	{
-		//
-		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
-		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY);
 	}
-	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	//if (!_player.deletepl)
+	//{
+	//	//
+	//	_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
+	//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
+	//	_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
+	//}
+	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 
 	D2DRENDER->DrawRectangle
 	(
