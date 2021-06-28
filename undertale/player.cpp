@@ -35,41 +35,7 @@ HRESULT player::init()
 	_timer = 0;
 	return S_OK;
 }
-HRESULT player::init(float x, float y)
-{
-	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png",1,1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png",1,1);
-	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png",1,1);
-	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
-	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
 
-	_undy = new undyne;
-	_undy->init();
-
-	_player.x = x;
-	_player.y = y;
-
-	/*_player.x = WINSIZEX / 2;
-	_player.y = WINSIZEY / 2;*/
-	_player.speed = 3.0f;
-	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
-	_player.state = DOWN;
-	_player.rc = RectMakeCenter(_player.x,_player.y, 40, 60);
-	_player.currentFrameX = 0;
-	_player.currentFrameY = 0;
-	_player.isBattle = false;
-	_heart.img = ImageManager::GetInstance()->FindImage("RED");
-	_heart.currentFrameX = 0;
-	
-	_blink = 0;
-	_index = 0;
-	_timer = 0;
-	return S_OK;
-}
 
 void player::release()
 {

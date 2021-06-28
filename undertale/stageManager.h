@@ -8,7 +8,6 @@
 #include "stage6.h"
 #include "stage7.h"
 
-
 class stageManager : public gameNode
 {
 	startStage* _stage1;
@@ -18,6 +17,7 @@ class stageManager : public gameNode
 	stage5* _stage5;
 	stage6* _stage6;
 	stage7* _stage7;
+
 
 
 public :

@@ -13,6 +13,8 @@ HRESULT stageManager::init()
 	_stage6 = new stage6;
 	_stage7 = new stage7;
 
+
+
 	//_stage2->init();
 
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
@@ -66,6 +68,7 @@ void stageManager::update()
 		sceneManager::getSingleton()->changeScene("stage7");
 		_stage7->init();
 	}
+
 	//=======================================================================
 
 
@@ -88,4 +91,5 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
+
 }
