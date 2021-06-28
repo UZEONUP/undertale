@@ -130,6 +130,7 @@ void Image::FrameRender(const float X, const float Y, const int frameX, const in
 		(float)(mFrameInfo[frame].y + mFrameInfo[frame].height));
 	//최종행렬 세팅
 	//D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform( rotateMatrix * translateMatrix);
+
 	//렌더링 요청
 	mAlpha -= 0.01f;
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha,
