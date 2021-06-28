@@ -10,9 +10,11 @@
 #include "undybattle.h"
 #include "stageRect.h"
 #include "player.h"
+#include "undyne.h"
 
 
 class player;
+class undyne;
 
 class stageManager : public gameNode
 {
@@ -26,6 +28,7 @@ class stageManager : public gameNode
 	undybattle* _undybattle;
 
 	player* _pl;
+	undyne* _un;
 	stageRect* _stageRect;
 
 

@@ -84,6 +84,7 @@ void stageRect::setGround(const float x, const float y, const float width, const
 
 HRESULT objectRect::init()
 {
+	
 	return S_OK;
 }
 

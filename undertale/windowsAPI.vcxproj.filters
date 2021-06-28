@@ -76,6 +76,9 @@
     <Filter Include="playGround\enemy\asriel\pattern">
       <UniqueIdentifier>{d2e356dd-13d8-4cfa-9601-be3ff1a96ca2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\bullet">
+      <UniqueIdentifier>{9df25bbb-3fa8-4245-b718-1f4039d1a740}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -201,6 +204,9 @@
     <ClInclude Include="asriel.h">
       <Filter>playGround\enemy\asriel</Filter>
     </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>playGround\bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -310,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="asriel.cpp">
       <Filter>playGround\enemy\asriel</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>playGround\bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -132,7 +132,35 @@ void Image::FrameRender(const float X, const float Y, const int frameX, const in
 	//D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform( rotateMatrix * translateMatrix);
 
 	//렌더링 요청
-	mAlpha -= 0.01f;
+	//mAlpha -= 0.01f;
+	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha,
+		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, &dxSrc);
+
+	if(mAlpha<=0)this->ResetRenderOption();
+}
+void Image::bossFrameRender(const float X, const float Y, const int frameX, const int frameY,
+	const float scaleW, const float scalseH,
+	const float degreeAngle, const float rotateX, const float rotateY,
+	const float transX, const float transY)
+{
+
+	//현재 프레임인덱스 
+	int frame = frameY * mMaxFrameX + frameX;
+	Vector2 size = mSize * mScale;
+
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX,Y + rotateY));
+	D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
+
+	//그릴 영역 세팅 
+	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
+	D2D1_RECT_F dxSrc = D2D1::RectF((float)mFrameInfo[frame].x, (float)mFrameInfo[frame].y,
+		(float)(mFrameInfo[frame].x + mFrameInfo[frame].width),
+		(float)(mFrameInfo[frame].y + mFrameInfo[frame].height));
+	//최종행렬 세팅
+	D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform( rotateMatrix * translateMatrix);
+
+	//렌더링 요청
+	//mAlpha -= 0.01f;
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha,
 		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, &dxSrc);
 

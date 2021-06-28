@@ -65,8 +65,6 @@ HRESULT undybattle::init()
 		background[i] = RectMakeCenter(i * 100 + 500, WINSIZEY / 2 - 200, 100, 200);
 	}
 
-
-
 	return S_OK;
 }
 
@@ -84,11 +82,6 @@ void undybattle::update()
 		if (_hair.currentFrameX >= _hair.img->GetMaxFrameX())_hair.currentFrameX = 0;
 		_hair.currentFrameY = 0;
 	}
-
-
-
-
-
 }
 
 void undybattle::render()
@@ -153,13 +146,13 @@ void undybattle::render()
 	}
 	
 	
-	_leftArm.img->FrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_rightArm.img->FrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_legs.img->FrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_torso.img->FrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_belly.img->FrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_hair.img->FrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	_head.img->FrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_rightArm.img->bossFrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_hair.img->bossFrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+	_head.img->bossFrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	
 	_bui->render();
 }

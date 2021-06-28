@@ -52,7 +52,7 @@ private:
 
 	int _wt;
 	int _timer;
-	
+
 	int _blink;
 	bool _imageON;
 
@@ -60,7 +60,7 @@ private:
 
 	vector<tagPlayer*>			 _vObject;
 	vector<tagPlayer*>::iterator _viObject;
-	
+
 public:
 	HRESULT init();
 	HRESULT init(float x, float y);
@@ -86,5 +86,6 @@ public:
 
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 
-};
+	vector<tagPlayer*> getVobject() { return _vObject; }
 
+};

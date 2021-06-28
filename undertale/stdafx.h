@@ -56,7 +56,7 @@ using namespace UJN_UTIL;
 #define KEYMANAGER keyManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
-#define SCENEMANAGER sceneManager::getSingleton()
+#define SCENEMANAGER sceneManager::getSingleton() 
 //#define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
 #define INIDATA	iniDataManager::getSingleton()
