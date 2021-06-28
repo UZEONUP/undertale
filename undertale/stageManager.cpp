@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "stageManager.h"
+#include "player.h"
 
 HRESULT stageManager::init()
 {
@@ -13,6 +14,10 @@ HRESULT stageManager::init()
 	_stage6 = new stage6;
 	_stage7 = new stage7;
 
+	linkStageRect(_stage1->getStageRect());
+
+	_pl = new player;
+	_pl->init();
 	//_stage2->init();
 
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
@@ -22,7 +27,6 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage5", new stage5);
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
-
 
 	sceneManager::getSingleton()->changeScene("stage1");
 
@@ -40,11 +44,13 @@ void stageManager::update()
 	{
 		sceneManager::getSingleton()->changeScene("stage2");
 		_stage2->init();
+		_pl->init();
 	}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F3))
 	{
 		sceneManager::getSingleton()->changeScene("stage3");
 		_stage3->init();
+		_pl->init();
 	}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
 	{
@@ -77,6 +83,10 @@ void stageManager::update()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->update();
 
+	_pl->update();
+
+	if (_stageRect != nullptr) _stageRect->update();
+	collision();
 }
 
 void stageManager::render()
@@ -88,4 +98,48 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
+	_pl->render();
 }
+
+void stageManager::collision()
+{
+	RECT temp;
+
+	RECT plRc = _pl->getRect();
+
+
+	for (int i = 0; i < _stageRect->getvGround().size(); i++)
+	{
+		RECT groundRect = _stageRect->getvGround()[i].rc;
+
+		if (IntersectRect(&temp, &plRc, &groundRect))
+		{
+			float width = (temp.right - temp.left);
+			float height = (temp.bottom - temp.top);
+
+			float playerX = _pl->getX();
+			float playerY = _pl->getY();
+
+			bool _pt;
+
+			//수직 수평
+			(width > height) ? _pt = false : _pt = true;
+
+			if (_pt) // 수평
+			{
+				//왼쪽에 있나
+				if (plRc.left < groundRect.left) _pl->setPlayerX(playerX -= width);
+				//오른쪽에 있나
+				if (plRc.right > groundRect.right) _pl->setPlayerX(playerX += width);
+			}
+			else if (!_pt) //수직
+			{
+				//위에 있나
+				if (plRc.top < groundRect.top) _pl->setPlayerY(playerY -= height);
+				//아래에 있나
+				if (plRc.bottom > groundRect.bottom) _pl->setPlayerY(playerY += height);
+			}
+		}
+	}
+}
+

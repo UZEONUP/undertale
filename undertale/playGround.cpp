@@ -21,6 +21,14 @@ HRESULT playGround::init()
 
 	_sm = new stageManager;
 	_sm->init();
+	_player = new player;
+	_player->init();
+
+
+	//===========상호참조용 링크
+	_sm->linkPlayer(_player);
+	_player->linkStageManager(_sm);
+	//==========================
 
 
 	return S_OK;
@@ -37,6 +45,7 @@ void playGround::update()
 	gameNode::update();
 
 	_sm->update();
+	_player->update();
 
 	CAMERAMANAGER->update();
 
@@ -50,6 +59,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 
 	_sm->render();
+	_player->render();
 
 	CAMERAMANAGER->render();
 

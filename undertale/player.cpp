@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "player.h"
+#include "stageManager.h"
 
 HRESULT player::init()
 {
@@ -16,10 +17,24 @@ HRESULT player::init()
 	_undy = new undyne;
 	_undy->init();
 
-	setPlayerX(WINSIZEX / 2);
-	setPlayerY(WINSIZEY / 2);
-	/*_player.x = WINSIZEX / 2;
-	_player.y = WINSIZEY / 2;*/
+	/*setPlayerX(WINSIZEX / 2);
+	setPlayerY(WINSIZEY / 2);*/
+	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	{
+		_player.x = WINSIZEX /2 ;
+		_player.y = 800;
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
+	{
+		_player.x = 100;
+		_player.y = 100;
+	}
+	else
+	{
+		_player.x = WINSIZEX / 2;
+		_player.y = WINSIZEY / 2;
+	}
+
 	_player.speed = 3.0f;
 	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
 	_player.state = DOWN;
