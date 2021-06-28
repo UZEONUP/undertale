@@ -6,6 +6,7 @@ HRESULT stage2::init()
 	ImageManager::GetInstance()->AddImage("언다인스테이지", L"스테이지이미지/undyne stage.png");
 	_backGround = ImageManager::GetInstance()->FindImage("언다인스테이지");
 
+	CAMERAMANAGER->setMapCamera(640, 1280);
 
 	_setRect = new stageRect;
 
@@ -13,7 +14,7 @@ HRESULT stage2::init()
 	_setRect->setGround(400, 600, 240, 600);
 
 	_player = new player;
-	_player->init(WINSIZEX/2,WINSIZEY/2);
+	_player->init(WINSIZEX / 2, 1200);
 
 	_undy = new undyne;
 	_undy->init();
@@ -37,7 +38,7 @@ void stage2::update()
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &_undy->getRect()))
 		_player->setBattlechk(true);
-	
+
 
 	if (_player->getBattlechk())
 	{
@@ -54,7 +55,7 @@ void stage2::render()
 	/*No.수정
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->Render(0, 0);
+	_backGround->mapRender(-10, -800);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -64,7 +65,11 @@ void stage2::render()
 		}
 	}
 
+	
 	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
 	_player->render();
 	_undy->render();
+	char str[128];
+	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());
+	TextOut(_hdc, 300, 300, str, strlen(str));
 }

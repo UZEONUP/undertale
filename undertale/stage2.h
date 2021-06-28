@@ -4,7 +4,6 @@
 #include "player.h"
 #include "undyne.h"
 
-
 class stage2 : public gameNode
 {
 	stageRect* _setRect;
@@ -23,6 +22,5 @@ public :
 	virtual void render();
 
 	player* getPlayer() { return _player; }
-	
 };
 

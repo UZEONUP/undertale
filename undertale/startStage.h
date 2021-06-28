@@ -3,7 +3,6 @@
 #include "stageRect.h"
 #include "player.h"
 
-
 class startStage : public gameNode
 {
 	stageRect* _setRect;

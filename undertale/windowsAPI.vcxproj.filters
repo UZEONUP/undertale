@@ -177,11 +177,14 @@
     <ClInclude Include="stage7.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
-    <ClInclude Include="undyne.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="undybattle.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="undyne.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="undyne.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cameraManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,6 @@
 HRESULT stageManager::init()
 {
 	
-
 	_stage1 = new startStage;
 	_stage1->init();
 	_stage2 = new stage2;
@@ -13,7 +12,7 @@ HRESULT stageManager::init()
 	_stage5 = new stage5;
 	_stage6 = new stage6;
 	_stage7 = new stage7;
-	_undyb = new undybattle;
+
 	//_stage2->init();
 
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
@@ -23,7 +22,7 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage5", new stage5);
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
-	sceneManager::getSingleton()->addScene("undyb", new undybattle);
+
 
 	sceneManager::getSingleton()->changeScene("stage1");
 
@@ -67,12 +66,6 @@ void stageManager::update()
 		sceneManager::getSingleton()->changeScene("stage7");
 		_stage7->init();
 	}
-
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F8))
-	{
-		sceneManager::getSingleton()->changeScene("undyb");
-		_undyb->init();
-	}
 	//=======================================================================
 
 
@@ -83,7 +76,7 @@ void stageManager::update()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("undyb")) _undyb->update();
+
 }
 
 void stageManager::render()
@@ -95,6 +88,4 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("undyb")) _undyb->render();
-
 }

@@ -37,6 +37,7 @@ using namespace UJN_UTIL;
 #include "sceneManager.h"
 #include "txtData.h"
 #include "iniDataManager.h"
+#include "cameraManager.h"
 
 
 //MS VS버전이 올라가면서 기존의 문자열 함수의 안정성을 올리기위해
@@ -45,25 +46,21 @@ using namespace UJN_UTIL;
 
 // 여기서 프로그램에 필요한 추가 헤더를 참조합니다.
 #define WINNAME (LPCTSTR)(TEXT("우전없"))
-#define WINSTARTX	50
+#define WINSTARTX	350
 #define WINSTARTY	50
-#define WINSIZEX	1400				
-#define WINSIZEY	1080
-#define BACKGROUNDX
-#define BACKGROUNDY
+#define WINSIZEX	580				
+#define WINSIZEY	480
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define RND randomFunction::getSingleton()
 #define KEYMANAGER keyManager::getSingleton()
-#define IMAGEMANAGER imageManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
-#define EFFECTMANAGER effectManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
 //#define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
 #define INIDATA	iniDataManager::getSingleton()
-#define OBJECTMANAGER ObjectManager::getSingleton()
+#define CAMERAMANAGER cameraManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}

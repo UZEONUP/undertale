@@ -27,6 +27,7 @@ private:
 	IDXGISurface* mD2DSurface;
 
 	IDWriteFactory* mDWFactory;
+
 	ID2D1SolidColorBrush* mDefaultBrushList[((UINT)DefaultBrush::End)];
 	map<wstring, IDWriteTextFormat*> mFontList;
 public:
