@@ -1,36 +1,70 @@
 #include "stdafx.h"
 #include "player.h"
 
+HRESULT player::init()
+{
+	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
+	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
+	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
+	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
+	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
 
+	_undy = new undyne;
+	_undy->init();
+
+	setPlayerX(WINSIZEX / 2);
+	setPlayerY(WINSIZEY / 2);
+	/*_player.x = WINSIZEX / 2;
+	_player.y = WINSIZEY / 2;*/
+	_player.speed = 3.0f;
+	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
+	_player.state = DOWN;
+	_player.rc = RectMakeCenter(_player.x,_player.y, 40, 60);
+	_player.currentFrameX = 0;
+	_player.currentFrameY = 0;
+	_player.isBattle = false;
+	_heart.img = ImageManager::GetInstance()->FindImage("RED");
+	_heart.currentFrameX = 0;
+	
+	_blink = 0;
+	_index = 0;
+	_timer = 0;
+	return S_OK;
+}
 HRESULT player::init(float x, float y)
 {
 	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png",1,1);
+	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
 	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
 
 	_undy = new undyne;
 	_undy->init();
 
+	_player.x = x;
+	_player.y = y;
 
+	/*_player.x = WINSIZEX / 2;
+	_player.y = WINSIZEY / 2;*/
 	_player.speed = 3.0f;
 	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
 	_player.state = DOWN;
-	_player.rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 40, 60);
-	setPlayerX(x);
-	setPlayerY(y);
-	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);  // 캐릭터 하단의 발판.
+	_player.rc = RectMakeCenter(_player.x,_player.y, 40, 60);
 	_player.currentFrameX = 0;
 	_player.currentFrameY = 0;
 	_player.isBattle = false;
 	_heart.img = ImageManager::GetInstance()->FindImage("RED");
 	_heart.currentFrameX = 0;
-
+	
 	_blink = 0;
 	_index = 0;
 	_timer = 0;
@@ -151,7 +185,6 @@ void player::update()
 			break;
 		}
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
 	}
 
 	/*_heart.x = _player.x - 2;
@@ -173,24 +206,20 @@ void player::update()
 		_heart.x -= cosf(_heart.angle) * -_player.speed;
 		_heart.y -= -sinf(_heart.angle) * -_player.speed;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
-
-		if (_heart.x >=WINSIZEX/2 + 100 || _heart.x <=WINSIZEX/2 - 100)
-		{
-			_player.changeScene = true;
-		}
 	}
+	CAMERAMANAGER->updateCamera( _player.x, _player.y);
 }
 
 void player::render()
 {
 	if (!_player.deletepl)
 	{
-		//
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
-		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 	}
-	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+
+	//조건문 
+	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 
 	D2DRENDER->DrawRectangle
 	(
@@ -199,14 +228,7 @@ void player::render()
 		1.f
 		//angle
 	);
-	D2DRENDER->DrawRectangle
-	(
-		_player.balpan,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
-
+	
 	
 }
 

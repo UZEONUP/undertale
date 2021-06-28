@@ -6,6 +6,7 @@ HRESULT stage3::init()
 	ImageManager::GetInstance()->AddImage("통로", L"스테이지이미지/node stage.png");
 	_backGround = ImageManager::GetInstance()->FindImage("통로");
 
+	CAMERAMANAGER->setMapCamera(1320, 480);
 
 	_setRect = new stageRect;
 	_setRect->release();
