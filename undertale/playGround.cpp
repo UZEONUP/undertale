@@ -6,7 +6,7 @@
 
 playGround::playGround()
 {
-	//dkfja;sdjfkdsa;kfjs;
+	
 }
 
 
@@ -45,7 +45,6 @@ void playGround::update()
 	gameNode::update();
 
 	_sm->update();
-	_player->update();
 
 	CAMERAMANAGER->update();
 
@@ -59,7 +58,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 
 	_sm->render();
-	_player->render();
+
 
 	CAMERAMANAGER->render();
 

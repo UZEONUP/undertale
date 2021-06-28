@@ -14,7 +14,7 @@ HRESULT stage2::init()
 	_setRect->setGround(400, 600, 240, 600);
 
 	_player = new player;
-	_player->init(WINSIZEX / 2, 1200);
+	_player->init();
 
 	_undy = new undyne;
 	_undy->init();

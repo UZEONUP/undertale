@@ -14,8 +14,8 @@ HRESULT player::init()
 	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png",1,1);
 	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
 
-	_undy = new undyne;
-	_undy->init();
+	/*_undy = new undyne;
+	_undy->init();*/
 
 	/*setPlayerX(WINSIZEX / 2);
 	setPlayerY(WINSIZEY / 2);*/
@@ -25,6 +25,11 @@ HRESULT player::init()
 		_player.y = 800;
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
+	{
+		_player.x = 100;
+		_player.y = 100;
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
 	{
 		_player.x = 100;
 		_player.y = 100;
@@ -39,6 +44,7 @@ HRESULT player::init()
 	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
 	_player.state = DOWN;
 	_player.rc = RectMakeCenter(_player.x,_player.y, 40, 60);
+	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);  // 캐릭터 하단의 발판.
 	_player.currentFrameX = 0;
 	_player.currentFrameY = 0;
 	_player.isBattle = false;
@@ -59,7 +65,7 @@ void player::release()
 void player::update()
 {
 	
-	_undy->update();
+	//_undy->update();
 	
 
 	if (!_player.isBattle)
@@ -166,6 +172,7 @@ void player::update()
 			break;
 		}
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
+		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
 	}
 
 	/*_heart.x = _player.x - 2;
@@ -195,12 +202,12 @@ void player::render()
 {
 	if (!_player.deletepl)
 	{
+		//
 		_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
+		_player.balpan = RectMake(_player.rc.left, _player.rc.bottom, 40, 5);
+		_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	}
-
-	//조건문 
-	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
+	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 
 	D2DRENDER->DrawRectangle
 	(
@@ -209,6 +216,14 @@ void player::render()
 		1.f
 		//angle
 	);
+	D2DRENDER->DrawRectangle
+	(
+		_player.balpan,
+		D2DRenderer::DefaultBrush::Red,
+		1.f
+		//angle
+	);
+
 	
 	
 }

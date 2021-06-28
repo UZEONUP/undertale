@@ -18,6 +18,7 @@ struct tagPlayer
 {
 	Image* img;
 	RECT rc;
+	RECT balpan;
 	STATE state;
 	int currentHP;
 	float x, y;
@@ -63,6 +64,7 @@ public:
 
 
 	RECT getRect() { return _player.rc; }
+	RECT getBRect() { return _player.balpan; }
 	bool getBattlechk() { return _player.isBattle; }
 	void setBattlechk(bool isBattle) { _player.isBattle = isBattle; }
 	float getX() { return _player.x; }

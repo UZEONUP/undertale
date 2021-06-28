@@ -105,7 +105,7 @@ void stageManager::collision()
 {
 	RECT temp;
 
-	RECT plRc = _pl->getRect();
+	RECT plRc = _pl->getBRect();
 
 
 	for (int i = 0; i < _stageRect->getvGround().size(); i++)
