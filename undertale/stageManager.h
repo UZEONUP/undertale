@@ -36,6 +36,7 @@ public :
 	virtual void render();
 
 	void collision();
+	bool sceneRect(RECT sceneRect);
 
 	void linkPlayer(player* player) { _pl = player; }
 	void linkStageRect(stageRect* sr) { _stageRect = sr; }
