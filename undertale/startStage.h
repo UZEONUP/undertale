@@ -7,6 +7,8 @@ class startStage : public gameNode
 	stageRect* _setRect;
 	Image* _backGround;
 
+	RECT _sceneRect;
+
 public :
 	virtual HRESULT init();
 	virtual void release();
@@ -14,5 +16,7 @@ public :
 	virtual void render();
 
 	stageRect* getStageRect() { return _setRect; }
+	RECT getSceneRect() { return _sceneRect; }
+
 };
 

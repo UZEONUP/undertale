@@ -86,7 +86,18 @@ void stageManager::update()
 	//=======================================================================
 
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->update();
+	if (sceneManager::getSingleton()->isCurrentScene("stage1"))
+	{
+		_stage1->update();
+
+		if (sceneRect(_stage1->getSceneRect()))
+		{
+			_stage1->release();
+			sceneManager::getSingleton()->changeScene("stage2");
+			_pl->init();
+			_stage2->init();
+		}
+	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->update();
@@ -154,5 +165,16 @@ void stageManager::collision()
 			}
 		}
 	}
+}
+
+bool stageManager::sceneRect(RECT sceneRect)
+{
+	RECT t;
+
+	if (IntersectRect(&t, &sceneRect, &_pl->getRect()))
+	{
+		return true;
+	}
+	else return false;
 }
 

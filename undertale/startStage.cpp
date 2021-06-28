@@ -27,7 +27,7 @@ HRESULT startStage::init()
 	_setRect->setGround(560, 160, 632, 160);
 	_setRect->setGround(480, 120, 60, 40);
 
-
+	_sceneRect = RectMake(1200, 270, 70, 30);
 
 	return S_OK;
 }
@@ -39,7 +39,7 @@ void startStage::release()
 
 void startStage::update()
 {
-	_setRect->update();
+	//_setRect->update();
 	//_player->update();
 }
 
@@ -57,5 +57,6 @@ void startStage::render()
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
+		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 }
