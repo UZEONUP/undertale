@@ -79,14 +79,15 @@ void Image::Render(const float X, const float Y, const float scaleW, const float
 	//회전 행렬을 만들어준다. 
 	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX, Y + rotateY));
 	//이동 행렬을 만들어준다.
-	D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
+	//D2D1::Matrix3x2F translateMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
 
-	D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform(scaleMatrix * rotateMatrix * translateMatrix);
+	D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform(scaleMatrix * rotateMatrix);//*translateMatrix);
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
 	ResetRenderOption();
 }
+
 
 /********************************************************************************
 ## PerfeactFrameRender ##
