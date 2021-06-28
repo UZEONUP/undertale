@@ -151,7 +151,7 @@ void undybattle::render()
 			1.f
 		);
 	}
-	_bui->render();
+	
 	_hair.img->FrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	_head.img->FrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	_torso.img->FrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
@@ -160,5 +160,5 @@ void undybattle::render()
 	_belly.img->FrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 	_legs.img->FrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 
-
+	_bui->render();
 }
