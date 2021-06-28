@@ -155,6 +155,15 @@ void stageManager::update()
 			_pl->init();
 			_stage4->init();
 		}
+		else if (sceneRect(_stage3->getSceneRect2()))
+		{
+			_stage3->release();
+			_pl->release();
+
+			sceneManager::getSingleton()->changeScene("stage6");
+			_pl->init();
+			_stage6->init();
+		}
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))
 	{
@@ -176,9 +185,9 @@ void stageManager::update()
 			_stage4->release();
 			_pl->release();
 
-			sceneManager::getSingleton()->changeScene("stage6");
+			sceneManager::getSingleton()->changeScene("stage3");
 			_pl->init();
-			_stage6->init();
+			_stage3->init();
 		}
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5"))

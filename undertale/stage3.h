@@ -9,7 +9,7 @@ class stage3 : public gameNode
 	Image* _backGround;
 	
 	RECT _sceneRect;
-
+	RECT _sceneRect2;
 
 public :
 	virtual HRESULT init();
@@ -19,5 +19,6 @@ public :
 
 	stageRect* getStageRect() { return _setRect; }
 	RECT getSceneRect() { return _sceneRect; }
+	RECT getSceneRect2() { return _sceneRect2; }
 };
 
