@@ -186,6 +186,17 @@ void stageManager::update()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6"))
 	{
 		_stage6->update();
+
+		linkStageRect(_stage6->getStageRect());
+
+		if (sceneRect(_stage6->getSceneRect()))
+		{
+			_stage6->release();
+			sceneManager::getSingleton()->changeScene("stage7");
+			_pl->init();
+			_stage7->init();
+		}
+
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->update();
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
