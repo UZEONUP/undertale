@@ -24,6 +24,8 @@ public :
 	vector<tagRect> getvGround() { return _vGround; }
 };
 
+
+
 class objectRect : public gameNode
 {
 	vector<tagRect> _vObject;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "playGround.h"
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 
 playGround::playGround()
 {
@@ -18,8 +19,13 @@ HRESULT playGround::init()
 	_sm = new stageManager;
 	_sm->init();
 	
+	_player = new player;
+	_player->init(WINSIZEX / 2, WINSIZEY / 2);
 
-
+	//===========상호참조용 링크
+	_sm->linkPlayer(_player);
+	_player->linkStageManager(_sm);
+	//==========================
 	_backRc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	
 
@@ -50,8 +56,8 @@ void playGround::update()
 {
 	gameNode::update();
 
+	_player->update();
 	_sm->update();
-	
 
 
 
@@ -73,6 +79,7 @@ void playGround::render()
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 	{
 		_sm->render();
+		_player->render();
 		//RECT rect;
 		//rect = RectMakeCenter(10, 10, 100, 100);
 		//

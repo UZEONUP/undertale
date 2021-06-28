@@ -34,6 +34,9 @@ struct tagPlayer
 	bool changeScene;
 
 };
+
+class stageManager;
+
 class player :
 	public gameNode
 {
@@ -53,7 +56,7 @@ private:
 	int _blink;
 	bool _imageON;
 	
-	
+	stageManager* _sm;
 	
 	
 public:
@@ -78,6 +81,6 @@ public:
 
 	bool getchangeScene() { return _player.changeScene; }
 
-
+	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 };
 

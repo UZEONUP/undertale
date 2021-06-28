@@ -7,8 +7,6 @@ HRESULT startStage::init()
 	_backGround = ImageManager::GetInstance()->FindImage("시작스테이지");
 
 
-	_player = new player;
-	_player->init(300, 275);
 	_setRect = new stageRect;
 
 	_setRect->setGround(0, 0, 480, 120);
@@ -25,7 +23,7 @@ HRESULT startStage::init()
 	_setRect->setGround(560, 160, 632, 160);
 	_setRect->setGround(480, 120, 60, 40);
 	
-
+	
 
 
 	return S_OK;
@@ -38,8 +36,6 @@ void startStage::release()
 
 void startStage::update()
 {
-	_setRect->update();
-	_player->update();
 }
 
 void startStage::render()
@@ -57,5 +53,4 @@ void startStage::render()
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
 	}
-	_player->render();
 }
