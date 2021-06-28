@@ -11,13 +11,13 @@ HRESULT stage4::init()
 	_setRect->release();
 
 	_setRect->setGround(0, 0, 80, 480);
-	_setRect->setGround(1200, 240, 40, 240);
-	_setRect->setGround(720, 220, 480, 40 );
-	_setRect->setGround(160, 0, 40, 240);
-	_setRect->setGround(600, 0, 35, 220);
-	_setRect->setGround(160, 220, 460 , 40);
+	_setRect->setGround(1200, 300, 40, 200);
+	_setRect->setGround(720, 290, 480, 40 );
+	_setRect->setGround(160, 0, 40, 290);
+	_setRect->setGround(600, 0, 35, 290);
+	_setRect->setGround(160, 290, 475 , 40);
 	_setRect->setGround(80, 480, 1130, 40);
-	_setRect->setGround(720, 0, 35, 220);
+	_setRect->setGround(720, 0, 35, 290);
 
 	_sceneRect = RectMake(640, 145, 75, 20);
 	_sceneRect2 = RectMake(82, 10, 75, 20);
