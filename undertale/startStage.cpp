@@ -8,8 +8,8 @@ HRESULT startStage::init()
 
 	CAMERAMANAGER->setMapCamera(1360, 520);
 
-	_player = new player;
-	_player->init(WINSIZEX/2, WINSIZEY/2);
+	/*_player = new player;
+	_player->init(WINSIZEX/2, WINSIZEY/2);*/
 
 	_setRect = new stageRect;
 
@@ -27,7 +27,7 @@ HRESULT startStage::init()
 	_setRect->setGround(560, 160, 632, 160);
 	_setRect->setGround(480, 120, 60, 40);
 
-
+	_sceneRect = RectMake(1200, 270, 70, 30);
 
 	return S_OK;
 }
@@ -39,8 +39,8 @@ void startStage::release()
 
 void startStage::update()
 {
-	_setRect->update();
-	_player->update();
+	//_setRect->update();
+	//_player->update();
 }
 
 void startStage::render()
@@ -50,12 +50,13 @@ void startStage::render()
 
 	_backGround->mapRender(0, 0);
 
-	_player->render();
+	//_player->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
+		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 }

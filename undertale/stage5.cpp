@@ -10,6 +10,8 @@ HRESULT stage5::init()
 	_setRect = new stageRect;
 	_setRect->release();
 
+
+
 	return S_OK;
 }
 

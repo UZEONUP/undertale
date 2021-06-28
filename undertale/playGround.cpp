@@ -6,7 +6,7 @@
 
 playGround::playGround()
 {
-	//dkfja;sdjfkdsa;kfjs;
+	
 }
 
 
@@ -22,6 +22,10 @@ HRESULT playGround::init()
 	_sm = new stageManager;
 	_sm->init();
 
+	//===========상호참조용 링크
+
+
+	//==========================
 
 	return S_OK;
 }
@@ -37,15 +41,13 @@ void playGround::update()
 	gameNode::update();
 
 	_sm->update();
-
 	CAMERAMANAGER->update();
-
+	CAMERAMANAGER->mousePoint();
 }
 
 //그리기 전용
 void playGround::render()
 {
-
 	//백버퍼 초기화
 	D2DRENDER->BeginRender(D2D1::ColorF::Black);
 

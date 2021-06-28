@@ -16,6 +16,9 @@ HRESULT stage3::init()
 	_setRect->setGround(600, 280, 40, 160);
 	_setRect->setGround(160, 240, 440, 40);
 
+	_sceneRect = RectMake(440, 480, 100, 20);
+	_sceneRect2 = RectMake(45, 250, 100, 20);
+
 	return S_OK;
 }
 
@@ -34,7 +37,7 @@ void stage3::render()
 	/*No.¼öÁ¤
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->Render(0, 0);
+	_backGround->mapRender(0, 0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -42,5 +45,6 @@ void stage3::render()
 		{
 			D2DRENDER->DrawRectangle(_setRect->getvGround()[i].rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		}
+		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 }

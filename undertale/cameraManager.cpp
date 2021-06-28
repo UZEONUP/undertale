@@ -21,12 +21,10 @@ void cameraManager::release()
 
 void cameraManager::update()
 {
-	cout << _camera.rc.left << "카메라 레프트" << endl;
+	/*cout << _camera.rc.left << "카메라 레프트" << endl;
 	cout << _camera.rc.top << "카메라 탑" << endl;
 	cout << _camera.rc.right << "카메라 라이트" << endl;
-	cout << _camera.rc.bottom << "카메라 바텀" << endl;
-
-
+	cout << _camera.rc.bottom << "카메라 바텀" << endl;*/
 }
 
 void cameraManager::render()
@@ -114,31 +112,37 @@ void cameraManager::updateCamera(float x, float y)
 	if (y - _camera.height * 0.5 < 0)
 	{
 		y = 0;
-		cout << "일" << endl;
 	}
 	else if (y + _camera.height * (1 - 0.5) > _map.height)
 	{
 		y = _map.height - _camera.height;
-		cout << "이" << endl;
 	}
 	else
 	{
 		y -= _camera.height*0.5;
-		cout << "삼" << endl;
 	}
 
 	//갱신
 	_x = x;
 	_y = y;
 
-	cout << x - WINSIZEX * 0.5 << "========================" << endl;
+	/*cout << x - WINSIZEX * 0.5 << "========================" << endl;
 	cout << x - _camera.width * 0.5 << "========================" << endl;
 	cout << y << "========================" << endl;
 	cout << _x << "========================" << endl;
-	cout << _y << "========================" << endl;
+	cout << _y << "========================" << endl;*/
 }
 
 void cameraManager::updateCamera(bool a)
 {
 	//건들지말
+}
+
+void cameraManager::mousePoint()
+{
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		cout << _ptMouse.x <<"마우스 X"<< endl;
+		cout << _ptMouse.y <<"마우스 Y"<< endl;
+	}
 }
