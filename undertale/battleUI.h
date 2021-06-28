@@ -25,6 +25,7 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
+	RECT _fill;
 
 	Image* _menu_off[4];
 	Image* _menu_on[4];
@@ -82,11 +83,14 @@ private:
 	int _word_speed;
 
 
+	const char* _boss_select;
+	const wchar_t* _boss_name;
+
 public:
 	battleUI();
 	~battleUI();
 
-	virtual HRESULT init();
+	virtual HRESULT init(int bossName);
 	virtual void release();
 	virtual void update();
 	virtual void render();
