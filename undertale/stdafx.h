@@ -36,6 +36,7 @@ using namespace UJN_UTIL;
 #include "soundManager.h"
 #include "sceneManager.h"
 #include "txtData.h"
+#include "camera.h"
 
 
 //MS VS버전이 올라가면서 기존의 문자열 함수의 안정성을 올리기위해
@@ -48,8 +49,8 @@ using namespace UJN_UTIL;
 #define WINSTARTY	50
 #define WINSIZEX	640				
 #define WINSIZEY	480
-#define BACKGROUNDX
-#define BACKGROUNDY
+#define BACKGROUNDX 1500
+#define BACKGROUNDY 1000
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define RND randomFunction::getSingleton()
@@ -61,7 +62,7 @@ using namespace UJN_UTIL;
 #define SCENEMANAGER sceneManager::getSingleton()
 //#define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
-#define OBJECTMANAGER ObjectManager::getSingleton()
+#define CAMERA camera::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}

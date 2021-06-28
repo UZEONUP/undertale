@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="gameNode.h" />
@@ -173,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="gameNode.cpp" />

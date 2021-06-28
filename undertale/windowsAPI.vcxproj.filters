@@ -43,6 +43,9 @@
     <Filter Include="2DGameFramework\txtData">
       <UniqueIdentifier>{431e51a5-80a3-453e-b6b4-0a46c07862b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DGameFramework\camera">
+      <UniqueIdentifier>{e9239f37-b4ed-417e-b0a9-4b9761bec99b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="line.h">
       <Filter>2DGameFramework\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>2DGameFramework\camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="line.cpp">
       <Filter>2DGameFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>2DGameFramework\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
