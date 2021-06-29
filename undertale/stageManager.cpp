@@ -231,7 +231,7 @@ void stageManager::update()
 		linkStageRect(_stage7->getStageRect());
 
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
+	//else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
 
 	_pl->update();
 
@@ -248,7 +248,7 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
+	//else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
 	_pl->render();
 }
 
