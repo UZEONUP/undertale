@@ -19,7 +19,7 @@ void asriel::update()
 
 void asriel::render()
 {
-	_asriel.img->autoFrameRender(_asriel.x, _asriel.y, _asriel.currentFrameX, _asriel.currentFrameY, 10, true);
+	_asriel.img->autoFrameRender(_asriel.x, _asriel.y, _asriel.currentFrameX, _asriel.currentFrameY,5);
 }
 
 void asriel::imgSet()
