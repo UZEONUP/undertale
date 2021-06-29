@@ -63,92 +63,6 @@ HRESULT player::init()
 
 	_vObject.push_back(&_player);
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
-	{
-		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
-		_undy.x = WINSIZEX / 2;
-		_undy.y = 800;
-		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
-		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
-		_undy.currentFrameX = _undy.currentFrameY = 0;
-
-		_vObject.push_back(&_undy);
-
-	}
-
-	_blink = 0;
-	_index = 0;
-	_timer = 0;
-	return S_OK;
-}
-
-HRESULT player::init(bool exit)
-{
-	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
-	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
-
-	/*_undy = new undyne;
-	_undy->init();*/
-
-	if (sceneManager::getSingleton()->isCurrentScene("stage2")) //산
-	{
-		_player.x = WINSIZEX / 2 + 20;
-		_player.y = 950;
-	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))//위로 올라감
-	{
-		_player.x = 100;
-		_player.y = 350;
-	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))//상점 가기 전
-	{
-		if (!exit)
-		{
-			_player.x = 120;
-			_player.y = 100;
-		}
-		else
-		{
-			_player.x = 675;
-			_player.y = 300;
-		}
-	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage6"))//엘베
-	{
-		_player.x = WINSIZEX / 2;
-		_player.y = 700;
-	}
-	else if (sceneManager::getSingleton()->isCurrentScene("stage7"))//마지막 스테이지
-	{
-		_player.x = WINSIZEX / 2 + 20;
-		_player.y = 1120;
-	}
-	else
-	{
-		_player.x = WINSIZEX / 2;
-		_player.y = WINSIZEY / 2;
-	}
-
-	_player.speed = 3.0f;
-	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
-	_player.state = DOWN;
-	_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom - 10, 40, 10);  // 캐릭터 하단의 발판.
-	_player.currentFrameX = 0;
-	_player.currentFrameY = 0;
-	_player.isBattle = false;
-	_heart.img = ImageManager::GetInstance()->FindImage("RED");
-	_heart.currentFrameX = 0;
-
-	_vObject.push_back(&_player);
-
 	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
@@ -167,6 +81,92 @@ HRESULT player::init(bool exit)
 	_timer = 0;
 	return S_OK;
 }
+
+//HRESULT player::init(bool exit)
+//{
+//	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
+//	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
+//	ImageManager::GetInstance()->AddFrameImage("UP_MOVE", L"frisk/up_move.png", 4, 1);
+//	ImageManager::GetInstance()->AddFrameImage("DOWN_MOVE", L"frisk/down_move.png", 4, 1);
+//	ImageManager::GetInstance()->AddFrameImage("LEFT", L"frisk/left.png", 1, 1);
+//	ImageManager::GetInstance()->AddFrameImage("RIGHT", L"frisk/right.png", 1, 1);
+//	ImageManager::GetInstance()->AddFrameImage("UP", L"frisk/up.png", 1, 1);
+//	ImageManager::GetInstance()->AddFrameImage("DOWN", L"frisk/down.png", 1, 1);
+//	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
+//
+//	/*_undy = new undyne;
+//	_undy->init();*/
+//
+//	if (sceneManager::getSingleton()->isCurrentScene("stage2")) //산
+//	{
+//		_player.x = WINSIZEX / 2 + 20;
+//		_player.y = 950;
+//	}
+//	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))//위로 올라감
+//	{
+//		_player.x = 100;
+//		_player.y = 350;
+//	}
+//	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))//상점 가기 전
+//	{
+//		if (!exit)
+//		{
+//			_player.x = 120;
+//			_player.y = 100;
+//		}
+//		else
+//		{
+//			_player.x = 675;
+//			_player.y = 300;
+//		}
+//	}
+//	else if (sceneManager::getSingleton()->isCurrentScene("stage6"))//엘베
+//	{
+//		_player.x = WINSIZEX / 2;
+//		_player.y = 700;
+//	}
+//	else if (sceneManager::getSingleton()->isCurrentScene("stage7"))//마지막 스테이지
+//	{
+//		_player.x = WINSIZEX / 2 + 20;
+//		_player.y = 1120;
+//	}
+//	else
+//	{
+//		_player.x = WINSIZEX / 2;
+//		_player.y = WINSIZEY / 2;
+//	}
+//
+//	_player.speed = 3.0f;
+//	_player.img = ImageManager::GetInstance()->FindImage("DOWN");
+//	_player.state = DOWN;
+//	_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
+//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom - 10, 40, 10);  // 캐릭터 하단의 발판.
+//	_player.currentFrameX = 0;
+//	_player.currentFrameY = 0;
+//	_player.isBattle = false;
+//	_heart.img = ImageManager::GetInstance()->FindImage("RED");
+//	_heart.currentFrameX = 0;
+//
+//	_vObject.push_back(&_player);
+//
+//	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+//	{
+//		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
+//		_undy.x = WINSIZEX / 2;
+//		_undy.y = 800;
+//		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
+//		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
+//		_undy.currentFrameX = _undy.currentFrameY = 0;
+//
+//		_vObject.push_back(&_undy);
+//
+//	}*/
+//
+//	_blink = 0;
+//	_index = 0;
+//	_timer = 0;
+//	return S_OK;
+//}
 
 
 void player::release()
