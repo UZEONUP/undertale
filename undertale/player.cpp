@@ -63,7 +63,7 @@ HRESULT player::init()
 
 	_vObject.push_back(&_player);
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
@@ -74,7 +74,7 @@ HRESULT player::init()
 
 		_vObject.push_back(&_undy);
 
-	}
+	}*/
 
 	_blink = 0;
 	_index = 0;
