@@ -210,6 +210,9 @@
     <ClInclude Include="asrielStateManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="testScene.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -325,6 +328,9 @@
     </ClCompile>
     <ClCompile Include="asrielStateManager.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="testScene.cpp">
+      <Filter>playGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

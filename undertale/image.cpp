@@ -41,6 +41,8 @@ Image::Image(ID2D1Bitmap *const bitmap, const TagLoadedImageInfo & loadinfo, con
 	float frameX = mSize.x / (float)this->mMaxFrameX;
 	float frameY = mSize.y / (float)this->mMaxFrameY;
 
+	mFrame = 0;
+
 	FrameRect rc;
 	for (int j = 0; j < maxFrameY; ++j)
 	{
@@ -169,26 +171,22 @@ void Image::bossFrameRender(const float X, const float Y, const int frameX, cons
 	if (mAlpha <= 0)this->ResetRenderOption();
 }
 
-void Image::autoFrameRender(const float X, const float Y,  int frameX, const int frameY,
-	const int speed,
+void Image::autoFrameRender( const float X, const float Y, const int frameX, const int frameY,
+	const int speed, const bool loop,
 	const float scaleW, const float scalseH,
 	const float degreeAngle, const float rotateX, const float rotateY,
 	const float transX, const float transY)
 {
 
 	//현재 프레임인덱스 
-	int frame;
-	if (frameY < 2)
+	count++;
+	if (count%speed == 0)
 	{
-		if (count++%speed == 0)
-		{
-			frame = frameX++;
-			if (frameX >= mMaxFrameX)frameX = 0;
-			
-		}
+		mFrame++;
+		if (mFrame >= mMaxFrameX && loop)mFrame = 0;
+		else if (mFrame >= mMaxFrameX && !loop)mFrame = mMaxFrameX-1;
+		count = 0;
 	}
-
-	//int frame = frameY * mMaxFrameX + frameX;
 
 	Vector2 size = mSize * mScale;
 
@@ -197,9 +195,9 @@ void Image::autoFrameRender(const float X, const float Y,  int frameX, const int
 
 	//그릴 영역 세팅 
 	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
-	D2D1_RECT_F dxSrc = D2D1::RectF((float)mFrameInfo[frame].x, (float)mFrameInfo[frame].y,
-		(float)(mFrameInfo[frame].x + mFrameInfo[frame].width),
-		(float)(mFrameInfo[frame].y + mFrameInfo[frame].height));
+	D2D1_RECT_F dxSrc = D2D1::RectF((float)mFrameInfo[mFrame].x, (float)mFrameInfo[mFrame].y,
+		(float)(mFrameInfo[mFrame].x + mFrameInfo[mFrame].width),
+		(float)(mFrameInfo[mFrame].y + mFrameInfo[mFrame].height));
 	//최종행렬 세팅
 	D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform(rotateMatrix * translateMatrix);
 

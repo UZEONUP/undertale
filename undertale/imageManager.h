@@ -32,4 +32,4 @@ private:
 	void DeleteAll();
 };
 
-#define _ImageManager ImageManager::Get()
+#define IMAGEMANAGER ImageManager::GetInstance()
