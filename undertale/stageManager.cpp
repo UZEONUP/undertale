@@ -22,8 +22,8 @@ HRESULT stageManager::init()
 	this->linkPlayer(_pl);
 	_pl->linkStageManager(this);
 
-	_un = new undyne;
-	_un->init();
+	/*_un = new undyne;
+	_un->init();*/
 	
 	exit = false;
 
@@ -51,45 +51,45 @@ void stageManager::release()
 void stageManager::update()
 {
 	//테스트 용 스테이지 전환 ================================================
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F2))
-	{
-		_stage1->release();
-		sceneManager::getSingleton()->changeScene("stage2");
-		_stage2->init();
-		_pl->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F3))
-	{
-		sceneManager::getSingleton()->changeScene("stage3");
-		_stage3->init();
-		_pl->init();
-	}
-	/*if (_pl->getChangeScene())
-	{
-		sceneManager::getSingleton()->changeScene("stage3");
-		_stage3->init();
-		_pl->init();
-	}*/
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
-	{
-		sceneManager::getSingleton()->changeScene("stage4");
-		_stage4->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F5))
-	{
-		sceneManager::getSingleton()->changeScene("stage5");
-		_stage5->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F6))
-	{
-		sceneManager::getSingleton()->changeScene("stage6");
-		_stage6->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F7))
-	{
-		sceneManager::getSingleton()->changeScene("stage7");
-		_stage7->init();
-	}
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F2))
+	//{
+	//	_stage1->release();
+	//	sceneManager::getSingleton()->changeScene("stage2");
+	//	_stage2->init();
+	//	_pl->init();
+	//}
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F3))
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage3");
+	//	_stage3->init();
+	//	_pl->init();
+	//}
+	///*if (_pl->getChangeScene())
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage3");
+	//	_stage3->init();
+	//	_pl->init();
+	//}*/
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage4");
+	//	_stage4->init();
+	//}
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F5))
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage5");
+	//	_stage5->init();
+	//}
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F6))
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage6");
+	//	_stage6->init();
+	//}
+	//if (keyManager::getSingleton()->isOnceKeyDown(VK_F7))
+	//{
+	//	sceneManager::getSingleton()->changeScene("stage7");
+	//	_stage7->init();
+	//}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F8))
 	{
 		sceneManager::getSingleton()->changeScene("undybattle");
