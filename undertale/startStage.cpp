@@ -15,8 +15,8 @@ HRESULT startStage::init()
 
 	_setRect->setGround(0,0, 480, 120);
 	_setRect->setGround(0,0, 116, 158);
-	_setRect->setGround(0,160, 40, 360);
-	_setRect->setGround(30,360, 50, 40);
+	_setRect->setGround(0, 160, 40, 200);
+	_setRect->setGround(30, 360, 50, 40);
 	_setRect->setGround(80, 400, 40, 40);
 	_setRect->setGround(120, 440, 40, 40);
 	_setRect->setGround(160, 480, 280, 40);
@@ -25,7 +25,7 @@ HRESULT startStage::init()
 	_setRect->setGround(1320, 320, 40, 80);
 	_setRect->setGround(1274, 206, 40, 114);
 	_setRect->setGround(560, 160, 632, 160);
-	_setRect->setGround(480, 120, 60, 40);
+	_setRect->setGround(480, 120, 80, 40);
 
 	_sceneRect = RectMake(1200, 270, 70, 30);
 
