@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="asriel.h" />
+    <ClInclude Include="asrielStateManager.h" />
     <ClInclude Include="battleUI.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="cameraManager.h" />
@@ -193,6 +194,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="asriel.cpp" />
+    <ClCompile Include="asrielStateManager.cpp" />
     <ClCompile Include="battleUI.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="cameraManager.cpp" />

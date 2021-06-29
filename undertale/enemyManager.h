@@ -12,5 +12,7 @@ public :
 	virtual void update();
 	virtual void render();
 
+	void setAsriel();
+	
 };
 

@@ -18,10 +18,14 @@ HRESULT stage4::init()
 	_setRect->setGround(600, 0, 35, 290);
 	_setRect->setGround(160, 290, 475 , 40);
 	_setRect->setGround(80, 480, 1130, 40);
-	_setRect->setGround(720, 0, 35, 220);
+	_setRect->setGround(720, 0, 35, 290);
 
 	_sceneRect = RectMake(640, 145, 75, 20);
 	_sceneRect2 = RectMake(82, 10, 75, 20);
+
+
+
+
 	return S_OK;
 }
 

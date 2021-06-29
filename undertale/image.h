@@ -32,6 +32,7 @@ private:
 	vector<Image::FrameRect>	mFrameInfo;
 	int							mMaxFrameX;
 	int							mMaxFrameY;
+	int						count; //프레임 속도
 private:
 	friend class ImageManager;
 	Image() = delete;
@@ -50,6 +51,11 @@ public:
 		const float transX = 0.f, const float transY = 0.f);
 	
 	void bossFrameRender(const float X, const float Y, const int frameX, const int frameY,
+		const float scaleW = 1.f, const float scalseH = 1.f,
+		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
+		const float transX = 0.f, const float transY = 0.f);
+	void autoFrameRender(const float X, const float Y,  int frameX, const int frameY, 
+		 int speed = 10.f,
 		const float scaleW = 1.f, const float scalseH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);

@@ -17,3 +17,7 @@ void enemyManager::update()
 void enemyManager::render()
 {
 }
+
+void enemyManager::setAsriel()
+{
+}

@@ -15,6 +15,18 @@ HRESULT stageManager::init()
 	_stage7 = new stage7;
 	_undybattle = new undybattle;
 
+	linkStageRect(_stage1->getStageRect());
+
+	_pl = new player;
+	_pl->init();
+	this->linkPlayer(_pl);
+	_pl->linkStageManager(this);
+
+	_un = new undyne;
+	_un->init();
+	
+	exit = false;
+
 	//_stage2->init();
 
 	cout << "삼" << endl;
@@ -25,7 +37,7 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage5", new stage5);
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
-
+	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
 
 	sceneManager::getSingleton()->changeScene("stage1");
 
@@ -206,13 +218,22 @@ void stageManager::update()
 			_stage6->release();
 			_pl->release();
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->update();
+			sceneManager::getSingleton()->changeScene("stage7");
+			_pl->init();
+			_stage7->init();
+		}
+
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage7"))
+	{
+		_stage7->update();
+
+		linkStageRect(_stage7->getStageRect());
+
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
+
+	_pl->update();
 
 	if (_stageRect != nullptr) _stageRect->update();
 	collision();
@@ -227,4 +248,60 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
+	_pl->render();
 }
+
+void stageManager::collision()
+{
+	RECT temp;
+
+	RECT plRc = _pl->getBRect();
+
+
+	for (int i = 0; i < _stageRect->getvGround().size(); i++)
+	{
+		RECT groundRect = _stageRect->getvGround()[i].rc;
+
+		if (IntersectRect(&temp, &plRc, &groundRect))
+		{
+			float width = (temp.right - temp.left);
+			float height = (temp.bottom - temp.top);
+
+			float playerX = _pl->getX();
+			float playerY = _pl->getY();
+
+			bool _pt;
+
+			//수직 수평
+			(width > height) ? _pt = false : _pt = true;
+
+			if (_pt) // 수평
+			{
+				//왼쪽에 있나
+				if (plRc.left < groundRect.left) _pl->setPlayerX(playerX -= width);
+				//오른쪽에 있나
+				if (plRc.right > groundRect.right) _pl->setPlayerX(playerX += width);
+			}
+			else if (!_pt) //수직
+			{
+				//위에 있나
+				if (plRc.top < groundRect.top) _pl->setPlayerY(playerY -= height);
+				//아래에 있나
+				if (plRc.bottom > groundRect.bottom) _pl->setPlayerY(playerY += height);
+			}
+		}
+	}
+}
+
+bool stageManager::sceneRect(RECT sceneRect)
+{
+	RECT t;
+
+	if (IntersectRect(&t, &sceneRect, &_pl->getRect()))
+	{
+		return true;
+	}
+	else return false;
+}
+

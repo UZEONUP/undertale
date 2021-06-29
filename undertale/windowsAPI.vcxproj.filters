@@ -207,6 +207,9 @@
     <ClInclude Include="bullet.h">
       <Filter>playGround\bullet</Filter>
     </ClInclude>
+    <ClInclude Include="asrielStateManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -319,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="bullet.cpp">
       <Filter>playGround\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="asrielStateManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
