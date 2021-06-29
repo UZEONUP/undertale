@@ -66,7 +66,7 @@ void playGround::render()
 
 	_sm->render();
 
-	_face.img->autoFrameRender(WINSIZEX / 2, WINSIZEY / 2, _face.currentFrameX, _face.currentFrameY,50);
+	//_face.img->autoFrameRender(WINSIZEX / 2, WINSIZEY / 2, _face.currentFrameX, _face.currentFrameY,50);
 
 	CAMERAMANAGER->render();
 
