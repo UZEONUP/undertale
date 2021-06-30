@@ -9,7 +9,8 @@ HRESULT stage3::init()
 	CAMERAMANAGER->setMapCamera(1320, 480);
 
 	_player = new player;
-	_player->init(100,350);
+	if(!_reStage)_player->init(100,350);
+	else _player->init(470, 440);
 
 	SAVELOADMANAGER->linkPlayer(_player);
 
@@ -41,6 +42,7 @@ void stage3::update()
 	{
 		release();
 		SCENEMANAGER->changeScene("stage4");
+		_reStage = true;
 	}
 	if (IsCollision(_player->getBRect(), _sceneRect2))
 	{

@@ -36,6 +36,8 @@ void saveLoadManager::save()
 		char playerHP[128];
 		char playerX[128];
 		char playerY[128];
+		char playerMove[128];
+
 		string sceneName;
 		int decX, signX;
 		int decY, signY;
@@ -65,21 +67,25 @@ void saveLoadManager::save()
 		playerHP[64] = _itoa_s(_player->getHP(), playerHP, sizeof(playerHP), 10);
 		playerX[64] = _itoa_s(_player->getX(), playerX, sizeof(playerX), 10);
 		playerY[64] = _itoa_s(_player->getY(), playerY, sizeof(playerY), 10);
+		playerMove[64] = _itoa_s(_player->getMoveStop(), playerMove, sizeof(playerMove), 10);
 
 		INIDATA->addData("플레이어", "HP", playerHP);
 		INIDATA->addData("플레이어", "x", playerX);
 		INIDATA->addData("플레이어", "y", playerY);
+		INIDATA->addData("플레이어", "move", playerMove);
 		INIDATA->addData("스테이지", "이름", sceneName.c_str());
 
 		INIDATA->iniSave("우전없");
 		int HP = INIDATA->loadDataInt("우전없", "플레이어", "HP");
 		float X = INIDATA->loadDataInt("우전없", "플레이어", "x");
 		float Y = INIDATA->loadDataInt("우전없", "플레이어", "y");
+		int move = INIDATA->loadDataInt("우전없", "플레이어", "move");
 		string name = INIDATA->loadDataStr("우전없", "스테이지", "이름");
 
 		cout << HP << " : HP " << endl;
 		cout << X << " : X " << endl;
 		cout << Y << " : Y " << endl;
+		cout << move << " : moveStop " << endl;
 		cout << name << endl;
 		cout << "세이브 완료" << endl;
 	}
@@ -93,17 +99,20 @@ void saveLoadManager::load()
 		int HP = INIDATA->loadDataInt("우전없", "플레이어", "HP");
 		float X = INIDATA->loadDataInt("우전없", "플레이어", "x");
 		float Y = INIDATA->loadDataInt("우전없", "플레이어", "y");
+		int move = INIDATA->loadDataInt("우전없", "플레이어", "move");
 		string name = INIDATA->loadDataStr("우전없", "스테이지", "이름");
 
 		cout << HP << " : HP " << endl;
 		cout << X << " : X " << endl;
 		cout << Y << " : Y " << endl;
+		cout << move << " : moveStop " << endl;
 		cout << name << endl;
 
 		sceneSet();
 
 		_player->setPlayerX(X);
 		_player->setPlayerY(Y);
+		_player->setMoveStop(move);
 
 		//스테이지
 

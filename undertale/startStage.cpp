@@ -43,6 +43,7 @@ void startStage::update()
 {
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
+		_player->setMoveStop(1);
 		_player->setAlpha(_player->getAlpha() - 0.01f);
 		if (_player->getAlpha() <= 0.f)
 		{
@@ -52,7 +53,7 @@ void startStage::update()
 	}
 
 	_setRect->update();
-	_player->update();
+	if(!_player->getMoveStop())_player->update();
 }
 
 void startStage::render()

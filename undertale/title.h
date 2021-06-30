@@ -1,11 +1,9 @@
 #pragma once
 #include "gameNode.h"
-#include "player.h"
 
 class title : public gameNode
 {
 	Image* _backGround;
-	player* _player;
 
 public :
 	virtual HRESULT init();
@@ -14,6 +12,5 @@ public :
 	virtual void render();
 
 	title* getScene() { return this; }
-	player* getPlayer() { return _player; }
 };
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "gameNode.h"
 #include "stageManager.h"
-#include "testScene.h"
 
 struct tagFace
 {
@@ -16,7 +15,6 @@ struct tagFace
 class playGround : public gameNode
 {
 private:
-	testScene* _ts;
 
 	stageManager* _sm;
 
