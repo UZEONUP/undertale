@@ -356,7 +356,8 @@ void player::render()
 {
 	//(하트가 아닌) 모습이 나오지 않아야 하는 씬 
 	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
-		!sceneManager::getSingleton()->isCurrentScene("undybattle"))
+		!sceneManager::getSingleton()->isCurrentScene("undybattle") &&
+		!sceneManager::getSingleton()->isCurrentScene("muffetBattle"))
 	{
 		for (int i = 0; i < _vObject.size(); i++)
 		{

@@ -219,6 +219,9 @@
     <ClInclude Include="title.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>playGround\enemy\muffet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="title.cpp">
       <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>playGround\enemy\muffet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

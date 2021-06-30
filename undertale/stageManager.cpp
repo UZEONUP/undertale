@@ -14,6 +14,7 @@ HRESULT stageManager::init()
 	_stage6 = new stage6;
 	_stage7 = new stage7;
 	_undybattle = new undybattle;
+	_muffetBattle = new muffetBattle;
 
 
 	_pl = new player;
@@ -39,6 +40,7 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
 	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
+	sceneManager::getSingleton()->addScene("muffetBattle", new muffetBattle);
 
 	sceneManager::getSingleton()->changeScene("title");
 
@@ -57,7 +59,13 @@ void stageManager::update()
 		sceneManager::getSingleton()->changeScene("undybattle");
 		_undybattle->init();
 	}
-
+	if (keyManager::getSingleton()->isOnceKeyDown(VK_F9))
+	{
+		_pl->release();
+		sceneManager::getSingleton()->changeScene("muffetBattle");
+		_muffetBattle->init();
+		_pl->init();
+	}
 	float x = _pl->getX();
 	float y = _pl->getY();
 	float angle;
@@ -210,13 +218,15 @@ void stageManager::update()
 
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->update();
 
 	
 	_pl->update();
 
 	if (_stageRect != nullptr) _stageRect->update();
 	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
-		!sceneManager::getSingleton()->isCurrentScene("undybattle"))
+		!sceneManager::getSingleton()->isCurrentScene("undybattle") &&
+		!sceneManager::getSingleton()->isCurrentScene("muffetBattle"))
 	{
 		collision();
 	}
@@ -233,6 +243,8 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->render();
+
 	_pl->render();
 }
 
