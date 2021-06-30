@@ -38,6 +38,8 @@ public:
 
 	void removeBullet();
 
+	void hit(int damage);
+
 
 
 };

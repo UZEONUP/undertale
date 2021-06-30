@@ -82,8 +82,11 @@ void undybattle::release()
 
 void undybattle::update()
 {
+	
 	_bui->update();
 	_count++;
+	if (_count == 20)maxangle = true;
+
 	if (_count % 5 == 0)
 	{
 		_hair.currentFrameX++;
@@ -152,16 +155,21 @@ void undybattle::update()
 			if (_belly.y > _torso.y + 27)_belly.isMove = true;
 		}
 	}
-	if (_leftArm.isAttack&& angle<80.f)
+	
+	if (_leftArm.isAttack&& maxangle)
 	{
 		angle += 5;
-		if (angle == 80.f)maxangle = true;
+		if (angle == 80.f)maxangle =false;
 	}
 
-	if (maxangle)
+	if (!maxangle)
 	{
-		angle -= 20;
-		if (angle <= -50.f);
+		if (_count == 60)minangle = true;
+
+		if(minangle&&angle>-60.f)angle -= 5;
+
+		
+		
 	}
 	_hair.rc = RectMakeCenter(_hair.x, _head.y-10, 10, 10);
 	_head.rc = RectMakeCenter(_head.x, _head.y, 32, 28);
@@ -177,17 +185,24 @@ void undybattle::render()
 	if (_leftArm.isAttack)
 	{
 		_jansang->autoFrameRender(_leftArm.janSang.left, _leftArm.janSang.top, currentFrameX, currentFrameY);
+		_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY);
+		_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY);
+		_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);
 		_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, angle, 35.f, 0.f, 0.f, 0.f);
+		
 	}
-
+	else {
+		_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY);
+		_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY);
+		_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY);
+		_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);
+	}
 	_rightArm.img->bossFrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY);
-	_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);
-	_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY);
-	_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY);
+	
 	_hair.img->bossFrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY);
-	_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY);
 	_head.img->bossFrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY);
 	_bui->render();
+
 
 	D2DRENDER->DrawRectangle
 	(
