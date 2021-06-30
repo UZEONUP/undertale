@@ -22,8 +22,6 @@ HRESULT stageManager::init()
 	_pl->init();
 	this->linkPlayer(_pl);
 	_pl->linkStageManager(this);
-
-	_h = new heart;
 	
 	exit = false;
 	returnStage3 = false;
@@ -59,36 +57,25 @@ void stageManager::update()
 	{
 		sceneManager::getSingleton()->changeScene("undybattle");
 		_undybattle->init();
-		_h->init(0);
+
 	}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F9))
 	{
 		_pl->release();
 		sceneManager::getSingleton()->changeScene("muffetBattle");
 		_muffetBattle->init();
-		_pl->init();
 	}
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F10))
 	{
 		_pl->release();
 		sceneManager::getSingleton()->changeScene("sansBattle");
 		_sansBattle->init();
-		_pl->init();
 	}
 	float x = _pl->getX();
 	float y = _pl->getY();
 	float angle;
 
-	RECT temp2;
-	if (IntersectRect(&temp2, &_stage2->getchangeScene(), &_pl->getHRect()))
-	{
-		_stage2->release();
-		_pl->release();
-		sceneManager::getSingleton()->changeScene("undybattle");
-		_undybattle->init();
-		_h->init(0);
-
-	}
+	
 	RECT temp;
 	if (IntersectRect(&temp, &_pl->getRect(), &_pl->getUndyrc()))
 		_pl->setBattlechk(true);
@@ -142,6 +129,15 @@ void stageManager::update()
 			sceneManager::getSingleton()->changeScene("stage3");
 			_pl->init(1, returnStage3);
 			_stage3->init();
+		}
+		RECT temp2;
+		if (IntersectRect(&temp2, &_stage2->getchangeScene(), &_pl->getHRect()))
+		{
+			_stage2->release();
+			_pl->release();
+			sceneManager::getSingleton()->changeScene("undybattle");
+			_undybattle->init();
+
 		}
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))
@@ -236,13 +232,23 @@ void stageManager::update()
 		linkStageRect(_stage7->getStageRect());
 
 	}
-	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->update();
-	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle")) _sansBattle->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle"))
+	{
+		_muffetBattle->update();
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle"))
+	{
+		_sansBattle->update();
+	}
 
+	 if (sceneManager::getSingleton()->isCurrentScene("undybattle"))
+	{
+		_undybattle->update();
+		
+	}
 	
 	_pl->update();
-	_h->update();
+	
 
 	if (_stageRect != nullptr) _stageRect->update();
 	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
@@ -264,12 +270,20 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle")) _sansBattle->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("undybattle"))
+	{
+	_undybattle->render();
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle"))
+	{
+		_muffetBattle->render();
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle"))
+	{
+		_sansBattle->render();
+	}
 
 	_pl->render();
-	_h->render();
 }
 
 void stageManager::collision()

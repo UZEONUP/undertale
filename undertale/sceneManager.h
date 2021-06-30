@@ -35,5 +35,8 @@ public:
 		else return false;
 	}
 
+	string getSceneName() {
+		return _currentSceneName;
+	}
 };
 

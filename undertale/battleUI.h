@@ -21,12 +21,30 @@ enum TURN_STATE
 	INGAME,
 	TALK_MAIN
 };
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@하트 구조체
+struct inGameHeart
+{
+	Image* img;
+	RECT rc;
+	int currentHP;
+	int maxHP;
+	float x, y;
+	float speed;
+	int currentFrameX;
+	int currentFrameY;
+	bool isBattle;
+
+};
+
+
 class battleUI : public gameNode
 {
 private:
 	//메인 렉트
 	rc_control _main_rc;
 
+	inGameHeart _heartPlayer;
 	Image* _menu_off[4];
 	Image* _menu_on[4];
 	Image* _heart;
@@ -140,5 +158,7 @@ public:
 	int get_main_talk_count() { return _title_int; }
 	//대사_말풍선 카운트 get
 	int get_bubble_talk_count() { return _title_int2; }
-};
 
+
+	inGameHeart getIGH() { return _heartPlayer; }
+};

@@ -13,8 +13,8 @@ HRESULT stage2::init()
 	_setRect->setGround(0, 200, 230, 1000);
 	_setRect->setGround(400, 200, 240, 1000);
 
-	/*_player = new player;
-	_player->init();*/
+	_player = new player;
+	_player->init();
 
 	_sceneRect = RectMake(250, 600, 70, 30);
 
@@ -33,9 +33,9 @@ void stage2::release()
 
 void stage2::update()
 {
-		//// 일정지점 도달하면 카메라가 올라가면서 언다인 다이얼로그 시작...하고싶어요
+	//	// 일정지점 도달하면 카메라가 올라가면서 언다인 다이얼로그 시작...하고싶어요
 	//RECT temp3;
-	//if (IntersectRect(&temp3, &_pl->getRect(), &_dialStart))
+	//if (IntersectRect(&temp3, &_player->getRect(), &_dialStart))
 	//{
 	//	CAMERAMANAGER->setMapCamera(640, 100);
 	//}
@@ -56,6 +56,14 @@ void stage2::render()
 		}
 		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
+
+	D2DRENDER->DrawRectangle
+	(
+		_dialStart,
+		D2DRenderer::DefaultBrush::Red,
+		1.f
+		//angle
+	);
 
 	
 	//if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);

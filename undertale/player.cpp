@@ -67,7 +67,7 @@ HRESULT player::init()
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
-		_undy.y = 800;
+		_undy.y = 900;
 		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
 		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
 		_undy.currentFrameX = _undy.currentFrameY = 0;
@@ -119,6 +119,7 @@ HRESULT player::init(int type, bool exit)
 void player::release()
 {
 	_vObject.clear();
+	
 }
 
 bool compare(tagPlayer * a, tagPlayer * b)
@@ -287,6 +288,7 @@ void player::render()
 		{
 			_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY);
 		}
+		_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 	}
 	//if (!_player.deletepl)
 	//{
@@ -295,7 +297,7 @@ void player::render()
 	//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
 	//	_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 	//}
-	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
+	
 
 	//D2DRENDER->DrawRectangle
 	//(
@@ -311,13 +313,7 @@ void player::render()
 	//	1.f
 	//	//angle
 	//);
-
-
-
 }
-
-
-
 void player::setHeart(float x, float y)
 {
 	_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);

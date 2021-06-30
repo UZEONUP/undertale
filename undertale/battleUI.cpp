@@ -11,6 +11,27 @@ battleUI::~battleUI()
 
 HRESULT battleUI::init(int bossName)
 {
+	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("RED_DAMAGED", L"hearts/RED_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("RED_RUN", L"hearts/RED_RUN.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE", L"hearts/BLUE.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_DAMAGED", L"hearts/BLUE_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_LEFT", L"hearts/BLUE_LEFT.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_LEFT_DAMAGED", L"hearts/BLUE_LEFT_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_RIGHT", L"hearts/BLUE_RIGHT.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_RIGHT_DAMAGED", L"hearts/BLUE_RIGHT_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_UP", L"hearts/BLUE_UP.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("BLUE_UP_DAMAGED", L"hearts/BLUE_UP_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddImage("GREEN", L"hearts/GREEN.png");
+	ImageManager::GetInstance()->AddFrameImage("GREEN_DAMAGED", L"hearts/GREEN_DAMAGED.png", 2, 1);
+	ImageManager::GetInstance()->AddFrameImage("PURPLE", L"hearts/PURPLE.png", 1, 1);
+	ImageManager::GetInstance()->AddFrameImage("PURPLE_DAMAGED", L"hearts/PURPLE_DAMAGED.png", 2, 1);
+
+
+	
+
+	
+
 	_menu_off[0] = ImageManager::GetInstance()->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
 	_menu_off[1] = ImageManager::GetInstance()->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
 	_menu_off[2] = ImageManager::GetInstance()->AddImage("아이템_off", L"UI이미지/UI_아이템_비활성화_110_42.png");
@@ -60,9 +81,15 @@ HRESULT battleUI::init(int bossName)
 	_word_count2 = 0;
 	_word_speed = 0;
 
+	_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+	_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
+	_heartPlayer.currentFrameX = _heartPlayer.currentFrameY = 0;
+	_heartPlayer.speed = 3.0f;
+
+
 	//폰트추가
 	D2DRENDER->AddTextFormat(L"-윤디자인웹돋움");
-
 	switch (bossName)
 	{
 	case 0:
@@ -74,6 +101,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _undy_talk[i];
 		}
+		_heartPlayer.img = ImageManager::GetInstance()->FindImage("RED");
 		break;
 	case 1:
 		_boss_name = L"* 샌즈";
@@ -84,6 +112,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _sans_talk[i];
 		}
+		_heartPlayer.img = ImageManager::GetInstance()->FindImage("BLUE");
 		break;
 	case 2:
 		_boss_name = L"* 머펫";
@@ -94,6 +123,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _muffet_talk[i];
 		}
+		_heartPlayer.img = ImageManager::GetInstance()->FindImage("PURPLE");
 		break;
 	case 3:
 		_boss_name = L"* 아스리엘";
@@ -108,8 +138,11 @@ HRESULT battleUI::init(int bossName)
 	}
 
 
+
 	talk_bubble_start(_boss_bubble, 1);
 	talk_main_start(_boss_main, 1);
+
+	
 
 	return S_OK;
 }
@@ -120,7 +153,42 @@ void battleUI::release()
 
 void battleUI::update()
 {
-
+	if (isTurn == TALK_BUBBLE || isTurn == INGAME)
+	{
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		{
+			_heartPlayer.x -= _heartPlayer.speed;
+			if (_heartPlayer.rc.left < _main_rc.rc.left)
+			{
+				_heartPlayer.x += _heartPlayer.speed;
+			}
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		{
+			_heartPlayer.x += _heartPlayer.speed;
+			if (_heartPlayer.rc.right > _main_rc.rc.right)
+			{
+				_heartPlayer.x -= _heartPlayer.speed;
+			}
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
+		{
+			_heartPlayer.y -= _heartPlayer.speed;
+			if (_heartPlayer.rc.top < _main_rc.rc.top)
+			{
+				_heartPlayer.y += _heartPlayer.speed;
+			}
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		{
+			_heartPlayer.y += _heartPlayer.speed;
+			if (_heartPlayer.rc.bottom > _main_rc.rc.bottom)
+			{
+				_heartPlayer.y -= _heartPlayer.speed;
+			}
+		}
+		_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
+	}
 	if (isTurn == MENU_SELECT)
 	{
 		//메뉴 선택 키 왼쪽
@@ -230,6 +298,7 @@ void battleUI::update()
 		//말풍선 턴
 		if (isTurn == TALK_BUBBLE)
 		{
+			
 			//말풍선에서 인게임으로 넘어가는 타이밍
 			talk_bubble_end(_select_talk[_battle_turn]);
 
@@ -241,6 +310,7 @@ void battleUI::update()
 				//이니데이터 title값을 변경해주기위해 int to string 변환
 				_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
 				_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
+				
 			}
 			//자비(살려주기)일때도 대사의 길이가 같으면 다음대사로
 			if (_word_count2 == strlen(_word_cut2) && _word_count2 >= 3 && _isMercy)
@@ -249,6 +319,7 @@ void battleUI::update()
 				isTurn = INGAME;
 				_isMercy = false;
 				_menu_input1_count = 0;
+				
 			}
 		}
 	}
@@ -316,6 +387,8 @@ void battleUI::update()
 	{
 		_isAttack_start = false;
 		_isAttack_finish = false;
+		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
 		isTurn = TALK_BUBBLE;
 		_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
 		_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
@@ -362,7 +435,6 @@ void battleUI::update()
 		}
 		_word_speed = 0;
 	}
-
 }
 
 void battleUI::render()
@@ -430,6 +502,7 @@ void battleUI::render()
 			if (_menu_input1_count == 4) _heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 225);
 			else _heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 450, WINSIZEY - 40);
 		}
+
 	}
 
 	//==========다이얼로그==============
@@ -451,6 +524,14 @@ void battleUI::render()
 
 
 	}
+	//========================================================================================gkxm
+	D2DRENDER->DrawRectangle
+	(
+		_heartPlayer.rc,
+		D2DRenderer::DefaultBrush::Red
+	);
+	if (isTurn == TALK_BUBBLE || isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
+
 }
 //메인 전투 렉트 컨트롤함수 기본값		 (늘리고 싶으면 true, 줄이고 싶으면 false)
 void battleUI::main_rect_control_default(bool expandOrReduce)

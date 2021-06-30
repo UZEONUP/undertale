@@ -61,5 +61,6 @@ public:
 	vector<background>::iterator getViback() { return _viBack; }
 
 	void backMove();
+	battleUI* getUI() { return _bui; }
 };
 
