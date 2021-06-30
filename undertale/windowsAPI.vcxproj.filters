@@ -213,9 +213,6 @@
     <ClInclude Include="asrielStateManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="testScene.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="saveLoadManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
@@ -239,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="sans_state_idle.h">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>playGround\enemy\muffet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -356,9 +359,6 @@
     <ClCompile Include="asrielStateManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="testScene.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
     <ClCompile Include="saveLoadManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
@@ -382,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="sans_state_attack4.cpp">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>playGround\enemy\muffet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -9,8 +9,8 @@ HRESULT stage4::init()
 	CAMERAMANAGER->setMapCamera(1320, 600);
 
 	_player = new player;
-	_player->init(120,100);
-
+	if(!_shopRe)	_player->init(120,100);
+	else _player->init(675, 300);
 
 	_setRect = new stageRect;
 	_setRect->release();
@@ -46,6 +46,7 @@ void stage4::update()
 	{
 		release();
 		SCENEMANAGER->changeScene("stage5");
+		_shopRe = true;
 	}
 	if (IsCollision(_player->getBRect(), _sceneRect2))
 	{

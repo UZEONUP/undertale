@@ -35,6 +35,7 @@ struct tagPlayer
 	bool isBattle;
 	bool deletepl;
 	bool changeScene;
+	bool moveStop;
 };
 
 class stageManager;
@@ -87,6 +88,8 @@ public:
 	void setPlayerY(float y) { _player.y = y; }
 	float getAlpha() { return _player.alpha; }
 	void setAlpha(float alpha) { _player.alpha = alpha; }
+	bool getMoveStop() { return _player.moveStop; }
+	void setMoveStop(bool moveStop) { _player.moveStop = moveStop; }
 
 	void setHeart(float x, float y);
 	int getHP() { return _heart.currentHP; }

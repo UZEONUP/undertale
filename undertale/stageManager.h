@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "title.h"
 #include "startStage.h"
 #include "stage2.h"
 #include "stage3.h"
@@ -8,19 +9,17 @@
 #include "stage6.h"
 #include "stage7.h"
 #include "undybattle.h"
+#include "sansBattle.h"
 #include "stageRect.h"
 #include "undyne.h"
 
 class player;
-class undyne;
 
 class stageManager : public gameNode
 {
 	player* _player;
 	stageRect* _stageRect;
 
-	bool exit; //»óÁ¡ µé¾î°¬´Ù ³ª¿È?
-	bool returnStage3;
 
 public :
 	virtual HRESULT init();

@@ -14,6 +14,7 @@ class stage4 : public gameNode
 
 	player* _player;
 
+	bool _shopRe;
 
 public :
 	virtual HRESULT init();
