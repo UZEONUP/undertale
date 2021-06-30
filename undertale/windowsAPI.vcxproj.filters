@@ -237,6 +237,9 @@
     <ClInclude Include="sans_state_idle.h">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -376,6 +379,9 @@
     </ClCompile>
     <ClCompile Include="sans_state_attack4.cpp">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
