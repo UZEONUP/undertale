@@ -8,6 +8,10 @@ HRESULT stage4::init()
 
 	CAMERAMANAGER->setMapCamera(1320, 600);
 
+	_player = new player;
+	_player->init(120,100);
+
+
 	_setRect = new stageRect;
 	_setRect->release();
 
@@ -23,7 +27,8 @@ HRESULT stage4::init()
 	_sceneRect = RectMake(640, 145, 75, 20);
 	_sceneRect2 = RectMake(82, 10, 75, 20);
 
-
+	SAVELOADMANAGER->linkPlayer(_player);
+	_setRect->linkPlayer(_player);
 
 
 	return S_OK;
@@ -31,20 +36,31 @@ HRESULT stage4::init()
 
 void stage4::release()
 {
+	_player->release();
 	_setRect->release();
 }
 
 void stage4::update()
 {
+	if (IsCollision(_player->getBRect(), _sceneRect))
+	{
+		release();
+		SCENEMANAGER->changeScene("stage5");
+	}
+	if (IsCollision(_player->getBRect(), _sceneRect2))
+	{
+		release();
+		SCENEMANAGER->changeScene("stage3");
+	}
+	_player->update();
 	_setRect->update();
 }
 
 void stage4::render()
 {
-	/*No.¼öÁ¤
-	_backGround->Render(0, 0, 2.f, 2.f);*/
-
 	_backGround->mapRender(0, 0);
+
+	_player->render();
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

@@ -38,6 +38,7 @@ using namespace UJN_UTIL;
 #include "txtData.h"
 #include "iniDataManager.h"
 #include "cameraManager.h"
+#include "saveLoadManager.h"
 
 
 //MS VS버전이 올라가면서 기존의 문자열 함수의 안정성을 올리기위해
@@ -46,7 +47,7 @@ using namespace UJN_UTIL;
 
 // 여기서 프로그램에 필요한 추가 헤더를 참조합니다.
 #define WINNAME (LPCTSTR)(TEXT("우전없"))
-#define WINSTARTX	350
+#define WINSTARTX	100
 #define WINSTARTY	50
 #define WINSIZEX	640			
 #define WINSIZEY	480
@@ -57,10 +58,10 @@ using namespace UJN_UTIL;
 #define TIMEMANAGER timeManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton() 
-//#define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
 #define INIDATA	iniDataManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
+#define SAVELOADMANAGER saveLoadManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}
