@@ -26,26 +26,32 @@ HRESULT battleUI::init(int bossName)
 	ImageManager::GetInstance()->AddImage("전투바_화이트", L"UI이미지/UI_공격타이밍바_10_151.png");
 	ImageManager::GetInstance()->AddImage("전투바_블랙", L"UI이미지/UI_공격타이밍바_black_10_151.png");
 	_attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_화이트");
+
 	_main_rc.x = WINSIZEX / 2;
-	_main_rc.y = WINSIZEY / 2 + 50;
+	_main_rc.y = WINSIZEY / 2 + 70;
 	_main_rc.width_max = 150;
 	_main_rc.height_max = 150;
 	_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, _main_rc.width_max, _main_rc.height_max);
 
 	_attack_bar.x = 30;
-	_attack_bar.y = WINSIZEY / 2 - 25;
+	_attack_bar.y = WINSIZEY / 2;
 	_attack_bar_count = 0;
 
+	_menu_action_count = 0;
+	_menu_action_click = false;
 	daCount = 1;
 	daCount2 = 1;
 	_isMercy = false;
 
+	_enemy_attack_max = 100;
+
 	isTurn = TALK_BUBBLE;
 	_menu_main_count = 1;
 	_menu_input1_count = 0;
+	_battle_turn = 0;
 	_isAttack_start = false;
 	_isAttack_finish = false;
-	enemy_attack_count = 0;
+	_enemy_attack_count = 0;
 	//==========다이얼로그==============
 
 	_title_int = 1;
@@ -53,33 +59,58 @@ HRESULT battleUI::init(int bossName)
 	_word_count = 0;
 	_word_count2 = 0;
 	_word_speed = 0;
-	talk_main_start("샌즈_메인", 1);
-	
+
 	//폰트추가
 	D2DRENDER->AddTextFormat(L"-윤디자인웹돋움");
 
-	if (bossName == 0) 
+	switch (bossName)
 	{
-		_boss_select = "언다인_말풍선";
+	case 0:
 		_boss_name = L"* 언다인";
-	}
-	if (bossName == 1) 
-	{
-		_boss_select = "샌즈_말풍선";
+		_boss_bubble = "언다인_말풍선";
+		_boss_main = "언다인_메인";
+		_boss_stage = "언다인_스테이지";
+		for (int i = 0; i < 30; i++)
+		{
+			_select_talk[i] = _undy_talk[i];
+		}
+		break;
+	case 1:
 		_boss_name = L"* 샌즈";
-	}
-	if (bossName == 2) 
-	{
-		_boss_select = "머펫_말풍선";
+		_boss_bubble = "샌즈_말풍선";
+		_boss_main = "샌즈_메인";
+		_boss_stage = "샌즈_스테이지";
+		for (int i = 0; i < 30; i++)
+		{
+			_select_talk[i] = _sans_talk[i];
+		}
+		break;
+	case 2:
 		_boss_name = L"* 머펫";
-	}
-	if (bossName == 3) 
-	{
-		_boss_select = "아스리엘_말풍선";
+		_boss_bubble = "머펫_말풍선";
+		_boss_main = "머펫_메인";
+		_boss_stage = "머펫_스테이지";
+		for (int i = 0; i < 30; i++)
+		{
+			_select_talk[i] = _muffet_talk[i];
+		}
+		break;
+	case 3:
 		_boss_name = L"* 아스리엘";
+		_boss_bubble = "아스리엘_말풍선";
+		_boss_main = "아스리엘_메인";
+		_boss_stage = "아스리엘_스테이지";
+		for (int i = 0; i < 30; i++)
+		{
+			_select_talk[i] = _asriel_talk[i];
+		}
+		break;
 	}
-	talk_bubble_start(_boss_select, 1);
-;
+
+
+	talk_bubble_start(_boss_bubble, 1);
+	talk_main_start(_boss_main, 1);
+
 	return S_OK;
 }
 
@@ -96,19 +127,33 @@ void battleUI::update()
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _menu_input1_count == 0)
 		{
 			_menu_main_count--;
-			if (_menu_main_count < 1) _menu_main_count = 1;
+			if (_menu_main_count < 1) _menu_main_count = 4;
 		}
 		//메뉴 선택 키 오른쪽
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _menu_input1_count == 0)
 		{
 			_menu_main_count++;
-			if (_menu_main_count > 4) _menu_main_count = 4;
+			if (_menu_main_count > 4) _menu_main_count = 1;
+		}
+		if (_menu_action_count != 0)
+		{
+			if (KEYMANAGER->isOnceKeyDown(VK_UP))
+			{
+				_menu_action_count--;
+				if (_menu_action_count < 1) _menu_action_count = 3;
+			}
+			if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+			{
+				_menu_action_count++;
+				if (_menu_action_count > 3) _menu_action_count = 1;
+			}
 		}
 	}
 
 	//Z버튼 == 엔터
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
+		//메뉴선택 턴
 		if (isTurn == MENU_SELECT)
 		{
 			//공격시작 후 공격바 멈추고 싶을떄
@@ -122,68 +167,72 @@ void battleUI::update()
 				_attack_bar.x = 30;
 				_isAttack_start = true;
 			}
-			if (_menu_input1_count == 2)
+			//행동버튼에서 살펴보기, 애원하기, 도전하기
+			if (_menu_input1_count == 2 && _menu_action_count == 1 && !_menu_action_click)
+			{
+				_word_count = 0;
+				_menu_action_click = true;
+				_str_main = INIDATA->loadDataString("우전없", _boss_main, "100");
+
+			}
+			if (_menu_action_count == 2)
 			{
 
 			}
+			if (_menu_action_count == 3)
+			{
+
+
+			}
+			if (_word_count == strlen(_word_cut) && _word_count >= 3)
+			{
+				_word_count = 0;
+				_menu_action_click = false;
+			}
+			//행동버튼 누를시
+			if (_menu_input1_count == 2 && _menu_action_count == 0)
+			{
+				_menu_action_count = 1;
+			}
+
+			//살려주기버튼 누를시
 			if (_menu_input1_count == 4 && !_isMercy)
 			{
 				_isMercy = true;
 				_word_count2 = 0;
 			}
-		}
-		if (isTurn == MENU_SELECT)
-		{
 			//버튼 누른 메뉴로 이동
 			_menu_input1_count = _menu_main_count;
 		}
+		//메인 대화 턴 =========수정해야함
 		if (isTurn == TALK_MAIN)
 		{
+			//처음시작할때 메인대화
 			if (talk_main_end(daCount))
 			{
+				_word_count = 0;
+
 				_menu_main_count = 1;
 				_menu_input1_count = 0;
 				isTurn = MENU_SELECT;
 				daCount++;
 			}
-			//i가 대사의 길이와 같으면 다음 대사로 넘어감
-			if (_word_count == strlen(_word_cut) && _word_count >= 3)
+			//처음이후 메인대화
+			if (_word_count == strlen(_word_cut) && _word_count >= 3 && daCount > 1)
 			{
 				_word_count = 0;
-				_title_int++;
-				//이니데이터 title값을 변경해주기위해 int to string 변환
-				_title_char[1024] = _itoa_s(_title_int, _title_char, sizeof(_title_char), 10);
-				_str_main = INIDATA->loadDataString("28기", "샌즈_메인", _title_char);
+				_menu_main_count = 1;
+				_menu_input1_count = 0;
+				isTurn = MENU_SELECT;
 			}
+
 		}
 		//말풍선 턴
 		if (isTurn == TALK_BUBBLE)
 		{
 			//말풍선에서 인게임으로 넘어가는 타이밍
-			talk_bubble_end(4);
-			talk_bubble_end(6);
-			talk_bubble_end(10);
-			talk_bubble_end(12);
-			talk_bubble_end(15);
-			talk_bubble_end(19);
-			talk_bubble_end(22);
-			talk_bubble_end(26);
-			talk_bubble_end(27);
-			talk_bubble_end(32);
-			talk_bubble_end(37);
-			talk_bubble_end(38);
-			talk_bubble_end(40);
-			talk_bubble_end(42);
-			talk_bubble_end(48);
-			talk_bubble_end(50);
-			talk_bubble_end(56);
-			talk_bubble_end(60);
-			talk_bubble_end(63);
-			talk_bubble_end(65);
-			talk_bubble_end(66);
-			talk_bubble_end(68);
-			talk_bubble_end(71);
-			talk_bubble_end(104);
+			talk_bubble_end(_select_talk[_battle_turn]);
+
 			//i가 대사의 길이와 같으면 다음 대사로 넘어감
 			if (_word_count2 == strlen(_word_cut2) && _word_count2 >= 3 && !_isMercy)
 			{
@@ -191,11 +240,12 @@ void battleUI::update()
 				_word_count2 = 0;
 				//이니데이터 title값을 변경해주기위해 int to string 변환
 				_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
-				_str_bubble = INIDATA->loadDataString2("28기", _boss_select, _title_char2);
+				_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
 			}
 			//자비(살려주기)일때도 대사의 길이가 같으면 다음대사로
-			if (_isMercy && _word_count2 == strlen(_word_cut2) && _word_count2 >= 3)
+			if (_word_count2 == strlen(_word_cut2) && _word_count2 >= 3 && _isMercy)
 			{
+				_word_count2 = 0;
 				isTurn = INGAME;
 				_isMercy = false;
 				_menu_input1_count = 0;
@@ -205,16 +255,27 @@ void battleUI::update()
 	//X버튼 == 취소
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
+		//메뉴선택 턴
 		if (isTurn == MENU_SELECT)
 		{
 			//메뉴 선택 취소
-			if (_menu_input1_count != 0 && !_isAttack_start)
+			if (_menu_input1_count != 0 && !_isAttack_start && !_menu_action_click)
 			{
-				_menu_main_count = _menu_input1_count;
-				_menu_input1_count = 0;
+				if (_menu_input1_count == 2 && _menu_action_count != 0 && _menu_action_click)
+				{
+					_menu_action_click = false;
+				}
+				else if (_menu_input1_count == 2 && _menu_action_count != 0 && !_menu_action_click) _menu_action_count = 0;
+				else
+				{
+					_menu_main_count = _menu_input1_count;
+					_menu_input1_count = 0;
+				}
+
 			}
 		}
-		if (isTurn == TALK_MAIN)
+		//메인 대화 턴
+		if (isTurn == TALK_MAIN || isTurn == MENU_SELECT && _menu_action_click)
 		{
 			//i가 대사의 길이와 같이 않으면 대사를 모두 표시
 			if (_word_count != strlen(_str_main))	_word_count = strlen(_str_main);
@@ -224,12 +285,18 @@ void battleUI::update()
 	if (_isMercy)
 	{
 		isTurn = TALK_BUBBLE;
-		talk_bubble_start("샌즈_말풍선", 7);
+		_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, "200");
+	}
+	if (isTurn == TALK_MAIN)
+	{
+		if (daCount == 1) _str_main = INIDATA->loadDataString("우전없", _boss_main, "1");
+		if (daCount > 1) _str_main = INIDATA->loadDataString("우전없", _boss_main, "2");
 	}
 
-	//메뉴 카운터2에 따른 텍스트 출력
+	//메뉴 카운터2에 따른 텍스트 변경
 	if (_menu_input1_count == 1) menu_select = _boss_name;
-	if (_menu_input1_count == 2) menu_select = _boss_name;
+	if (_menu_input1_count == 2 && _menu_action_count == 0) menu_select = _boss_name;
+	if (_menu_input1_count == 2 && _menu_action_count != 0) menu_select = L"* 살펴보기 \n* 애원하기 \n* 도전하기";
 	if (_menu_input1_count == 3) menu_select = L" * 아이템 목록";
 	if (_menu_input1_count == 4 && !_isMercy) menu_select = L" * 살려주기";
 	//공격 실행 시 공격바 움직임
@@ -237,53 +304,62 @@ void battleUI::update()
 	{
 		_attack_bar.x += 5;
 		_attack_bar_count = 0;
-		if (_attack_bar.x >= 620) _isAttack_finish = true;
+		if (_attack_bar.x >= 560) _isAttack_finish = true;
 	}
 	//공격 완료 후
 	if (_isAttack_start && _isAttack_finish)
 	{
 		_attack_bar_count++;
 	}
-	//공격 완료 후 깜박일때
+	//공격 완료 후 깜박임 끝났을때
 	if (_attack_bar_count >= 100)
 	{
 		_isAttack_start = false;
 		_isAttack_finish = false;
 		isTurn = TALK_BUBBLE;
+		_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
+		_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
 		_word_count2 = 0;
 		_menu_input1_count = 0;
 		_attack_bar_count = 0;
+		_battle_turn++;
 	}
 	//인게임인 경우
 	if (isTurn == INGAME)
 	{
-		enemy_attack_count++;
+		_enemy_attack_count++;
 	}
-	if (enemy_attack_count >= 200)
+	//인게임 시간이 끝나면
+	if (_enemy_attack_count >= _enemy_attack_max)
 	{
-		enemy_attack_count = 0;
-		isTurn = TALK_MAIN;
 		_word_count = 0;
+		_enemy_attack_count = 0;
+		isTurn = TALK_MAIN;
+
 	}
-	//말풍선 대화중, 미니게임중이면 메인 전투창 크기를 줄임
-	if (isTurn == TALK_BUBBLE || isTurn == INGAME)main_rect_control_default(false);
-	//말풍선 대화중, 미니게임 중이 아니면 메인 전투창 크기를 늘임
-	if (isTurn == MENU_SELECT || isTurn == TALK_MAIN)main_rect_control_default(true);
+	//메인 대화중, 메뉴 선택중, 메인 전투창 크기를 늘림
+	if (isTurn == MENU_SELECT || isTurn == TALK_MAIN) main_rect_control_default(true);
+	if (isTurn == TALK_BUBBLE) main_rect_control_default(false);
 
 	//==========다이얼로그==============
 	_word_speed++;
 
 	//속도에 따라 타이핑 효과 생성
-	if (_word_speed % 4 == 0)
+	if (_word_speed % 2 == 0)
 	{
-		strncpy_s(_word_cut, sizeof(_word_cut), _str_main, _word_count * 2);
-		_word_count++;
-		if (_word_count >= strlen(_str_main)) _word_count = strlen(_str_main);
+		if (isTurn == TALK_MAIN || isTurn == MENU_SELECT && _menu_action_click)
+		{
+			strncpy_s(_word_cut, sizeof(_word_cut), _str_main, _word_count * 2);
+			_word_count++;
+			if (_word_count >= strlen(_str_main)) _word_count = strlen(_str_main);
+		}
 
-		strncpy_s(_word_cut2, sizeof(_word_cut2), _str_bubble, _word_count2 * 2);
-		_word_count2++;
-		if (_word_count2 >= strlen(_str_bubble)) _word_count2 = strlen(_str_bubble);
-
+		if (isTurn == TALK_BUBBLE)
+		{
+			strncpy_s(_word_cut2, sizeof(_word_cut2), _str_bubble, _word_count2 * 2);
+			_word_count2++;
+			if (_word_count2 >= strlen(_str_bubble)) _word_count2 = strlen(_str_bubble);
+		}
 		_word_speed = 0;
 	}
 
@@ -291,17 +367,15 @@ void battleUI::update()
 
 void battleUI::render()
 {
-	
-
 	//선택창 텍스트
-	if (_menu_input1_count != 0 && !_isMercy)
+	if (_menu_input1_count != 0 && !_isMercy && !_menu_action_click)
 	{
-		D2DRENDER->RenderText(120, 250, menu_select, 20, D2DRenderer::DefaultBrush::White);
+		D2DRENDER->RenderText(120, 250, menu_select, 25, D2DRenderer::DefaultBrush::White);
 	}
 	//공격 시 이미지
 	if (_isAttack_start)
 	{
-		_attack_ground->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY / 2 - 20);
+		_attack_ground->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY / 2);
 		_attack_bar.img->Render(0, 0, 1, 1, 0, 0, 0, _attack_bar.x, _attack_bar.y);
 		if (_attack_bar_count % 10 < 5) _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_화이트");
 		else _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_블랙");
@@ -330,13 +404,19 @@ void battleUI::render()
 			_menu_on[0]->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY - 50);
 			if (_menu_input1_count == 1) _heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 225);
 			else _heart->Render(0, 0, 1, 1, 0, 0, 0, 30, WINSIZEY - 40);
-
 		}
 		if (_menu_main_count == 2 && !_isAttack_start)
 		{
 			_menu_on[1]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 150, WINSIZEY - 50);
-			if (_menu_input1_count == 2) _heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 225);
-			else _heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 150, WINSIZEY - 40);
+			if (_menu_input1_count == 2 && _menu_action_count == 0 && !_menu_action_click)
+				_heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 225);
+			if (_menu_input1_count == 2 && _menu_action_count == 1 && !_menu_action_click)
+				_heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 225);
+			if (_menu_input1_count == 2 && _menu_action_count == 2 && !_menu_action_click)
+				_heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 190);
+			if (_menu_input1_count == 2 && _menu_action_count == 3 && !_menu_action_click)
+				_heart->Render(0, 0, 1, 1, 0, 0, 0, 100, WINSIZEY - 155);
+			if (_menu_input1_count != 2) _heart->Render(0, 0, 1, 1, 0, 0, 0, 30 + 150, WINSIZEY - 40);
 		}
 		if (_menu_main_count == 3 && !_isAttack_start)
 		{
@@ -354,10 +434,10 @@ void battleUI::render()
 
 	//==========다이얼로그==============
 	//메인
-	if (isTurn == TALK_MAIN)
+	if (isTurn == TALK_MAIN || isTurn == MENU_SELECT && _menu_action_click)
 	{
 		/*	D2DRENDER->RenderText(100, 300, ConverCtoWC(_word_cut), 20);*/
-		D2DRENDER->RenderTextField(50, 150, ConverCtoWC(_word_cut), D2D1::ColorF::White, 11, 500, 200, 1,
+		D2DRENDER->RenderTextField(50, 200, ConverCtoWC(_word_cut), D2D1::ColorF::White, 25, 500, 200, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//말풍선
@@ -366,7 +446,7 @@ void battleUI::render()
 		/*	D2DRENDER->RenderText(450, 100, ConverCtoWC(_word_cut2), (0, 0, 0), 1, 20, DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");*/
 
 
-		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 11, 180, 100, 1,
+		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 19, 180, 100, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 
 
@@ -394,22 +474,27 @@ void battleUI::main_rect_control_default(bool expandOrReduce)
 //메인 전투 렉트 컨트롤함수 커스터마이징(늘릴지 줄일지 여부,	 크기변환 속도,	최소 혹은 최대 넓이,	최소 혹은 최대 높이)
 void battleUI::main_rect_control_customizing(bool expandOrReduce, int speed, int maxSizeWidth, int maxSizeHeight)
 {
-	if (expandOrReduce)
+	if (isTurn == INGAME)
 	{
-		_main_rc.width_max += speed;
-		_main_rc.height_max += speed;
-		if (_main_rc.width_max >= maxSizeWidth) _main_rc.width_max = maxSizeWidth;
-		if (_main_rc.height_max >= maxSizeHeight) _main_rc.height_max = maxSizeHeight;
+		if (expandOrReduce)
+		{
+			_main_rc.width_max += speed;
+			_main_rc.height_max += speed;
+			if (_main_rc.width_max >= maxSizeWidth) _main_rc.width_max = maxSizeWidth;
+			if (_main_rc.height_max >= maxSizeHeight) _main_rc.height_max = maxSizeHeight;
+		}
+		else
+		{
+			_main_rc.width_max -= speed;
+			_main_rc.height_max -= speed;
+			if (_main_rc.width_max <= maxSizeWidth) _main_rc.width_max = maxSizeWidth;
+			if (_main_rc.height_max <= maxSizeHeight) _main_rc.height_max = maxSizeHeight;
+		}
+		_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, _main_rc.width_max, _main_rc.height_max);
 	}
-	else
-	{
-		_main_rc.width_max -= speed;
-		_main_rc.height_max -= speed;
-		if (_main_rc.width_max <= maxSizeWidth) _main_rc.width_max = maxSizeWidth;
-		if (_main_rc.height_max <= maxSizeHeight) _main_rc.height_max = maxSizeHeight;
-	}
-	_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, _main_rc.width_max, _main_rc.height_max);
 }
+
+
 
 //wchar_t 에서 char 로의 형변환 함수
 char * battleUI::ConvertWCtoC(wchar_t * str)
@@ -445,7 +530,7 @@ void battleUI::talk_bubble_start(const char * subject, int startNum)
 	_title_int2 = startNum;
 	char title_name[64];
 	title_name[32] = _itoa_s(startNum, title_name, sizeof(title_name), 10);
-	_str_bubble = INIDATA->loadDataString2("28기", subject, title_name);
+	_str_bubble = INIDATA->loadDataString2("우전없", subject, title_name);
 }
 
 void battleUI::talk_bubble_end(int endNum)
@@ -460,7 +545,7 @@ void battleUI::talk_main_start(const char * subject, int startNum)
 {
 	char title_name[64];
 	title_name[32] = _itoa_s(startNum, title_name, sizeof(title_name), 10);
-	_str_main = INIDATA->loadDataString("28기", subject, title_name);
+	_str_main = INIDATA->loadDataString("우전없", subject, title_name);
 }
 
 bool battleUI::talk_main_end(int endNum)
