@@ -213,14 +213,14 @@
     <ClInclude Include="testScene.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="sans.h">
-      <Filter>playGround\enemy\sans</Filter>
-    </ClInclude>
     <ClInclude Include="title.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
     <ClInclude Include="muffetBattle.h">
       <Filter>playGround\enemy\muffet</Filter>
+    </ClInclude>
+    <ClInclude Include="sansBattle.h">
+      <Filter>playGround\enemy\sans</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -341,14 +341,14 @@
     <ClCompile Include="testScene.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="sans.cpp">
-      <Filter>playGround\enemy\sans</Filter>
-    </ClCompile>
     <ClCompile Include="title.cpp">
       <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
     <ClCompile Include="muffetBattle.cpp">
       <Filter>playGround\enemy\muffet</Filter>
+    </ClCompile>
+    <ClCompile Include="sansBattle.cpp">
+      <Filter>playGround\enemy\sans</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

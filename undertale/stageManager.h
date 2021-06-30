@@ -15,6 +15,7 @@
 #include "stageRect.h"
 #include "player.h"
 #include "undyne.h"
+#include "sansBattle.h"
 
 
 class player;
@@ -32,6 +33,7 @@ class stageManager : public gameNode
 	stage7* _stage7;
 	undybattle* _undybattle;
 	muffetBattle* _muffetBattle;
+	sansBattle* _sansBattle;
 
 	player* _pl;
 	undyne* _un;
