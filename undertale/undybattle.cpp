@@ -152,9 +152,16 @@ void undybattle::update()
 			if (_belly.y > _torso.y + 27)_belly.isMove = true;
 		}
 	}
-	if (_leftArm.isAttack)
+	if (_leftArm.isAttack&& angle<80.f)
 	{
 		angle += 5;
+		if (angle == 80.f)maxangle = true;
+	}
+
+	if (maxangle)
+	{
+		angle -= 20;
+		if (angle <= -50.f);
 	}
 	_hair.rc = RectMakeCenter(_hair.x, _head.y-10, 10, 10);
 	_head.rc = RectMakeCenter(_head.x, _head.y, 32, 28);

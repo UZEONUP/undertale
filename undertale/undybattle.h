@@ -4,18 +4,6 @@
 #include <vector>
 #define PI 3.14156f
 #define BACKMAX 6
-struct tagCannon
-{
-	float x, y;
-	float radius;
-	float length;
-	float gravity;
-	float speed;
-	float angle;
-	bool isFire;
-	POINT center;
-	POINT cannonEnd;
-};
 struct tagUndyne
 {
 	RECT rc;
@@ -26,6 +14,7 @@ struct tagUndyne
 	float x, y;
 	float angle;
 	bool isMove;
+	bool isAttack;
 };
 struct background
 {
@@ -42,7 +31,6 @@ class undybattle :
 {
 private:
 	int _count = 0;
-	tagCannon _cannon;
 	tagUndyne _head;
 	tagUndyne _hair;
 	tagUndyne _torso;
