@@ -219,6 +219,9 @@
     <ClInclude Include="title.h">
       <Filter>playGround\stage\stage1~</Filter>
     </ClInclude>
+    <ClInclude Include="heart.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="title.cpp">
       <Filter>playGround\stage\stage1~</Filter>
+    </ClCompile>
+    <ClCompile Include="heart.cpp">
+      <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

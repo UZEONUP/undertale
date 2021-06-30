@@ -87,6 +87,9 @@ public:
 	float getHY() { return _heart.y; }
 	RECT getHRect() { return _heart.rc; }
 
+	RECT getUndyrc() { return _undy.rc; }
+
+
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 
 	vector<tagPlayer*> getVobject() { return _vObject; }

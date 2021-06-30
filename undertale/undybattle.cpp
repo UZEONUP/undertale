@@ -124,13 +124,13 @@ void undybattle::update()
 	if (_rightArm.isMove)
 	{
 		_rightArm.y -= 0.2;
-		_rightArm.x -= 0.2;
+		_rightArm.x -= 0.1;
 		if (_rightArm.y < _torso.y + 12) _rightArm.isMove = false;
 	}
 	else
 	{
 		_rightArm.y += 0.2;
-		_rightArm.x += 0.2;
+		_rightArm.x += 0.1;
 		if (_rightArm.y > _torso.y + 10) _rightArm.isMove = true;
 	}
 
@@ -156,56 +156,6 @@ void undybattle::update()
 
 void undybattle::render()
 {
-	/*D2DRENDER->DrawRectangle
-	(
-		_torso.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_head.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_hair.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_rightArm.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_leftArm.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_belly.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);
-
-	D2DRENDER->DrawRectangle
-	(
-		_legs.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-	);*/
-
-	
 	
 	_rightArm.img->bossFrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY);
 	_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);

@@ -13,7 +13,7 @@
 #include "stageRect.h"
 #include "player.h"
 #include "undyne.h"
-
+#include "heart.h"
 
 class player;
 class undyne;
@@ -33,6 +33,7 @@ class stageManager : public gameNode
 	player* _pl;
 	undyne* _un;
 	stageRect* _stageRect;
+	heart* _h;
 
 	bool exit; //»óÁ¡ µé¾î°¬´Ù ³ª¿È?
 	bool returnStage3;
