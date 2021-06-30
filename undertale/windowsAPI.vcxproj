@@ -165,6 +165,7 @@
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
     <ClInclude Include="muffet.h" />
+    <ClInclude Include="muffetBattle.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="muffet.cpp" />
+    <ClCompile Include="muffetBattle.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="sansBattle.cpp" />
