@@ -8,9 +8,6 @@ HRESULT title::init()
 	
 	CAMERAMANAGER->setMapCamera(640, 480);
 
-	_player = new player;
-	_player->init(WINSIZEX / 2, WINSIZEY / 2);
-	SAVELOADMANAGER->linkPlayer(_player);
 
 	return S_OK;
 }
@@ -25,10 +22,9 @@ void title::update()
 	{
 		SCENEMANAGER->changeScene("stage1");
 	}
-	_player->update();
 }
 
 void title::render()
 {
-	_backGround->mapRender(0, 0);
+	_backGround->Render(0, 0);
 }
