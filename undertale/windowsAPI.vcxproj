@@ -170,6 +170,9 @@
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sansBattle.h" />
+    <ClInclude Include="sans_state.h" />
+    <ClInclude Include="sans_state_attack1.h" />
+    <ClInclude Include="sans_state_idle.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
@@ -216,6 +219,9 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="sansBattle.cpp" />
+    <ClCompile Include="sans_state.cpp" />
+    <ClCompile Include="sans_state_attack1.cpp" />
+    <ClCompile Include="sans_state_idle.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage2.cpp" />

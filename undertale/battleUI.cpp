@@ -34,7 +34,7 @@ HRESULT battleUI::init(int bossName)
 	_main_rc.rc = RectMakeCenter(_main_rc.x, _main_rc.y, _main_rc.width_max, _main_rc.height_max);
 
 	_attack_bar.x = 30;
-	_attack_bar.y = WINSIZEY / 2;
+	_attack_bar.y = WINSIZEY / 2 - 5;
 	_attack_bar_count = 0;
 
 	_menu_action_count = 0;
@@ -375,7 +375,7 @@ void battleUI::render()
 	//공격 시 이미지
 	if (_isAttack_start)
 	{
-		_attack_ground->Render(0, 0, 1, 1, 0, 0, 0, 20, WINSIZEY / 2);
+		_attack_ground->Render(0, 0, 1, 1, 0, 0, 0, 50, WINSIZEY / 2);
 		_attack_bar.img->Render(0, 0, 1, 1, 0, 0, 0, _attack_bar.x, _attack_bar.y);
 		if (_attack_bar_count % 10 < 5) _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_화이트");
 		else _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_블랙");
@@ -393,7 +393,7 @@ void battleUI::render()
 	_menu_off[2]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 300, WINSIZEY - 50);
 	_menu_off[3]->Render(0, 0, 1, 1, 0, 0, 0, 20 + 450, WINSIZEY - 50);
 	//말풍선
-	if (isTurn == TALK_BUBBLE)	_speechBubble->Render(0, 0, 1, 1, 0, 0, 0, 340, 80);
+	if (isTurn == TALK_BUBBLE)	_speechBubble->Render(0, 0, 1, 1, 0, 0, 0, 400, 80);
 
 
 	//메뉴 선택에 따른 이미지
@@ -436,20 +436,14 @@ void battleUI::render()
 	//메인
 	if (isTurn == TALK_MAIN || isTurn == MENU_SELECT && _menu_action_click)
 	{
-		/*	D2DRENDER->RenderText(100, 300, ConverCtoWC(_word_cut), 20);*/
 		D2DRENDER->RenderTextField(50, 200, ConverCtoWC(_word_cut), D2D1::ColorF::White, 25, 500, 200, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//말풍선
 	if (isTurn == TALK_BUBBLE)
 	{
-		/*	D2DRENDER->RenderText(450, 100, ConverCtoWC(_word_cut2), (0, 0, 0), 1, 20, DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");*/
-
-
-		D2DRENDER->RenderTextField(380, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 19, 180, 100, 1,
+		D2DRENDER->RenderTextField(440, 80, ConverCtoWC(_word_cut2), D2D1::ColorF::Black, 19, 180, 100, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
-
-
 	}
 }
 //메인 전투 렉트 컨트롤함수 기본값		 (늘리고 싶으면 true, 줄이고 싶으면 false)
@@ -459,7 +453,7 @@ void battleUI::main_rect_control_default(bool expandOrReduce)
 	{
 		_main_rc.width_max += 15;
 		_main_rc.height_max += 15;
-		if (_main_rc.width_max >= 520) _main_rc.width_max = 520;
+		if (_main_rc.width_max >= 550) _main_rc.width_max = 550;
 		if (_main_rc.height_max >= 160) _main_rc.height_max = 160;
 	}
 	else

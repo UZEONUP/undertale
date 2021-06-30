@@ -79,6 +79,9 @@
     <Filter Include="playGround\bullet">
       <UniqueIdentifier>{9df25bbb-3fa8-4245-b718-1f4039d1a740}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\sans\sans_pattern">
+      <UniqueIdentifier>{1355194e-f842-469f-8518-be501d474f85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -222,6 +225,15 @@
     <ClInclude Include="sansBattle.h">
       <Filter>playGround\enemy\sans</Filter>
     </ClInclude>
+    <ClInclude Include="sans_state.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_idle.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack1.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -349,6 +361,15 @@
     </ClCompile>
     <ClCompile Include="sansBattle.cpp">
       <Filter>playGround\enemy\sans</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_idle.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack1.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
