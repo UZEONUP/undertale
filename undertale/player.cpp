@@ -354,9 +354,14 @@ void player::update()
 
 void player::render()
 {
-	for (int i = 0; i < _vObject.size(); i++)
+	//(하트가 아닌) 모습이 나오지 않아야 하는 씬 
+	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
+		!sceneManager::getSingleton()->isCurrentScene("undybattle"))
 	{
-		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY);
+		for (int i = 0; i < _vObject.size(); i++)
+		{
+			_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY);
+		}
 	}
 	//if (!_player.deletepl)
 	//{

@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+
+#include "title.h"
 #include "startStage.h"
 #include "stage2.h"
 #include "stage3.h"
@@ -18,6 +20,7 @@ class undyne;
 
 class stageManager : public gameNode
 {
+	title* _title;
 	startStage* _stage1;
 	stage2* _stage2;
 	stage3* _stage3;

@@ -4,9 +4,9 @@
 
 HRESULT stageManager::init()
 {
-	
+	_title = new title;
+	_title->init();
 	_stage1 = new startStage;
-	_stage1->init();
 	_stage2 = new stage2;
 	_stage3 = new stage3;
 	_stage4 = new stage4;
@@ -15,7 +15,6 @@ HRESULT stageManager::init()
 	_stage7 = new stage7;
 	_undybattle = new undybattle;
 
-	linkStageRect(_stage1->getStageRect());
 
 	_pl = new player;
 	_pl->init();
@@ -31,6 +30,7 @@ HRESULT stageManager::init()
 	//_stage2->init();
 
 	cout << "»ï" << endl;
+	sceneManager::getSingleton()->addScene("title", new title);
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
 	sceneManager::getSingleton()->addScene("stage2", new stage2);
 	sceneManager::getSingleton()->addScene("stage3", new stage3);
@@ -40,7 +40,7 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
 	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
 
-	sceneManager::getSingleton()->changeScene("stage1");
+	sceneManager::getSingleton()->changeScene("title");
 
 	return S_OK;
 }
@@ -72,10 +72,24 @@ void stageManager::update()
 	}
 	//=======================================================================
 
+	if (sceneManager::getSingleton()->isCurrentScene("title"))
+	{
+		_title->update();
+		if (keyManager::getSingleton()->isOnceKeyDown('Z'))
+		{
+			_title->release();
+			_pl->release();
 
+			sceneManager::getSingleton()->changeScene("stage1");
+			_stage1->init();
+			_pl->init();
+		}
+	}
 	if (sceneManager::getSingleton()->isCurrentScene("stage1"))
 	{
 		_stage1->update();
+
+		linkStageRect(_stage1->getStageRect());
 
 		if (sceneRect(_stage1->getSceneRect()))
 		{
@@ -197,15 +211,21 @@ void stageManager::update()
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
 
+	
 	_pl->update();
 
 	if (_stageRect != nullptr) _stageRect->update();
-	collision();
+	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
+		!sceneManager::getSingleton()->isCurrentScene("undybattle"))
+	{
+		collision();
+	}
 }
 
 void stageManager::render()
 {
-	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->render();
+	if (sceneManager::getSingleton()->isCurrentScene("title")) _title->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->render();
