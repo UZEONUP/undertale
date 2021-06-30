@@ -26,7 +26,6 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
-	RECT _fill;
 
 	Image* _menu_off[4];
 	Image* _menu_on[4];
@@ -128,10 +127,18 @@ public:
 	//메인렉트 조절
 	void main_rect_control_default(bool expandOrReduce);
 	void main_rect_control_customizing(bool expandOrReduce, int speed, int maxSizeWidth, int maxSizeHeight);
+	//메인렉트 get
+	RECT get_main_rect() { return _main_rc.rc; }
 	//전투시간 조절 get, set
 	int getEnemy_attackTime_max() { return _enemy_attack_max; }
 	void setEnemy_attackTime_max(int maxTime) { _enemy_attack_max = maxTime; }
 	//턴 get
 	int getBattle_turn() { return _battle_turn; }
+	//상태 get
+	int getState() { return isTurn; }
+	//대사_메인 카운트 get
+	int get_main_talk_count() { return _title_int; }
+	//대사_말풍선 카운트 get
+	int get_bubble_talk_count() { return _title_int2; }
 };
 

@@ -14,6 +14,8 @@ HRESULT stageManager::init()
 	_stage6 = new stage6;
 	_stage7 = new stage7;
 	_undybattle = new undybattle;
+	_muffetBattle = new muffetBattle;
+	_sansBattle = new sansBattle;
 
 	
 	_pl = new player;
@@ -38,6 +40,8 @@ HRESULT stageManager::init()
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
 	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
+	sceneManager::getSingleton()->addScene("muffetBattle", new muffetBattle);
+	sceneManager::getSingleton()->addScene("sansBattle", new sansBattle);
 
 	sceneManager::getSingleton()->changeScene("title");
 
@@ -57,7 +61,20 @@ void stageManager::update()
 		_undybattle->init();
 		_h->init(0);
 	}
-
+	if (keyManager::getSingleton()->isOnceKeyDown(VK_F9))
+	{
+		_pl->release();
+		sceneManager::getSingleton()->changeScene("muffetBattle");
+		_muffetBattle->init();
+		_pl->init();
+	}
+	if (keyManager::getSingleton()->isOnceKeyDown(VK_F10))
+	{
+		_pl->release();
+		sceneManager::getSingleton()->changeScene("sansBattle");
+		_sansBattle->init();
+		_pl->init();
+	}
 	float x = _pl->getX();
 	float y = _pl->getY();
 	float angle;
@@ -220,6 +237,8 @@ void stageManager::update()
 
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->update();
+	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle")) _sansBattle->update();
 
 	
 	_pl->update();
@@ -227,7 +246,9 @@ void stageManager::update()
 
 	if (_stageRect != nullptr) _stageRect->update();
 	if (!sceneManager::getSingleton()->isCurrentScene("title") &&
-		!sceneManager::getSingleton()->isCurrentScene("undybattle"))
+		!sceneManager::getSingleton()->isCurrentScene("undybattle") &&
+		!sceneManager::getSingleton()->isCurrentScene("muffetBattle") &&
+		!sceneManager::getSingleton()->isCurrentScene("sansBattle"))
 	{
 		collision();
 	}
@@ -244,6 +265,9 @@ void stageManager::render()
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("muffetBattle")) _muffetBattle->render();
+	else if (sceneManager::getSingleton()->isCurrentScene("sansBattle")) _sansBattle->render();
+
 	_pl->render();
 	_h->render();
 }

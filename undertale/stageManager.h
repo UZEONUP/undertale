@@ -9,11 +9,14 @@
 #include "stage5.h"
 #include "stage6.h"
 #include "stage7.h"
+
 #include "undybattle.h"
+#include "muffetBattle.h"
 #include "stageRect.h"
 #include "player.h"
 #include "undyne.h"
-#include "heart.h"
+#include "sansBattle.h"
+
 
 class player;
 class undyne;
@@ -29,11 +32,12 @@ class stageManager : public gameNode
 	stage6* _stage6;
 	stage7* _stage7;
 	undybattle* _undybattle;
+	muffetBattle* _muffetBattle;
+	sansBattle* _sansBattle;
 
 	player* _pl;
 	undyne* _un;
 	stageRect* _stageRect;
-	heart* _h;
 
 	bool exit; //»óÁ¡ µé¾î°¬´Ù ³ª¿È?
 	bool returnStage3;
