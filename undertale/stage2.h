@@ -20,6 +20,9 @@ class stage2 : public gameNode
 	RECT _sceneRect;
 	RECT _changeScene;
 	RECT _dialStart;
+
+	RECT rc;
+
 public :
 	virtual HRESULT init();
 	virtual void release();

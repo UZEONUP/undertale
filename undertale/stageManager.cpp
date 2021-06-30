@@ -83,6 +83,7 @@ void stageManager::update()
 	if (_pl->getBattlechk())
 	{
 		_pl->setHeart(x, y);
+		_pl->setBoolH(true);
 	}
 	//=======================================================================
 

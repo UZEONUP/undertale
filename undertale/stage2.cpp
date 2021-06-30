@@ -6,7 +6,7 @@ HRESULT stage2::init()
 	ImageManager::GetInstance()->AddImage("언다인스테이지", L"스테이지이미지/undyne stage.png");
 	_backGround = ImageManager::GetInstance()->FindImage("언다인스테이지");
 
-	CAMERAMANAGER->setMapCamera(640, 980);
+	CAMERAMANAGER->setMapCamera(640, 1280);
 
 	_setRect = new stageRect;
 
@@ -15,13 +15,14 @@ HRESULT stage2::init()
 
 	_player = new player;
 	_player->init();
-
 	_sceneRect = RectMake(250, 600, 70, 30);
 
-	_changeScene = RectMakeCenter(WINSIZEX / 2, 700, 10, 10);
-	_dialStart = RectMakeCenter(WINSIZEX / 2, 900, 400, 10);
+	_changeScene = RectMakeCenter(WINSIZEX / 2, WINSIZEY/2, 10, 10);
+	_dialStart = RectMakeCenter(WINSIZEX / 2, 100, 400, 10);
 	
 	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
+
+	rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100);
 
 	return S_OK;
 }
@@ -46,7 +47,7 @@ void stage2::render()
 	/*No.수정
 	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_backGround->mapRender(-10, -250);
+	_backGround->mapRender(0, 0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
@@ -64,6 +65,21 @@ void stage2::render()
 		1.f
 		//angle
 	);
+
+	//D2DRENDER->DrawRectangle
+	//(
+	//	_player->getPlayerRC(),
+	//	D2DRenderer::DefaultBrush::Red,
+	//	1.f
+	//	//angle
+	//);
+	//D2DRENDER->DrawRectangle
+	//(
+	//	_player->getPlayerbalpan(),
+	//	D2DRenderer::DefaultBrush::Red,
+	//	1.f
+	//	//angle
+	//);
 
 	
 	//if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);

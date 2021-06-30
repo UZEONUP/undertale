@@ -8,6 +8,7 @@
 struct tagUndyne
 {
 	RECT rc;
+	RECT janSang;
 	Image* img;
 	int currentFrameX;
 	int currentFrameY;
@@ -39,11 +40,17 @@ private:
 	tagUndyne _rightArm;
 	tagUndyne _belly;
 	tagUndyne _legs; //여기까진 배틀씬에서..
-
+	Image* _jansang;
 	background _bg[BACKMAX]; // 뒤에 움직이는 배경
 
 	battleUI* _bui;
+	int currentFrameX;
+	int currentFrameY;
 
+
+	float angle;
+	bool maxangle;
+	bool minangle;
 	bool up;
 
 	vector<background>			 _vBack;

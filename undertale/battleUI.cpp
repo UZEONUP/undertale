@@ -27,11 +27,6 @@ HRESULT battleUI::init(int bossName)
 	ImageManager::GetInstance()->AddFrameImage("PURPLE", L"hearts/PURPLE.png", 1, 1);
 	ImageManager::GetInstance()->AddFrameImage("PURPLE_DAMAGED", L"hearts/PURPLE_DAMAGED.png", 2, 1);
 
-
-
-
-
-
 	_menu_off[0] = ImageManager::GetInstance()->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
 	_menu_off[1] = ImageManager::GetInstance()->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
 	_menu_off[2] = ImageManager::GetInstance()->AddImage("아이템_off", L"UI이미지/UI_아이템_비활성화_110_42.png");

@@ -160,5 +160,6 @@ public:
 	int get_bubble_talk_count() { return _title_int2; }
 
 
-	inGameHeart getIGH() { return _heartPlayer; }
+	inGameHeart getInGameHeart() { return _heartPlayer; }
+	
 };
