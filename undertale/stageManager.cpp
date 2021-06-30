@@ -22,8 +22,8 @@ HRESULT stageManager::init()
 	this->linkPlayer(_pl);
 	_pl->linkStageManager(this);
 
-	/*_un = new undyne;
-	_un->init();*/
+	_un = new undyne;
+	_un->init();
 	
 	exit = false;
 	returnStage3 = false;
@@ -57,15 +57,23 @@ void stageManager::update()
 		sceneManager::getSingleton()->changeScene("undybattle");
 		_undybattle->init();
 	}
+	RECT temp2;
+	if (IntersectRect(&temp2, &_stage2->getchangeScene(), &_pl->getHRect()))
+	{
+		_stage2->release();
+		_pl->release();
+		sceneManager::getSingleton()->changeScene("undybattle");
+		_undybattle->init();
+
+	}
 
 	float x = _pl->getX();
 	float y = _pl->getY();
 	float angle;
 
-	/*RECT temp;
+	RECT temp;
 	if (IntersectRect(&temp, &_pl->getRect(), &_un->getRect()))
-		_pl->setBattlechk(true);*/
-
+		_pl->setBattlechk(true);
 	if (_pl->getBattlechk())
 	{
 		_pl->setHeart(x, y);
@@ -205,15 +213,27 @@ void stageManager::update()
 
 void stageManager::render()
 {
-	if (sceneManager::getSingleton()->isCurrentScene("stage1")) _stage1->render();
-	else if (sceneManager::getSingleton()->isCurrentScene("stage2")) _stage2->render();
+	if (sceneManager::getSingleton()->isCurrentScene("stage1")) 
+	{ _stage1->render();
+	  _pl->render();
+	}
+	else if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	{
+		_stage2->render();
+		_pl->render();
+	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3")) _stage3->render();
+
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4")) _stage4->render();
+
 	else if (sceneManager::getSingleton()->isCurrentScene("stage5")) _stage5->render();
+
 	else if (sceneManager::getSingleton()->isCurrentScene("stage6")) _stage6->render();
+
 	else if (sceneManager::getSingleton()->isCurrentScene("stage7")) _stage7->render();
+
 	else if (sceneManager::getSingleton()->isCurrentScene("undybattle")) _undybattle->render();
-	_pl->render();
+	
 }
 
 void stageManager::collision()

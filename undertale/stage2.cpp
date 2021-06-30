@@ -18,10 +18,9 @@ HRESULT stage2::init()
 
 	_sceneRect = RectMake(250, 600, 70, 30);
 
-
-	/*_undy = new undyne;
-	_undy->init();*/
-
+	_changeScene = RectMakeCenter(WINSIZEX / 2, 700, 10, 10);
+	_dialStart = RectMakeCenter(WINSIZEX / 2, 900, 400, 10);
+	
 	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
 
 	return S_OK;
@@ -34,7 +33,12 @@ void stage2::release()
 
 void stage2::update()
 {
-	//_undy->update();
+		//// 일정지점 도달하면 카메라가 올라가면서 언다인 다이얼로그 시작...하고싶어요
+	//RECT temp3;
+	//if (IntersectRect(&temp3, &_pl->getRect(), &_dialStart))
+	//{
+	//	CAMERAMANAGER->setMapCamera(640, 100);
+	//}
 }
 
 void stage2::render()

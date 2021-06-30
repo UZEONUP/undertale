@@ -18,7 +18,8 @@ class stage2 : public gameNode
 	undyne* _undy;
 
 	RECT _sceneRect;
-
+	RECT _changeScene;
+	RECT _dialStart;
 public :
 	virtual HRESULT init();
 	virtual void release();
@@ -29,5 +30,6 @@ public :
 	stageRect* getStageRect() { return _setRect; }
 
 	RECT getSceneRect() { return _sceneRect; }
+	RECT getchangeScene() { return _changeScene; }
 };
 

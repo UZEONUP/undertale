@@ -44,6 +44,11 @@ HRESULT player::init()
 		_player.x = WINSIZEX / 2 + 20;
 		_player.y = 1120;
 	}
+	else if (sceneManager::getSingleton()->isCurrentScene("undybattle"))//마지막 스테이지
+	{
+		_player.x = 289;
+		_player.y = 316;
+	}
 	else
 	{
 		_player.x = WINSIZEX / 2;
@@ -63,7 +68,7 @@ HRESULT player::init()
 
 	_vObject.push_back(&_player);
 
-	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
@@ -74,7 +79,7 @@ HRESULT player::init()
 
 		_vObject.push_back(&_undy);
 
-	}*/
+	}
 
 	_blink = 0;
 	_index = 0;
@@ -139,6 +144,7 @@ HRESULT player::init(int type, bool exit)
 		_player.x = WINSIZEX / 2 + 20;
 		_player.y = 1120;
 	}
+	
 	else
 	{
 		_player.x = WINSIZEX / 2;
@@ -158,18 +164,6 @@ HRESULT player::init(int type, bool exit)
 
 	_vObject.push_back(&_player);
 
-	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
-	{
-		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
-		_undy.x = WINSIZEX / 2;
-		_undy.y = 800;
-		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
-		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
-		_undy.currentFrameX = _undy.currentFrameY = 0;
-
-		_vObject.push_back(&_undy);
-
-	}*/
 
 	_blink = 0;
 	_index = 0;
