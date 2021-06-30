@@ -99,20 +99,19 @@ private:
 	char _title_char2[64];
 	int _title_int2;
 
-
 	//글자 갯수
 	int _word_count;
 	int _word_count2;
 
 	//글자 속도
 	int _word_speed;
-
+	//=================================
 	//보스 선택에 따른 ini파일 타이틀
 	const char* _boss_bubble;
 	const char* _boss_main;
 	const char* _boss_stage;
 	const wchar_t* _boss_name;
-
+	//==================================
 	//대사 끊는 타이밍
 	//언다인 총 18턴
 	int _undy_talk[30] = { 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
@@ -160,6 +159,10 @@ public:
 	int get_bubble_talk_count() { return _title_int2; }
 
 
-	inGameHeart getInGameHeart() { return _heartPlayer; }
-	
+	inGameHeart getIGH() { return _heartPlayer; }
+	void set_inGame_heart_x(float inGameHeart_x) { _heartPlayer.x = inGameHeart_x; }
+	void set_inGame_heart_y(float inGameHeart_y) { _heartPlayer.y = inGameHeart_y; }
+	void set_inGame_heart_rc(RECT inGameHeart_rc) { _heartPlayer.rc = inGameHeart_rc; }
+
+
 };

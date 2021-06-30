@@ -4,6 +4,7 @@
 #include "sans_state.h"
 
 
+
 struct sansObject
 {
 	Image* img;
@@ -18,7 +19,6 @@ struct object
 	bool _isattack;
 	bool _isMove;
 
-	int _pattern;
 };
 
 class sansBattle : public gameNode

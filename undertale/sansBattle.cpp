@@ -17,21 +17,25 @@ HRESULT sansBattle::init()
 
 	_state = new sans_state_idle();
 	_state->enter(this);
-
+	_state->linkSans(this);
 
 	_ui = new battleUI;
 	_ui->init(1);
 
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¸Ó¸®", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_head_32_30_17.png", 17, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¶¡", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_sweat_32_9_3.png", 3, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¸ö", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_body_72_35_8.png", 8, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_´Ù¸®", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_legs_52_23_2.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¾Æ·¡°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackDown_62_73_5.png", 5, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_À§°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackUp_62_73_5.png", 5, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¿À¸¥ÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackRight_97_48_6.png", 6, 1);
-	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¿ŞÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackLeft_97_48_6.png", 6, 1);
-	ImageManager::GetInstance()->AddImage("»À´Ù±Í_20", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_20.png");
-	ImageManager::GetInstance()->AddImage("»À´Ù±Í_100", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_100.png");
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¸Ó¸®", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_head_32_30_17.png", 17, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¶¡", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_sweat_32_9_3.png", 3, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¸ö", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_body_72_35_8.png", 8, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_´Ù¸®", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_legs_52_23_2.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¾Æ·¡°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackDown_62_73_5.png", 5, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_À§°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackUp_62_73_5.png", 5, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¿À¸¥ÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackRight_97_48_6.png", 6, 1);
+	IMAGEMANAGER->AddFrameImage("»÷Áî_¿ŞÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackLeft_97_48_6.png", 6, 1);
+	IMAGEMANAGER->AddImage("»À´Ù±Í_20", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_20.png");
+	IMAGEMANAGER->AddImage("»À´Ù±Í_40", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_40.png");
+	IMAGEMANAGER->AddImage("»À´Ù±Í_50", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_50.png");
+	IMAGEMANAGER->AddImage("»À´Ù±Í_100", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_100.png");
+	IMAGEMANAGER->AddImage("»À´Ù±Í2_100", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_blue_10_100.png");
+	IMAGEMANAGER->AddImage("¹ßÆÇ", L"»÷ÁîÀÌ¹ÌÁö/¹ßÆÇ_57_10.png");
 
 	_sans_head.x = 320;
 	_sans_head.y = 120;
@@ -73,16 +77,15 @@ HRESULT sansBattle::init()
 	_sans_attack.currentFrameY = 0;
 	_sans_attack.rc = RectMake(_sans_attack.x, _sans_attack.y, _sans_attack.width, _sans_attack.hieght);
 
-	_sans_head.img = ImageManager::GetInstance()->FindImage("»÷Áî_¸Ó¸®");
-	_sans_sweat.img = ImageManager::GetInstance()->FindImage("»÷Áî_¶¡");
-	_sans_body.img = ImageManager::GetInstance()->FindImage("»÷Áî_¸ö");
-	_sans_legs.img = ImageManager::GetInstance()->FindImage("»÷Áî_´Ù¸®");
-	_sans_attack.img = ImageManager::GetInstance()->FindImage("»÷Áî_¾Æ·¡°ø°İ");
+	_sans_head.img = IMAGEMANAGER->FindImage("»÷Áî_¸Ó¸®");
+	_sans_sweat.img = IMAGEMANAGER->FindImage("»÷Áî_¶¡");
+	_sans_body.img = IMAGEMANAGER->FindImage("»÷Áî_¸ö");
+	_sans_legs.img = IMAGEMANAGER->FindImage("»÷Áî_´Ù¸®");
+	_sans_attack.img = IMAGEMANAGER->FindImage("»÷Áî_¾Æ·¡°ø°İ");
 
 
 	_info._isattack = false;
 	_info._isMove = false;
-	_info._pattern = 0;
 
 	return S_OK;
 }

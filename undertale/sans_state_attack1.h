@@ -3,14 +3,12 @@
 #include "sansBattle.h"
 #include "sans_state_idle.h"
 
-class sansBattle;
 
 class sans_state_attack1 : public sans_state
 {
 private:
 
 
-	float _bone_speed;
 
 public:
 

@@ -11,37 +11,37 @@ battleUI::~battleUI()
 
 HRESULT battleUI::init(int bossName)
 {
-	ImageManager::GetInstance()->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("RED_DAMAGED", L"hearts/RED_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("RED_RUN", L"hearts/RED_RUN.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE", L"hearts/BLUE.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_DAMAGED", L"hearts/BLUE_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_LEFT", L"hearts/BLUE_LEFT.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_LEFT_DAMAGED", L"hearts/BLUE_LEFT_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_RIGHT", L"hearts/BLUE_RIGHT.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_RIGHT_DAMAGED", L"hearts/BLUE_RIGHT_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_UP", L"hearts/BLUE_UP.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("BLUE_UP_DAMAGED", L"hearts/BLUE_UP_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddImage("GREEN", L"hearts/GREEN.png");
-	ImageManager::GetInstance()->AddFrameImage("GREEN_DAMAGED", L"hearts/GREEN_DAMAGED.png", 2, 1);
-	ImageManager::GetInstance()->AddFrameImage("PURPLE", L"hearts/PURPLE.png", 1, 1);
-	ImageManager::GetInstance()->AddFrameImage("PURPLE_DAMAGED", L"hearts/PURPLE_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("RED_DAMAGED", L"hearts/RED_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("RED_RUN", L"hearts/RED_RUN.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE", L"hearts/BLUE.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_DAMAGED", L"hearts/BLUE_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_LEFT", L"hearts/BLUE_LEFT.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_LEFT_DAMAGED", L"hearts/BLUE_LEFT_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_RIGHT", L"hearts/BLUE_RIGHT.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_RIGHT_DAMAGED", L"hearts/BLUE_RIGHT_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_UP", L"hearts/BLUE_UP.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("BLUE_UP_DAMAGED", L"hearts/BLUE_UP_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddImage("GREEN", L"hearts/GREEN.png");
+	IMAGEMANAGER->AddFrameImage("GREEN_DAMAGED", L"hearts/GREEN_DAMAGED.png", 2, 1);
+	IMAGEMANAGER->AddFrameImage("PURPLE", L"hearts/PURPLE.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("PURPLE_DAMAGED", L"hearts/PURPLE_DAMAGED.png", 2, 1);
 
-	_menu_off[0] = ImageManager::GetInstance()->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
-	_menu_off[1] = ImageManager::GetInstance()->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
-	_menu_off[2] = ImageManager::GetInstance()->AddImage("아이템_off", L"UI이미지/UI_아이템_비활성화_110_42.png");
-	_menu_off[3] = ImageManager::GetInstance()->AddImage("자비_off", L"UI이미지/UI_자비_비활성화_110_42.png");
-	_menu_on[0] = ImageManager::GetInstance()->AddImage("공격_on", L"UI이미지/UI_공격_활성화_110_42.png");
-	_menu_on[1] = ImageManager::GetInstance()->AddImage("행동_on", L"UI이미지/UI_행동_활성화_110_42.png");
-	_menu_on[2] = ImageManager::GetInstance()->AddImage("아이템_on", L"UI이미지/UI_아이템_활성화_110_42.png");
-	_menu_on[3] = ImageManager::GetInstance()->AddImage("자비_on", L"UI이미지/UI_자비_활성화_110_42.png");
-	_heart = ImageManager::GetInstance()->AddImage("하트", L"UI이미지/UI_하트_20_20.png");
-	_speechBubble = ImageManager::GetInstance()->AddImage("말풍선오른쪽", L"UI이미지/UI_말풍선_오른쪽_237_130.png");
-	_attack_ground = ImageManager::GetInstance()->AddImage("전투판", L"UI이미지/UI_공격타이밍판_540_132.png");
+	_menu_off[0] = IMAGEMANAGER->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
+	_menu_off[1] = IMAGEMANAGER->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
+	_menu_off[2] = IMAGEMANAGER->AddImage("아이템_off", L"UI이미지/UI_아이템_비활성화_110_42.png");
+	_menu_off[3] = IMAGEMANAGER->AddImage("자비_off", L"UI이미지/UI_자비_비활성화_110_42.png");
+	_menu_on[0] = IMAGEMANAGER->AddImage("공격_on", L"UI이미지/UI_공격_활성화_110_42.png");
+	_menu_on[1] = IMAGEMANAGER->AddImage("행동_on", L"UI이미지/UI_행동_활성화_110_42.png");
+	_menu_on[2] = IMAGEMANAGER->AddImage("아이템_on", L"UI이미지/UI_아이템_활성화_110_42.png");
+	_menu_on[3] = IMAGEMANAGER->AddImage("자비_on", L"UI이미지/UI_자비_활성화_110_42.png");
+	_heart = IMAGEMANAGER->AddImage("하트", L"UI이미지/UI_하트_20_20.png");
+	_speechBubble = IMAGEMANAGER->AddImage("말풍선오른쪽", L"UI이미지/UI_말풍선_오른쪽_237_130.png");
+	_attack_ground = IMAGEMANAGER->AddImage("전투판", L"UI이미지/UI_공격타이밍판_540_132.png");
 
-	ImageManager::GetInstance()->AddImage("전투바_화이트", L"UI이미지/UI_공격타이밍바_10_151.png");
-	ImageManager::GetInstance()->AddImage("전투바_블랙", L"UI이미지/UI_공격타이밍바_black_10_151.png");
-	_attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_화이트");
+	IMAGEMANAGER->AddImage("전투바_화이트", L"UI이미지/UI_공격타이밍바_10_151.png");
+	IMAGEMANAGER->AddImage("전투바_블랙", L"UI이미지/UI_공격타이밍바_black_10_151.png");
+	_attack_bar.img = IMAGEMANAGER->FindImage("전투바_화이트");
 
 	_main_rc.x = WINSIZEX / 2;
 	_main_rc.y = WINSIZEY / 2 + 70;
@@ -96,7 +96,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _undy_talk[i];
 		}
-		_heartPlayer.img = ImageManager::GetInstance()->FindImage("RED");
+		_heartPlayer.img = IMAGEMANAGER->FindImage("RED");
 		break;
 	case 1:
 		_boss_name = L"* 샌즈";
@@ -107,7 +107,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _sans_talk[i];
 		}
-		_heartPlayer.img = ImageManager::GetInstance()->FindImage("BLUE");
+		_heartPlayer.img = IMAGEMANAGER->FindImage("BLUE");
 		break;
 	case 2:
 		_boss_name = L"* 머펫";
@@ -118,17 +118,7 @@ HRESULT battleUI::init(int bossName)
 		{
 			_select_talk[i] = _muffet_talk[i];
 		}
-		_heartPlayer.img = ImageManager::GetInstance()->FindImage("PURPLE");
-		break;
-	case 3:
-		_boss_name = L"* 아스리엘";
-		_boss_bubble = "아스리엘_말풍선";
-		_boss_main = "아스리엘_메인";
-		_boss_stage = "아스리엘_스테이지";
-		for (int i = 0; i < 30; i++)
-		{
-			_select_talk[i] = _asriel_talk[i];
-		}
+		_heartPlayer.img = IMAGEMANAGER->FindImage("PURPLE");
 		break;
 	}
 
@@ -148,7 +138,8 @@ void battleUI::release()
 
 void battleUI::update()
 {
-	if (isTurn == TALK_BUBBLE || isTurn == INGAME)
+	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
+	if (isTurn == TALK_BUBBLE)
 	{
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
@@ -182,7 +173,7 @@ void battleUI::update()
 				_heartPlayer.y -= _heartPlayer.speed;
 			}
 		}
-		_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
+
 	}
 	if (isTurn == MENU_SELECT)
 	{
@@ -444,8 +435,8 @@ void battleUI::render()
 	{
 		_attack_ground->Render(0, 0, 1, 1, 0, 0, 0, 50, WINSIZEY / 2);
 		_attack_bar.img->Render(0, 0, 1, 1, 0, 0, 0, _attack_bar.x, _attack_bar.y);
-		if (_attack_bar_count % 10 < 5) _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_화이트");
-		else _attack_bar.img = ImageManager::GetInstance()->FindImage("전투바_블랙");
+		if (_attack_bar_count % 10 < 5) _attack_bar.img = IMAGEMANAGER->FindImage("전투바_화이트");
+		else _attack_bar.img = IMAGEMANAGER->FindImage("전투바_블랙");
 	}
 	//메인 전투창 렉트
 	D2DRENDER->DrawRectangle

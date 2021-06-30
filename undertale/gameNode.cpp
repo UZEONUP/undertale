@@ -35,6 +35,8 @@ HRESULT gameNode::init(bool managerInit)
 		TXTDATA->init();
 
 		CAMERAMANAGER->init();
+
+		SAVELOADMANAGER->init();
 	}
 
 
@@ -67,6 +69,10 @@ void gameNode::release()
 
 		CAMERAMANAGER->release();
 		CAMERAMANAGER->releaseSingleton();
+
+		SAVELOADMANAGER->release();
+		SAVELOADMANAGER->releaseSingleton();
+
 
 	}
 	

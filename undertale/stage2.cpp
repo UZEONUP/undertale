@@ -3,52 +3,57 @@
 
 HRESULT stage2::init()
 {
-	ImageManager::GetInstance()->AddImage("언다인스테이지", L"스테이지이미지/undyne stage.png");
-	_backGround = ImageManager::GetInstance()->FindImage("언다인스테이지");
+	if (SCENEMANAGER->isCurrentScene("stage2"))	cout << "일치" << endl;
+	IMAGEMANAGER->AddImage("언다인스테이지", L"스테이지이미지/undyne stage.png");
+	_backGround = IMAGEMANAGER->FindImage("언다인스테이지");
 
 	CAMERAMANAGER->setMapCamera(640, 1280);
 
-	_setRect = new stageRect;
-
-	_setRect->setGround(0, 200, 230, 1000);
-	_setRect->setGround(400, 200, 240, 1000);
+	if (SCENEMANAGER->isCurrentScene("stage2"))	cout << "일치" << endl;
 
 	_player = new player;
-	_player->init();
-	_sceneRect = RectMake(250, 600, 70, 30);
+	_player->init(WINSIZEX / 2, 1200);
 
-	_changeScene = RectMakeCenter(WINSIZEX / 2, WINSIZEY/2, 10, 10);
-	_dialStart = RectMakeCenter(WINSIZEX / 2, 100, 400, 10);
-	
+
+	SAVELOADMANAGER->linkPlayer(_player);
+
+	_setRect = new stageRect;
+
+	_setRect->setGround(0, 200, 230, 1300);
+	_setRect->setGround(400, 200, 240, 1300);
+
+	_sceneRect = RectMake(250,900, 70, 30);
+
+	_setRect->linkPlayer(_player);
+
+
 	_bg = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
-
-	rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100);
 
 	return S_OK;
 }
 
 void stage2::release()
 {
+	_player->release();
 	_setRect->release();
 }
 
 void stage2::update()
 {
-	//	// 일정지점 도달하면 카메라가 올라가면서 언다인 다이얼로그 시작...하고싶어요
-	//RECT temp3;
-	//if (IntersectRect(&temp3, &_player->getRect(), &_dialStart))
-	//{
-	//	CAMERAMANAGER->setMapCamera(640, 100);
-	//}
+	if (IsCollision(_player->getBRect(), _sceneRect))
+	{
+		release();
+		SCENEMANAGER->changeScene("stage3");
+	}
+	_player->update();
+	_setRect->update();
 }
 
 void stage2::render()
 {
-	/*No.수정
-	_backGround->Render(0, 0, 2.f, 2.f);*/
-
 	_backGround->mapRender(0, 0);
 
+	_player->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)
@@ -58,33 +63,4 @@ void stage2::render()
 		D2DRENDER->DrawRectangle(_sceneRect, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
-	D2DRENDER->DrawRectangle
-	(
-		_dialStart,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
-
-	//D2DRENDER->DrawRectangle
-	//(
-	//	_player->getPlayerRC(),
-	//	D2DRenderer::DefaultBrush::Red,
-	//	1.f
-	//	//angle
-	//);
-	//D2DRENDER->DrawRectangle
-	//(
-	//	_player->getPlayerbalpan(),
-	//	D2DRenderer::DefaultBrush::Red,
-	//	1.f
-	//	//angle
-	//);
-
-	
-	//if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
-	//_undy->render();
-	/*char str[128];
-	sprintf_s(str, "battlechk : %d ", _player->getBattlechk());
-	TextOut(_hdc, 300, 300, str, strlen(str));*/
 }

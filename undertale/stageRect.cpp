@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "stageRect.h"
+#include "player.h"
 
 //x레프트, y탑
 HRESULT stageRect::init()
@@ -16,45 +17,44 @@ void stageRect::release()
 
 void stageRect::update()
 {
-	//여기에 충돌 (못지나가는)
-	//RECT temp;
+	RECT temp;
 
-	//RECT plRc = _pl->getRect();
+	RECT plRc = _player->getBRect();
 
 
-	//for (int i = 0; i < _vGround.size(); i++)
-	//{
-	//	RECT groundRect = _stageRect->getvGround()[i].rc;
+	for (int i = 0; i < _vGround.size(); i++)
+	{
+		RECT groundRect = _vGround[i].rc;
 
-	//	if (IntersectRect(&temp, &plRc, &groundRect))
-	//	{
-	//		float width = (temp.right - temp.left);
-	//		float height = (temp.bottom - temp.top);
+		if (IntersectRect(&temp, &plRc, &groundRect))
+		{
+			float width = (temp.right - temp.left);
+			float height = (temp.bottom - temp.top);
 
-	//		float playerX = _pl->getX();
-	//		float playerY = _pl->getY();
+			float playerX = _player->getX();
+			float playerY = _player->getY();
 
-	//		bool _pt;
+			bool _pt;
 
-	//		//수직 수평
-	//		(width > height) ? _pt = false : _pt = true;
+			//수직 수평
+			(width > height) ? _pt = false : _pt = true;
 
-	//		if (_pt) // 수평
-	//		{
-	//			//왼쪽에 있나
-	//			if (plRc.left < groundRect.left) _pl->setPlayerX(playerX -= width);
-	//			//오른쪽에 있나
-	//			if (plRc.right > groundRect.right) _pl->setPlayerX(playerX += width);
-	//		}
-	//		else if (!_pt) //수직
-	//		{
-	//			//위에 있나
-	//			if (plRc.top < groundRect.top) _pl->setPlayerY(playerY -= height);
-	//			//아래에 있나
-	//			if (plRc.bottom > groundRect.bottom) _pl->setPlayerY(playerY += height);
-	//		}
-	//	}
-	//}
+			if (_pt) // 수평
+			{
+				//왼쪽에 있나
+				if (plRc.left < groundRect.left) _player->setPlayerX(playerX -= width);
+				//오른쪽에 있나
+				if (plRc.right > groundRect.right) _player->setPlayerX(playerX += width);
+			}
+			else if (!_pt) //수직
+			{
+				//위에 있나
+				if (plRc.top < groundRect.top) _player->setPlayerY(playerY -= height);
+				//아래에 있나
+				if (plRc.bottom > groundRect.bottom) _player->setPlayerY(playerY += height);
+			}
+		}
+	}
 }
 
 void stageRect::render()

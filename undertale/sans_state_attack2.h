@@ -3,7 +3,6 @@
 #include "sansBattle.h"
 #include "sans_state_idle.h"
 
-class sansBattle;
 
 class sans_state_attack2 : public sans_state
 {

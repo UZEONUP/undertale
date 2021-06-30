@@ -1,12 +1,15 @@
 #pragma once
 #include "gameNode.h"
 #include "stageRect.h"
+#include "player.h"
 
 class stage3 : public gameNode
 {
 	stageRect* _setRect;
 
 	Image* _backGround;
+
+	player* _player;
 	
 	RECT _sceneRect;
 	RECT _sceneRect2;
