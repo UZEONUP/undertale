@@ -26,6 +26,7 @@ struct tagPlayer
 	float x, y;
 	float speed;
 	float angle;
+	float alpha;
 	
 	int currentFrameX;
 	int currentFrameY;
@@ -65,7 +66,8 @@ private:
 
 public:
 	HRESULT init();
-	HRESULT init(int type, bool exit);
+	HRESULT init(float x,float y);
+	//HRESULT init(int type, bool exit);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -81,14 +83,14 @@ public:
 	float getY() { return _player.y; }
 	void setPlayerX(float x) { _player.x = x; }
 	void setPlayerY(float y) { _player.y = y; }
+	float getAlpha() { return _player.alpha; }
+	void setAlpha(float alpha) { _player.alpha = alpha; }
 
 	void setHeart(float x, float y);
+	int getHP() { return _heart.currentHP; }
 	float getHX() { return _heart.x; }
 	float getHY() { return _heart.y; }
 	RECT getHRect() { return _heart.rc; }
-
-	RECT getUndyrc() { return _undy.rc; }
-
 
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 

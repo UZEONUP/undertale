@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "stageRect.h"
+#include "player.h"
 
 class stage4 : public gameNode
 {
@@ -10,6 +11,8 @@ class stage4 : public gameNode
 
 	RECT _sceneRect;
 	RECT _sceneRect2;
+
+	player* _player;
 
 
 public :

@@ -1,7 +1,6 @@
 #pragma once
 #include "singletonBase.h"
 
-
 class gameNode;
 
 class sceneManager : public singletonBase<sceneManager>
@@ -15,6 +14,7 @@ private:
 	mapSceneList _mSceneList;
 
 	string _currentSceneName;
+
 
 public:
 	sceneManager();
@@ -35,8 +35,6 @@ public:
 		else return false;
 	}
 
-	string getSceneName() {
-		return _currentSceneName;
-	}
+	string getSceneName() { return _currentSceneName; }
+	gameNode* getScene() { return _currentScene; }
 };
-

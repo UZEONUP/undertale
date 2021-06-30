@@ -79,9 +79,6 @@
     <Filter Include="playGround\bullet">
       <UniqueIdentifier>{9df25bbb-3fa8-4245-b718-1f4039d1a740}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\enemy\sans\sans_pattern">
-      <UniqueIdentifier>{1355194e-f842-469f-8518-be501d474f85}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -216,32 +213,8 @@
     <ClInclude Include="testScene.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="title.h">
-      <Filter>playGround\stage\stage1~</Filter>
-    </ClInclude>
-    <ClInclude Include="muffetBattle.h">
-      <Filter>playGround\enemy\muffet</Filter>
-    </ClInclude>
-    <ClInclude Include="sansBattle.h">
-      <Filter>playGround\enemy\sans</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state_idle.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state_attack1.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state_attack2.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state_attack3.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="sans_state_attack4.h">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    <ClInclude Include="saveLoadManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -362,32 +335,8 @@
     <ClCompile Include="testScene.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
-    <ClCompile Include="title.cpp">
-      <Filter>playGround\stage\stage1~</Filter>
-    </ClCompile>
-    <ClCompile Include="muffetBattle.cpp">
-      <Filter>playGround\enemy\muffet</Filter>
-    </ClCompile>
-    <ClCompile Include="sansBattle.cpp">
-      <Filter>playGround\enemy\sans</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state_idle.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state_attack1.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state_attack2.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state_attack3.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="sans_state_attack4.cpp">
-      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    <ClCompile Include="saveLoadManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

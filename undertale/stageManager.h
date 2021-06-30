@@ -1,7 +1,5 @@
 #pragma once
 #include "gameNode.h"
-
-#include "title.h"
 #include "startStage.h"
 #include "stage2.h"
 #include "stage3.h"
@@ -9,35 +7,16 @@
 #include "stage5.h"
 #include "stage6.h"
 #include "stage7.h"
-
 #include "undybattle.h"
-#include "muffetBattle.h"
 #include "stageRect.h"
-#include "player.h"
 #include "undyne.h"
-#include "sansBattle.h"
-
-
 
 class player;
 class undyne;
 
 class stageManager : public gameNode
 {
-	title* _title;
-	startStage* _stage1;
-	stage2* _stage2;
-	stage3* _stage3;
-	stage4* _stage4;
-	stage5* _stage5;
-	stage6* _stage6;
-	stage7* _stage7;
-	undybattle* _undybattle;
-	muffetBattle* _muffetBattle;
-	sansBattle* _sansBattle;
-
-	player* _pl;
-	undyne* _un;
+	player* _player;
 	stageRect* _stageRect;
 
 	bool exit; //상점 들어갔다 나옴?
@@ -49,10 +28,10 @@ public :
 	virtual void update();
 	virtual void render();
 
-	void collision();
-	bool sceneRect(RECT sceneRect);
-
-	void linkPlayer(player* player) { _pl = player; }
+	void linkPlayer(player* player) { _player = player; }
 	void linkStageRect(stageRect* sr) { _stageRect = sr; }
+
+	//초기 셋팅
+	void sceneSet();
 };
 
