@@ -23,7 +23,7 @@ protected:
 	objectBone _bone_50[BONEMAX];
 	objectBone _bone_100[BONEMAX];
 	//=====================
-
+	float _bone_speed;
 public:
 
 	virtual sans_state* inputHandle(sansBattle* sansBattle) = 0;

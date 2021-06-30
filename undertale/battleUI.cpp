@@ -28,9 +28,9 @@ HRESULT battleUI::init(int bossName)
 	ImageManager::GetInstance()->AddFrameImage("PURPLE_DAMAGED", L"hearts/PURPLE_DAMAGED.png", 2, 1);
 
 
-	
 
-	
+
+
 
 	_menu_off[0] = ImageManager::GetInstance()->AddImage("공격_off", L"UI이미지/UI_공격_비활성화_110_42.png");
 	_menu_off[1] = ImageManager::GetInstance()->AddImage("행동_off", L"UI이미지/UI_행동_비활성화_110_42.png");
@@ -142,7 +142,7 @@ HRESULT battleUI::init(int bossName)
 	talk_bubble_start(_boss_bubble, 1);
 	talk_main_start(_boss_main, 1);
 
-	
+
 
 	return S_OK;
 }
@@ -298,7 +298,7 @@ void battleUI::update()
 		//말풍선 턴
 		if (isTurn == TALK_BUBBLE)
 		{
-			
+
 			//말풍선에서 인게임으로 넘어가는 타이밍
 			talk_bubble_end(_select_talk[_battle_turn]);
 
@@ -310,7 +310,7 @@ void battleUI::update()
 				//이니데이터 title값을 변경해주기위해 int to string 변환
 				_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
 				_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
-				
+
 			}
 			//자비(살려주기)일때도 대사의 길이가 같으면 다음대사로
 			if (_word_count2 == strlen(_word_cut2) && _word_count2 >= 3 && _isMercy)
@@ -319,7 +319,7 @@ void battleUI::update()
 				isTurn = INGAME;
 				_isMercy = false;
 				_menu_input1_count = 0;
-				
+
 			}
 		}
 	}
@@ -509,7 +509,7 @@ void battleUI::render()
 	//메인
 	if (isTurn == TALK_MAIN || isTurn == MENU_SELECT && _menu_action_click)
 	{
-		D2DRENDER->RenderTextField(50, 200, ConverCtoWC(_word_cut), D2D1::ColorF::White, 25, 500, 200, 1,
+		D2DRENDER->RenderTextField(70, 200, ConverCtoWC(_word_cut), D2D1::ColorF::White, 25, 500, 200, 1,
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//말풍선
