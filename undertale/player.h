@@ -65,7 +65,7 @@ private:
 
 public:
 	HRESULT init();
-	HRESULT init(bool exit);
+	HRESULT init(int type, bool exit);
 	virtual void release();
 	virtual void update();
 	virtual void render();

@@ -32,7 +32,7 @@ class stageManager : public gameNode
 	stageRect* _stageRect;
 
 	bool exit; //»óÁ¡ µé¾î°¬´Ù ³ª¿È?
-
+	bool returnStage3;
 
 public :
 	virtual HRESULT init();

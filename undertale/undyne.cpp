@@ -21,12 +21,12 @@ void undyne::update()
 {
 	_count++;
 
-	if (_count % 5 == 0)
+	/*if (_count % 5 == 0)
 	{
 		_fullbody.currentFrameX++;
 		if (_fullbody.currentFrameX >= _fullbody.img->GetMaxFrameX())_fullbody.currentFrameX = 0;
 		_fullbody.currentFrameY = 0;
-	}
+	}*/
 }
 
 void undyne::render()

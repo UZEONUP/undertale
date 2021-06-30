@@ -63,7 +63,7 @@ HRESULT player::init()
 
 	_vObject.push_back(&_player);
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
@@ -74,7 +74,7 @@ HRESULT player::init()
 
 		_vObject.push_back(&_undy);
 
-	}
+	}*/
 
 	_blink = 0;
 	_index = 0;
@@ -82,7 +82,7 @@ HRESULT player::init()
 	return S_OK;
 }
 
-HRESULT player::init(bool exit)
+HRESULT player::init(int type, bool exit)
 {
 	ImageManager::GetInstance()->AddFrameImage("LEFT_MOVE", L"frisk/left_move.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("RIGHT_MOVE", L"frisk/right_move.png", 4, 1);
@@ -104,12 +104,21 @@ HRESULT player::init(bool exit)
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage3"))//위로 올라감
 	{
-		_player.x = 100;
-		_player.y = 350;
+		if (!exit && type == 1)
+		{
+			_player.x = 470;
+			_player.y = 440;
+		}
+		else
+		{
+			_player.x = 100;
+			_player.y = 350;
+		}
+
 	}
 	else if (sceneManager::getSingleton()->isCurrentScene("stage4"))//상점 가기 전
 	{
-		if (!exit)
+		if (!exit && type == 2)
 		{
 			_player.x = 120;
 			_player.y = 100;
@@ -149,7 +158,7 @@ HRESULT player::init(bool exit)
 
 	_vObject.push_back(&_player);
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	/*if (sceneManager::getSingleton()->isCurrentScene("stage2"))
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
@@ -160,7 +169,7 @@ HRESULT player::init(bool exit)
 
 		_vObject.push_back(&_undy);
 
-	}
+	}*/
 
 	_blink = 0;
 	_index = 0;

@@ -62,7 +62,7 @@ HRESULT undybattle::init()
 
 	for (int i = 0; i < BACKMAX; i++)
 	{
-		background[i] = RectMakeCenter(i * 100 + 500, WINSIZEY / 2 - 200, 100, 200);
+		_bg[i].rc = RectMakeCenter(i * 100 + 500, WINSIZEY / 2 - 200, 100, 200);
 	}
 
 	return S_OK;
@@ -139,7 +139,7 @@ void undybattle::render()
 	{
 		D2DRENDER->DrawRectangle
 		(
-			background[i],
+			_bg[i].rc,
 			D2DRenderer::DefaultBrush::Red,
 			1.f
 		);

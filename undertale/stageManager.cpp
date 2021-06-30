@@ -22,10 +22,11 @@ HRESULT stageManager::init()
 	this->linkPlayer(_pl);
 	_pl->linkStageManager(this);
 
-	_un = new undyne;
-	_un->init();
+	/*_un = new undyne;
+	_un->init();*/
 	
 	exit = false;
+	returnStage3 = false;
 
 	//_stage2->init();
 
@@ -50,46 +51,7 @@ void stageManager::release()
 
 void stageManager::update()
 {
-	//테스트 용 스테이지 전환 ================================================
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F2))
-	{
-		_stage1->release();
-		sceneManager::getSingleton()->changeScene("stage2");
-		_stage2->init();
-		_pl->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F3))
-	{
-		sceneManager::getSingleton()->changeScene("stage3");
-		_stage3->init();
-		_pl->init();
-	}
-	/*if (_pl->getChangeScene())
-	{
-		sceneManager::getSingleton()->changeScene("stage3");
-		_stage3->init();
-		_pl->init();
-	}*/
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F4))
-	{
-		sceneManager::getSingleton()->changeScene("stage4");
-		_stage4->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F5))
-	{
-		sceneManager::getSingleton()->changeScene("stage5");
-		_stage5->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F6))
-	{
-		sceneManager::getSingleton()->changeScene("stage6");
-		_stage6->init();
-	}
-	if (keyManager::getSingleton()->isOnceKeyDown(VK_F7))
-	{
-		sceneManager::getSingleton()->changeScene("stage7");
-		_stage7->init();
-	}
+	
 	if (keyManager::getSingleton()->isOnceKeyDown(VK_F8))
 	{
 		sceneManager::getSingleton()->changeScene("undybattle");
@@ -135,9 +97,9 @@ void stageManager::update()
 		{
 			_stage2->release();
 			_pl->release();
-
+			returnStage3 = true;
 			sceneManager::getSingleton()->changeScene("stage3");
-			_pl->init();
+			_pl->init(1, returnStage3);
 			_stage3->init();
 		}
 	}
@@ -154,6 +116,7 @@ void stageManager::update()
 
 			sceneManager::getSingleton()->changeScene("stage4");
 			exit = false;
+			returnStage3 = false;
 			_pl->init();
 			_stage4->init();
 		}
@@ -188,7 +151,8 @@ void stageManager::update()
 			_pl->release();
 
 			sceneManager::getSingleton()->changeScene("stage3");
-			_pl->init();
+			returnStage3 = false;
+			_pl->init(1,returnStage3);
 			_stage3->init();
 		}
 	}
@@ -203,7 +167,7 @@ void stageManager::update()
 
 			sceneManager::getSingleton()->changeScene("stage4");
 			exit = true;
-			_pl->init(exit);
+			_pl->init(2,exit);
 			_stage4->init();
 		}
 	}
