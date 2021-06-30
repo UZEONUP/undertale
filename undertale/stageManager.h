@@ -8,6 +8,7 @@
 #include "stage6.h"
 #include "stage7.h"
 #include "undybattle.h"
+#include "sansBattle.h"
 #include "stageRect.h"
 #include "undyne.h"
 

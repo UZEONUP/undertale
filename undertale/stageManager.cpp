@@ -34,7 +34,8 @@ void stageManager::sceneSet()
 	sceneManager::getSingleton()->addScene("stage6", new stage6);
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
 	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
+	sceneManager::getSingleton()->addScene("sansBattle", new sansBattle);
 
-	sceneManager::getSingleton()->changeScene("stage1");
+	sceneManager::getSingleton()->changeScene("sansBattle");
 }
 

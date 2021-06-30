@@ -18,14 +18,14 @@ void sans_state_attack4::enter(sansBattle * sansBattle)
 
 	for (int i = 0; i < BONEMAX50; i++)
 	{
-		_bone_20[i].x = i * 20 - 500;
+		_bone_20[i].x = i * 20 - 1000;
 		_bone_20[i].y = 380;
 		_bone_20[i].width = 10;
 		_bone_20[i].hieght = 20;
 		_bone_20[i].rc = RectMakeCenter(_bone_20[i].x, _bone_20[i].y, _bone_20[i].width, _bone_20[i].hieght);
 		_bone_20[i].img = IMAGEMANAGER->FindImage("»À´Ù±Í_20");
 
-		_foothold[i].x = i * 200 - 500;
+		_foothold[i].x = i * 200 - 1000;
 		_foothold[i].y = 300;
 		_foothold[i].width = 57;
 		_foothold[i].hieght = 10;
@@ -51,7 +51,9 @@ void sans_state_attack4::update(sansBattle * sansBattle)
 	for (int i = 0; i < BONEMAX50; i++) 
 	{
 		if (_foothold[i].rc.top < sansBattle->getUI()->getIGH().rc.bottom &&
-			_foothold[i].rc.left > sansBattle->getUI()->getIGH().rc.bottom)
+			_foothold[i].rc.left < sansBattle->getUI()->getIGH().rc.right &&
+			_foothold[i].rc.right > sansBattle->getUI()->getIGH().rc.left &&
+			_foothold[i].rc.bottom > sansBattle->getUI()->getIGH().rc.bottom)
 		{
 			sansBattle->getUI()->set_inGame_heart_y(_foothold[i].rc.top - 10);
 		}
