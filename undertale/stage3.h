@@ -14,6 +14,8 @@ class stage3 : public gameNode
 	RECT _sceneRect;
 	RECT _sceneRect2;
 
+	bool _reStage;
+
 public :
 	virtual HRESULT init();
 	virtual void release();

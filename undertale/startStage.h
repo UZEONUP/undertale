@@ -11,6 +11,7 @@ class startStage : public gameNode
 
 	RECT _sceneRect;
 
+
 public :
 	virtual HRESULT init();
 	virtual void release();
@@ -23,5 +24,6 @@ public :
 	startStage* getScene() { return this; }
 
 	player* getPlayer() { return _player; }
+
 };
 

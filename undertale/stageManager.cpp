@@ -26,15 +26,16 @@ void stageManager::render()
 
 void stageManager::sceneSet()
 {
-	sceneManager::getSingleton()->addScene("stage1", new startStage);
-	sceneManager::getSingleton()->addScene("stage2", new stage2);
-	sceneManager::getSingleton()->addScene("stage3", new stage3);
-	sceneManager::getSingleton()->addScene("stage4", new stage4);
-	sceneManager::getSingleton()->addScene("stage5", new stage5);
-	sceneManager::getSingleton()->addScene("stage6", new stage6);
-	sceneManager::getSingleton()->addScene("stage7", new stage7);
-	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
+	SCENEMANAGER->addScene("stage1", new startStage);
+	SCENEMANAGER->addScene("stage2", new stage2);
+	SCENEMANAGER->addScene("stage3", new stage3);
+	SCENEMANAGER->addScene("stage4", new stage4);
+	SCENEMANAGER->addScene("stage5", new stage5);
+	SCENEMANAGER->addScene("stage6", new stage6);
+	SCENEMANAGER->addScene("stage7", new stage7);
+	SCENEMANAGER->addScene("undybattle", new undybattle);
+	SCENEMANAGER->addScene("sansBattle", new sansBattle);
 
-	sceneManager::getSingleton()->changeScene("stage1");
+	SCENEMANAGER->changeScene("stage1");
 }
 
