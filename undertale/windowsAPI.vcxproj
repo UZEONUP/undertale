@@ -173,6 +173,8 @@
     <ClInclude Include="sans_state.h" />
     <ClInclude Include="sans_state_attack1.h" />
     <ClInclude Include="sans_state_attack2.h" />
+    <ClInclude Include="sans_state_attack3.h" />
+    <ClInclude Include="sans_state_attack4.h" />
     <ClInclude Include="sans_state_idle.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -223,6 +225,8 @@
     <ClCompile Include="sans_state.cpp" />
     <ClCompile Include="sans_state_attack1.cpp" />
     <ClCompile Include="sans_state_attack2.cpp" />
+    <ClCompile Include="sans_state_attack3.cpp" />
+    <ClCompile Include="sans_state_attack4.cpp" />
     <ClCompile Include="sans_state_idle.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />

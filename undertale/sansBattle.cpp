@@ -31,7 +31,10 @@ HRESULT sansBattle::init()
 	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¿À¸¥ÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackRight_97_48_6.png", 6, 1);
 	ImageManager::GetInstance()->AddFrameImage("»÷Áî_¿ŞÂÊ°ø°İ", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackLeft_97_48_6.png", 6, 1);
 	ImageManager::GetInstance()->AddImage("»À´Ù±Í_20", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_20.png");
+	ImageManager::GetInstance()->AddImage("»À´Ù±Í_40", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_40.png");
+	ImageManager::GetInstance()->AddImage("»À´Ù±Í_50", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_50.png");
 	ImageManager::GetInstance()->AddImage("»À´Ù±Í_100", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_100.png");
+	ImageManager::GetInstance()->AddImage("»À´Ù±Í2_100", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_blue_10_100.png");
 
 	_sans_head.x = 320;
 	_sans_head.y = 120;
@@ -82,7 +85,6 @@ HRESULT sansBattle::init()
 
 	_info._isattack = false;
 	_info._isMove = false;
-	_info._pattern = 0;
 
 	return S_OK;
 }

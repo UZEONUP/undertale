@@ -237,6 +237,12 @@
     <ClInclude Include="sans_state_attack2.h">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClInclude>
+    <ClInclude Include="sans_state_attack3.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack4.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -376,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="sans_state_attack2.cpp">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack3.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack4.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
