@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "title.h"
 #include "startStage.h"
 #include "stage2.h"
 #include "stage3.h"

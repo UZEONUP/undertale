@@ -26,6 +26,7 @@ void stageManager::render()
 
 void stageManager::sceneSet()
 {
+	sceneManager::getSingleton()->addScene("title", new title);
 	sceneManager::getSingleton()->addScene("stage1", new startStage);
 	sceneManager::getSingleton()->addScene("stage2", new stage2);
 	sceneManager::getSingleton()->addScene("stage3", new stage3);
@@ -35,6 +36,6 @@ void stageManager::sceneSet()
 	sceneManager::getSingleton()->addScene("stage7", new stage7);
 	sceneManager::getSingleton()->addScene("undybattle", new undybattle);
 
-	sceneManager::getSingleton()->changeScene("stage1");
+	sceneManager::getSingleton()->changeScene("title");
 }
 
