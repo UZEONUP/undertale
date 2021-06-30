@@ -8,42 +8,29 @@ HRESULT stage6::init()
 
 	CAMERAMANAGER->setMapCamera(638, 676);
 
-	_player = new player;
-	_player->init(WINSIZEX / 2, 650);
-
 	_setRect = new stageRect;
 	_setRect->release();
 
 	_sceneRect = RectMake(285, 260, 75, 40);
-
-	SAVELOADMANAGER->linkPlayer(_player);
-	_setRect->linkPlayer(_player);
-
 	return S_OK;
 }
 
 void stage6::release()
 {
-	_player->release();
 	_setRect->release();
 }
 
 void stage6::update()
 {
-	if (IsCollision(_player->getBRect(), _sceneRect))
-	{
-		release();
-		SCENEMANAGER->changeScene("stage7");
-	}
-	_player->update();
 	_setRect->update();
 }
 
 void stage6::render()
 {
-	_backGround->mapRender(0, 0);
+	/*No.¼öÁ¤
+	_backGround->Render(0, 0, 2.f, 2.f);*/
 
-	_player->render();
+	_backGround->mapRender(0, 0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

@@ -7,25 +7,30 @@ HRESULT stage5::init()
 	_backGround = ImageManager::GetInstance()->FindImage("테미상점");
 
 
+	_setRect = new stageRect;
+	_setRect->release();
+
+
 
 	return S_OK;
 }
 
 void stage5::release()
 {
+	_setRect->release();
+
 }
 
 void stage5::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('X'))
-	{
-		release();
-		SCENEMANAGER->changeScene("stage4");
-	}
+	_setRect->update();
 }
 
 void stage5::render()
 {
+	/*No.수정
+	_backGround->Render(0, 0, 2.f, 2.f);*/
+
 	_backGround->Render(0, 0);
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))

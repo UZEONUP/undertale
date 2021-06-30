@@ -8,10 +8,6 @@ HRESULT stage7::init()
 
 	CAMERAMANAGER->setMapCamera(640, 1200);
 
-	_player = new player;
-	_player->init(WINSIZEX / 2 + 20, 1120);
-
-
 	_setRect = new stageRect;
 	_setRect->release();
 
@@ -29,27 +25,25 @@ HRESULT stage7::init()
 	_setRect->setGround(360, 1040, 80, 160);
 	_setRect->setGround(520, 230, 40, 90);
 
-	SAVELOADMANAGER->linkPlayer(_player);
-	_setRect->linkPlayer(_player);
 	return S_OK;
 }
 
 void stage7::release()
 {
-	_player->release();
 	_setRect->release();
 }
 
 void stage7::update()
 {
-	_player->update();
 	_setRect->update();
 }
 
 void stage7::render()
 {
+	/*No.¼öÁ¤
+	_backGround->Render(0, 0, 2.f, 2.f);*/
+
 	_backGround->mapRender(0, 0);
-	_player->render();
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

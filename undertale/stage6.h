@@ -1,7 +1,6 @@
 #pragma once
 #include "gameNode.h"
 #include "stageRect.h"
-#include "player.h"
 
 class stage6 :public gameNode
 {
@@ -10,8 +9,6 @@ class stage6 :public gameNode
 	Image* _backGround;
 
 	RECT _sceneRect;
-
-	player* _player;
 
 public:
 	virtual HRESULT init();

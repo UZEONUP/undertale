@@ -2,9 +2,6 @@
 #include "gameNode.h"
 #include <vector>
 
-class player;
-
-
 struct tagRect
 {
 	Image* img;
@@ -16,7 +13,6 @@ struct tagRect
 class stageRect : public gameNode
 {
 	vector<tagRect> _vGround;
-	player* _player;
 
 public :
 	virtual HRESULT init();
@@ -26,8 +22,6 @@ public :
 	void setGround(const float x, const float y, const float width, const float height, const string imageName = "no");
 
 	vector<tagRect> getvGround() { return _vGround; }
-
-	void linkPlayer(player* player) { _player = player; }
 };
 
 

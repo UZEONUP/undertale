@@ -110,7 +110,7 @@ void Image::mapRender(const float X, const float Y)
 /********************************************************************************
 ## PerfeactFrameRender ##
 *********************************************************************************/
-void Image::FrameRender(const float X, const float Y, const int frameX, const int frameY,const float alpha,
+void Image::FrameRender(const float X, const float Y, const int frameX, const int frameY,
 	const float scaleW, const float scalseH,
 	const float degreeAngle, const float rotateX, const float rotateY,
 	const float transX, const float transY)
@@ -135,7 +135,9 @@ void Image::FrameRender(const float X, const float Y, const int frameX, const in
 	//최종행렬 세팅
 	//D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform( rotateMatrix * translateMatrix);
 
-	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, alpha,
+	//렌더링 요청
+	//mAlpha -= 0.01f;
+	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha,
 		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, &dxSrc);
 
 	if (mAlpha <= 0)this->ResetRenderOption();
