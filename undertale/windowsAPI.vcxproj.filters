@@ -216,6 +216,9 @@
     <ClInclude Include="sans.h">
       <Filter>playGround\enemy\sans</Filter>
     </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>playGround\stage\stage1~</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="sans.cpp">
       <Filter>playGround\enemy\sans</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>playGround\stage\stage1~</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
