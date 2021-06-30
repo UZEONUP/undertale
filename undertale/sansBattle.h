@@ -1,7 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "battleUI.h"
-#define BONEMAX 10
+#include "sans_state.h"
+
 
 struct sansObject
 {
@@ -12,11 +13,19 @@ struct sansObject
 	int currentFrameX;
 	int currentFrameY;
 };
+struct object
+{
+	bool _isattack;
+	bool _isMove;
+
+	int _pattern;
+};
 
 class sansBattle : public gameNode
 {
 private:
 	battleUI* _ui;
+	sans_state* _state;
 
 	//========»÷Áî==========
 	sansObject _sans_head;
@@ -26,28 +35,24 @@ private:
 	sansObject _sans_attack;
 	//======================
 
-	//=======»À´Ù±Í=========
-	sansObject _bone_20[BONEMAX];
-	sansObject _bone_40[BONEMAX];
-	sansObject _bone_50[BONEMAX];
-	sansObject _bone_100[BONEMAX];
-	//=====================
-	bool _isattack;
-	bool _isMove;
-
-	int _pattern;
+	object _info;
 
 public:
 
 	sansBattle();
 	~sansBattle();
 
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
 
-	void setAttack1(int pattern);
-	void updateAttack1(int pattern);
+	//UI get
+	battleUI* getUI() { return _ui; }
+	//info get set
+	object& getObject() { return _info; }
+
+	void InputHandle();
 };
 
