@@ -79,6 +79,9 @@
     <Filter Include="playGround\bullet">
       <UniqueIdentifier>{9df25bbb-3fa8-4245-b718-1f4039d1a740}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\sans\sans_pattern">
+      <UniqueIdentifier>{5fc903ed-7be4-463c-b5d2-e562202dfe00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -216,6 +219,27 @@
     <ClInclude Include="saveLoadManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="sansBattle.h">
+      <Filter>playGround\enemy\sans</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack1.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack2.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack3.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack4.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_idle.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -337,6 +361,27 @@
     </ClCompile>
     <ClCompile Include="saveLoadManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sansBattle.cpp">
+      <Filter>playGround\enemy\sans</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_idle.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack1.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack2.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack3.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack4.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
