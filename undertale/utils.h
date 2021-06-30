@@ -74,6 +74,5 @@ namespace UJN_UTIL
 	//사각형이 사각형과 충돌했니?
 	bool IsCollision(const RECT& rc1, const ENEMYRECT& rc2);
 	bool IsCollision(const RECT& rc1, const RECT& rc2);
-
-
+	
 }

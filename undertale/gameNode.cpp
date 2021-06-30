@@ -37,6 +37,8 @@ HRESULT gameNode::init(bool managerInit)
 		CAMERAMANAGER->init();
 
 		SAVELOADMANAGER->init();
+
+
 	}
 
 
@@ -73,6 +75,9 @@ void gameNode::release()
 		SAVELOADMANAGER->release();
 		SAVELOADMANAGER->releaseSingleton();
 
+
+		BULLETMANAGER->release();
+		BULLETMANAGER->releaseSingleton();
 
 	}
 	

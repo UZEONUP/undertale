@@ -6,6 +6,7 @@ HRESULT stageManager::init()
 {
 	sceneSet();
 
+
 	return S_OK;
 }
 

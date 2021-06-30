@@ -152,6 +152,7 @@
     <ClInclude Include="asrielStateManager.h" />
     <ClInclude Include="battleUI.h" />
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="bulletManager.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="asrielStateManager.cpp" />
     <ClCompile Include="battleUI.cpp" />
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="bulletManager.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
