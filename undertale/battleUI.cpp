@@ -11,6 +11,8 @@ battleUI::~battleUI()
 
 HRESULT battleUI::init(int bossName)
 {
+	
+	
 	IMAGEMANAGER->AddFrameImage("RED", L"hearts/RED.png", 1, 1);
 	IMAGEMANAGER->AddFrameImage("RED_DAMAGED", L"hearts/RED_DAMAGED.png", 2, 1);
 	IMAGEMANAGER->AddFrameImage("RED_RUN", L"hearts/RED_RUN.png", 2, 1);
@@ -82,6 +84,13 @@ HRESULT battleUI::init(int bossName)
 	_heartPlayer.currentFrameX = _heartPlayer.currentFrameY = 0;
 	_heartPlayer.speed = 3.0f;
 
+	
+	_heartPlayer.maxHP = 50;
+	_heartPlayer.currentHP = 50;
+
+	_bar = new progressBar;
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 + 170, 60, 30);
+
 
 	//폰트추가
 	D2DRENDER->AddTextFormat(L"-윤디자인웹돋움");
@@ -127,11 +136,7 @@ HRESULT battleUI::init(int bossName)
 	talk_bubble_start(_boss_bubble, 1);
 	talk_main_start(_boss_main, 1);
 
-	_heartPlayer.maxHP = 50;
-	_heartPlayer.currentHP = 50;
 
-	_bar = new progressBar;
-	_bar->init(WINSIZEX / 2, WINSIZEY / 2 + 170, 60, 30);
 
 	return S_OK;
 }
@@ -141,7 +146,7 @@ void battleUI::release()
 }
 
 void battleUI::update()
-{
+{	
 	_bar->update();
 	if (_heartPlayer.currentHP <= 0)_heartPlayer.currentHP = 0;
 	_bar->setGauge(_heartPlayer.currentHP, _heartPlayer.maxHP);
@@ -395,6 +400,9 @@ void battleUI::update()
 	if (isTurn == INGAME)
 	{
 		_enemy_attack_count++;
+		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+		
 	}
 	//인게임 시간이 끝나면
 	if (_enemy_attack_count >= _enemy_attack_max)
@@ -428,12 +436,16 @@ void battleUI::update()
 			if (_word_count2 >= strlen(_str_bubble)) _word_count2 = strlen(_str_bubble);
 		}
 		_word_speed = 0;
+
 	}
+		
+		
 }
 
 void battleUI::render()
 {
 	_bar->render();
+
 
 	//선택창 텍스트
 	if (_menu_input1_count != 0 && !_isMercy && !_menu_action_click)
@@ -520,7 +532,7 @@ void battleUI::render()
 		_heartPlayer.rc,
 		D2DRenderer::DefaultBrush::Red
 	);
-	if (isTurn == TALK_BUBBLE || isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
+	if (isTurn == TALK_BUBBLE|| isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
 
 }
 //메인 전투 렉트 컨트롤함수 기본값		 (늘리고 싶으면 true, 줄이고 싶으면 false)

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "bulletManager.h"
 #include "player.h"
+#include"undybattle.h"
 
 HRESULT bulletManager::init(const char* imageName, int bulletMax, float range)
 {
@@ -53,7 +54,7 @@ void bulletManager::move()
 			_viBullet = _vBullet.erase(_viBullet);
 		}
 		//ÇÃ·¹ÀÌ¾î¿Í ´êÀ¸¸é ¼Ò¸ê
-		if (IsCollision(_viBullet->rc, _player->getRect()))
+		if (IsCollision(_viBullet->rc, _undybattle->getUI()->getIGH().rc)|| IsCollision(_viBullet->rc,_undybattle->getShieldRECT()))
 		{
 			_viBullet = _vBullet.erase(_viBullet);
 		}

@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "progressBar.h"
-
+#define PI 3.14156f
 //메인렉트 컨트롤
 struct rc_control
 {
@@ -24,6 +24,8 @@ enum TURN_STATE
 	TALK_MAIN
 };
 
+
+
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@하트 구조체
 struct inGameHeart
 {
@@ -45,7 +47,6 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
-
 	inGameHeart _heartPlayer;
 	Image* _menu_off[4];
 	Image* _menu_on[4];
@@ -154,8 +155,6 @@ public:
 	//전투시간 조절 get, set
 	int getEnemy_attackTime_max() { return _enemy_attack_max; }
 	void setEnemy_attackTime_max(int maxTime) { _enemy_attack_max = maxTime; }
-	//현재전투시간 get하나 만들었습니다..
-	int getEnemy_attackTime() { return _enemy_attack_count; }
 	//턴 get
 	int getBattle_turn() { return _battle_turn; }
 	//상태 get
@@ -164,14 +163,15 @@ public:
 	int get_main_talk_count() { return _title_int; }
 	//대사_말풍선 카운트 get
 	int get_bubble_talk_count() { return _title_int2; }
-
+	//현재전투시간 get하나 만들었습니다..
+	int getEnemy_attackTime() { return _enemy_attack_count; }
 
 	inGameHeart getIGH() { return _heartPlayer; }
 	void set_inGame_heart_x(float inGameHeart_x) { _heartPlayer.x = inGameHeart_x; }
 	void set_inGame_heart_y(float inGameHeart_y) { _heartPlayer.y = inGameHeart_y; }
 	void set_inGame_heart_rc(RECT inGameHeart_rc) { _heartPlayer.rc = inGameHeart_rc; }
+	void set_inGame_heart_image(Image* _inGameHeart_image) { _heartPlayer.img = _inGameHeart_image; }
 	//현재체력
 	void set_inGame_heart_currentHp(float currentHp) { _heartPlayer.currentHP = currentHp; }
-
 
 };

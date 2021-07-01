@@ -38,6 +38,7 @@ public:
 	//¸Ê Áß¾Ó ±âÁØ
 	void updateCamera(RECT& player, float playerX, float playerY);
 	void updateCamera(float x, float y);
+	void updateCameraH(float x, float y);
 
 	//¸Ê ???? ¾îµğ ±âÁØ
 	void updateCamera(bool a);

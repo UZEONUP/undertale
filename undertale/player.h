@@ -65,6 +65,8 @@ private:
 	vector<tagPlayer*>			 _vObject;
 	vector<tagPlayer*>::iterator _viObject;
 
+	bool _Hcol;
+
 public:
 	HRESULT init();
 	HRESULT init(float x,float y);
@@ -97,5 +99,9 @@ public:
 	void linkStageManager(stageManager* stageManager) { _sm = stageManager; }
 
 	vector<tagPlayer*> getVobject() { return _vObject; }
+	
+	RECT getPlayerRC() { return _player.rc; }
+	RECT getPlayerbalpan() { return _player.balpan; }
 
+	void setBoolH(bool Hcol) { _Hcol = Hcol; }
 };

@@ -133,6 +133,44 @@ void cameraManager::updateCamera(float x, float y)
 	cout << _y << "========================" << endl;*/
 }
 
+void cameraManager::updateCameraH(float x, float y)
+{
+	if (x - _camera.width * 0.5 < 0)
+	{
+		x = 0;
+
+	}
+	else if (x + _camera.width * (1 - 0.5) > _map.width)
+	{
+		x = _map.width - _camera.width;
+
+	}
+	else
+	{
+		x -= _camera.width*0.5;
+
+	}
+
+	//Y축 (상, 하)
+
+	if (y - _camera.height * 0.5 < 0)
+	{
+		y = 0;
+	}
+	else if (y + _camera.height * (1 - 0.5) > _map.height)
+	{
+		y = _map.height - _camera.height;
+	}
+	else
+	{
+		y -= _camera.height*0.5;
+	}
+
+	//갱신
+	_x = x;
+	_y = y;
+}
+
 void cameraManager::updateCamera(bool a)
 {
 	//건들지말

@@ -39,3 +39,5 @@ void undyne::render()
 	_fullbody.img->FrameRender(_fullbody.rc.left, _fullbody.rc.top, _fullbody.currentFrameX, _fullbody.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 
 }
+
+

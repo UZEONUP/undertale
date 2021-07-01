@@ -2,29 +2,22 @@
 #include "gameNode.h"
 #include "battleUI.h"
 #include <vector>
+#include "bullet.h"
+#include "undyneState.h"
+
 #define PI 3.14156f
-#define BACKMAX 6
-struct tagCannon
-{
-	float x, y;
-	float radius;
-	float length;
-	float gravity;
-	float speed;
-	float angle;
-	bool isFire;
-	POINT center;
-	POINT cannonEnd;
-};
+
 struct tagUndyne
 {
 	RECT rc;
+	RECT janSang;
 	Image* img;
 	int currentFrameX;
 	int currentFrameY;
 	float x, y;
 	float angle;
 	bool isMove;
+	bool isAttack;
 };
 struct background
 {
@@ -36,12 +29,20 @@ struct background
 	bool isMove;
 };
 
+struct shieldLine
+{
+	float x, y;
+	float length;
+	float angle;
+	POINT lineCenter;
+	POINT lineEnd;
+};
+
 class undybattle :
 	public gameNode
 {
 private:
 	int _count = 0;
-	tagCannon _cannon;
 	tagUndyne _head;
 	tagUndyne _hair;
 	tagUndyne _torso;
@@ -49,15 +50,27 @@ private:
 	tagUndyne _rightArm;
 	tagUndyne _belly;
 	tagUndyne _legs; //여기까진 배틀씬에서..
-
-	background _bg[BACKMAX]; // 뒤에 움직이는 배경
+	Image* _jansang;
+	bullet* _bullet;
+	undyneState* _undyState;
+	shieldLine _shieldLine;
+	RECT rc_shield;
 
 	battleUI* _bui;
+	int currentFrameX;
+	int currentFrameY;
 
+	int _timer;
+	float angle;
+	bool maxangle;
+	bool minangle;
 	bool up;
 
 	vector<background>			 _vBack;
 	vector<background>::iterator _viBack;
+	
+	vector<bullet*>		_vBullet;
+	vector<bullet*>::iterator _viBullet;
 
 public:
 
@@ -66,10 +79,17 @@ public:
 	virtual void update();
 	virtual void render();
 
+	void inputHandle();
+
+	
+	RECT getShieldRECT() { return rc_shield; }
+
+	battleUI* getUI() { return _bui; }
 
 	vector<background> getVback() { return _vBack; }
 	vector<background>::iterator getViback() { return _viBack; }
 
-	void backMove();
+	vector<bullet*> getVbullet() { return _vBullet; }
+	vector<bullet*>::iterator getVIbullet() { return _viBullet; }
 };
 

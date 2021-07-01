@@ -3,7 +3,7 @@
 #include "image.h"
 
 class player;
-
+class undybattle;
 
 struct tagBullet
 {
@@ -30,6 +30,7 @@ private:
 	float _range;	//총알이 어디까지 날라갈것인가
 	int _bulletMax; //총알 최대 갯수
 
+	undybattle* _undybattle;
 	player* _player;
 public:
 	bulletManager() {};
@@ -44,6 +45,7 @@ public:
 	void fire(float fireX, float fireY, float angle);
 
 	void linkPlayer(player* player) { _player = player; }
+	void linkUndybattle(undybattle* undybattle) { _undybattle = undybattle; }
 
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }
