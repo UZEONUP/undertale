@@ -85,6 +85,9 @@
     <Filter Include="2DGameFramework\progressBar">
       <UniqueIdentifier>{ee62a098-ef97-4b9d-8456-fac2e92e0b42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\test">
+      <UniqueIdentifier>{bf6123cb-9085-4bbd-8368-fdd86f0c2103}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -252,6 +255,18 @@
     <ClInclude Include="progressBar.h">
       <Filter>2DGameFramework\progressBar</Filter>
     </ClInclude>
+    <ClInclude Include="muffetIdle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetStateBase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="testScene.h">
+      <Filter>playGround\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -403,6 +418,18 @@
     </ClCompile>
     <ClCompile Include="progressBar.cpp">
       <Filter>2DGameFramework\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetIdle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetStateBase.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="testScene.cpp">
+      <Filter>playGround\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

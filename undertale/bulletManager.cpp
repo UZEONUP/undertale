@@ -79,12 +79,3 @@ void bulletManager::fire(float fireX, float fireY, float angle)
 
 	_vBullet.push_back(newBullet);
 }
-
-void bulletManager::remove(vector<tagBullet>::iterator viBullet)
-{
-	_viBullet = _vBullet.erase(viBullet);
-	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
-	//{
-	//	_viBullet = _vBullet.erase(_viBullet);
-	//}
-}
