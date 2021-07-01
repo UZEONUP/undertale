@@ -171,6 +171,7 @@
     <ClInclude Include="muffetStateBase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
+    <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sansBattle.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="muffetStateBase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sansBattle.cpp" />
     <ClCompile Include="sans_state.cpp" />
     <ClCompile Include="sans_state_attack1.cpp" />
