@@ -60,7 +60,7 @@ private:
 	int currentFrameX;
 	int currentFrameY;
 
-
+	int _timer;
 	float angle;
 	bool maxangle;
 	bool minangle;
@@ -78,6 +78,11 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void inputHandle();
+
+	
+	RECT getShieldRECT() { return rc_shield; }
 
 	battleUI* getUI() { return _bui; }
 

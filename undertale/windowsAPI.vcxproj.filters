@@ -273,6 +273,15 @@
     <ClInclude Include="sans_state_attack5.h">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClInclude>
+    <ClInclude Include="undyneIdle.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneFireArrowState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -442,6 +451,15 @@
     </ClCompile>
     <ClCompile Include="sans_state_attack5.cpp">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneIdle.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneFireArrowState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

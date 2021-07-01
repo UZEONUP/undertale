@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "bullet.h"
 
+
 #define BULLETMAX 30
 #define RBULLETMAX 10
 
@@ -9,10 +10,10 @@ class undybattle;
 
 enum bulletDirection
 {
-	LEFT = 0,
-	RIGHT,
-	UP,
-	DOWN
+	LEFTFIRE = 0,
+	RIGHTFIRE=1,
+	UPFIRE=2,
+	DOWNFIRE=3
 };
 
 
@@ -28,13 +29,19 @@ protected:
 	Image* _bulletimg;
 	int _bulletFrame;
 	int _bulletFrameX, _bulletFrameY;
-
+	bulletDirection _bulletDirect;
 	bullet* _bullet;
+	undybattle* _undybattle;
+	int _directionSelect;
+	int _timer;
 public:
+
+	void linkundynebattle(undybattle* undybattle) { _undybattle = undybattle; }
 
 	virtual undyneState* inputHandle(undybattle* undybattle) = 0;
 	virtual void update(undybattle* undybattle) = 0;
 	virtual void enter(undybattle* undybattle) = 0;
+	virtual void render(undybattle* undybattle) = 0;
 	virtual void exit(undybattle* undybattle) = 0;
 
 	virtual string getCurrentStateName() { return _stateName; }

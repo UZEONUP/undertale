@@ -3,7 +3,7 @@
 
 HRESULT startStage::init()
 {
-	IMAGEMANAGER->AddImage("donut", L"Undyne/Und_bullet.png");
+	IMAGEMANAGER->AddImage("donut", L"Undyne/RIGHT_ARROW_OFF.png");
 	IMAGEMANAGER->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
 	_backGround = IMAGEMANAGER->FindImage("시작스테이지");
 
@@ -35,12 +35,12 @@ HRESULT startStage::init()
 	hp = 0;
 
 	SAVELOADMANAGER->linkPlayer(_player);
-	BULLETMANAGER->linkPlayer(_player);
+	//BULLETMANAGER->linkPlayer(_player);
 	_setRect->linkPlayer(_player);
 	_bar->linkPlayer(_player);
 
 
-	BULLETMANAGER->init("donut", 30, 400);
+	//BULLETMANAGER->init("donut", 30, 400);
 
 	return S_OK;
 }
@@ -53,13 +53,13 @@ void startStage::release()
 
 void startStage::update()
 {
-	_timer++;
+	/*_timer++;
 	if (_timer%5 == 0)
 	{
 		_timer = 0;
 		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
 	}
-	BULLETMANAGER->move();
+	BULLETMANAGER->move();*/
 
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
@@ -85,7 +85,7 @@ void startStage::render()
 
 	_player->render();
 	_bar->render();
-	BULLETMANAGER->render();
+	//BULLETMANAGER->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)

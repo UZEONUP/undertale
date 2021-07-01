@@ -7,8 +7,9 @@ HRESULT undybattle::init()
 	_bui = new battleUI;
 	_bui->init(0);
 
-	_undyState = new undyneFireArrowState;
+	_undyState = new undyneIdle;
 	_undyState->enter(this);
+	_undyState->linkundynebattle(this);
 
 	ImageManager::GetInstance()->AddFrameImage("und_hair", L"Undyne/Und_battle_hair.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("und_head", L"Undyne/Und_battle_head1.png", 1, 1);
@@ -19,6 +20,23 @@ HRESULT undybattle::init()
 	ImageManager::GetInstance()->AddFrameImage("und_legs", L"Undyne/Und_legs.png", 1, 1);
 	ImageManager::GetInstance()->AddFrameImage("battleback", L"Undyne/BATTLE_BACKGROUND.png", 1, 1);
 	ImageManager::GetInstance()->AddFrameImage("janSang", L"Undyne/Und_battle_slasheffect.png", 6, 1);
+
+	IMAGEMANAGER->AddImage("LEFTBULLET_OFF", L"Undyne/LEFT_ARROW_OFF.png");
+	IMAGEMANAGER->AddImage("RIGHTBULLET_OFF", L"Undyne/RIGHT_ARROW_OFF.png");
+	IMAGEMANAGER->AddImage("DOWNBULLET_OFF", L"Undyne/DOWN_ARROW_OFF.png");
+	IMAGEMANAGER->AddImage("UPBULLET_OFF", L"Undyne/UP_ARROW_OFF.png");
+
+	IMAGEMANAGER->AddImage("LEFTBULLET_ON", L"Undyne/LEFT_ARROW_ON.png");
+	IMAGEMANAGER->AddImage("RIGHTBULLET_ON", L"Undyne/RIGHT_ARROW_ON.png");
+	IMAGEMANAGER->AddImage("DOWNBULLET_ON", L"Undyne/DOWN_ARROW_ON.png");
+	IMAGEMANAGER->AddImage("UPBULLET_ON", L"Undyne/UP_ARROW_ON.png");
+
+	IMAGEMANAGER->AddImage("LEFTBULLET_FAKE", L"Undyne/LEFT_ARROW_FAKE.png");
+	IMAGEMANAGER->AddImage("RIGHTBULLET_FAKE", L"Undyne/RIGHT_ARROW_FAKE.png");
+	IMAGEMANAGER->AddImage("DOWNBULLET_FAKE", L"Undyne/DOWN_ARROW_FAKE.png");
+	IMAGEMANAGER->AddImage("UPBULLET_FAKE", L"Undyne/UP_ARROW_FAKE.png");
+
+	
 	currentFrameX = currentFrameY = 0;
 	_torso.x = WINSIZEX/2;
 	_torso.y = WINSIZEY/2 -150;
@@ -92,6 +110,11 @@ void undybattle::release()
 
 void undybattle::update()
 {
+	inputHandle();
+	_undyState->update(this);
+
+	
+
 	_count++;
 	
 	if (_bui->get_bubble_talk_count() == 0&&_count == 20) maxangle = true; // 처음에 하트를 초록색으로 바꿔줄때 사용
@@ -238,6 +261,8 @@ void undybattle::update()
 
 void undybattle::render()
 {
+	_undyState->render(this);
+	
 	if (_leftArm.isAttack)
 	{
 		if(angle<=-60)_jansang->autoFrameRender(_leftArm.janSang.left, _leftArm.janSang.top-50, currentFrameX, currentFrameY);
@@ -263,5 +288,17 @@ void undybattle::render()
 		D2DRENDER->DrawLine(PointMake(_shieldLine.lineCenter.x, _shieldLine.lineCenter.y)
 			, PointMake(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y), D2DRenderer::DefaultBrush::Blue, 1.0);
 		D2DRENDER->DrawRectangle(rc_shield, D2DRenderer::DefaultBrush::Blue, 4.f);
+	}
+	
+}
+
+void undybattle::inputHandle()
+{
+	undyneState* newState = _undyState->inputHandle(this);
+	if (newState != nullptr)
+	{
+		SAFE_DELETE(_undyState);
+		_undyState = newState;
+		_undyState->enter(this);
 	}
 }
