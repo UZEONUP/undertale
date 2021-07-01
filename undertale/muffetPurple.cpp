@@ -15,13 +15,13 @@ muffetStateBase * muffetPurple::inputHandle(muffetBattle * muffet)
 void muffetPurple::update(muffetBattle * muffet)
 {
 	_count++;
-	
+
 	for (int i = 0; i < _purpleBullet.size(); i++)
 	{
 		if (_count % 3 == 0)
 		{
-			_purpleBullet[i].y += 15;
-			_purpleBullet2[i].y += 15;
+			_purpleBullet[i].y += 10;
+			_purpleBullet2[i].y += 10;
 		}
 	}
 	if (_purple.bottom - _purple.top <
@@ -30,7 +30,7 @@ void muffetPurple::update(muffetBattle * muffet)
 		if (_count % 30 == 0)
 		{
 			bulletFrie();
-			if (_purpleBullet.size() >= 5) _purpleHeight += 20;
+			if (_purpleBullet.size() >= 5) _purpleHeight += 15;
 			_count = 0;
 		}
 	}
@@ -39,7 +39,7 @@ void muffetPurple::update(muffetBattle * muffet)
 	{
 		_purpleHeight = 0;
 	}
-	
+
 	_purple = RectMake(muffet->getUI()->get_main_rect().left, muffet->getUI()->get_main_rect().bottom - _purpleHeight,
 		muffet->getUI()->get_main_rect().right - muffet->getUI()->get_main_rect().left, _purpleHeight);
 }
@@ -49,7 +49,7 @@ void muffetPurple::enter(muffetBattle * muffet)
 	_stateName = "changePurple";
 	_count = 0;
 	_purpleHeight = 1;
-	
+
 	//보라색으로 채워지는 연출용 렉트
 	_purple = RectMake(muffet->getUI()->get_main_rect().left, muffet->getUI()->get_main_rect().bottom,
 		muffet->getUI()->get_main_rect().right - muffet->getUI()->get_main_rect().left, _purpleHeight);
@@ -59,7 +59,7 @@ void muffetPurple::enter(muffetBattle * muffet)
 	{
 		_startPoint[i].x = muffet->getUI()->get_main_rect().left + 10;
 		_startPoint[i].y = ((muffet->getUI()->get_main_rect().bottom - muffet->getUI()->get_main_rect().top) / 4 + muffet->getUI()->get_main_rect().top) + 40 * i;
-	
+
 		_endPoint[i].x = muffet->getUI()->get_main_rect().right - 10;
 		_endPoint[i].y = _startPoint[i].y;
 	}
@@ -72,8 +72,8 @@ void muffetPurple::render(muffetBattle * muffet)
 {
 	for (int i = 0; i < _purpleBullet.size(); i++)
 	{
-		if (_purpleBullet[i].y <= muffet->getUI()->get_main_rect().bottom -10) _purpleBullet[i].imag->Render(_purpleBullet[i].x, _purpleBullet[i].y);
-		if (_purpleBullet2[i].y <= muffet->getUI()->get_main_rect().bottom - 10) _purpleBullet2[i].imag->Render(_purpleBullet2[i].x, _purpleBullet2[i].y);
+		if (_purpleBullet[i].y <= muffet->getUI()->get_main_rect().bottom - 20) _purpleBullet[i].imag->Render(_purpleBullet[i].x, _purpleBullet[i].y);
+		if (_purpleBullet2[i].y <= muffet->getUI()->get_main_rect().bottom - 20) _purpleBullet2[i].imag->Render(_purpleBullet2[i].x, _purpleBullet2[i].y);
 	}
 
 	D2DRENDER->FillRectangle(_purple, D2DRenderer::DefaultBrush::Purple);
@@ -93,7 +93,7 @@ void muffetPurple::exit(muffetBattle * muffet)
 
 void muffetPurple::bulletFrie()
 {
-	if (_purpleBullet.size() <= 10)
+	if (_purpleBullet.size() <= 8)
 	{
 		purpleBullet _bullet;
 		_bullet.imag = ImageManager::GetInstance()->FindImage("muffet_puple");

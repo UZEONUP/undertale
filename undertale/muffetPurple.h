@@ -30,7 +30,7 @@ class muffetPurple : public muffetStateBase, public gameNode
 	POINT _startPoint[3];
 	POINT _endPoint[3];
 
-public :
+public:
 	virtual muffetStateBase* inputHandle(muffetBattle* muffet);
 	virtual void update(muffetBattle* muffet);
 	virtual void enter(muffetBattle* muffet);

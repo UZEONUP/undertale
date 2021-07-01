@@ -13,22 +13,14 @@ void muffetStateBase::heart_control(muffetBattle * muffet)
 	{
 		muffet->getUI()->set_inGame_heart_x(muffet->getUI()->getIGH().x + 3);
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_UP))
+	if (KEYMANAGER->isOnceKeyDown(VK_UP) && muffet->getUI()->getIGH().rc.top >= muffet->getUI()->get_main_rect().top + 40)
 	{
 		muffet->getUI()->set_inGame_heart_y(muffet->getUI()->getIGH().y - 40);
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && muffet->getUI()->getIGH().rc.bottom <= muffet->getUI()->get_main_rect().bottom - 40)
 	{
 		muffet->getUI()->set_inGame_heart_y(muffet->getUI()->getIGH().y + 40);
 	}
-	/*for (int i = 0; i < 3; i++)
-	{
-		_startPoint[i].x = muffet->getUI()->get_main_rect().left + 10;
-		_startPoint[i].y = ((muffet->getUI()->get_main_rect().bottom - muffet->getUI()->get_main_rect().top) / 4 + muffet->getUI()->get_main_rect().top) + 40 * i;
-
-		_endPoint[i].x = muffet->getUI()->get_main_rect().right - 10;
-		_endPoint[i].y = _startPoint[i].y;
-	}*/
 	//예외처리
 	if (muffet->getUI()->get_main_rect().left + 12 >= muffet->getUI()->getIGH().x)
 	{

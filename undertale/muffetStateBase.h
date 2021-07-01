@@ -4,9 +4,14 @@
 
 class muffetBattle;
 
-struct tagNet
+struct Bullet
 {
-	POINT starLinePoint, endLinePoint;
+	Image* image;
+	float x, y;
+	RECT rc;
+	bool direction;
+	float angle;
+	float speed;
 };
 class muffetStateBase : public gameNode
 {
@@ -19,6 +24,11 @@ protected:
 	Image* _imageName;
 	int _count;
 	int _currentFrameX, _currentFrameY;
+
+	vector<Bullet> _vBullet;
+
+	POINT _startPoint[5];
+	POINT _endPoint[5];
 
 public:
 	virtual muffetStateBase* inputHandle(muffetBattle* muffet) = 0;
@@ -37,4 +47,7 @@ public:
 	//void drawNet(muffetBattle* muffet);
 
 	void link(muffetBattle* muffet) { _muffet = muffet; }
+
+	vector<Bullet> getvBullet() { return _vBullet; }
+	RECT getBulletRect(int index) { return _vBullet[index].rc; }
 };

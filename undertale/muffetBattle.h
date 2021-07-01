@@ -46,8 +46,9 @@ class muffetBattle : public gameNode
 
 	int _downFixcel;
 
-	//이동할 수 있는 줄 수
-	POINT _netLine[5];
+	//무적 시간 여부
+	int _invincibility;
+	bool _isInvin;
 
 public:
 	virtual HRESULT init();
@@ -59,6 +60,7 @@ public:
 	void addMuffetImage();
 	void setImage();
 
+	void collision();
 
 	vector<tagImage> getMuffetImageV() { return _muffetV; }
 

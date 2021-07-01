@@ -291,6 +291,9 @@
     <ClInclude Include="muffetPurple.h">
       <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClInclude>
+    <ClInclude Include="muffetPattern5.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -471,6 +474,9 @@
       <Filter>playGround\enemy\muffet\muffetState\base</Filter>
     </ClCompile>
     <ClCompile Include="muffetPurple.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern5.cpp">
       <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClCompile>
   </ItemGroup>

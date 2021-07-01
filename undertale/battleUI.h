@@ -154,6 +154,8 @@ public:
 	//전투시간 조절 get, set
 	int getEnemy_attackTime_max() { return _enemy_attack_max; }
 	void setEnemy_attackTime_max(int maxTime) { _enemy_attack_max = maxTime; }
+	//현재전투시간 get하나 만들었습니다..
+	int getEnemy_attackTime() { return _enemy_attack_count; }
 	//턴 get
 	int getBattle_turn() { return _battle_turn; }
 	//상태 get

@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "muffetPattern4.h"
+#include "muffetPattern5.h"
 #include "muffetBattle.h"
 #include "muffetIdle.h"
 
-muffetStateBase * muffetPattern4::inputHandle(muffetBattle * muffet)
+muffetStateBase * muffetPattern5::inputHandle(muffetBattle * muffet)
 {
 	if (muffet->getUI()->getState() != INGAME)
 	{
@@ -12,7 +12,7 @@ muffetStateBase * muffetPattern4::inputHandle(muffetBattle * muffet)
 	return nullptr;
 }
 
-void muffetPattern4::update(muffetBattle * muffet)
+void muffetPattern5::update(muffetBattle * muffet)
 {
 	_fireRndNum = RND->getFromIntTo(0, 100);
 	if (_fireRndNum >= 95)
@@ -58,7 +58,7 @@ void muffetPattern4::update(muffetBattle * muffet)
 		}
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		_startPoint[i].x = muffet->getUI()->get_main_rect().left + 10;
 		_startPoint[i].y = ((muffet->getUI()->get_main_rect().bottom - muffet->getUI()->get_main_rect().top) / 4 + muffet->getUI()->get_main_rect().top) + 40 * i;
@@ -68,11 +68,11 @@ void muffetPattern4::update(muffetBattle * muffet)
 	}
 }
 
-void muffetPattern4::enter(muffetBattle * muffet)
+void muffetPattern5::enter(muffetBattle * muffet)
 {
 	_fireRndNum = 0;
 	muffet->getUI()->setEnemy_attackTime_max(500);
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		_startPoint[i].x = muffet->getUI()->get_main_rect().left + 10;
 		_startPoint[i].y = ((muffet->getUI()->get_main_rect().bottom - muffet->getUI()->get_main_rect().top) / 4 + muffet->getUI()->get_main_rect().top) + 40 * i;
@@ -85,13 +85,16 @@ void muffetPattern4::enter(muffetBattle * muffet)
 	_dounutCount = 0;
 
 	muffet->getUI()->set_inGame_heart_y(_startPoint[2].y);
-	muffet->getUI()->setEnemy_attackTime_max(500);
+	muffet->getUI()->setEnemy_attackTime_max(700);
 }
 
-void muffetPattern4::render(muffetBattle * muffet)
+void muffetPattern5::render(muffetBattle * muffet)
 {
-	muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
-
+	//시간마다 렉트 모양 변하도록
+	if (muffet->getUI()->getEnemy_attackTime() <= 300) muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
+	else if (muffet->getUI()->getEnemy_attackTime() <= 350) muffet->getUI()->main_rect_control_customizing(true, 7, 400, 150);
+	else if (muffet->getUI()->getEnemy_attackTime() > 350) muffet->getUI()->main_rect_control_customizing(true, 5, 250, 300);
+	
 	if (_vBullet.size() != 0)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
@@ -107,19 +110,23 @@ void muffetPattern4::render(muffetBattle * muffet)
 		}
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		D2DRENDER->DrawLine(_startPoint[i], _endPoint[i], D2DRenderer::DefaultBrush::Purple);
+		if (_startPoint[i].y >= muffet->getUI()->get_main_rect().top &&
+			_startPoint[i].y <= muffet->getUI()->get_main_rect().bottom)
+		{
+			D2DRENDER->DrawLine(_startPoint[i], _endPoint[i], D2DRenderer::DefaultBrush::Purple);
+		}
 	}
 }
 
-void muffetPattern4::exit(muffetBattle * muffet)
+void muffetPattern5::exit(muffetBattle * muffet)
 {
 }
 
-void muffetPattern4::spiderBulletFire(muffetBattle * muffet, bool way)
+void muffetPattern5::spiderBulletFire(muffetBattle * muffet, bool way)
 {
-	if (_vBullet.size() < 8)
+	if (_vBullet.size() < 10)
 	{
 		Bullet _spider;
 
@@ -132,20 +139,20 @@ void muffetPattern4::spiderBulletFire(muffetBattle * muffet, bool way)
 
 		_vBullet.push_back(_spider);
 	}
-	else if (_vBullet.size() >= 8 && _dounutCount <= 2) //거미 7개 뿌리면 도넛 3개를 발사
-	{
-		Bullet _dounut;
+	//if (_vBullet.size())
+	//else if (_vBullet.size() >= 8 && _dounutCount <= 2) //거미 7개 뿌리면 도넛 3개를 발사
+	//{
+	//	Bullet _dounut;
 
-		_dounut.image = IMAGEMANAGER->FindImage("muffet_dounut");
-		_dounut.x = 135;
-		_dounut.y = 310;
-		_dounut.rc = RectMake(_dounut.x, _dounut.y, _dounut.image->GetWidth(), _dounut.image->GetHeight());
-		_dounut.direction = _way;
-		if (way) _dounut.angle = 0.6;
-		else _dounut.angle = 5.8;
+	//	_dounut.image = IMAGEMANAGER->FindImage("muffet_dounut");
+	//	_dounut.x = 135;
+	//	_dounut.y = 310;
+	//	_dounut.rc = RectMake(_dounut.x, _dounut.y, _dounut.image->GetWidth(), _dounut.image->GetHeight());
+	//	_dounut.direction = _way;
+	//	if (way) _dounut.angle = 0.6;
+	//	else _dounut.angle = 5.8;
 
-		_vBullet.push_back(_dounut);
-		_dounutCount++;
-	}
+	//	_vBullet.push_back(_dounut);
+	//	_dounutCount++;
+	//}
 }
-

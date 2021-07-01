@@ -19,6 +19,8 @@ HRESULT muffetBattle::init()
 	_downFixcel = 0;
 	i = 0;
 
+	_invincibility = 0;
+	_isInvin = false;
 	return S_OK;
 }
 
@@ -51,15 +53,17 @@ void muffetBattle::update()
 		if (i >= _muffetV.size()) i = 0;
 		_count = 0;
 	}
+
+	inPutHandle();
+
 	_muffetState->update(this);
 	_muffetState->heart_control(this);
 	_btUI->update();
+	collision();
 }
 
 void muffetBattle::render()
 {
-	inPutHandle();
-
 	for (int i = 0; i < _muffetV.size(); i++)
 	{
 		if (_muffetV[i].isFrameImage)
@@ -92,6 +96,34 @@ void muffetBattle::inPutHandle()
 		_muffetState->enter(this);
 	}
 }
+
+
+void muffetBattle::collision()
+{
+	//총알 충돌
+	for (int i = 0; i < _muffetState->getvBullet().size(); i++)
+	{
+		if (IsCollision(_btUI->getIGH().rc, _muffetState->getBulletRect(i)) && !_isInvin)
+		{
+			_btUI->set_inGame_heart_currentHp(_btUI->getIGH().currentHP - 5);
+
+			_isInvin = true;
+		}
+	}
+	//무적 시간 계산
+	if (_isInvin)
+	{
+		_invincibility++;
+		if (_invincibility % 30 == 0)
+		{
+			_isInvin = false;
+			_invincibility = 0;
+		}
+	}
+}
+
+
+
 //이미지 애드. (깁니다)
 void muffetBattle::addMuffetImage()
 {
