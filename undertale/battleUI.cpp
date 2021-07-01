@@ -85,6 +85,11 @@ HRESULT battleUI::init(int bossName)
 	_heartPlayer.speed = 3.0f;
 
 	
+	_heartPlayer.maxHP = 50;
+	_heartPlayer.currentHP = 50;
+
+	_bar = new progressBar;
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 + 170, 60, 30);
 
 
 	//폰트추가
@@ -141,19 +146,9 @@ void battleUI::release()
 }
 
 void battleUI::update()
-{
-	/*if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _cannon.angle < PI / 2)
-	{
-		up = true;
-	}
-	if (up)
-	{
-		_cannon.angle += PI / 3;
-		if (_cannon.angle > PI / 2) _cannon.angle = PI / 2;
-	}*/
-
-	
-
+{	
+	_bar->update();
+	_bar->setGauge(_heartPlayer.currentHP, _heartPlayer.maxHP);
 
 	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
 	if (isTurn == TALK_BUBBLE)
@@ -448,6 +443,9 @@ void battleUI::update()
 
 void battleUI::render()
 {
+	_bar->render();
+
+
 	//선택창 텍스트
 	if (_menu_input1_count != 0 && !_isMercy && !_menu_action_click)
 	{
