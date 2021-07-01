@@ -46,7 +46,7 @@ void startStage::release()
 void startStage::update()
 {
 	_timer++;
-	if (_timer%2 == 0)
+	if (_timer%5 == 0)
 	{
 		_timer = 0;
 		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));

@@ -94,7 +94,7 @@ void Image::Render(const float X, const float Y, const float scaleW, const float
 
 void Image::bulletRender(const float X, const float Y, const float degreeAngle, const float rotateX, const float rotateY)
 {
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(X + rotateX, Y + rotateY));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX, Y + rotateY));
 
 	
 	float cameraX = X - CAMERAMANAGER->getX();

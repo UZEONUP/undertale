@@ -82,6 +82,12 @@
     <Filter Include="playGround\enemy\sans\sans_pattern">
       <UniqueIdentifier>{5fc903ed-7be4-463c-b5d2-e562202dfe00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState">
+      <UniqueIdentifier>{7b3133dc-e394-4323-a86d-3fbdb9dc24d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState\muffetStateBase">
+      <UniqueIdentifier>{0f7f1db0-1f87-4ea3-89c9-a3552c19913a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -243,6 +249,18 @@
     <ClInclude Include="bulletManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>playGround\enemy\muffet</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetStateBase.h">
+      <Filter>playGround\enemy\muffet\muffetState\muffetStateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetIdle.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern1.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -388,6 +406,18 @@
     </ClCompile>
     <ClCompile Include="bulletManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>playGround\enemy\muffet</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetStateBase.cpp">
+      <Filter>playGround\enemy\muffet\muffetState\muffetStateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetIdle.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern1.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
