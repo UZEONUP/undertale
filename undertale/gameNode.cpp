@@ -38,7 +38,7 @@ HRESULT gameNode::init(bool managerInit)
 
 		SAVELOADMANAGER->init();
 
-
+		INVENTORY->init();
 	}
 
 
@@ -79,6 +79,8 @@ void gameNode::release()
 		BULLETMANAGER->release();
 		BULLETMANAGER->releaseSingleton();
 
+		INVENTORY->release();
+		INVENTORY->releaseSingleton();
 	}
 	
 	ReleaseDC(_hWnd, _hdc);

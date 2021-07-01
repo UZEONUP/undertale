@@ -5,6 +5,11 @@ HRESULT startStage::init()
 {
 	IMAGEMANAGER->AddImage("donut", L"Undyne/Und_bullet.png");
 	IMAGEMANAGER->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
+	IMAGEMANAGER->AddImage("bush1", L"오브젝트이미지/bush1.png");
+	IMAGEMANAGER->AddImage("bush2", L"오브젝트이미지/bush2.png");
+
+	bush = IMAGEMANAGER->FindImage("bush1");
+
 	_backGround = IMAGEMANAGER->FindImage("시작스테이지");
 
 	CAMERAMANAGER->setMapCamera(1360, 520);
@@ -31,7 +36,7 @@ HRESULT startStage::init()
 
 	_timer = 0;
 	_bar = new progressBar;
-	_bar->init(WINSIZEX / 2, WINSIZEY / 2 - 100,300,10);
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 - 100,60,30);
 	hp = 0;
 
 	SAVELOADMANAGER->linkPlayer(_player);
@@ -39,6 +44,7 @@ HRESULT startStage::init()
 	_setRect->linkPlayer(_player);
 	_bar->linkPlayer(_player);
 
+	vector<tagPlayer*> object = _player->getVobject();
 
 	BULLETMANAGER->init("donut", 30, 400);
 
@@ -54,11 +60,17 @@ void startStage::release()
 void startStage::update()
 {
 	_timer++;
-	if (_timer%5 == 0)
+	if (_timer%20 == 0)
 	{
+
+
+		if(RND->getInt(2)==1)bush = IMAGEMANAGER->FindImage("bush2");
+		else bush = IMAGEMANAGER->FindImage("bush1");
 		_timer = 0;
+
 		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
 	}
+
 	BULLETMANAGER->move();
 
 	if (IsCollision(_player->getBRect(), _sceneRect))
@@ -84,8 +96,11 @@ void startStage::render()
 	_backGround->mapRender(0, 0);
 
 	_player->render();
+	bush->mapRender(WINSIZEX / 2, WINSIZEY / 2);
 	_bar->render();
 	BULLETMANAGER->render();
+
+
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)

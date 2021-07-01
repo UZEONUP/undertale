@@ -65,7 +65,6 @@ void bulletManager::move()
 
 void bulletManager::fire(float fireX, float fireY, float angle)
 {
-	cout << angle << endl;
 	tagBullet newBullet;
 	ZeroMemory(&newBullet, sizeof(tagBullet));
 	newBullet.img = _img;

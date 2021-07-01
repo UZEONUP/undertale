@@ -17,7 +17,7 @@ private:
 public:
 	enum class DefaultBrush : UINT
 	{
-		White = 0, Black, Yellow, Red, Blue, Green, Gray, End
+		White = 0, Black, Yellow, Red, Blue, Green, Gray, Purple, End
 	};
 private:
 	typedef map<wstring, IDWriteTextFormat*>::iterator TextIter;

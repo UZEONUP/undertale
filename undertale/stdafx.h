@@ -40,6 +40,7 @@ using namespace UJN_UTIL;
 #include "cameraManager.h"
 #include "saveLoadManager.h"
 #include "bulletManager.h"
+#include "invenManager.h"
 
 
 //MS VS버전이 올라가면서 기존의 문자열 함수의 안정성을 올리기위해
@@ -64,6 +65,7 @@ using namespace UJN_UTIL;
 #define CAMERAMANAGER cameraManager::getSingleton()
 #define SAVELOADMANAGER saveLoadManager::getSingleton()
 #define BULLETMANAGER bulletManager::getSingleton()
+#define INVENTORY invenManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}

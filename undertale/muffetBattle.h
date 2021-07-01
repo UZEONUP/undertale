@@ -1,7 +1,6 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
-#include "bullet.h"
 #include "battleUI.h"
 #include "muffetStateBase.h"
 
@@ -30,7 +29,7 @@ enum MUFFET
 class muffetBattle : public gameNode
 {
 	tagImage _mfImage;
-	bullet* _bullet;
+	//bullet* _bullet;
 	battleUI* _btUI;
 
 	vector<tagImage> _muffetV;
@@ -46,6 +45,11 @@ class muffetBattle : public gameNode
 	int i;
 
 	int _downFixcel;
+
+	//무적 시간 여부
+	int _invincibility;
+	bool _isInvin;
+
 public:
 	virtual HRESULT init();
 	virtual void release();
@@ -54,7 +58,12 @@ public:
 
 	void inPutHandle();
 	void addMuffetImage();
+	void setImage();
+
+	void collision();
 
 	vector<tagImage> getMuffetImageV() { return _muffetV; }
+
+	battleUI* getUI() { return _btUI; }
 };
 

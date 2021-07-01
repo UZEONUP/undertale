@@ -30,6 +30,7 @@ HRESULT sansBattle::init()
 	IMAGEMANAGER->AddFrameImage("»÷Áî_À§°ø°Ý", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackUp_62_73_5.png", 5, 1);
 	IMAGEMANAGER->AddFrameImage("»÷Áî_¿À¸¥ÂÊ°ø°Ý", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackRight_97_48_6.png", 6, 1);
 	IMAGEMANAGER->AddFrameImage("»÷Áî_¿ÞÂÊ°ø°Ý", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_attackLeft_97_48_6.png", 6, 1);
+	IMAGEMANAGER->AddFrameImage("·¹ÀÌÀú_¹Ùµð", L"»÷ÁîÀÌ¹ÌÁö/»÷Áî_laser_43_57_6.png", 6, 1);
 	IMAGEMANAGER->AddImage("»À´Ù±Í_20", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_20.png");
 	IMAGEMANAGER->AddImage("»À´Ù±Í_40", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_40.png");
 	IMAGEMANAGER->AddImage("»À´Ù±Í_50", L"»÷ÁîÀÌ¹ÌÁö/»À´Ù±Í_10_50.png");
@@ -96,6 +97,7 @@ void sansBattle::release()
 
 void sansBattle::update()
 {
+	collision();
 	InputHandle();
 	_state->update(this);
 	//¸»Ç³¼± ´ë»ç Ä«¿îÆ® 4¶ó¸é
@@ -144,6 +146,33 @@ void sansBattle::render()
 	_sans_head.img->bossFrameRender(_sans_head.rc.left, _sans_head.rc.top, _sans_head.currentFrameX, _sans_head.currentFrameY);
 
 	_ui->render();
+}
+//Ãæµ¹
+void sansBattle::collision()
+{
+	for (int i = 0; i < BONEMAX50; i++) 
+	{
+		if (IsCollision(_state->get_bone_20_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_40_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_50_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_100_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get__laser_bim_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+	}	
 }
 
 

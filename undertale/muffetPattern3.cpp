@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "muffetPattern1.h"
+#include "muffetPattern3.h"
 #include "muffetBattle.h"
 #include "muffetIdle.h"
 
-muffetStateBase * muffetPattern1::inputHandle(muffetBattle * muffet)
+muffetStateBase * muffetPattern3::inputHandle(muffetBattle * muffet)
 {
 	if (muffet->getUI()->getState() != INGAME)
 	{
@@ -12,16 +12,22 @@ muffetStateBase * muffetPattern1::inputHandle(muffetBattle * muffet)
 	return nullptr;
 }
 
-void muffetPattern1::update(muffetBattle * muffet)
+void muffetPattern3::update(muffetBattle * muffet)
 {
 	_fireRndNum = RND->getFromIntTo(0, 100);
-	if (_fireRndNum >= 95) spiderBulletFire(muffet);
+	if (_fireRndNum >= 95)
+	{
+		if (_fireRndNum % 2 == 0) _way = true;
+		else if (_fireRndNum % 2 == 1) _way = false;
+		spiderBulletFire(muffet, _way);
+	}
 
 	if (_vBullet.size() != 0)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			_vBullet[i].x -= 5;
+			if (_vBullet[i].direction) _vBullet[i].x += 5;
+			if (!_vBullet[i].direction) _vBullet[i].x -= 5;
 			_vBullet[i].rc = RectMake(_vBullet[i].x, _vBullet[i].y, _vBullet[i].image->GetWidth(), _vBullet[i].image->GetHeight());
 		}
 	}
@@ -35,9 +41,8 @@ void muffetPattern1::update(muffetBattle * muffet)
 	}
 }
 
-void muffetPattern1::enter(muffetBattle * muffet)
+void muffetPattern3::enter(muffetBattle * muffet)
 {
-
 	_fireRndNum = 0;
 	muffet->getUI()->setEnemy_attackTime_max(500);
 	for (int i = 0; i < 3; i++)
@@ -49,13 +54,13 @@ void muffetPattern1::enter(muffetBattle * muffet)
 		_endPoint[i].y = _startPoint[i].y;
 	}
 
-	increase = false;
+	_way = false;
 
 	muffet->getUI()->set_inGame_heart_y(_startPoint[2].y);
 	muffet->getUI()->setEnemy_attackTime_max(500);
 }
 
-void muffetPattern1::render(muffetBattle * muffet)
+void muffetPattern3::render(muffetBattle * muffet)
 {
 	muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
 
@@ -63,13 +68,13 @@ void muffetPattern1::render(muffetBattle * muffet)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			if (_vBullet[i].x >= 135)
+			if ((_vBullet[i].direction && _vBullet[i].x <= 535) || (!_vBullet[i].direction && _vBullet[i].x >= 135))
 			{
 				_vBullet[i].image->Render(_vBullet[i].x, _vBullet[i].y);
-				if (KEYMANAGER->isToggleKey(VK_F1))
-				{
-					D2DRENDER->DrawRectangle(_vBullet[i].rc, D2DRenderer::DefaultBrush::Red);
-				}
+			}
+			if (KEYMANAGER->isToggleKey(VK_F1))
+			{
+				D2DRENDER->DrawRectangle(_vBullet[i].rc, D2DRenderer::DefaultBrush::Red);
 			}
 		}
 	}
@@ -78,20 +83,23 @@ void muffetPattern1::render(muffetBattle * muffet)
 	{
 		D2DRENDER->DrawLine(_startPoint[i], _endPoint[i], D2DRenderer::DefaultBrush::Purple);
 	}
-
 }
 
-void muffetPattern1::exit(muffetBattle * muffet)
+void muffetPattern3::exit(muffetBattle * muffet)
 {
 }
 
-void muffetPattern1::spiderBulletFire(muffetBattle * muffet)
+void muffetPattern3::spiderBulletFire(muffetBattle * muffet, bool way)
 {
 	Bullet _spider;
+
 	_spider.image = IMAGEMANAGER->FindImage("muffet_spider");
-	_spider.x = 535;
+	if (way) _spider.x = 135;
+	else _spider.x = 535;
 	_spider.y = muffet->getUI()->getIGH().rc.top;
 	_spider.rc = RectMake(_spider.x, _spider.y, _spider.image->GetWidth(), _spider.image->GetHeight());
+	_spider.direction = _way;
 
 	_vBullet.push_back(_spider);
 }
+

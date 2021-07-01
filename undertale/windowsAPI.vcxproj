@@ -161,6 +161,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
+    <ClInclude Include="invenManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
@@ -168,6 +169,11 @@
     <ClInclude Include="muffetBattle.h" />
     <ClInclude Include="muffetIdle.h" />
     <ClInclude Include="muffetPattern1.h" />
+    <ClInclude Include="muffetPattern2.h" />
+    <ClInclude Include="muffetPattern3.h" />
+    <ClInclude Include="muffetPattern4.h" />
+    <ClInclude Include="muffetPattern5.h" />
+    <ClInclude Include="muffetPurple.h" />
     <ClInclude Include="muffetStateBase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
@@ -180,6 +186,8 @@
     <ClInclude Include="sans_state_attack2.h" />
     <ClInclude Include="sans_state_attack3.h" />
     <ClInclude Include="sans_state_attack4.h" />
+    <ClInclude Include="sans_state_attack5.h" />
+    <ClInclude Include="sans_state_attack6.h" />
     <ClInclude Include="sans_state_idle.h" />
     <ClInclude Include="saveLoadManager.h" />
     <ClInclude Include="sceneManager.h" />
@@ -222,12 +230,18 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
+    <ClCompile Include="invenManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="muffet.cpp" />
     <ClCompile Include="muffetBattle.cpp" />
     <ClCompile Include="muffetIdle.cpp" />
     <ClCompile Include="muffetPattern1.cpp" />
+    <ClCompile Include="muffetPattern2.cpp" />
+    <ClCompile Include="muffetPattern3.cpp" />
+    <ClCompile Include="muffetPattern4.cpp" />
+    <ClCompile Include="muffetPattern5.cpp" />
+    <ClCompile Include="muffetPurple.cpp" />
     <ClCompile Include="muffetStateBase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
@@ -238,6 +252,8 @@
     <ClCompile Include="sans_state_attack2.cpp" />
     <ClCompile Include="sans_state_attack3.cpp" />
     <ClCompile Include="sans_state_attack4.cpp" />
+    <ClCompile Include="sans_state_attack5.cpp" />
+    <ClCompile Include="sans_state_attack6.cpp" />
     <ClCompile Include="sans_state_idle.cpp" />
     <ClCompile Include="saveLoadManager.cpp" />
     <ClCompile Include="sceneManager.cpp" />

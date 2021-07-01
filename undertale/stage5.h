@@ -24,10 +24,14 @@ private:
 	vector<tagItemInfo>			_vIterItem;
 
 	Image* _backGround;
+	Image* buy[2];
+	Image* sell[2];
+
 
 	RECT _shopRect;
 
 	int i;
+	int choiceY;
 
 public :
 	virtual HRESULT init();

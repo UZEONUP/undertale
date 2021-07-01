@@ -127,7 +127,11 @@ HRESULT battleUI::init(int bossName)
 	talk_bubble_start(_boss_bubble, 1);
 	talk_main_start(_boss_main, 1);
 
+	_heartPlayer.maxHP = 50;
+	_heartPlayer.currentHP = 50;
 
+	_bar = new progressBar;
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 + 170, 60, 30);
 
 	return S_OK;
 }
@@ -138,6 +142,10 @@ void battleUI::release()
 
 void battleUI::update()
 {
+	_bar->update();
+	if (_heartPlayer.currentHP <= 0)_heartPlayer.currentHP = 0;
+	_bar->setGauge(_heartPlayer.currentHP, _heartPlayer.maxHP);
+
 	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
 	if (isTurn == TALK_BUBBLE)
 	{
@@ -425,6 +433,8 @@ void battleUI::update()
 
 void battleUI::render()
 {
+	_bar->render();
+
 	//선택창 텍스트
 	if (_menu_input1_count != 0 && !_isMercy && !_menu_action_click)
 	{

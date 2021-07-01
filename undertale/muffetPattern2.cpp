@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "muffetPattern1.h"
+#include "muffetPattern2.h"
 #include "muffetBattle.h"
 #include "muffetIdle.h"
 
-muffetStateBase * muffetPattern1::inputHandle(muffetBattle * muffet)
+muffetStateBase * muffetPattern2::inputHandle(muffetBattle * muffet)
 {
 	if (muffet->getUI()->getState() != INGAME)
 	{
@@ -12,7 +12,7 @@ muffetStateBase * muffetPattern1::inputHandle(muffetBattle * muffet)
 	return nullptr;
 }
 
-void muffetPattern1::update(muffetBattle * muffet)
+void muffetPattern2::update(muffetBattle * muffet)
 {
 	_fireRndNum = RND->getFromIntTo(0, 100);
 	if (_fireRndNum >= 95) spiderBulletFire(muffet);
@@ -21,7 +21,7 @@ void muffetPattern1::update(muffetBattle * muffet)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			_vBullet[i].x -= 5;
+			_vBullet[i].x += 5;
 			_vBullet[i].rc = RectMake(_vBullet[i].x, _vBullet[i].y, _vBullet[i].image->GetWidth(), _vBullet[i].image->GetHeight());
 		}
 	}
@@ -35,9 +35,8 @@ void muffetPattern1::update(muffetBattle * muffet)
 	}
 }
 
-void muffetPattern1::enter(muffetBattle * muffet)
+void muffetPattern2::enter(muffetBattle * muffet)
 {
-
 	_fireRndNum = 0;
 	muffet->getUI()->setEnemy_attackTime_max(500);
 	for (int i = 0; i < 3; i++)
@@ -55,7 +54,7 @@ void muffetPattern1::enter(muffetBattle * muffet)
 	muffet->getUI()->setEnemy_attackTime_max(500);
 }
 
-void muffetPattern1::render(muffetBattle * muffet)
+void muffetPattern2::render(muffetBattle * muffet)
 {
 	muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
 
@@ -63,7 +62,7 @@ void muffetPattern1::render(muffetBattle * muffet)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			if (_vBullet[i].x >= 135)
+			if (_vBullet[i].x <= 535)
 			{
 				_vBullet[i].image->Render(_vBullet[i].x, _vBullet[i].y);
 				if (KEYMANAGER->isToggleKey(VK_F1))
@@ -78,18 +77,17 @@ void muffetPattern1::render(muffetBattle * muffet)
 	{
 		D2DRENDER->DrawLine(_startPoint[i], _endPoint[i], D2DRenderer::DefaultBrush::Purple);
 	}
-
 }
 
-void muffetPattern1::exit(muffetBattle * muffet)
+void muffetPattern2::exit(muffetBattle * muffet)
 {
 }
 
-void muffetPattern1::spiderBulletFire(muffetBattle * muffet)
+void muffetPattern2::spiderBulletFire(muffetBattle * muffet)
 {
 	Bullet _spider;
 	_spider.image = IMAGEMANAGER->FindImage("muffet_spider");
-	_spider.x = 535;
+	_spider.x = 135;
 	_spider.y = muffet->getUI()->getIGH().rc.top;
 	_spider.rc = RectMake(_spider.x, _spider.y, _spider.image->GetWidth(), _spider.image->GetHeight());
 

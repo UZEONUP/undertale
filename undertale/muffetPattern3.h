@@ -1,30 +1,27 @@
 #pragma once
 #include "muffetStateBase.h"
+#include <vector>
 
 class muffetBattle;
 
-struct MiniSpider
+class muffetPattern3 : public muffetStateBase
 {
-	Image* image;
-	float x, y;
-	float speed;
-	int count;
-	int currentFrameX;
-};
-class muffetIdle :public muffetStateBase
-{
-	MiniSpider _minispider;
-	MiniSpider _menuPan;
+	Bullet _spider;
 
-	Image* _menu;
-	Image* _menu2;
+	POINT _startPoint[3];
+	POINT _endPoint[3];
 
-	//battleUI* _ui;
+	int _fireRndNum;
+
+	bool _way;
+
 public:
 	virtual muffetStateBase* inputHandle(muffetBattle* muffet);
 	virtual void update(muffetBattle* muffet);
 	virtual void enter(muffetBattle* muffet);
 	virtual void render(muffetBattle* muffet);
 	virtual void exit(muffetBattle* muffet);
+
+	void spiderBulletFire(muffetBattle * muffet, bool way);
 };
 

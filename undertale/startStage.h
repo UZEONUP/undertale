@@ -15,6 +15,9 @@ class startStage : public gameNode
 
 	int _timer;
 
+	Image* bush;
+
+
 public :
 	virtual HRESULT init();
 	virtual void release();

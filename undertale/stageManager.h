@@ -11,6 +11,7 @@
 #include "stage7.h"
 #include "undybattle.h"
 #include "sansBattle.h"
+#include "muffetBattle.h"
 
 class player;
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "progressBar.h"
+
 //메인렉트 컨트롤
 struct rc_control
 {
@@ -51,6 +53,9 @@ private:
 	Image* _speechBubble;
 	Image* _attack_ground;
 	battle_bar _attack_bar;
+
+	progressBar* _bar;
+	float _hp;
 
 	int daCount;
 	int daCount2;
@@ -149,6 +154,8 @@ public:
 	//전투시간 조절 get, set
 	int getEnemy_attackTime_max() { return _enemy_attack_max; }
 	void setEnemy_attackTime_max(int maxTime) { _enemy_attack_max = maxTime; }
+	//현재전투시간 get하나 만들었습니다..
+	int getEnemy_attackTime() { return _enemy_attack_count; }
 	//턴 get
 	int getBattle_turn() { return _battle_turn; }
 	//상태 get
@@ -163,6 +170,8 @@ public:
 	void set_inGame_heart_x(float inGameHeart_x) { _heartPlayer.x = inGameHeart_x; }
 	void set_inGame_heart_y(float inGameHeart_y) { _heartPlayer.y = inGameHeart_y; }
 	void set_inGame_heart_rc(RECT inGameHeart_rc) { _heartPlayer.rc = inGameHeart_rc; }
+	//현재체력
+	void set_inGame_heart_currentHp(float currentHp) { _heartPlayer.currentHP = currentHp; }
 
 
 };
