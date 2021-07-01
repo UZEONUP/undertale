@@ -85,6 +85,12 @@
     <Filter Include="2DGameFramework\progressBar">
       <UniqueIdentifier>{ee62a098-ef97-4b9d-8456-fac2e92e0b42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState">
+      <UniqueIdentifier>{17e8b1c3-d537-4757-8eda-b8bc992eca86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState\base">
+      <UniqueIdentifier>{58a9289d-3fd1-4bf2-8148-0b3de93ed4a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -246,11 +252,20 @@
     <ClInclude Include="bulletManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="muffetBattle.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="progressBar.h">
       <Filter>2DGameFramework\progressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>playGround\enemy\muffet</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetStateBase.h">
+      <Filter>playGround\enemy\muffet\muffetState\base</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetIdle.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern1.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -398,11 +413,20 @@
     <ClCompile Include="bulletManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="muffetBattle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="progressBar.cpp">
       <Filter>2DGameFramework\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>playGround\enemy\muffet</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetStateBase.cpp">
+      <Filter>playGround\enemy\muffet\muffetState\base</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern1.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetIdle.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
