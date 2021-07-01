@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "progressBar.h"
+
 //메인렉트 컨트롤
 struct rc_control
 {
@@ -51,6 +53,9 @@ private:
 	Image* _speechBubble;
 	Image* _attack_ground;
 	battle_bar _attack_bar;
+
+	progressBar* _bar;
+	float _hp;
 
 	int daCount;
 	int daCount2;
@@ -163,6 +168,8 @@ public:
 	void set_inGame_heart_x(float inGameHeart_x) { _heartPlayer.x = inGameHeart_x; }
 	void set_inGame_heart_y(float inGameHeart_y) { _heartPlayer.y = inGameHeart_y; }
 	void set_inGame_heart_rc(RECT inGameHeart_rc) { _heartPlayer.rc = inGameHeart_rc; }
+	//현재체력
+	void set_inGame_heart_currentHp(float currentHp) { _heartPlayer.currentHP = currentHp; }
 
 
 };
