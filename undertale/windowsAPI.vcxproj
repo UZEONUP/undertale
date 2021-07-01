@@ -180,6 +180,8 @@
     <ClInclude Include="sans_state_attack2.h" />
     <ClInclude Include="sans_state_attack3.h" />
     <ClInclude Include="sans_state_attack4.h" />
+    <ClInclude Include="sans_state_attack5.h" />
+    <ClInclude Include="sans_state_attack6.h" />
     <ClInclude Include="sans_state_idle.h" />
     <ClInclude Include="saveLoadManager.h" />
     <ClInclude Include="sceneManager.h" />
@@ -238,6 +240,8 @@
     <ClCompile Include="sans_state_attack2.cpp" />
     <ClCompile Include="sans_state_attack3.cpp" />
     <ClCompile Include="sans_state_attack4.cpp" />
+    <ClCompile Include="sans_state_attack5.cpp" />
+    <ClCompile Include="sans_state_attack6.cpp" />
     <ClCompile Include="sans_state_idle.cpp" />
     <ClCompile Include="saveLoadManager.cpp" />
     <ClCompile Include="sceneManager.cpp" />

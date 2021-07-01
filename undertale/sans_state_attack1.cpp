@@ -13,7 +13,7 @@ sans_state * sans_state_attack1::inputHandle(sansBattle * sansBattle)
 void sans_state_attack1::enter(sansBattle * sansBattle)
 {
 	sansBattle->getUI()->setEnemy_attackTime_max(300);
-	_bone_speed = 2.5f;
+	_bone_speed = 2.f;
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
 		_bone_20[i].x = i * 100 - 800;
@@ -53,8 +53,9 @@ void sans_state_attack1::enter(sansBattle * sansBattle)
 
 void sans_state_attack1::update(sansBattle * sansBattle)
 {
+	heart_control(sansBattle, true, 0.45f, 6);
 	sansBattle->getUI()->main_rect_control_customizing(true, 20, 400, 170);
-	
+
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
 		_bone_20[i].x += _bone_speed;

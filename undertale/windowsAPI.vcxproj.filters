@@ -267,6 +267,12 @@
     <ClInclude Include="testScene.h">
       <Filter>playGround\test</Filter>
     </ClInclude>
+    <ClInclude Include="sans_state_attack6.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="sans_state_attack5.h">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -430,6 +436,12 @@
     </ClCompile>
     <ClCompile Include="testScene.cpp">
       <Filter>playGround\test</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack6.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="sans_state_attack5.cpp">
+      <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

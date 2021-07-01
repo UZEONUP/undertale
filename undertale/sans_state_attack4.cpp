@@ -13,7 +13,7 @@ sans_state * sans_state_attack4::inputHandle(sansBattle * sansBattle)
 
 void sans_state_attack4::enter(sansBattle * sansBattle)
 {
-	sansBattle->getUI()->setEnemy_attackTime_max(500);
+	sansBattle->getUI()->setEnemy_attackTime_max(300);
 	_bone_speed = 2.f;
 
 	for (int i = 0; i < BONEMAX50; i++)
@@ -26,7 +26,7 @@ void sans_state_attack4::enter(sansBattle * sansBattle)
 		_bone_20[i].img = IMAGEMANAGER->FindImage("ª¿¥Ÿ±Õ_20");
 
 		_foothold[i].x = i * 200 - 1000;
-		_foothold[i].y = 300;
+		_foothold[i].y = 330;
 		_foothold[i].width = 57;
 		_foothold[i].hieght = 10;
 		_foothold[i].rc = RectMakeCenter(_foothold[i].x, _foothold[i].y, _foothold[i].width, _foothold[i].hieght);
@@ -36,7 +36,7 @@ void sans_state_attack4::enter(sansBattle * sansBattle)
 
 void sans_state_attack4::update(sansBattle * sansBattle)
 {
-	heart_control(sansBattle);
+	heart_control(sansBattle, true, 0.3f, 10);
 	sansBattle->getUI()->main_rect_control_customizing(true, 20, 360, 170);
 	//¿Ãµø
 	for (int i = 0; i < BONEMAX50; i++)
@@ -48,15 +48,21 @@ void sans_state_attack4::update(sansBattle * sansBattle)
 		_foothold[i].rc = RectMakeCenter(_foothold[i].x, _foothold[i].y, _foothold[i].width, _foothold[i].hieght);
 	}
 	//√Êµπ
-	for (int i = 0; i < BONEMAX50; i++) 
+	for (int i = 0; i < BONEMAX50; i++)
 	{
 		if (_foothold[i].rc.top < sansBattle->getUI()->getIGH().rc.bottom &&
 			_foothold[i].rc.left < sansBattle->getUI()->getIGH().rc.right &&
 			_foothold[i].rc.right > sansBattle->getUI()->getIGH().rc.left &&
 			_foothold[i].rc.bottom > sansBattle->getUI()->getIGH().rc.bottom)
 		{
-			sansBattle->getUI()->set_inGame_heart_y(_foothold[i].rc.top - 10);
+			sansBattle->getUI()->set_inGame_heart_y(_foothold[i].rc.top -= (9 + 0.3f));
+			_isJump = false;
 		}
+		else
+		{
+			sansBattle->getUI()->set_inGame_heart_y(sansBattle->getUI()->getIGH().y + 0.04f);
+		}
+
 	}
 }
 

@@ -12,7 +12,7 @@ sans_state * sans_state_attack2::inputHandle(sansBattle * sansBattle)
 
 void sans_state_attack2::enter(sansBattle * sansBattle)
 {
-	sansBattle->getUI()->setEnemy_attackTime_max(500);
+	sansBattle->getUI()->setEnemy_attackTime_max(300);
 	_bone_speed = 4.f;
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
@@ -52,6 +52,7 @@ void sans_state_attack2::enter(sansBattle * sansBattle)
 
 void sans_state_attack2::update(sansBattle * sansBattle)
 {
+	heart_control(sansBattle, true, 0.45f, 6);
 	sansBattle->getUI()->main_rect_control_customizing(true, 20, 400, 170);
 
 	for (int i = 0; i < BONEMAX / 2; i++)
@@ -61,9 +62,9 @@ void sans_state_attack2::update(sansBattle * sansBattle)
 		_bone2_100[i].x += _bone_speed;
 		_bone2_100[i].rc = RectMakeCenter(_bone2_100[i].x, _bone2_100[i].y, _bone2_100[i].width, _bone2_100[i].hieght);
 
-		if (sansBattle->getUI()->getEnemy_attackTime_max() >= 250) 
+		if (sansBattle->getUI()->getEnemy_attackTime_max() >= 250)
 		{
-			_bone_20[i + BONEMAX  / 2].x -= _bone_speed;
+			_bone_20[i + BONEMAX / 2].x -= _bone_speed;
 			_bone_20[i + BONEMAX / 2].rc = RectMakeCenter(_bone_20[i + BONEMAX / 2].x, _bone_20[i + BONEMAX / 2].y, _bone_20[i + BONEMAX / 2].width, _bone_20[i + BONEMAX / 2].hieght);
 			_bone2_100[i + BONEMAX / 2].x -= _bone_speed;
 			_bone2_100[i + BONEMAX / 2].rc = RectMakeCenter(_bone2_100[i + BONEMAX / 2].x, _bone2_100[i + BONEMAX / 2].y, _bone2_100[i + BONEMAX / 2].width, _bone2_100[i + BONEMAX / 2].hieght);
@@ -80,13 +81,13 @@ void sans_state_attack2::render(sansBattle * sansBattle)
 		{
 			_bone_20[i].img->Render(_bone_20[i].x - _bone_20[i].width / 2, _bone_20[i].y - _bone_20[i].hieght / 2);
 		}
-		
+
 		if (sansBattle->getUI()->get_main_rect().left < _bone2_100[i].rc.right &&
 			sansBattle->getUI()->get_main_rect().right > _bone2_100[i].rc.left)
 		{
 			_bone2_100[i].img->Render(_bone2_100[i].x - _bone2_100[i].width / 2, _bone2_100[i].y - _bone2_100[i].hieght / 2);
 		}
-		
+
 	}
 }
 

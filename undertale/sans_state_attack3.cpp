@@ -13,7 +13,8 @@ sans_state * sans_state_attack3::inputHandle(sansBattle * sansBattle)
 
 void sans_state_attack3::enter(sansBattle * sansBattle)
 {
-	sansBattle->getUI()->setEnemy_attackTime_max(500);
+
+	sansBattle->getUI()->setEnemy_attackTime_max(300);
 	_bone_speed = 2.f;
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
@@ -49,8 +50,9 @@ void sans_state_attack3::enter(sansBattle * sansBattle)
 
 void sans_state_attack3::update(sansBattle * sansBattle)
 {
+	heart_control(sansBattle, false, 0.45f, 6);
 	sansBattle->getUI()->main_rect_control_customizing(true, 20, 360, 170);
-	
+
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
 		_bone_20[i].x += _bone_speed;
@@ -93,7 +95,7 @@ void sans_state_attack3::render(sansBattle * sansBattle)
 			_bone_50[i].img->Render(_bone_50[i].x - _bone_50[i].width / 2, _bone_50[i].y - _bone_50[i].hieght / 2);
 		}
 
-		
+
 
 	}
 }

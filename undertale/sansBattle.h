@@ -48,6 +48,8 @@ public:
 	virtual void update();
 	virtual void render();
 
+	void collision();
+
 	//UI get
 	battleUI* getUI() { return _ui; }
 	//info get set
