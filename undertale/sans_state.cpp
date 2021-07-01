@@ -48,3 +48,13 @@ void sans_state::heart_control(sansBattle* sansBattle, bool gravity_bool, float 
 
 	if (sansBattle->getUI()->get_main_rect().bottom - 12 <= sansBattle->getUI()->getIGH().y) _isJump = false;
 }
+//상태별 충돌임 현재 사용 x
+void sans_state::collision(sansBattle* sansBattle, RECT rect)
+{
+
+	if (IsCollision(rect, sansBattle->getUI()->getIGH().rc))
+	{
+		sansBattle->getUI()->set_inGame_heart_currentHp(sansBattle->getUI()->getIGH().currentHP - 5);
+	}
+
+}

@@ -53,11 +53,17 @@ void sans_state_attack1::enter(sansBattle * sansBattle)
 
 void sans_state_attack1::update(sansBattle * sansBattle)
 {
+	/*for (int i = 0; i < BONEMAX / 2; i++) 
+	{
+		collision(sansBattle, _bone_20[i].rc);
+	}*/
+	
 	heart_control(sansBattle, true, 0.45f, 6);
 	sansBattle->getUI()->main_rect_control_customizing(true, 20, 400, 170);
 
 	for (int i = 0; i < BONEMAX / 2; i++)
 	{
+		
 		_bone_20[i].x += _bone_speed;
 		_bone_20[i].rc = RectMakeCenter(_bone_20[i].x, _bone_20[i].y, _bone_20[i].width, _bone_20[i].hieght);
 		_bone_100[i].x += _bone_speed;

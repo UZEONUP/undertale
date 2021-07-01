@@ -31,7 +31,7 @@ HRESULT startStage::init()
 
 	_timer = 0;
 	_bar = new progressBar;
-	_bar->init(WINSIZEX / 2, WINSIZEY / 2 - 100,300,10);
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 - 100,60,30);
 	hp = 0;
 
 	SAVELOADMANAGER->linkPlayer(_player);

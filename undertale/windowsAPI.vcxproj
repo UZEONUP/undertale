@@ -168,6 +168,11 @@
     <ClInclude Include="muffetBattle.h" />
     <ClInclude Include="muffetIdle.h" />
     <ClInclude Include="muffetPattern1.h" />
+    <ClInclude Include="muffetPattern2.h" />
+    <ClInclude Include="muffetPattern3.h" />
+    <ClInclude Include="muffetPattern4.h" />
+    <ClInclude Include="muffetPattern5.h" />
+    <ClInclude Include="muffetPurple.h" />
     <ClInclude Include="muffetStateBase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
@@ -233,6 +238,11 @@
     <ClCompile Include="muffetBattle.cpp" />
     <ClCompile Include="muffetIdle.cpp" />
     <ClCompile Include="muffetPattern1.cpp" />
+    <ClCompile Include="muffetPattern2.cpp" />
+    <ClCompile Include="muffetPattern3.cpp" />
+    <ClCompile Include="muffetPattern4.cpp" />
+    <ClCompile Include="muffetPattern5.cpp" />
+    <ClCompile Include="muffetPurple.cpp" />
     <ClCompile Include="muffetStateBase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />

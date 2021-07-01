@@ -44,10 +44,14 @@ public:
 	virtual void exit(sansBattle* sansBattle) = 0;
 
 	void heart_control(sansBattle* sansBattle, bool gravity_bool, float gravity, float jumpPower);
+	void collision(sansBattle* sansBattle, RECT rect);
 	void linkSans(sansBattle* sans) { _sanBattle = sans; }
 
 	//충돌부분 get set
-	objectBone get_bone_20_rc() { return _bone_20[BONEMAX50]; }
-	void set_bone_20_rc(RECT objectBone) { _bone_20[BONEMAX50].rc = objectBone; }
+	RECT get_bone_20_rc(int index) { return _bone_20[index].rc; }
+	RECT get_bone_40_rc(int index) { return _bone_40[index].rc; }
+	RECT get_bone_50_rc(int index) { return _bone_50[index].rc; }
+	RECT get_bone_100_rc(int index) { return _bone_100[index].rc; }
+	RECT get__laser_bim_rc(int index) { return _laser_bim[index].rc; }
 };
 

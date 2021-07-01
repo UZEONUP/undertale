@@ -88,6 +88,12 @@
     <Filter Include="playGround\test">
       <UniqueIdentifier>{bf6123cb-9085-4bbd-8368-fdd86f0c2103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState">
+      <UniqueIdentifier>{ac945bf3-216b-4f19-8c79-fec191e0d1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\muffet\muffetState\base">
+      <UniqueIdentifier>{b8a7251e-0523-4c8d-a5c0-3108fba28554}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -249,20 +255,8 @@
     <ClInclude Include="bulletManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="muffetBattle.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="progressBar.h">
       <Filter>2DGameFramework\progressBar</Filter>
-    </ClInclude>
-    <ClInclude Include="muffetIdle.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="muffetPattern1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="muffetStateBase.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="testScene.h">
       <Filter>playGround\test</Filter>
@@ -273,14 +267,32 @@
     <ClInclude Include="sans_state_attack5.h">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClInclude>
-    <ClInclude Include="undyneIdle.h">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>playGround\enemy\muffet</Filter>
     </ClInclude>
-    <ClInclude Include="undyneFireArrowState.h">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClInclude Include="muffetIdle.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClInclude>
-    <ClInclude Include="undyneState.h">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClInclude Include="muffetPattern1.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern2.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern3.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern4.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetStateBase.h">
+      <Filter>playGround\enemy\muffet\muffetState\base</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPurple.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern5.h">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -428,20 +440,8 @@
     <ClCompile Include="bulletManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="muffetBattle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="progressBar.cpp">
       <Filter>2DGameFramework\progressBar</Filter>
-    </ClCompile>
-    <ClCompile Include="muffetIdle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="muffetPattern1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="muffetStateBase.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="testScene.cpp">
       <Filter>playGround\test</Filter>
@@ -452,14 +452,32 @@
     <ClCompile Include="sans_state_attack5.cpp">
       <Filter>playGround\enemy\sans\sans_pattern</Filter>
     </ClCompile>
-    <ClCompile Include="undyneState.cpp">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>playGround\enemy\muffet</Filter>
     </ClCompile>
-    <ClCompile Include="undyneIdle.cpp">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClCompile Include="muffetIdle.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClCompile>
-    <ClCompile Include="undyneFireArrowState.cpp">
-      <Filter>playGround\enemy\undyne</Filter>
+    <ClCompile Include="muffetPattern1.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern2.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern3.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern4.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetStateBase.cpp">
+      <Filter>playGround\enemy\muffet\muffetState\base</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPurple.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern5.cpp">
+      <Filter>playGround\enemy\muffet\muffetState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

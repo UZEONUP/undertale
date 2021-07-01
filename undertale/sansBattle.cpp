@@ -97,6 +97,7 @@ void sansBattle::release()
 
 void sansBattle::update()
 {
+	collision();
 	InputHandle();
 	_state->update(this);
 	//말풍선 대사 카운트 4라면
@@ -146,13 +147,32 @@ void sansBattle::render()
 
 	_ui->render();
 }
-
+//충돌
 void sansBattle::collision()
 {
-	/*if (IsCollision(_state->get_bone_20_rc, _ui->getIGH().rc))
+	for (int i = 0; i < BONEMAX50; i++) 
 	{
-
-	}*/
+		if (IsCollision(_state->get_bone_20_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_40_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_50_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get_bone_100_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+		if (IsCollision(_state->get__laser_bim_rc(i), _ui->getIGH().rc))
+		{
+			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+		}
+	}	
 }
 
 
