@@ -4,17 +4,17 @@
 
 class muffetBattle;
 
-struct spiderBullet
+struct spiderBullet2
 {
 	Image* image;
 	float x, y;
 	RECT rc;
 };
-class muffetPattern1 : public muffetStateBase
+class muffetPattern2 : public muffetStateBase
 {
-	spiderBullet _spider;
+	spiderBullet2 _spider;
 
-	vector<spiderBullet> _vSpiderBullet;
+	vector<spiderBullet2> _vSpiderBullet;
 
 	POINT _startPoint[3];
 	POINT _endPoint[3];
@@ -23,7 +23,7 @@ class muffetPattern1 : public muffetStateBase
 
 	bool increase;
 
-public :
+public:
 	virtual muffetStateBase* inputHandle(muffetBattle* muffet);
 	virtual void update(muffetBattle* muffet);
 	virtual void enter(muffetBattle* muffet);
