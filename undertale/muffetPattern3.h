@@ -4,18 +4,9 @@
 
 class muffetBattle;
 
-struct spiderBullet3
-{
-	Image* image;
-	float x, y;
-	RECT rc;
-	bool direction;
-};
 class muffetPattern3 : public muffetStateBase
 {
-	spiderBullet3 _spider;
-
-	vector<spiderBullet3> _vSpiderBullet;
+	Bullet _spider;
 
 	POINT _startPoint[3];
 	POINT _endPoint[3];

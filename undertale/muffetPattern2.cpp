@@ -17,12 +17,12 @@ void muffetPattern2::update(muffetBattle * muffet)
 	_fireRndNum = RND->getFromIntTo(0, 100);
 	if (_fireRndNum >= 95) spiderBulletFire(muffet);
 
-	if (_vSpiderBullet.size() != 0)
+	if (_vBullet.size() != 0)
 	{
-		for (int i = 0; i < _vSpiderBullet.size(); i++)
+		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			_vSpiderBullet[i].x += 5;
-			_vSpiderBullet[i].rc = RectMake(_vSpiderBullet[i].x, _vSpiderBullet[i].y, _vSpiderBullet[i].image->GetWidth(), _vSpiderBullet[i].image->GetHeight());
+			_vBullet[i].x += 5;
+			_vBullet[i].rc = RectMake(_vBullet[i].x, _vBullet[i].y, _vBullet[i].image->GetWidth(), _vBullet[i].image->GetHeight());
 		}
 	}
 	for (int i = 0; i < 3; i++)
@@ -58,16 +58,16 @@ void muffetPattern2::render(muffetBattle * muffet)
 {
 	muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
 
-	if (_vSpiderBullet.size() != 0)
+	if (_vBullet.size() != 0)
 	{
-		for (int i = 0; i < _vSpiderBullet.size(); i++)
+		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			if (_vSpiderBullet[i].x <= 535)
+			if (_vBullet[i].x <= 535)
 			{
-				_vSpiderBullet[i].image->Render(_vSpiderBullet[i].x, _vSpiderBullet[i].y);
+				_vBullet[i].image->Render(_vBullet[i].x, _vBullet[i].y);
 				if (KEYMANAGER->isToggleKey(VK_F1))
 				{
-					D2DRENDER->DrawRectangle(_vSpiderBullet[i].rc, D2DRenderer::DefaultBrush::Red);
+					D2DRENDER->DrawRectangle(_vBullet[i].rc, D2DRenderer::DefaultBrush::Red);
 				}
 			}
 		}
@@ -85,11 +85,11 @@ void muffetPattern2::exit(muffetBattle * muffet)
 
 void muffetPattern2::spiderBulletFire(muffetBattle * muffet)
 {
-	spiderBullet2 _spider;
+	Bullet _spider;
 	_spider.image = IMAGEMANAGER->FindImage("muffet_spider");
 	_spider.x = 135;
 	_spider.y = muffet->getUI()->getIGH().rc.top;
 	_spider.rc = RectMake(_spider.x, _spider.y, _spider.image->GetWidth(), _spider.image->GetHeight());
 
-	_vSpiderBullet.push_back(_spider);
+	_vBullet.push_back(_spider);
 }

@@ -12,18 +12,13 @@ struct spiderBullet
 };
 class muffetPattern1 : public muffetStateBase
 {
-	spiderBullet _spider;
-
-	vector<spiderBullet> _vSpiderBullet;
-
-	POINT _startPoint[3];
-	POINT _endPoint[3];
+	Bullet _spider;
 
 	int _fireRndNum;
 
 	bool increase;
 
-public :
+public:
 	virtual muffetStateBase* inputHandle(muffetBattle* muffet);
 	virtual void update(muffetBattle* muffet);
 	virtual void enter(muffetBattle* muffet);

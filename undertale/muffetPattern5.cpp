@@ -94,7 +94,7 @@ void muffetPattern5::render(muffetBattle * muffet)
 	if (muffet->getUI()->getEnemy_attackTime() <= 300) muffet->getUI()->main_rect_control_customizing(true, 5, 250, 150);
 	else if (muffet->getUI()->getEnemy_attackTime() <= 350) muffet->getUI()->main_rect_control_customizing(true, 7, 400, 150);
 	else if (muffet->getUI()->getEnemy_attackTime() > 350) muffet->getUI()->main_rect_control_customizing(true, 5, 250, 300);
-	
+
 	if (_vBullet.size() != 0)
 	{
 		for (int i = 0; i < _vBullet.size(); i++)

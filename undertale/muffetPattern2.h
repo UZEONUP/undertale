@@ -12,12 +12,7 @@ struct spiderBullet2
 };
 class muffetPattern2 : public muffetStateBase
 {
-	spiderBullet2 _spider;
-
-	vector<spiderBullet2> _vSpiderBullet;
-
-	POINT _startPoint[3];
-	POINT _endPoint[3];
+	Bullet _spider;
 
 	int _fireRndNum;
 
