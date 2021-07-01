@@ -1,10 +1,15 @@
 #include "stdafx.h"
 #include "undybattle.h"
+#include "undyneFireArrowState.h"
 
 HRESULT undybattle::init()
 {
 	_bui = new battleUI;
 	_bui->init(0);
+
+	_undyState = new undyneFireArrowState;
+	_undyState->enter(this);
+
 	ImageManager::GetInstance()->AddFrameImage("und_hair", L"Undyne/Und_battle_hair.png", 4, 1);
 	ImageManager::GetInstance()->AddFrameImage("und_head", L"Undyne/Und_battle_head1.png", 1, 1);
 	ImageManager::GetInstance()->AddFrameImage("und_torso", L"Undyne/Und_Torso.png", 1, 1);
@@ -73,6 +78,11 @@ HRESULT undybattle::init()
 	_legs.rc = RectMakeCenter(_legs.x, _legs.y, 39, 37);
 	_torso.rc = RectMakeCenter(_torso.x, _torso.y, 66, 33);
 
+	_shieldLine.angle = PI / 2;
+	_shieldLine.length = 70;
+	_shieldLine.lineCenter.x = (_bui->get_main_rect().left + _bui->get_main_rect().right) / 2;
+	_shieldLine.lineCenter.y = (_bui->get_main_rect().top + _bui->get_main_rect().bottom) / 2;
+
 	return S_OK;
 }
 
@@ -82,10 +92,36 @@ void undybattle::release()
 
 void undybattle::update()
 {
-	
-	_bui->update();
 	_count++;
-	if (_count == 20)maxangle = true; // 처음에 하트를 초록색으로 바꿔줄때 사용
+	
+	if (_bui->get_bubble_talk_count() == 0&&_count == 20) maxangle = true; // 처음에 하트를 초록색으로 바꿔줄때 사용
+
+	if (_bui->getState() == INGAME)
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			_shieldLine.angle = 0;
+		}
+		else if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			_shieldLine.angle = PI * 1.5;
+		}
+		else if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			_shieldLine.angle = PI / 2;
+		}
+		else if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			_shieldLine.angle = PI;
+		}
+	}
+
+	_shieldLine.lineEnd.x = cosf(_shieldLine.angle) * _shieldLine.length + _shieldLine.lineCenter.x;
+	_shieldLine.lineEnd.y = -sinf(_shieldLine.angle) * _shieldLine.length + _shieldLine.lineCenter.y;
+
+
+	
+	
 
 	if (_count % 5 == 0)
 	{
@@ -193,6 +229,11 @@ void undybattle::update()
 	_belly.rc = RectMakeCenter(_belly.x, _belly.y, 37, 24);
 	_legs.rc = RectMakeCenter(_legs.x, _legs.y, 39, 37);
 	_torso.rc = RectMakeCenter(_torso.x, _torso.y, 66, 33);
+
+	if (_shieldLine.angle == 0 || _shieldLine.angle == PI)rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 1, 150);
+	else  rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 150, 1);
+	
+	_bui->update();
 }
 
 void undybattle::render()
@@ -217,4 +258,10 @@ void undybattle::render()
 	_head.img->bossFrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY);
 	_bui->render();
 
+	if (_bui->getState() == INGAME)
+	{
+		D2DRENDER->DrawLine(PointMake(_shieldLine.lineCenter.x, _shieldLine.lineCenter.y)
+			, PointMake(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y), D2DRenderer::DefaultBrush::Blue, 1.0);
+		D2DRENDER->DrawRectangle(rc_shield, D2DRenderer::DefaultBrush::Blue, 4.f);
+	}
 }

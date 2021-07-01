@@ -7,7 +7,7 @@ class muffetBattle;
 class muffetStateBase : public gameNode
 {
 protected:
-	string _stateName;
+	string _stateName;	
 
 	Image* _imageName;
 	int _count;

@@ -9,6 +9,7 @@ muffetStateBase * muffetPattern1::inputHandle(muffetBattle * muffet)
 
 void muffetPattern1::update(muffetBattle * muffet)
 {
+	
 }
 
 void muffetPattern1::enter(muffetBattle * muffet)

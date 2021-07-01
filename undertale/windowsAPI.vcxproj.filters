@@ -258,6 +258,18 @@
     <ClInclude Include="undyneState.h">
       <Filter>playGround\enemy\undyne</Filter>
     </ClInclude>
+    <ClInclude Include="muffetIdle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetPattern1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="muffetStateBase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneIdle.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -414,6 +426,18 @@
       <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
     <ClCompile Include="undyneState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetIdle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetPattern1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetStateBase.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneIdle.cpp">
       <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
   </ItemGroup>

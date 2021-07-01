@@ -2,8 +2,11 @@
 #include "gameNode.h"
 #include "battleUI.h"
 #include <vector>
+#include "bullet.h"
+#include "undyneState.h"
+
 #define PI 3.14156f
-#define BACKMAX 6
+
 struct tagUndyne
 {
 	RECT rc;
@@ -26,6 +29,15 @@ struct background
 	bool isMove;
 };
 
+struct shieldLine
+{
+	float x, y;
+	float length;
+	float angle;
+	POINT lineCenter;
+	POINT lineEnd;
+};
+
 class undybattle :
 	public gameNode
 {
@@ -39,7 +51,10 @@ private:
 	tagUndyne _belly;
 	tagUndyne _legs; //여기까진 배틀씬에서..
 	Image* _jansang;
-	background _bg[BACKMAX]; // 뒤에 움직이는 배경
+	bullet* _bullet;
+	undyneState* _undyState;
+	shieldLine _shieldLine;
+	RECT rc_shield;
 
 	battleUI* _bui;
 	int currentFrameX;
@@ -53,6 +68,9 @@ private:
 
 	vector<background>			 _vBack;
 	vector<background>::iterator _viBack;
+	
+	vector<bullet*>		_vBullet;
+	vector<bullet*>::iterator _viBullet;
 
 public:
 
@@ -61,10 +79,12 @@ public:
 	virtual void update();
 	virtual void render();
 
+	battleUI* getUI() { return _bui; }
 
 	vector<background> getVback() { return _vBack; }
 	vector<background>::iterator getViback() { return _viBack; }
 
-	void backMove();
+	vector<bullet*> getVbullet() { return _vBullet; }
+	vector<bullet*>::iterator getVIbullet() { return _viBullet; }
 };
 

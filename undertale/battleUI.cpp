@@ -84,10 +84,7 @@ HRESULT battleUI::init(int bossName)
 	_heartPlayer.currentFrameX = _heartPlayer.currentFrameY = 0;
 	_heartPlayer.speed = 3.0f;
 
-	_cannon.angle = PI / 2;
-	_cannon.length = 70;
-	_cannon.center.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
-	_cannon.center.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+	
 
 
 	//폰트추가
@@ -155,25 +152,7 @@ void battleUI::update()
 		if (_cannon.angle > PI / 2) _cannon.angle = PI / 2;
 	}*/
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
-	{
-		_cannon.angle =0;
-	}
-	else if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
-	{
-		_cannon.angle = PI*1.5;
-	}
-	else if (KEYMANAGER->isOnceKeyDown(VK_UP))
-	{
-		_cannon.angle = PI/2;
-	}
-	else if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
-	{
-		_cannon.angle = PI;
-	}
-
-	_cannon.cannonEnd.x = cosf(_cannon.angle) * _cannon.length + _cannon.center.x;
-	_cannon.cannonEnd.y = -sinf(_cannon.angle) * _cannon.length + _cannon.center.y;
+	
 
 
 	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
@@ -464,8 +443,7 @@ void battleUI::update()
 
 	}
 		
-		if (_cannon.angle == 0 || _cannon.angle == PI)rc_shield = RectMakeCenter(_cannon.cannonEnd.x, _cannon.cannonEnd.y, 1, 150);
-		else  rc_shield = RectMakeCenter(_cannon.cannonEnd.x, _cannon.cannonEnd.y, 150, 1);
+		
 }
 
 void battleUI::render()
@@ -555,15 +533,7 @@ void battleUI::render()
 		_heartPlayer.rc,
 		D2DRenderer::DefaultBrush::Red
 	);
-	if (isTurn == TALK_BUBBLE)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
-		
-	if(isTurn == INGAME)
-	{
-		_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
-		D2DRENDER->DrawLine(PointMake(_cannon.center.x, _cannon.center.y)
-			, PointMake(_cannon.cannonEnd.x, _cannon.cannonEnd.y), D2DRenderer::DefaultBrush::Blue, 1.0);
-		D2DRENDER->DrawRectangle(rc_shield, D2DRenderer::DefaultBrush::Blue,4.f);
-	}
+	if (isTurn == TALK_BUBBLE|| isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
 
 }
 //메인 전투 렉트 컨트롤함수 기본값		 (늘리고 싶으면 true, 줄이고 싶으면 false)

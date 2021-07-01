@@ -40,13 +40,4 @@ void undyne::render()
 
 }
 
-void undyne::inPutHandle()
-{
-	undyneState* newState = _state->inputHandle(this);
-	if (newState != nullptr)
-	{
-		SAFE_DELETE(_state);
-		_state = newState;
-		_state->enter(this);
-	}
-}
+

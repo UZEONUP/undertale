@@ -1,19 +1,19 @@
 #include "stdafx.h"
 #include "undyneState.h"
 
-undyneState * undyneState::inputHandle(undynebattle * undynebattle)
+undyneState * undyneState::inputHandle(undybattle * undybattle)
 {
 	return nullptr;
 }
 
-void undyneState::update(undynebattle * undynebattle)
+void undyneState::update(undybattle * undybattle)
 {
 }
 
-void undyneState::enter(undynebattle * undynebattle)
+void undyneState::enter(undybattle * undybattle)
 {
 }
 
-void undyneState::exit(undynebattle * undynebattle)
+void undyneState::exit(undybattle * undybattle)
 {
 }

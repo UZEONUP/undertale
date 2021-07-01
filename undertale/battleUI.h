@@ -23,18 +23,7 @@ enum TURN_STATE
 	TALK_MAIN
 };
 
-struct tagCannon
-{
-	float x, y;
-	float radius;
-	float length;
-	float gravity;
-	float speed;
-	float angle;
-	bool isFire;
-	POINT center;
-	POINT cannonEnd;
-};
+
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@하트 구조체
 struct inGameHeart
@@ -57,7 +46,6 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
-	RECT rc_shield;
 	inGameHeart _heartPlayer;
 	Image* _menu_off[4];
 	Image* _menu_on[4];
@@ -65,7 +53,7 @@ private:
 	Image* _speechBubble;
 	Image* _attack_ground;
 	battle_bar _attack_bar;
-	tagCannon _cannon;
+	
 
 	int daCount;
 	int daCount2;
