@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "bulletManager.h"
+#include "player.h"
 
 HRESULT bulletManager::init(const char* imageName, int bulletMax, float range)
 {
@@ -51,6 +52,11 @@ void bulletManager::move()
 		{
 			_viBullet = _vBullet.erase(_viBullet);
 		}
+		//플레이어와 닿으면 소멸
+		if (IsCollision(_viBullet->rc, _player->getRect()))
+		{
+			_viBullet = _vBullet.erase(_viBullet);
+		}
 		else ++_viBullet;
 	}
 
@@ -74,16 +80,11 @@ void bulletManager::fire(float fireX, float fireY, float angle)
 	_vBullet.push_back(newBullet);
 }
 
-void bulletManager::remove(bool collision)
+void bulletManager::remove(vector<tagBullet>::iterator viBullet)
 {
-	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
-	{
-		if (collision)
-		{
-			cout << "충돌" << endl;
-
-			_viBullet = _vBullet.erase(_viBullet);
-		}
-		else ++_viBullet;
-	}
+	_viBullet = _vBullet.erase(viBullet);
+	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
+	//{
+	//	_viBullet = _vBullet.erase(_viBullet);
+	//}
 }

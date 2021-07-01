@@ -11,7 +11,6 @@ HRESULT startStage::init()
 
 	_player = new player;
 	_player->init(WINSIZEX/2, WINSIZEY/2);
-	SAVELOADMANAGER->linkPlayer(_player);
 	_setRect = new stageRect;
 
 	_setRect->setGround(0, 0, 480, 120);
@@ -30,10 +29,19 @@ HRESULT startStage::init()
 
 	_sceneRect = RectMake(1200, 270, 70, 30);
 
-	_setRect->linkPlayer(_player);
-
 	_timer = 0;
+	_bar = new progressBar;
+	_bar->init(WINSIZEX / 2, WINSIZEY / 2 - 100,300,10);
+	hp = 0;
+
+	SAVELOADMANAGER->linkPlayer(_player);
+	BULLETMANAGER->linkPlayer(_player);
+	_setRect->linkPlayer(_player);
+	_bar->linkPlayer(_player);
+
+
 	BULLETMANAGER->init("donut", 30, 400);
+
 	return S_OK;
 }
 
@@ -53,13 +61,6 @@ void startStage::update()
 	}
 	BULLETMANAGER->move();
 
-	vector<tagBullet> bullet = BULLETMANAGER->getVBullet();
-	vector<tagBullet>::iterator iterBullet = BULLETMANAGER->getViBullet();
-	
-	for (int i = 0 ;i<bullet.size(); i++)
-	{
-		if (IsCollision(_player->getRect(), bullet[i].rc))BULLETMANAGER->remove(1);
-	}
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
 		_player->setMoveStop(1);
@@ -73,6 +74,9 @@ void startStage::update()
 
 	_setRect->update();
 	if(!_player->getMoveStop())_player->update();
+	_bar->update();
+	hp += 0.1f;
+	_bar->setGauge(300-hp, 300);
 }
 
 void startStage::render()
@@ -80,6 +84,7 @@ void startStage::render()
 	_backGround->mapRender(0, 0);
 
 	_player->render();
+	_bar->render();
 	BULLETMANAGER->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

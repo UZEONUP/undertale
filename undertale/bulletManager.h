@@ -2,6 +2,9 @@
 #include "singletonBase.h"
 #include "image.h"
 
+class player;
+
+
 struct tagBullet
 {
 	RECT rc;
@@ -26,6 +29,8 @@ private:
 	Image* _img;
 	float _range;	//총알이 어디까지 날라갈것인가
 	int _bulletMax; //총알 최대 갯수
+
+	player* _player;
 public:
 	bulletManager() {};
 	~bulletManager() {};
@@ -38,7 +43,9 @@ public:
 	void move();
 	void fire(float fireX, float fireY, float angle);
 
-	void remove(bool collision);
+	void remove(vector<tagBullet>::iterator viBullet);
+
+	void linkPlayer(player* player) { _player = player; }
 
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }

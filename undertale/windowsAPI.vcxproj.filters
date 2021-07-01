@@ -82,6 +82,9 @@
     <Filter Include="playGround\enemy\sans\sans_pattern">
       <UniqueIdentifier>{5fc903ed-7be4-463c-b5d2-e562202dfe00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DGameFramework\progressBar">
+      <UniqueIdentifier>{ee62a098-ef97-4b9d-8456-fac2e92e0b42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -243,6 +246,12 @@
     <ClInclude Include="bulletManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="muffetBattle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="progressBar.h">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -388,6 +397,12 @@
     </ClCompile>
     <ClCompile Include="bulletManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="muffetBattle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="progressBar.cpp">
+      <Filter>2DGameFramework\progressBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

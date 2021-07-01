@@ -91,6 +91,15 @@ void Image::Render(const float X, const float Y, const float scaleW, const float
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
 	ResetRenderOption();
 }
+void Image::barRender(const float X, const float Y,const float sourX)
+{
+
+	D2D1_RECT_F dxArea = D2D1::RectF(X, Y, X + sourX, Y + mSize.y);
+	D2D1_RECT_F dxArea2 = D2D1::RectF(X, Y, X + mSize.x, Y + mSize.y);
+
+	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
+	ResetRenderOption();
+}
 
 void Image::bulletRender(const float X, const float Y, const float degreeAngle, const float rotateX, const float rotateY)
 {
