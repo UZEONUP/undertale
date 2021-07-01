@@ -3,6 +3,7 @@
 #include <vector>
 #include "bullet.h"
 #include "battleUI.h"
+#include "muffetStateBase.h"
 
 struct  tagImage
 {
@@ -34,18 +35,26 @@ class muffetBattle : public gameNode
 
 	vector<tagImage> _muffetV;
 
-	int _currentFrameY;
+	Image* _muffet;
+	muffetStateBase* _muffetState;
+
+	int _currentFrameX, _currentFrameY;
 	int _frameCount;
 
 	bool _downMove;
+	int _count;
+	int i;
 
+	int _downFixcel;
 public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
 
+	void inPutHandle();
 	void addMuffetImage();
 
+	vector<tagImage> getMuffetImageV() { return _muffetV; }
 };
 

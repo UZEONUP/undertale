@@ -166,6 +166,9 @@
     <ClInclude Include="line.h" />
     <ClInclude Include="muffet.h" />
     <ClInclude Include="muffetBattle.h" />
+    <ClInclude Include="muffetIdle.h" />
+    <ClInclude Include="muffetPattern1.h" />
+    <ClInclude Include="muffetStateBase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
@@ -222,6 +225,9 @@
     <ClCompile Include="line.cpp" />
     <ClCompile Include="muffet.cpp" />
     <ClCompile Include="muffetBattle.cpp" />
+    <ClCompile Include="muffetIdle.cpp" />
+    <ClCompile Include="muffetPattern1.cpp" />
+    <ClCompile Include="muffetStateBase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
