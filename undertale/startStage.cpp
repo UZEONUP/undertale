@@ -3,6 +3,7 @@
 
 HRESULT startStage::init()
 {
+	IMAGEMANAGER->AddImage("donut", L"Undyne/Und_bullet.png");
 	IMAGEMANAGER->AddImage("시작스테이지", L"스테이지이미지/start stage.png");
 	_backGround = IMAGEMANAGER->FindImage("시작스테이지");
 
@@ -30,6 +31,9 @@ HRESULT startStage::init()
 	_sceneRect = RectMake(1200, 270, 70, 30);
 
 	_setRect->linkPlayer(_player);
+
+	_timer = 0;
+	BULLETMANAGER->init("donut", 30, 400);
 	return S_OK;
 }
 
@@ -41,6 +45,21 @@ void startStage::release()
 
 void startStage::update()
 {
+	_timer++;
+	if (_timer%5 == 0)
+	{
+		_timer = 0;
+		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
+	}
+	BULLETMANAGER->move();
+
+	vector<tagBullet> bullet = BULLETMANAGER->getVBullet();
+	vector<tagBullet>::iterator iterBullet = BULLETMANAGER->getViBullet();
+	
+	for (int i = 0 ;i<bullet.size(); i++)
+	{
+		if (IsCollision(_player->getRect(), bullet[i].rc))BULLETMANAGER->remove(1);
+	}
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
 		_player->setMoveStop(1);
@@ -61,6 +80,7 @@ void startStage::render()
 	_backGround->mapRender(0, 0);
 
 	_player->render();
+	BULLETMANAGER->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)

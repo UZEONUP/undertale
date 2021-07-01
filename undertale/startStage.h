@@ -11,6 +11,7 @@ class startStage : public gameNode
 
 	RECT _sceneRect;
 
+	int _timer;
 
 public :
 	virtual HRESULT init();

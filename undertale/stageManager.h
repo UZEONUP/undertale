@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "stageRect.h"
 #include "title.h"
 #include "startStage.h"
 #include "stage2.h"
@@ -10,8 +11,6 @@
 #include "stage7.h"
 #include "undybattle.h"
 #include "sansBattle.h"
-#include "stageRect.h"
-#include "undyne.h"
 
 class player;
 

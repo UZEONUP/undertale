@@ -9,7 +9,7 @@ public:
 		wstring directory;
 
 		TagLoadedImageInfo() {}
-		TagLoadedImageInfo(const string& key,const wstring& directory)
+		TagLoadedImageInfo(const string& key, const wstring& directory)
 			:key(key), directory(directory) {}
 	};
 	struct FrameRect
@@ -21,13 +21,13 @@ public:
 	};
 private:
 	ID2D1Bitmap*		mBitmap;
-	float				mAlpha;			
+	float				mAlpha;
 
-	Vector2				mSize;			
-	float				mScale;			
+	Vector2				mSize;
+	float				mScale;
 	float				mAngle;
 
-	TagLoadedImageInfo	mLoadInfo;		
+	TagLoadedImageInfo	mLoadInfo;
 
 	vector<Image::FrameRect>	mFrameInfo;
 	int							mMaxFrameX;
@@ -37,25 +37,26 @@ private:
 private:
 	friend class ImageManager;
 	Image() = delete;
-	Image( ID2D1Bitmap*const bitmap,const TagLoadedImageInfo& loadinfo);
-	Image( ID2D1Bitmap*const bitmap,const TagLoadedImageInfo& loadinfo,const int maxFrameX,const int maxFrameY);
+	Image(ID2D1Bitmap*const bitmap, const TagLoadedImageInfo& loadinfo);
+	Image(ID2D1Bitmap*const bitmap, const TagLoadedImageInfo& loadinfo, const int maxFrameX, const int maxFrameY);
 	virtual ~Image();
 	Image operator = (const Image& image) {}
 public:
 	void Render(const float X, const float Y, const float scaleW = 1.f, const float scalseH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);
+	void bulletRender(const float X, const float Y, const float degreeAngle,const float rotateX = 0.f, const float rotateY = 0.f);
 	void mapRender(const float X, const float Y);
 	void FrameRender(const float X, const float Y, const int frameX, const int frameY, const float alpha = 1.0f,
 		const float scaleW = 1.f, const float scalseH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);
-	
+
 	void bossFrameRender(const float X, const float Y, const int frameX, const int frameY,
 		const float scaleW = 1.f, const float scalseH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);
-	void autoFrameRender( const float X, const float Y, const int frameX, const int frameY,
+	void autoFrameRender(const float X, const float Y, const int frameX, const int frameY,
 		const int speed = 10, const bool loop = true,
 		const float scaleW = 1.f, const float scalseH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
@@ -68,11 +69,13 @@ public:
 	void SetScale(const float scale) { this->mScale = scale; }
 	void SetAngle(const float angle) { this->mAngle = angle; }
 
-	const int GetMaxFrameX()const{ return mMaxFrameX; }
-	const int GetMaxFrameY()const{ return mMaxFrameY; }
+	const int GetMaxFrameX()const { return mMaxFrameX; }
+	const int GetMaxFrameY()const { return mMaxFrameY; }
 	const string GetKey() const { return this->mLoadInfo.key; }
-	const UINT GetWidth() const{ return mBitmap->GetPixelSize().width; }
-	const UINT GetHeight()const{ return mBitmap->GetPixelSize().height; }
+	const UINT GetWidth() const { return mBitmap->GetPixelSize().width; }
+	const UINT GetHeight()const { return mBitmap->GetPixelSize().height; }
+	const float GetFrameWidth()const { return mBitmap->GetPixelSize().width / mMaxFrameX; }
+	const float GetFrameHeight()const { return mBitmap->GetPixelSize().height / mMaxFrameY; }
 	const Vector2 GetSize()const { return this->mSize; }
 	Vector2 GetFrameSize(const int& frame = 0) const { return Vector2(mFrameInfo[frame].width, mFrameInfo[frame].height); }
 	const TagLoadedImageInfo& GetLoadInfo() const { return mLoadInfo; }

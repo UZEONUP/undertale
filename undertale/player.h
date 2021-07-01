@@ -70,7 +70,6 @@ private:
 public:
 	HRESULT init();
 	HRESULT init(float x,float y);
-	//HRESULT init(int type, bool exit);
 	virtual void release();
 	virtual void update();
 	virtual void render();

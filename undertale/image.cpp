@@ -91,6 +91,21 @@ void Image::Render(const float X, const float Y, const float scaleW, const float
 	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
 	ResetRenderOption();
 }
+
+void Image::bulletRender(const float X, const float Y, const float degreeAngle, const float rotateX, const float rotateY)
+{
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(X + rotateX, Y + rotateY));
+
+	
+	float cameraX = X - CAMERAMANAGER->getX();
+	float cameraY = Y - CAMERAMANAGER->getY();
+
+	D2D1_RECT_F dxArea = D2D1::RectF((cameraX), (cameraY), (cameraX)+mSize.x, (cameraY)+mSize.y);
+
+	//D2DRenderer::GetInstance()->GetRenderTarget()->SetTransform(rotateMatrix);
+	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(mBitmap, dxArea, mAlpha);
+	ResetRenderOption();
+}
 void Image::mapRender(const float X, const float Y)
 {
 

@@ -152,6 +152,7 @@
     <ClInclude Include="asrielStateManager.h" />
     <ClInclude Include="battleUI.h" />
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="bulletManager.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
@@ -165,6 +166,9 @@
     <ClInclude Include="line.h" />
     <ClInclude Include="muffet.h" />
     <ClInclude Include="muffetBattle.h" />
+    <ClInclude Include="muffetIdle.h" />
+    <ClInclude Include="muffetPattern1.h" />
+    <ClInclude Include="muffetStateBase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="randomFunction.h" />
@@ -209,6 +213,7 @@
     <ClCompile Include="asrielStateManager.cpp" />
     <ClCompile Include="battleUI.cpp" />
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="bulletManager.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
@@ -221,6 +226,9 @@
     <ClCompile Include="line.cpp" />
     <ClCompile Include="muffet.cpp" />
     <ClCompile Include="muffetBattle.cpp" />
+    <ClCompile Include="muffetIdle.cpp" />
+    <ClCompile Include="muffetPattern1.cpp" />
+    <ClCompile Include="muffetStateBase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="sansBattle.cpp" />
