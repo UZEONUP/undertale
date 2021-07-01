@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "undyneState.h"
 
 struct tagUndy
 {
@@ -19,12 +20,15 @@ private:
 	int _count;
 
 	tagUndy _fullbody; //얘는 일반스테이지에서
+	undyneState* _state;
 
 public:
 	 HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void inPutHandle();
 
 
 	RECT getRect() { return _fullbody.rc; }

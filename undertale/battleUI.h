@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#define PI 3.14156f
 //메인렉트 컨트롤
 struct rc_control
 {
@@ -20,6 +21,19 @@ enum TURN_STATE
 	TALK_BUBBLE,
 	INGAME,
 	TALK_MAIN
+};
+
+struct tagCannon
+{
+	float x, y;
+	float radius;
+	float length;
+	float gravity;
+	float speed;
+	float angle;
+	bool isFire;
+	POINT center;
+	POINT cannonEnd;
 };
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@하트 구조체
@@ -43,7 +57,7 @@ class battleUI : public gameNode
 private:
 	//메인 렉트
 	rc_control _main_rc;
-
+	RECT rc_shield;
 	inGameHeart _heartPlayer;
 	Image* _menu_off[4];
 	Image* _menu_on[4];
@@ -51,6 +65,7 @@ private:
 	Image* _speechBubble;
 	Image* _attack_ground;
 	battle_bar _attack_bar;
+	tagCannon _cannon;
 
 	int daCount;
 	int daCount2;
@@ -163,6 +178,7 @@ public:
 	void set_inGame_heart_x(float inGameHeart_x) { _heartPlayer.x = inGameHeart_x; }
 	void set_inGame_heart_y(float inGameHeart_y) { _heartPlayer.y = inGameHeart_y; }
 	void set_inGame_heart_rc(RECT inGameHeart_rc) { _heartPlayer.rc = inGameHeart_rc; }
+	void set_inGame_heart_image(Image* _inGameHeart_image) { _heartPlayer.img = _inGameHeart_image; }
 
 
 };

@@ -61,7 +61,7 @@ HRESULT undybattle::init()
 	_legs.img = ImageManager::GetInstance()->FindImage("und_legs");
 	_legs.currentFrameX = _legs.currentFrameY = 0;
 
-	_leftArm.janSang = RectMakeCenter(((_bui->get_main_rect().left + _bui->get_main_rect().right) / 2), ((_bui->get_main_rect().bottom + _bui->get_main_rect().top) / 2)-10,380,169);
+	_leftArm.janSang = RectMakeCenter(((_bui->get_main_rect().left + _bui->get_main_rect().right) / 2), ((_bui->get_main_rect().bottom + _bui->get_main_rect().top) / 2),380,169);
 	_jansang = ImageManager::GetInstance()->FindImage("janSang");
 	
 
@@ -85,7 +85,7 @@ void undybattle::update()
 	
 	_bui->update();
 	_count++;
-	if (_count == 20)maxangle = true;
+	if (_count == 20)maxangle = true; // 처음에 하트를 초록색으로 바꿔줄때 사용
 
 	if (_count % 5 == 0)
 	{
@@ -156,6 +156,7 @@ void undybattle::update()
 		}
 	}
 	
+	// 하트를 초록색으로 변경해주는 파트@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	if (_leftArm.isAttack&& maxangle)
 	{
 		angle += 5;
@@ -165,12 +166,26 @@ void undybattle::update()
 	if (!maxangle)
 	{
 		if (_count == 60)minangle = true;
-
-		if(minangle&&angle>-60.f)angle -= 5;
-
-		
-		
+		if (minangle)
+		{
+			if(angle > -60.f)angle -= 5;
+			else if(angle > -70.f)angle -= 0.5;
+			
+		}
+		if (angle == -70.f)
+		{
+			minangle = false;
+			_bui->set_inGame_heart_image(IMAGEMANAGER->FindImage("GREEN"));
+		}
 	}
+
+	if (!maxangle && !minangle&&_count >170)
+	{
+		if (angle < 0)angle += 5;
+		if(angle==0)_leftArm.isAttack = false;
+	}
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
 	_hair.rc = RectMakeCenter(_hair.x, _head.y-10, 10, 10);
 	_head.rc = RectMakeCenter(_head.x, _head.y, 32, 28);
 	_leftArm.rc = RectMakeCenter(_leftArm.x, _leftArm.y, 47, 71);
@@ -184,12 +199,12 @@ void undybattle::render()
 {
 	if (_leftArm.isAttack)
 	{
-		_jansang->autoFrameRender(_leftArm.janSang.left, _leftArm.janSang.top, currentFrameX, currentFrameY);
+		if(angle<=-60)_jansang->autoFrameRender(_leftArm.janSang.left, _leftArm.janSang.top-50, currentFrameX, currentFrameY);
+
 		_torso.img->bossFrameRender(_torso.rc.left, _torso.rc.top, _torso.currentFrameX, _torso.currentFrameY);
 		_belly.img->bossFrameRender(_belly.rc.left, _belly.rc.top, _belly.currentFrameX, _belly.currentFrameY);
 		_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);
 		_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY, 1.f, 1.f, angle, 35.f, 0.f, 0.f, 0.f);
-		
 	}
 	else {
 		_leftArm.img->bossFrameRender(_leftArm.rc.left, _leftArm.rc.top, _leftArm.currentFrameX, _leftArm.currentFrameY);
@@ -198,24 +213,8 @@ void undybattle::render()
 		_legs.img->bossFrameRender(_legs.rc.left, _legs.rc.top, _legs.currentFrameX, _legs.currentFrameY);
 	}
 	_rightArm.img->bossFrameRender(_rightArm.rc.left, _rightArm.rc.top, _rightArm.currentFrameX, _rightArm.currentFrameY);
-	
 	_hair.img->bossFrameRender(_hair.rc.left, _hair.rc.top, _hair.currentFrameX, _hair.currentFrameY);
 	_head.img->bossFrameRender(_head.rc.left, _head.rc.top, _head.currentFrameX, _head.currentFrameY);
 	_bui->render();
 
-
-	D2DRENDER->DrawRectangle
-	(
-		_leftArm.janSang,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
-	D2DRENDER->DrawRectangle
-	(
-		_leftArm.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
 }

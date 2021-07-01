@@ -39,3 +39,14 @@ void undyne::render()
 	_fullbody.img->FrameRender(_fullbody.rc.left, _fullbody.rc.top, _fullbody.currentFrameX, _fullbody.currentFrameY, 1.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
 
 }
+
+void undyne::inPutHandle()
+{
+	undyneState* newState = _state->inputHandle(this);
+	if (newState != nullptr)
+	{
+		SAFE_DELETE(_state);
+		_state = newState;
+		_state->enter(this);
+	}
+}

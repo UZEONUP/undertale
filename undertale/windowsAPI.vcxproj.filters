@@ -243,6 +243,12 @@
     <ClInclude Include="muffetBattle.h">
       <Filter>playGround\enemy\muffet</Filter>
     </ClInclude>
+    <ClInclude Include="undyneState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneFireArrowState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -388,6 +394,12 @@
     </ClCompile>
     <ClCompile Include="muffetBattle.cpp">
       <Filter>playGround\enemy\muffet</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneFireArrowState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
