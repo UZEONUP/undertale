@@ -43,8 +43,6 @@ public:
 	void move();
 	void fire(float fireX, float fireY, float angle);
 
-	void remove(vector<tagBullet>::iterator viBullet);
-
 	void linkPlayer(player* player) { _player = player; }
 
 	vector<tagBullet> getVBullet() { return _vBullet; }

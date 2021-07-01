@@ -78,3 +78,5 @@ public:
 
 #define D2DRENDER D2DRenderer::GetInstance()
 #define D2DRENDERTARGET D2DRENDER->GetRenderTarget()
+#define D2DDEFAULTBRUSH D2DRenderer::DefaultBrush
+#define D2D1COLOR D2D1::ColorF

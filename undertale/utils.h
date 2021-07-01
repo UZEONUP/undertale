@@ -74,4 +74,11 @@ namespace UJN_UTIL
 	//사각형이 사각형과 충돌했니?
 	bool IsCollision(const RECT& rc1, const ENEMYRECT& rc2);
 	bool IsCollision(const RECT& rc1, const RECT& rc2);
+
+	//wchar_t 에서 char 로의 형변환 함수
+	char * ConvertWCtoC(wchar_t * str);
+	const char * ConvertWCtoC(const wchar_t * str);
+	//char 에서 wchar_t 로의 형변환 함수
+	wchar_t *ConvertCtoWC(char * str);
+	const wchar_t *ConvertCtoWC(const char * str);
 }

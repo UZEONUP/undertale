@@ -1,16 +1,33 @@
 #pragma once
 #include "gameNode.h"
-#include "stageRect.h"
 #include "stage4.h"
+
+enum ITEM
+{
+	ITEM_POTION
+};
+
+struct tagItemInfo
+{
+	ITEM itemKind;
+	RECT rc;
+	const char* name;
+	const char* description;
+	int ablity;
+	int price;
+};
 
 class stage5 : public gameNode
 {
-	stageRect* _setRect;
+private:
+	vector<tagItemInfo>			_vItem;
+	vector<tagItemInfo>			_vIterItem;
 
 	Image* _backGround;
 
-	RECT _sceneRect;
+	RECT _shopRect;
 
+	int i;
 
 public :
 	virtual HRESULT init();
@@ -18,8 +35,9 @@ public :
 	virtual void update();
 	virtual void render();
 
-	stageRect* getStageRect() { return _setRect; }
-	RECT getSceneRect() { return _sceneRect; }
+	void shopSet();
+	void itemSet();
+	void itemOut();
 
 };
 

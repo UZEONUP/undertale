@@ -4,14 +4,18 @@
 #include "sans_state_attack2.h"
 #include "sans_state_attack3.h"
 #include "sans_state_attack4.h"
+#include "sans_state_attack5.h"
+#include "sans_state_attack6.h"
 
 
 sans_state * sans_state_idle::inputHandle(sansBattle * sansBattle)
 {
 	battleUI* ui = sansBattle->getUI();
-	if (ui->getState() == INGAME) 
+	if (ui->getState() == INGAME)
 	{
-		/*if (ui->getBattle_turn() == 0)
+		//하트 위치 지정
+		sansBattle->getUI()->set_inGame_heart_y(sansBattle->getUI()->get_main_rect().bottom);
+		if (ui->getBattle_turn() == 0)
 		{
 			return new sans_state_attack1();
 		}
@@ -22,13 +26,21 @@ sans_state * sans_state_idle::inputHandle(sansBattle * sansBattle)
 		if (ui->getBattle_turn() == 2)
 		{
 			return new sans_state_attack3();
-		}*/
-		if (ui->getBattle_turn() == 0)
+		}
+		if (ui->getBattle_turn() == 3)
 		{
 			return new sans_state_attack4();
 		}
+		if (ui->getBattle_turn() == 4)
+		{
+			return new sans_state_attack5();
+		}
+		if (ui->getBattle_turn() == 5)
+		{
+			return new sans_state_attack6();
+		}
 	}
-	
+
 	return nullptr;
 }
 
