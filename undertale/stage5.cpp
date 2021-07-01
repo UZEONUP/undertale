@@ -23,6 +23,18 @@ void stage5::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)&& i>0)i--;
 	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)&& i<4)i++;
 
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+	{
+		char ablity[128];
+		char price[128];
+		ablity[127] = _itoa_s(_vItem[i].ablity, ablity, sizeof(ablity), 10);
+		price[127] = _itoa_s(_vItem[i].price, price, sizeof(price), 10);
+		INIDATA->addData(_vItem[i].name, "설명", _vItem[i].description);
+		INIDATA->addData(_vItem[i].name, "체력 회복", ablity);
+		INIDATA->addData(_vItem[i].name, "가격", price);
+		INIDATA->iniSave("인벤토리");
+	}
+
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		release();
@@ -133,6 +145,7 @@ void stage5::itemOut()
 	(
 		20, 380, L"가격:", 15, D2DDEFAULTBRUSH::White
 	);
+
 	D2DRENDER->RenderTextField
 	(
 		100, 300,ConvertCtoWC(_vItem[i].name), D2D1COLOR::White,30,280,20
