@@ -16,7 +16,16 @@ undyneState* undyneFireArrowState::inputHandle(undybattle* undybattle)
 void undyneFireArrowState::update(undybattle* undybattle)
 {
 	undybattle->getUI()->setEnemy_attackTime_max(300);
+	undybulletFire(undybattle);
 
+	if (_vBullet.size() != 0)
+	{
+		for (int i = 0; i < _vBullet.size(); i++)
+		{
+			_vBullet[i].x += 5;
+			_vBullet[i].rc = RectMake(_vBullet[i].x, _vBullet[i].y, _vBullet[i].image->GetWidth(), _vBullet[i].image->GetHeight());
+		}
+	}
 	_timer++;
 
 	if (_timer % 5 == 0)
@@ -54,7 +63,7 @@ void undyneFireArrowState::update(undybattle* undybattle)
 		}
 	}
 
-	BULLETMANAGER->move();
+//	BULLETMANAGER->move();
 }
 
 void undyneFireArrowState::enter(undybattle * undybattle)
@@ -86,10 +95,35 @@ void undyneFireArrowState::enter(undybattle * undybattle)
 
 void undyneFireArrowState::render(undybattle * undybattle)
 {
-	BULLETMANAGER->render();
+	//BULLETMANAGER->render();
+	if (_vBullet.size() != 0)
+	{
+		for (int i = 0; i < _vBullet.size(); i++)
+		{
+			if (_vBullet[i].x >= 135)
+			{
+				_vBullet[i].image->Render(_vBullet[i].x, _vBullet[i].y);
+				if (KEYMANAGER->isToggleKey(VK_F1))
+				{
+					D2DRENDER->DrawRectangle(_vBullet[i].rc, D2DRenderer::DefaultBrush::Red);
+				}
+			}
+		}
+	}
 }
 
 void undyneFireArrowState::exit(undybattle * undybattle)
 {
 
+}
+
+void undyneFireArrowState::undybulletFire(undybattle * undybattle)
+{
+	undyBullet _undyBullet;
+	_undyBullet.image = IMAGEMANAGER->FindImage("LEFTBULLET_OFF");
+	_undyBullet.x = 0;
+	_undyBullet.y = (undybattle->getUI()->get_main_rect().bottom + undybattle->getUI()->get_main_rect().top) / 2;
+	_undyBullet.rc = RectMakeCenter(_undyBullet.x, _undyBullet.y, 10, 10);
+
+	_vBullet.push_back(_undyBullet);
 }

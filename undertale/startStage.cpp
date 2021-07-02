@@ -59,19 +59,19 @@ void startStage::release()
 
 void startStage::update()
 {
-	_timer++;
-	if (_timer%20 == 0)
-	{
+	//_timer++;
+	//if (_timer%20 == 0)
+	//{
 
 
-		if(RND->getInt(2)==1)bush = IMAGEMANAGER->FindImage("bush2");
-		else bush = IMAGEMANAGER->FindImage("bush1");
-		_timer = 0;
+	//	if(RND->getInt(2)==1)bush = IMAGEMANAGER->FindImage("bush2");
+	//	else bush = IMAGEMANAGER->FindImage("bush1");
+	//	_timer = 0;
 
-		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
-	}
+	//	BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
+	//}
 
-	BULLETMANAGER->move();
+	//BULLETMANAGER->move();
 
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
@@ -98,7 +98,7 @@ void startStage::render()
 	_player->render();
 	bush->mapRender(WINSIZEX / 2, WINSIZEY / 2);
 	_bar->render();
-	BULLETMANAGER->render();
+	//BULLETMANAGER->render();
 
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))

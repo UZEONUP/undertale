@@ -1,6 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include "bullet.h"
 
 
 #define BULLETMAX 30
@@ -14,6 +13,16 @@ enum bulletDirection
 	RIGHTFIRE=1,
 	UPFIRE=2,
 	DOWNFIRE=3
+};
+
+struct undyBullet
+{
+	Image* image;
+	float x, y;
+	RECT rc;
+	bool direction;
+	float angle;
+	float speed;
 };
 
 
@@ -30,10 +39,11 @@ protected:
 	int _bulletFrame;
 	int _bulletFrameX, _bulletFrameY;
 	bulletDirection _bulletDirect;
-	bullet* _bullet;
 	undybattle* _undybattle;
 	int _directionSelect;
 	int _timer;
+
+	vector<undyBullet> _vBullet;
 public:
 
 	void linkundynebattle(undybattle* undybattle) { _undybattle = undybattle; }
@@ -53,5 +63,8 @@ public:
 	virtual Image* getCurrentStateEffect() { return _bulletimg; }
 	virtual int getEffectFrameX() { return _bulletFrameX; }
 	virtual int getEffectFrameY() { return _bulletFrameY; }
+
+	vector<undyBullet> getVbullet() { return _vBullet; }
+	RECT getBulletRect(int index) { return _vBullet[index].rc; }
 };
 

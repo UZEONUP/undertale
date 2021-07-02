@@ -40,6 +40,6 @@ void stageManager::sceneSet()
 	sceneManager::getSingleton()->addScene("sansBattle", new sansBattle);
 
 
-	sceneManager::getSingleton()->changeScene("title");
+	sceneManager::getSingleton()->changeScene("undybattle");
 }
 

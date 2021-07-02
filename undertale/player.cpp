@@ -285,6 +285,7 @@ void player::render()
 	{
 		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY,_vObject[i]->alpha);
 	}
+		_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 	//if (!_player.deletepl)
 	//{
 	//	//
@@ -292,7 +293,7 @@ void player::render()
 	//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
 	//	_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 	//}
-	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
+	
 
 	D2DRENDER->DrawRectangle
 	(
