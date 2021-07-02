@@ -5,7 +5,6 @@
 class invenManager : public singletonBase<invenManager>
 {
 private:
-	stage5* _shop;
 
 	vector<tagItemInfo>				_vInven;
 	vector<tagItemInfo>::iterator	_vIterInven;
@@ -32,7 +31,6 @@ public:
 	void close();
 	void clear();
 
-	void linkShop(stage5* shop) { _shop = shop; }
 
 	vector<tagItemInfo> getVInven() { return _vInven; }
 	void setInven(vector<tagItemInfo> vInven) { _vInven = vInven; }

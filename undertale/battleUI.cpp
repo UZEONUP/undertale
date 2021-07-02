@@ -243,14 +243,17 @@ void battleUI::update()
 				_str_main = INIDATA->loadDataString("우전없", _boss_main, "100");
 
 			}
-			if (_menu_action_count == 2)
+			if (_menu_input1_count == 2 && _menu_action_count == 2 && !_menu_action_click)
 			{
-
+				_word_count = 0;
+				_menu_action_click = true;
+				_str_main = INIDATA->loadDataString("우전없", _boss_main, "101");
 			}
-			if (_menu_action_count == 3)
+			if (_menu_input1_count == 2 && _menu_action_count == 3 && !_menu_action_click)
 			{
-
-
+				_word_count = 0;
+				_menu_action_click = true;
+				_str_main = INIDATA->loadDataString("우전없", _boss_main, "102");
 			}
 			if (_word_count == strlen(_word_cut) && _word_count >= 3)
 			{
@@ -261,6 +264,7 @@ void battleUI::update()
 			if (_menu_input1_count == 2 && _menu_action_count == 0)
 			{
 				_menu_action_count = 1;
+				_word_count = 0;
 			}
 
 			//살려주기버튼 누를시
@@ -279,7 +283,6 @@ void battleUI::update()
 			if (talk_main_end(daCount))
 			{
 				_word_count = 0;
-
 				_menu_main_count = 1;
 				_menu_input1_count = 0;
 				isTurn = MENU_SELECT;
@@ -393,6 +396,7 @@ void battleUI::update()
 		_title_char2[1024] = _itoa_s(_title_int2, _title_char2, sizeof(_title_char2), 10);
 		_str_bubble = INIDATA->loadDataString2("우전없", _boss_bubble, _title_char2);
 		_word_count2 = 0;
+		_word_count = 0;
 		_menu_input1_count = 0;
 		_attack_bar_count = 0;
 		_battle_turn++;
