@@ -154,6 +154,7 @@ void battleUI::update()
 	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
 	if (isTurn == TALK_BUBBLE)
 	{
+		
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_heartPlayer.x -= _heartPlayer.speed;
@@ -400,8 +401,9 @@ void battleUI::update()
 	if (isTurn == INGAME)
 	{
 		_enemy_attack_count++;
-		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
-		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+
+		//_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+		//_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
 		
 	}
 	//인게임 시간이 끝나면

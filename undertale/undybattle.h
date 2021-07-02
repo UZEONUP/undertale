@@ -5,8 +5,6 @@
 #include "bullet.h"
 #include "undyneState.h"
 
-#define PI 3.14156f
-
 struct tagUndyne
 {
 	RECT rc;
