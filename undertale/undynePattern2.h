@@ -4,15 +4,10 @@
 
 class undybattle;
 
-
-class undyneFireArrowState :public undyneState
+class undynePattern2 :public undyneState
 {
 private:
-
-
-	float disX;
-	float disY;
-
+	float distance;
 
 public:
 	virtual undyneState* inputHandle(undybattle* undybattle);
@@ -22,8 +17,6 @@ public:
 	virtual void exit(undybattle* undybattle);
 
 	void undybulletFire(undybattle* undybattle);
-	
 	void mindist(undybattle * undybattle);
-
 };
 

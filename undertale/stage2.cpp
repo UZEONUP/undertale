@@ -43,7 +43,7 @@ void stage2::update()
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
 		release();
-		SCENEMANAGER->changeScene("stage3");
+		SCENEMANAGER->changeScene("undybattle");
 	}
 	_player->update();
 	_setRect->update();

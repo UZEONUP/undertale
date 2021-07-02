@@ -306,6 +306,9 @@
     <ClInclude Include="undyneState.h">
       <Filter>playGround\enemy\undyne</Filter>
     </ClInclude>
+    <ClInclude Include="undynePattern2.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -501,6 +504,9 @@
       <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
     <ClCompile Include="undyneIdle.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undynePattern2.cpp">
       <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
   </ItemGroup>

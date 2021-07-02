@@ -1,20 +1,19 @@
 #include "stdafx.h"
-#include "undyneFireArrowState.h"
+#include "undynePattern2.h"
 
-undyneState* undyneFireArrowState::inputHandle(undybattle* undybattle)
+undyneState * undynePattern2::inputHandle(undybattle * undybattle)
 {
-	
-
 	if (undybattle->getUI()->getState() != INGAME)
 	{
 		return new undyneIdle();
 	}
 	return nullptr;
-
 }
 
-void undyneFireArrowState::update(undybattle* undybattle)
+void undynePattern2::update(undybattle * undybattle)
 {
+
+	mindist(undybattle);
 	_timer++;
 
 	undybattle->getUI()->setEnemy_attackTime_max(300);
@@ -23,14 +22,16 @@ void undyneFireArrowState::update(undybattle* undybattle)
 	{
 		undybulletFire(undybattle);
 	}
-	
+
+
 	if (_vUBullet.size() != 0)
 	{
-		
+
 		for (int i = 0; i < _vUBullet.size(); i++)
 		{
+			distance = GetDistance(_vUBullet[i].x, _vUBullet[i].y, undybattle->getUI()->getIGH().x, undybattle->getUI()->getIGH().y);
 
-			switch (_directionSelect)
+			/*switch (_directionSelect)
 			{
 			case 0:
 				_bulletDirect = LEFTFIRE;
@@ -45,33 +46,38 @@ void undyneFireArrowState::update(undybattle* undybattle)
 				_bulletDirect = DOWNFIRE;
 				break;
 			}
-
+*/
 			switch (_vUBullet[i]._bulletDirect)
 			{
 			case LEFTFIRE:
-					_vUBullet[i].x += 5;
-					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
+				_vUBullet[i].x += cosf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].y += -sinf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
+				if (distance <= 200) _vUBullet[i].angle++;
 				break;
 
 			case RIGHTFIRE:
-					_vUBullet[i].x -= 5;
-					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
-				
+				_vUBullet[i].x += cosf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].y += -sinf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
+
 				break;
 			case UPFIRE:
-				
-					_vUBullet[i].y += 5;
-					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
-				
+				_vUBullet[i].x += cosf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].y += -sinf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
+
 				break;
 			case DOWNFIRE:
-					_vUBullet[i].y -= 5;
-					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
+				_vUBullet[i].x += cosf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].y += -sinf(_vUBullet[i].angle) * 5;
+				_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
 				break;
 
 			}
+
 		}
-		
+
 	}
 
 
@@ -88,37 +94,14 @@ void undyneFireArrowState::update(undybattle* undybattle)
 
 		else _viUBullet++;
 	}
-
-	mindist(undybattle);
 }
 
-void undyneFireArrowState::enter(undybattle * undybattle)
+void undynePattern2::enter(undybattle * undybattle)
 {
-
-
-	//BULLETMANAGER->init("LEFTBULLET_OFF", 10, 600);
-
-	//switch (_bulletDirect)
-	//{
-	//case LEFTFIRE:
-	//	BULLETMANAGER->init("LEFTBULLET_OFF", 10, 600);
-	//	break;
-	//case RIGHTFIRE:
-	//	BULLETMANAGER->init("RIGHTBULLET_OFF", 10, 600);
-	//	break;
-	//case UPFIRE:
-	//	BULLETMANAGER->init("UPBULLET_OFF", 10, 600);
-	//	break;
-	//case DOWNFIRE:
-	//	BULLETMANAGER->init("DOWNBULLET_OFF", 10, 600);
-	//	break;
-	//
-	//}
 }
 
-void undyneFireArrowState::render(undybattle * undybattle)
+void undynePattern2::render(undybattle * undybattle)
 {
-	//BULLETMANAGER->render();
 	if (_vUBullet.size() != 0)
 	{
 		for (int i = 0; i < _vUBullet.size(); i++)
@@ -135,85 +118,90 @@ void undyneFireArrowState::render(undybattle * undybattle)
 	}
 }
 
-void undyneFireArrowState::exit(undybattle * undybattle)
+void undynePattern2::exit(undybattle * undybattle)
 {
-
 }
 
-void undyneFireArrowState::undybulletFire(undybattle * undybattle)
+void undynePattern2::undybulletFire(undybattle * undybattle)
 {
-	
-	//_directionSelect = RND->getFromIntTo(0, 3);
-
-
 	_undybullet.rc = RectMakeCenter(_undybullet.x, _undybullet.y, 10, 10);
 	_undybullet._bulletDirect = RND->getFromIntTo(0, 4);
-	
+
 
 	switch (_undybullet._bulletDirect)
 	{
-		
+
 	case LEFTFIRE:
-		_undybullet.image = IMAGEMANAGER->FindImage("LEFTBULLET_OFF");
+		_undybullet.image = IMAGEMANAGER->FindImage("LEFTBULLET_FAKE");
 		_undybullet.x = 0;
 		_undybullet.y = (undybattle->getUI()->get_main_rect().bottom + undybattle->getUI()->get_main_rect().top) / 2;
+		_undybullet.angle = PI * 0;
 		_undybullet.rc = RectMakeCenter(_undybullet.x, _undybullet.y, 10, 10);
 		break;
 	case RIGHTFIRE:
-		_undybullet.image = IMAGEMANAGER->FindImage("RIGHTBULLET_OFF");
+		_undybullet.image = IMAGEMANAGER->FindImage("RIGHTBULLET_FAKE");
 		_undybullet.x = WINSIZEX;
 		_undybullet.y = (undybattle->getUI()->get_main_rect().bottom + undybattle->getUI()->get_main_rect().top) / 2;
+		_undybullet.angle = PI;
 		_undybullet.rc = RectMakeCenter(_undybullet.x, _undybullet.y, 10, 10);
 		break;
 	case UPFIRE:
-		_undybullet.image = IMAGEMANAGER->FindImage("UPBULLET_OFF");
-		_undybullet.x = (undybattle->getUI()->get_main_rect().left+ undybattle->getUI()->get_main_rect().right) / 2;
+		_undybullet.image = IMAGEMANAGER->FindImage("UPBULLET_FAKE");
+		_undybullet.x = (undybattle->getUI()->get_main_rect().left + undybattle->getUI()->get_main_rect().right) / 2;
 		_undybullet.y = 0;
+		_undybullet.angle = PI * 1.5;
 		_undybullet.rc = RectMakeCenter(_undybullet.x, _undybullet.y, 10, 10);
 		break;
 	case DOWNFIRE:
-		_undybullet.image = IMAGEMANAGER->FindImage("DOWNBULLET_OFF");
+		_undybullet.image = IMAGEMANAGER->FindImage("DOWNBULLET_FAKE");
 		_undybullet.x = (undybattle->getUI()->get_main_rect().left + undybattle->getUI()->get_main_rect().right) / 2;
 		_undybullet.y = WINSIZEY;
+		_undybullet.angle = PI / 2;
 		_undybullet.rc = RectMakeCenter(_undybullet.x, _undybullet.y, 10, 10);
 		break;
 	}
 	_vUBullet.push_back(_undybullet);
 }
 
-void undyneFireArrowState::mindist(undybattle * undybattle)
+void undynePattern2::mindist(undybattle * undybattle)
 {
 	float dist, minDist;
 	int minIndex;
 	bool isLeft = false;
 	minDist = WINSIZEX;
 	minIndex = 0;
-	float distance;
+
 	for (int i = 0; i < _vUBullet.size(); i++)
 	{
 		distance = GetDistance(_vUBullet[i].x, _vUBullet[i].y, undybattle->getUI()->getIGH().x, undybattle->getUI()->getIGH().y);
-		
+
 		if (distance <= 100)
 		{
 			switch (_vUBullet[i]._bulletDirect)
 			{
 			case 0:
-				_vUBullet[i].image = IMAGEMANAGER->FindImage("LEFTBULLET_ON");
+				if (_vUBullet[i].y <= 175)
+				{
+					_vUBullet[i].angle=1.5;
+				}
+				/*else if (_vUBullet[i].y > 175)
+				{
+					_vUBullet[i].angle--;
+				}*/
 				break;
 
 			case 1:
-				_vUBullet[i].image = IMAGEMANAGER->FindImage("RIGHTBULLET_ON");
+
 				break;
 			case 2:
-				_vUBullet[i].image = IMAGEMANAGER->FindImage("UPBULLET_ON");
+
 				break;
 			case 3:
-				_vUBullet[i].image = IMAGEMANAGER->FindImage("DOWNBULLET_ON");
+
 				break;
 
 			}
-			
-		}
 
+		}
 	}
 }

@@ -400,6 +400,8 @@ void battleUI::update()
 	if (isTurn == INGAME)
 	{
 		_enemy_attack_count++;
+		
+		//예외처리 필요
 		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
 		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
 		
