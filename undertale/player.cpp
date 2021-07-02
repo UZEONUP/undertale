@@ -61,6 +61,7 @@ HRESULT player::init()
 	_heart.img = IMAGEMANAGER->FindImage("RED");
 	_heart.currentFrameX = 0;
 
+	
 	_vObject.push_back(&_player);
 
 	_blink = 0;
@@ -97,6 +98,19 @@ HRESULT player::init(float x, float y)
 	_heart.currentFrameX = 0;
 
 	_vObject.push_back(&_player);
+
+	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
+	{
+		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
+		_undy.x = WINSIZEX / 2;
+		_undy.y = 400;
+		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
+		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
+		_undy.currentFrameX = _undy.currentFrameY = 0;
+
+		_vObject.push_back(&_undy);
+
+	}
 
 	_blink = 0;
 	_index = 0;
