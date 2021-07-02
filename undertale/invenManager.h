@@ -1,27 +1,32 @@
 #pragma once
 #include "singletonBase.h"
-
-class stage5;
+#include "stage5.h"
 
 class invenManager : public singletonBase<invenManager>
 {
 private:
 	stage5* _shop;
 
-	vector<tagItemInfo>					vInven;
-	vector<tagItemInfo>::iterator		vIterInven;
+	vector<tagItemInfo>				_vInven;
+	vector<tagItemInfo>::iterator	_vIterInven;
+
+	bool _open;
+
+	RECT _inven;
+	int _invenMax; //최대 용량
+
+
 public:
 	invenManager() {};
 	~invenManager() {};
 
 	HRESULT init();
-	HRESULT init(vector<tagItemInfo> vItem);
 
 	void release();
 	void update();
 	void render();
 
-	void in();
+	void in(tagItemInfo item);
 	void open();
 	void close();
 

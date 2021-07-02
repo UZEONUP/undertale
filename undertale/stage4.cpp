@@ -62,7 +62,7 @@ void stage4::render()
 	_backGround->mapRender(0, 0);
 
 	_player->render();
-
+	INVENTORY->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{
 		for (int i = 0; i < _setRect->getvGround().size(); i++)

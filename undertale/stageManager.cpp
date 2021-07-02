@@ -16,13 +16,16 @@ void stageManager::release()
 
 void stageManager::update()
 {
+
 	SCENEMANAGER->update();
 	SAVELOADMANAGER->update();
+	INVENTORY->update();
 }
 
 void stageManager::render()
 {
 	SCENEMANAGER->render();
+	INVENTORY->render();
 }
 
 void stageManager::sceneSet()
