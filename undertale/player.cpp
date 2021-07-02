@@ -100,7 +100,8 @@ HRESULT player::init(float x, float y)
 
 	IMAGEMANAGER->AddFrameImage("bush1", L"오브젝트이미지/bush1.png", 1, 1);
 	IMAGEMANAGER->AddFrameImage("bush2", L"오브젝트이미지/bush2.png", 1, 1);
-	setBush();
+	cout << SCENEMANAGER->getSceneName() << endl;
+	
 
 	_blink = 0;
 	_index = 0;
@@ -120,6 +121,7 @@ bool compare(tagPlayer * a, tagPlayer * b)
 
 void player::update()
 {
+	if (SCENEMANAGER->isCurrentScene("stage1")) setBush();
 	for (int i = 0; i < _vObject.size(); i++)
 	{
 		_vObject[i]->count++;
@@ -274,8 +276,10 @@ void player::render()
 {
 	for (int i = 0; i < _vObject.size(); i++)
 	{
-		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY,_vObject[i]->alpha);
+		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY, _vObject[i]->alpha);
 	}
+
+	
 	//if (!_player.deletepl)
 	//{
 	//	//
@@ -306,45 +310,48 @@ void player::render()
 
 void player::setBush()
 {
-	_object.img = IMAGEMANAGER->FindImage("bush1");
-	_object.x = 400;
-	_object.y = 250;
-	_object.rc = RectMake(_object.x, _object.y, 70, 74);
-	_object.currentFrameX = 0;
-	_object.currentFrameY = 0;
-	_object.alpha = 1;
+	if (_vObject.size() <= 10)
+	{
+		_object.img = IMAGEMANAGER->FindImage("bush1");
+		_object.x = 400;
+		_object.y = 250;
+		_object.rc = RectMake(_object.x, _object.y, 70, 74);
+		_object.currentFrameX = 0;
+		_object.currentFrameY = 0;
+		_object.alpha = 1;
 
-	_vObject.push_back(&_object);
+		_vObject.push_back(&_object);
 
-	_bush2.img = IMAGEMANAGER->FindImage("bush1");
-	_bush2.x = 400 + _bush2.img->GetFrameWidth();
-	_bush2.y = 250 + _bush2.img->GetFrameHeight();
-	_bush2.rc = RectMake(_bush2.x, _bush2.y, 70, 74);
-	_bush2.currentFrameX = 0;
-	_bush2.currentFrameY = 0;
-	_bush2.alpha = 1;
+		_bush2.img = IMAGEMANAGER->FindImage("bush1");
+		_bush2.x = 400 + _bush2.img->GetFrameWidth();
+		_bush2.y = 250 + _bush2.img->GetFrameHeight();
+		_bush2.rc = RectMake(_bush2.x, _bush2.y, 70, 74);
+		_bush2.currentFrameX = 0;
+		_bush2.currentFrameY = 0;
+		_bush2.alpha = 1;
 
-	_vObject.push_back(&_bush2);
+		_vObject.push_back(&_bush2);
 
-	_bush3.img = IMAGEMANAGER->FindImage("bush1");
-	_bush3.x = 400;
-	_bush3.y = 250 + _bush3.img->GetFrameHeight();
-	_bush3.rc = RectMake(_bush3.x, _bush3.y, 70, 74);
-	_bush3.currentFrameX = 0;
-	_bush3.currentFrameY = 0;
-	_bush3.alpha = 1;
+		_bush3.img = IMAGEMANAGER->FindImage("bush1");
+		_bush3.x = 400;
+		_bush3.y = 250 + _bush3.img->GetFrameHeight();
+		_bush3.rc = RectMake(_bush3.x, _bush3.y, 70, 74);
+		_bush3.currentFrameX = 0;
+		_bush3.currentFrameY = 0;
+		_bush3.alpha = 1;
 
-	_vObject.push_back(&_bush3);
+		_vObject.push_back(&_bush3);
 
-	_bush4.img = IMAGEMANAGER->FindImage("bush1");
-	_bush4.x = 400 + _bush4.img->GetFrameWidth();
-	_bush4.y = 250;
-	_bush4.rc = RectMake(_bush4.x, _bush4.y, 70, 74);
-	_bush4.currentFrameX = 0;
-	_bush4.currentFrameY = 0;
-	_bush4.alpha = 1;
+		_bush4.img = IMAGEMANAGER->FindImage("bush1");
+		_bush4.x = 400 + _bush4.img->GetFrameWidth();
+		_bush4.y = 250;
+		_bush4.rc = RectMake(_bush4.x, _bush4.y, 70, 74);
+		_bush4.currentFrameX = 0;
+		_bush4.currentFrameY = 0;
+		_bush4.alpha = 1;
 
-	_vObject.push_back(&_bush4);
+		_vObject.push_back(&_bush4);
+	}
 }
 
 void player::collisionBush()

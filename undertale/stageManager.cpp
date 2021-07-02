@@ -16,7 +16,6 @@ void stageManager::release()
 
 void stageManager::update()
 {
-
 	SCENEMANAGER->update();
 	SAVELOADMANAGER->update();
 	INVENTORY->update();

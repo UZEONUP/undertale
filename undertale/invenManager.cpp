@@ -55,7 +55,7 @@ void invenManager::render()
 			str[64] = _itoa_s(_vInven[i].ablity, str, sizeof(str), 10);
 			D2DRENDER->RenderTextField
 			(
-				(i / 4 == 1) ? x : _inven.left + 30, 120 + (height * 95), ConvertCtoWC(str), D2D1COLOR::White, 10, 280, 20
+				(i / 4 == 1) ? x + 100 : _inven.left + 100, 120 + (height * 95), ConvertCtoWC(str), D2D1COLOR::White, 10, 280, 20
 			);
 
 		}
