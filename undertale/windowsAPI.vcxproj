@@ -213,6 +213,7 @@
     <ClInclude Include="undyne.h" />
     <ClInclude Include="undyneFireArrowState.h" />
     <ClInclude Include="undyneIdle.h" />
+    <ClInclude Include="undynePattern2.h" />
     <ClInclude Include="undyneState.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="vector2.h" />
@@ -285,6 +286,7 @@
     <ClCompile Include="undyne.cpp" />
     <ClCompile Include="undyneFireArrowState.cpp" />
     <ClCompile Include="undyneIdle.cpp" />
+    <ClCompile Include="undynePattern2.cpp" />
     <ClCompile Include="undyneState.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="vector2.cpp" />

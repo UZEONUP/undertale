@@ -297,6 +297,18 @@
     <ClInclude Include="invenManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="undyneFireArrowState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneIdle.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undyneState.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
+    <ClInclude Include="undynePattern2.h">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -484,6 +496,18 @@
     </ClCompile>
     <ClCompile Include="invenManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneFireArrowState.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undyneIdle.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
+    </ClCompile>
+    <ClCompile Include="undynePattern2.cpp">
+      <Filter>playGround\enemy\undyne</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

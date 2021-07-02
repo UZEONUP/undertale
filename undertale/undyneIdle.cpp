@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "undyneIdle.h"
 #include "undyneFireArrowState.h"
+#include "undynePattern2.h"
 
 undyneState * undyneIdle::inputHandle(undybattle * undybattle)
 {
@@ -10,6 +11,11 @@ undyneState * undyneIdle::inputHandle(undybattle * undybattle)
 		if (_bui->getBattle_turn() == 0)
 		{
 			return new undyneFireArrowState();
+		}
+
+		if (_bui->getBattle_turn() == 1)
+		{
+			return new undynePattern2();
 		}
 	}
 	return nullptr;
