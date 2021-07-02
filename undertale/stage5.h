@@ -33,6 +33,8 @@ private:
 	int i;
 	int choiceY;
 
+	bool exit;
+
 public :
 	virtual HRESULT init();
 	virtual void release();

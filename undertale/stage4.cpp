@@ -7,9 +7,8 @@ HRESULT stage4::init()
 	_backGround = ImageManager::GetInstance()->FindImage("테미마을");
 
 	CAMERAMANAGER->setMapCamera(1320, 600);
-
 	_player = new player;
-	if(!_shopRe)	_player->init(120,100);
+	if(!_shopRe)_player->init(120,100);
 	else _player->init(675, 300);
 
 	_setRect = new stageRect;
@@ -24,7 +23,7 @@ HRESULT stage4::init()
 	_setRect->setGround(80, 480, 1130, 40);
 	_setRect->setGround(720, 0, 35, 290);
 
-	_sceneRect = RectMake(640, 145, 75, 20);
+	_sceneRect = RectMake(640, 255, 75, 20);
 	_sceneRect2 = RectMake(82, 10, 75, 20);
 
 	SAVELOADMANAGER->linkPlayer(_player);
@@ -44,16 +43,22 @@ void stage4::update()
 {
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
-		release();
-		SCENEMANAGER->changeScene("stage5");
-		_shopRe = true;
+		_player->setMoveStop(1);
+		_player->setAlpha(_player->getAlpha() - 0.01f);
+		if (_player->getAlpha() <= 0.f)
+		{
+			release();
+			SCENEMANAGER->changeScene("stage5");
+			_shopRe = true;
+		}
 	}
 	if (IsCollision(_player->getBRect(), _sceneRect2))
 	{
+		_shopRe = false;
 		release();
 		SCENEMANAGER->changeScene("stage3");
 	}
-	_player->update();
+	if (!_player->getMoveStop())_player->update();
 	_setRect->update();
 }
 

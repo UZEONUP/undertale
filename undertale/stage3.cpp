@@ -7,7 +7,7 @@ HRESULT stage3::init()
 	_backGround = ImageManager::GetInstance()->FindImage("Åë·Î");
 
 	CAMERAMANAGER->setMapCamera(1320, 480);
-
+	cout << _reStage << endl;
 	_player = new player;
 	if(!_reStage)_player->init(100,350);
 	else _player->init(470, 440);
