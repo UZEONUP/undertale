@@ -22,7 +22,7 @@ HRESULT stage2::init()
 	_setRect->setGround(0, 200, 230, 1300);
 	_setRect->setGround(400, 200, 240, 1300);
 
-	_sceneRect = RectMake(250,900, 70, 30);
+	_sceneRect = RectMake(250,980, 70, 30);
 
 	_setRect->linkPlayer(_player);
 
@@ -42,10 +42,15 @@ void stage2::update()
 {
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
-		release();
-		SCENEMANAGER->changeScene("undybattle");
+		_player->setMoveStop(1);
+		_player->setAlpha(_player->getAlpha() - 0.01f);
+		if (_player->getAlpha() <= 0.f)
+		{
+			release();
+			SCENEMANAGER->changeScene("stage3");
+		}
 	}
-	_player->update();
+	if (!_player->getMoveStop())_player->update(); 
 	_setRect->update();
 }
 

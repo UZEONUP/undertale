@@ -154,6 +154,7 @@ void battleUI::update()
 	_heartPlayer.rc = RectMakeCenter(_heartPlayer.x, _heartPlayer.y, 20, 20);
 	if (isTurn == TALK_BUBBLE)
 	{
+		
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_heartPlayer.x -= _heartPlayer.speed;
@@ -400,10 +401,9 @@ void battleUI::update()
 	if (isTurn == INGAME)
 	{
 		_enemy_attack_count++;
-		
-		//예외처리 필요
-		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
-		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+
+		//_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+		//_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
 		
 	}
 	//인게임 시간이 끝나면
@@ -529,11 +529,8 @@ void battleUI::render()
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-윤디자인웹돋움");
 	}
 	//========================================================================================gkxm
-	D2DRENDER->DrawRectangle
-	(
-		_heartPlayer.rc,
-		D2DRenderer::DefaultBrush::Red
-	);
+	D2DRENDER->RenderText(10, 395, L"PLAYER : 우전없", 20, D2DRenderer::DefaultBrush::White);
+	D2DRENDER->RenderText(230, 395, L"H  P", 20, D2DRenderer::DefaultBrush::White);
 	if (isTurn == TALK_BUBBLE|| isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
 
 }

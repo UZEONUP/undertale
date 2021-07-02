@@ -55,7 +55,7 @@ void invenManager::render()
 			str[64] = _itoa_s(_vInven[i].ablity, str, sizeof(str), 10);
 			D2DRENDER->RenderTextField
 			(
-				(i / 4 == 1) ? x : _inven.left + 30, 120 + (height * 95), ConvertCtoWC(str), D2D1COLOR::White, 10, 280, 20
+				(i / 4 == 1) ? x + 60 : _inven.left + 90, 120 + (height * 95), ConvertCtoWC(str), D2D1COLOR::White, 10, 280, 20
 			);
 
 		}
@@ -68,6 +68,14 @@ void invenManager::in(tagItemInfo item)
 	_vInven.push_back(item);
 }
 
+void invenManager::out()
+{
+	if (_vInven.size() <= 0)return;
+	_vInven.pop_back();
+	_vInven.resize(_vInven.size());
+	cout << _vInven.size() << endl;
+}
+
 void invenManager::open()
 {
 	_open = true;
@@ -76,4 +84,9 @@ void invenManager::open()
 void invenManager::close()
 {
 	_open = false;
+}
+
+void invenManager::clear()
+{
+	_vInven.clear();
 }

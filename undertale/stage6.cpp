@@ -14,7 +14,7 @@ HRESULT stage6::init()
 	_setRect = new stageRect;
 	_setRect->release();
 
-	_sceneRect = RectMake(285, 260, 75, 40);
+	_sceneRect = RectMake(285, 270, 75, 40);
 
 	SAVELOADMANAGER->linkPlayer(_player);
 	_setRect->linkPlayer(_player);
@@ -32,10 +32,15 @@ void stage6::update()
 {
 	if (IsCollision(_player->getBRect(), _sceneRect))
 	{
-		release();
-		SCENEMANAGER->changeScene("stage7");
+		_player->setMoveStop(1);
+		_player->setAlpha(_player->getAlpha() - 0.01f);
+		if (_player->getAlpha() <= 0.f)
+		{
+			release();
+			SCENEMANAGER->changeScene("stage7");
+		}
 	}
-	_player->update();
+		if (!_player->getMoveStop())_player->update(); 
 	_setRect->update();
 }
 

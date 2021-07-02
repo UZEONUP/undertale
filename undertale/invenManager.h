@@ -27,9 +27,14 @@ public:
 	void render();
 
 	void in(tagItemInfo item);
+	void out();
 	void open();
 	void close();
+	void clear();
 
 	void linkShop(stage5* shop) { _shop = shop; }
+
+	vector<tagItemInfo> getVInven() { return _vInven; }
+	void setInven(vector<tagItemInfo> vInven) { _vInven = vInven; }
 };
 

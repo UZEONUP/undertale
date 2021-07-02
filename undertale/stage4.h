@@ -14,6 +14,7 @@ class stage4 : public gameNode
 
 	player* _player;
 
+
 	bool _shopRe;
 
 public :
@@ -25,6 +26,7 @@ public :
 	stageRect* getStageRect() { return _setRect; }
 	RECT getSceneRect() { return _sceneRect; }
 	RECT getSceneRect2() { return _sceneRect2; }
+
 
 };
 
