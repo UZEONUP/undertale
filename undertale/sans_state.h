@@ -13,6 +13,7 @@ struct objectBone
 	float angle;
 	int currentFrameX;
 	int currentFrameY;
+	bool isColision;
 };
 
 class sans_state
@@ -47,11 +48,17 @@ public:
 	void collision(sansBattle* sansBattle, RECT rect);
 	void linkSans(sansBattle* sans) { _sanBattle = sans; }
 
-	//面倒何盒 get set
-	RECT get_bone_20_rc(int index) { return _bone_20[index].rc; }
-	RECT get_bone_40_rc(int index) { return _bone_40[index].rc; }
-	RECT get_bone_50_rc(int index) { return _bone_50[index].rc; }
-	RECT get_bone_100_rc(int index) { return _bone_100[index].rc; }
-	RECT get__laser_bim_rc(int index) { return _laser_bim[index].rc; }
+	//面倒何盒 get
+	objectBone get_bone_20(int index) { return _bone_20[index]; }
+	objectBone get_bone_40(int index) { return _bone_40[index]; }
+	objectBone get_bone_50(int index) { return _bone_50[index]; }
+	objectBone get_bone_100(int index) { return _bone_100[index]; }
+	objectBone get__laser_bim(int index) { return _laser_bim[index]; }
+	//面倒何盒 set
+	void set_bone_20(int index, bool isColision) {  _bone_20[index].isColision = isColision; }
+	void set_bone_40(int index, bool isColision) {  _bone_40[index].isColision = isColision; }
+	void set_bone_50(int index, bool isColision) {  _bone_50[index].isColision = isColision; }
+	void set_bone_100(int index, bool isColision) {  _bone_100[index].isColision = isColision; }
+	void set_laser_bim(int index, bool isColision) { _laser_bim[index].isColision = isColision; }
 };
 

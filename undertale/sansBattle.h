@@ -37,6 +37,7 @@ private:
 
 	object _info;
 
+
 public:
 
 	sansBattle();

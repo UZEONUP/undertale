@@ -48,6 +48,9 @@ private:
 	tagPlayer _heart;
 	tagPlayer _object;
 	tagPlayer _undy;
+	tagPlayer _bush2;
+	tagPlayer _bush3;
+	tagPlayer _bush4;
 
 	int _count;
 	int _index;
@@ -74,6 +77,8 @@ public:
 	virtual void update();
 	virtual void render();
 
+	void setBush();
+	void collisionBush();
 	//bool compare(tagPlayer* a, tagPlayer* b);
 
 	RECT getRect() { return _player.rc; }

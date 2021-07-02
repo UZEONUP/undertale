@@ -43,6 +43,6 @@ void stageManager::sceneSet()
 	sceneManager::getSingleton()->addScene("sansBattle", new sansBattle);
 
 
-	sceneManager::getSingleton()->changeScene("stage5");
+	sceneManager::getSingleton()->changeScene("stage1");
 }
 
