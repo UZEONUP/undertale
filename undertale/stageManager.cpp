@@ -28,6 +28,7 @@ void stageManager::render()
 {
 	SCENEMANAGER->render();
 	INVENTORY->render();
+	SAVELOADMANAGER->render();
 }
 
 void stageManager::sceneSet()

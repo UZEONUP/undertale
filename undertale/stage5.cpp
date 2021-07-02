@@ -30,23 +30,30 @@ void stage5::release()
 
 void stage5::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)&& i>0)i--;
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)&& i<4)i++;
-	if (KEYMANAGER->isOnceKeyDown(VK_UP)&& choiceY>0)choiceY--;
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN)&& choiceY <1)choiceY++;
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && i > 0)i--;
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && i < 4)i++;
+	if (KEYMANAGER->isOnceKeyDown(VK_UP) && choiceY > 0)choiceY--;
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && choiceY < 1)choiceY++;
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && choiceY==0)
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
-		INVENTORY->in(_vItem[i]);
+		if (choiceY == 0)
+		{
+			INVENTORY->in(_vItem[i]);
 
-		char ablity[128];
-		char price[128];
-		ablity[127] = _itoa_s(_vItem[i].ablity, ablity, sizeof(ablity), 10);
-		price[127] = _itoa_s(_vItem[i].price, price, sizeof(price), 10);
-		INIDATA->addData(_vItem[i].name, "설명", _vItem[i].description);
-		INIDATA->addData(_vItem[i].name, "체력 회복", ablity);
-		INIDATA->addData(_vItem[i].name, "가격", price);
-		INIDATA->iniSave("인벤토리");
+			char ablity[128];
+			char price[128];
+			ablity[127] = _itoa_s(_vItem[i].ablity, ablity, sizeof(ablity), 10);
+			price[127] = _itoa_s(_vItem[i].price, price, sizeof(price), 10);
+			INIDATA->addData(_vItem[i].name, "설명", _vItem[i].description);
+			INIDATA->addData(_vItem[i].name, "체력 회복", ablity);
+			INIDATA->addData(_vItem[i].name, "가격", price);
+			INIDATA->iniSave("인벤토리");
+		}
+		else
+		{
+			INVENTORY->out();
+		}
 
 	}
 
@@ -62,8 +69,8 @@ void stage5::render()
 {
 	_backGround->Render(0, 0);
 	itemOut();
-	buy[choiceY]->Render(500,280);
-	sell[choiceY]->Render(500,380);
+	buy[choiceY]->Render(500, 280);
+	sell[choiceY]->Render(500, 380);
 }
 
 void stage5::shopSet()
@@ -102,7 +109,7 @@ void stage5::itemSet()
 	potion1.rc = RectMake(30, 280, 285, 240);
 	potion1.itemKind = ITEM_POTION;
 	potion1.name = "거미 사이다";
-	potion1.description ="거미를 갈아서 만든 즙과 사이다를 쉐이킹~!";
+	potion1.description = "거미를 갈아서 만든 즙과 사이다를 쉐이킹~!";
 	potion1.ablity = 24;
 	potion1.price = 700;
 
@@ -149,7 +156,7 @@ void stage5::itemOut()
 {
 	D2DRENDER->RenderText
 	(
-		20,290,L"이름:", 30,D2DDEFAULTBRUSH::White
+		20, 290, L"이름:", 30, D2DDEFAULTBRUSH::White
 	);
 	D2DRENDER->RenderText
 	(
@@ -166,7 +173,7 @@ void stage5::itemOut()
 
 	D2DRENDER->RenderTextField
 	(
-		100, 300,ConvertCtoWC(_vItem[i].name), D2D1COLOR::White,30,280,20
+		100, 300, ConvertCtoWC(_vItem[i].name), D2D1COLOR::White, 30, 280, 20
 	);
 	D2DRENDER->RenderTextField
 	(
@@ -174,7 +181,7 @@ void stage5::itemOut()
 	);
 
 	char str[128];
-	str[64] = _itoa_s(_vItem[i].ablity, str,sizeof(str),10);
+	str[64] = _itoa_s(_vItem[i].ablity, str, sizeof(str), 10);
 	D2DRENDER->RenderTextField
 	(
 		100, 360, ConvertCtoWC(str), D2D1COLOR::White, 15, 280, 20
@@ -184,5 +191,5 @@ void stage5::itemOut()
 	(
 		100, 380, ConvertCtoWC(str), D2D1COLOR::White, 15, 280, 20
 	);
-	
+
 }
