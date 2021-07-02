@@ -51,14 +51,14 @@ void saveLoadManager::render()
 	{
 		D2DRENDER->RenderTextField
 		(
-			WINSIZEX / 2 - 180, WINSIZEY / 2, L"세이브 완료", D2D1COLOR::Yellow, 80, 640, 50, _alpha
+			WINSIZEX / 2 - 180, WINSIZEY / 2, L"세이브 완료", D2D1COLOR::Red, 80, 640, 50, _alpha
 		);
 	}
 	if (_load)
 	{
 		D2DRENDER->RenderTextField
 		(
-			WINSIZEX / 2 - 140, WINSIZEY / 2, L"로드 완료", D2D1COLOR::Yellow, 80, 640, 50,_alpha
+			WINSIZEX / 2 - 140, WINSIZEY / 2, L"로드 완료", D2D1COLOR::Blue, 80, 640, 50,_alpha
 		);
 	}
 
@@ -69,6 +69,7 @@ void saveLoadManager::save()
 	_go = true;
 	_save = true;
 	_alpha = 1.f;
+	_timer++;
 
 	char playerHP[128];
 	char playerX[128];

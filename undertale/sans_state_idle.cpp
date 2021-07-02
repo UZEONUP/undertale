@@ -48,7 +48,7 @@ sans_state * sans_state_idle::inputHandle(sansBattle * sansBattle)
 			ui->getBattle_turn() == 27)
 		{
 			return new sans_state_attack6();
-		}    
+		}
 	}
 
 	return nullptr;
