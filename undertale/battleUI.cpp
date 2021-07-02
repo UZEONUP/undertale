@@ -529,6 +529,8 @@ void battleUI::render()
 			DWRITE_TEXT_ALIGNMENT_LEADING, L"-À±µðÀÚÀÎÀ¥µ¸¿ò");
 	}
 	//========================================================================================gkxm
+	D2DRENDER->RenderText(10, 395, L"PLAYER : ¿ìÀü¾ø", 20, D2DRenderer::DefaultBrush::White);
+	D2DRENDER->RenderText(230, 395, L"H  P", 20, D2DRenderer::DefaultBrush::White);
 	D2DRENDER->DrawRectangle
 	(
 		_heartPlayer.rc,
