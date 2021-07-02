@@ -11,9 +11,6 @@ class startStage : public gameNode
 
 	RECT _sceneRect;
 
-	int _timer;
-
-	//Image* bush;
 
 
 public :
