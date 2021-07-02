@@ -61,9 +61,8 @@ HRESULT player::init()
 	_heart.img = IMAGEMANAGER->FindImage("RED");
 	_heart.currentFrameX = 0;
 
-	
 	_vObject.push_back(&_player);
-
+	
 	_blink = 0;
 	_index = 0;
 	_timer = 0;
@@ -99,18 +98,9 @@ HRESULT player::init(float x, float y)
 
 	_vObject.push_back(&_player);
 
-	if (sceneManager::getSingleton()->isCurrentScene("stage2"))
-	{
-		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
-		_undy.x = WINSIZEX / 2;
-		_undy.y = 400;
-		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
-		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
-		_undy.currentFrameX = _undy.currentFrameY = 0;
-
-		_vObject.push_back(&_undy);
-
-	}
+	IMAGEMANAGER->AddFrameImage("bush1", L"오브젝트이미지/bush1.png", 1, 1);
+	IMAGEMANAGER->AddFrameImage("bush2", L"오브젝트이미지/bush2.png", 1, 1);
+	setBush();
 
 	_blink = 0;
 	_index = 0;
@@ -144,8 +134,9 @@ void player::update()
 
 			_vObject[i]->count = 0;
 		}
-		_vObject[i]->rc = RectMakeCenter(_vObject[i]->x, _vObject[i]->y, 100, 100);
+		_vObject[i]->rc = RectMakeCenter(_vObject[i]->x, _vObject[i]->y, _vObject[i]->img->GetFrameWidth(), _vObject[i]->img->GetFrameHeight());
 	}
+	collisionBush();
 
 	if (!_player.isBattle)
 	{
@@ -285,7 +276,6 @@ void player::render()
 	{
 		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY,_vObject[i]->alpha);
 	}
-		_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 	//if (!_player.deletepl)
 	//{
 	//	//
@@ -293,7 +283,7 @@ void player::render()
 	//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
 	//	_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 	//}
-	
+	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 
 	D2DRENDER->DrawRectangle
 	(
@@ -312,6 +302,73 @@ void player::render()
 
 
 
+}
+
+void player::setBush()
+{
+	_object.img = IMAGEMANAGER->FindImage("bush1");
+	_object.x = 400;
+	_object.y = 250;
+	_object.rc = RectMake(_object.x, _object.y, 70, 74);
+	_object.currentFrameX = 0;
+	_object.currentFrameY = 0;
+	_object.alpha = 1;
+
+	_vObject.push_back(&_object);
+
+	_bush2.img = IMAGEMANAGER->FindImage("bush1");
+	_bush2.x = 400 + _bush2.img->GetFrameWidth();
+	_bush2.y = 250 + _bush2.img->GetFrameHeight();
+	_bush2.rc = RectMake(_bush2.x, _bush2.y, 70, 74);
+	_bush2.currentFrameX = 0;
+	_bush2.currentFrameY = 0;
+	_bush2.alpha = 1;
+
+	_vObject.push_back(&_bush2);
+
+	_bush3.img = IMAGEMANAGER->FindImage("bush1");
+	_bush3.x = 400;
+	_bush3.y = 250 + _bush3.img->GetFrameHeight();
+	_bush3.rc = RectMake(_bush3.x, _bush3.y, 70, 74);
+	_bush3.currentFrameX = 0;
+	_bush3.currentFrameY = 0;
+	_bush3.alpha = 1;
+
+	_vObject.push_back(&_bush3);
+
+	_bush4.img = IMAGEMANAGER->FindImage("bush1");
+	_bush4.x = 400 + _bush4.img->GetFrameWidth();
+	_bush4.y = 250;
+	_bush4.rc = RectMake(_bush4.x, _bush4.y, 70, 74);
+	_bush4.currentFrameX = 0;
+	_bush4.currentFrameY = 0;
+	_bush4.alpha = 1;
+
+	_vObject.push_back(&_bush4);
+}
+
+void player::collisionBush()
+{
+	if (IsCollision(_player.rc, _object.rc))
+	{
+		_object.img = IMAGEMANAGER->FindImage("bush2");
+	}
+	else _object.img = IMAGEMANAGER->FindImage("bush1");
+	if (IsCollision(_player.rc, _bush2.rc))
+	{
+		_bush2.img = IMAGEMANAGER->FindImage("bush2");
+	}
+	else _bush2.img = IMAGEMANAGER->FindImage("bush1");
+	if (IsCollision(_player.rc, _bush3.rc))
+	{
+		_bush3.img = IMAGEMANAGER->FindImage("bush2");
+	}
+	else _bush3.img = IMAGEMANAGER->FindImage("bush1");
+	if (IsCollision(_player.rc, _bush4.rc))
+	{
+		_bush4.img = IMAGEMANAGER->FindImage("bush2");
+	}
+	else _bush4.img = IMAGEMANAGER->FindImage("bush1");
 }
 
 

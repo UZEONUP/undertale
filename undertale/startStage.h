@@ -15,7 +15,7 @@ class startStage : public gameNode
 
 	int _timer;
 
-	Image* bush;
+	//Image* bush;
 
 
 public :
