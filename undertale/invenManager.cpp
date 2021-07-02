@@ -70,6 +70,7 @@ void invenManager::in(tagItemInfo item)
 
 void invenManager::out()
 {
+	if (_vInven.size() <= 0)return;
 	_vInven.pop_back();
 	_vInven.resize(_vInven.size());
 	cout << _vInven.size() << endl;
