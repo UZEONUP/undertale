@@ -15,8 +15,11 @@ undyneState* undyneFireArrowState::inputHandle(undybattle* undybattle)
 
 void undyneFireArrowState::update(undybattle* undybattle)
 {
+	_timer++;
 	undybattle->getUI()->setEnemy_attackTime_max(300);
-	undybulletFire(undybattle);
+	
+	if(_timer % 20 == 0) undybulletFire(undybattle);
+	
 
 	if (_vBullet.size() != 0)
 	{
@@ -26,9 +29,9 @@ void undyneFireArrowState::update(undybattle* undybattle)
 			_vBullet[i].rc = RectMake(_vBullet[i].x, _vBullet[i].y, _vBullet[i].image->GetWidth(), _vBullet[i].image->GetHeight());
 		}
 	}
-	_timer++;
+	
 
-	if (_timer % 5 == 0)
+	/*if (_timer % 5 == 0)
 	{
 		_directionSelect = RND->getFromIntTo(0, 3);
 		switch (_directionSelect)
@@ -61,7 +64,7 @@ void undyneFireArrowState::update(undybattle* undybattle)
 			BULLETMANAGER->fire((undybattle->getUI()->get_main_rect().left + undybattle->getUI()->get_main_rect().right) / 2, WINSIZEY, PI / 2);
 			break;
 		}
-	}
+	}*/
 
 //	BULLETMANAGER->move();
 }
