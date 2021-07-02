@@ -19,6 +19,9 @@ void stageManager::update()
 	SCENEMANAGER->update();
 	SAVELOADMANAGER->update();
 	INVENTORY->update();
+	if (KEYMANAGER->isOnceKeyDown(VK_F2))SCENEMANAGER->changeScene("undybattle");
+	if (KEYMANAGER->isOnceKeyDown(VK_F3))SCENEMANAGER->changeScene("muffetBattle");
+	if (KEYMANAGER->isOnceKeyDown(VK_F4))SCENEMANAGER->changeScene("sansBattle");
 }
 
 void stageManager::render()
@@ -42,6 +45,6 @@ void stageManager::sceneSet()
 	sceneManager::getSingleton()->addScene("sansBattle", new sansBattle);
 
 
-	sceneManager::getSingleton()->changeScene("stage1");
+	sceneManager::getSingleton()->changeScene("title");
 }
 
