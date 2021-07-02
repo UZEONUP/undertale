@@ -100,22 +100,43 @@ void sansBattle::update()
 	collision();
 	InputHandle();
 	_state->update(this);
-	//말풍선 대사 카운트 4라면
-	if (_ui->get_bubble_talk_count() == 4)
+	//말풍선 대사 카운트 머리 교체
+	if (_ui->get_bubble_talk_count() < 4) _sans_head.currentFrameX = 4;
+	else if (_ui->get_bubble_talk_count() == 4) _sans_head.currentFrameX = 5;
+	else _sans_head.currentFrameX = 0;
+
+	//말풍선 대사 카운트 몸 교체
+	if (_ui->get_bubble_talk_count() == 6)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 11)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 21)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 26)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 37)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 47)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 60)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 69)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 84)_sans_body.currentFrameX = 1;
+	else if(_ui->get_bubble_talk_count() == 101)_sans_body.currentFrameX = 1;
+	else _sans_body.currentFrameX = 0;
+
+	//게임상태가 인게임일때
+	if (_ui->getState() == INGAME || _ui->getState() == TALK_BUBBLE && _ui->get_bubble_talk_count() > 4 ||
+		_ui->getState() == TALK_MAIN || _ui->getState() == MENU_SELECT)
 	{
-		_sans_head.currentFrameX = 5;
-	}
-	//게임상태가 인게임 && 배틀 턴 카운트가 0이면
-	if (_ui->getState() == INGAME && _ui->getBattle_turn() == 0)
-	{
+		
 		if (!_info._isMove)
 		{
+			_sans_head.x += 0.1f;
 			_sans_head.y += 0.2f;
+			_sans_body.x += 0.05f;
+			_sans_body.y += 0.15f;
 			if (_sans_head.y >= 122) _info._isMove = true;
 		}
 		if (_info._isMove)
 		{
+			_sans_head.x -= 0.1f;
 			_sans_head.y -= 0.2f;
+			_sans_body.x -= 0.05f;
+			_sans_body.y -= 0.15f;
 			if (_sans_head.y <= 119) _info._isMove = false;
 		}
 	}
@@ -147,30 +168,35 @@ void sansBattle::render()
 
 	_ui->render();
 }
-//충돌
+//충돌 처리, 체력 감소
 void sansBattle::collision()
 {
 	for (int i = 0; i < BONEMAX50; i++) 
 	{
-		if (IsCollision(_state->get_bone_20_rc(i), _ui->getIGH().rc))
+		if (IsCollision(_state->get_bone_20(i).rc, _ui->getIGH().rc) && !_state->get_bone_20(i).isColision)
 		{
 			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+			_state->set_bone_20(i, true);
 		}
-		if (IsCollision(_state->get_bone_40_rc(i), _ui->getIGH().rc))
+		if (IsCollision(_state->get_bone_40(i).rc, _ui->getIGH().rc) && !_state->get_bone_40(i).isColision)
 		{
 			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+			_state->set_bone_40(i, true);
 		}
-		if (IsCollision(_state->get_bone_50_rc(i), _ui->getIGH().rc))
+		if (IsCollision(_state->get_bone_50(i).rc, _ui->getIGH().rc) && !_state->get_bone_50(i).isColision)
 		{
 			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+			_state->set_bone_50(i, true);
 		}
-		if (IsCollision(_state->get_bone_100_rc(i), _ui->getIGH().rc))
+		if (IsCollision(_state->get_bone_100(i).rc, _ui->getIGH().rc) && !_state->get_bone_100(i).isColision)
 		{
 			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+			_state->set_bone_100(i, true);
 		}
-		if (IsCollision(_state->get__laser_bim_rc(i), _ui->getIGH().rc))
+		if (IsCollision(_state->get__laser_bim(i).rc, _ui->getIGH().rc) && !_state->get__laser_bim(i).isColision)
 		{
 			_ui->set_inGame_heart_currentHp(_ui->getIGH().currentHP - 5);
+			_state->set_laser_bim(i, true);
 		}
 	}	
 }

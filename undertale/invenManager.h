@@ -1,7 +1,6 @@
 #pragma once
 #include "singletonBase.h"
-
-class stage5;
+#include "stage5.h"
 
 class invenManager : public singletonBase<invenManager>
 {
