@@ -8,7 +8,7 @@ HRESULT startStage::init()
 	IMAGEMANAGER->AddImage("bush1", L"오브젝트이미지/bush1.png");
 	IMAGEMANAGER->AddImage("bush2", L"오브젝트이미지/bush2.png");
 
-	bush = IMAGEMANAGER->FindImage("bush1");
+	//bush = IMAGEMANAGER->FindImage("bush1");
 
 	_backGround = IMAGEMANAGER->FindImage("시작스테이지");
 
@@ -64,8 +64,8 @@ void startStage::update()
 	{
 
 
-		if(RND->getInt(2)==1)bush = IMAGEMANAGER->FindImage("bush2");
-		else bush = IMAGEMANAGER->FindImage("bush1");
+		/*if(RND->getInt(2)==1)bush = IMAGEMANAGER->FindImage("bush2");
+		else bush = IMAGEMANAGER->FindImage("bush1");*/
 		_timer = 0;
 
 		BULLETMANAGER->fire(600, 50,GetAngle( 600, 50,_player->getX(),_player->getY()));
@@ -96,7 +96,7 @@ void startStage::render()
 	_backGround->mapRender(0, 0);
 
 	_player->render();
-	bush->mapRender(WINSIZEX / 2, WINSIZEY / 2);
+	//bush->mapRender(WINSIZEX / 2, WINSIZEY / 2);
 	_bar->render();
 	BULLETMANAGER->render();
 
