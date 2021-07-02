@@ -402,9 +402,13 @@ void battleUI::update()
 	{
 		_enemy_attack_count++;
 
-		//_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
-		//_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
+		if (SCENEMANAGER->isCurrentScene("undybattle"))
+		{
+		_heartPlayer.x = (_main_rc.rc.left + _main_rc.rc.right) / 2;
+		_heartPlayer.y = (_main_rc.rc.top + _main_rc.rc.bottom) / 2;
 		
+
+		}
 	}
 	//인게임 시간이 끝나면
 	if (_enemy_attack_count >= _enemy_attack_max)
