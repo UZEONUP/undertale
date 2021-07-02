@@ -2,20 +2,15 @@
 #include "gameNode.h"
 #include "stageRect.h"
 #include "player.h"
-#include "progressBar.h"
 
 class startStage : public gameNode
 {
 	stageRect* _setRect;
 	Image* _backGround;
 	player* _player;
-	progressBar* _bar;
-	float hp;
+
 	RECT _sceneRect;
 
-	int _timer;
-
-	//Image* bush;
 
 
 public :
