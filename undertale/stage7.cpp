@@ -6,6 +6,13 @@ HRESULT stage7::init()
 	ImageManager::GetInstance()->AddImage("마지막", L"스테이지이미지/last stage.png");
 	_backGround = ImageManager::GetInstance()->FindImage("마지막");
 
+	IMAGEMANAGER->AddFrameImage("end", L"샌즈이미지/end.png", 10, 1);
+
+	_end.img = IMAGEMANAGER->FindImage("end");
+	_end.x = 320;
+	_end.y = 425;
+	_end.rc = RectMakeCenter(_end.x, _end.y, 90, 111);
+	_count = 0;
 	CAMERAMANAGER->setMapCamera(640, 1200);
 
 	_player = new player;
@@ -42,13 +49,39 @@ void stage7::release()
 
 void stage7::update()
 {
-	_player->update();
+	if (_player->getY() <= 700)
+	{
+		_count++;
+		if (_count % 12 == 0)
+		{
+			_end.currentFrame++;
+			if (_end.currentFrame >= _end.img->GetMaxFrameX()) _end.currentFrame = _end.img->GetMaxFrameX() - 1;
+		}
+	}
+	if (IsCollision(_player->getBRect(), _end.rc))
+	{
+		_player->setMoveStop(1);
+		_player->setAlpha(_player->getAlpha() - 0.01f);
+		if (_player->getAlpha() <= 0.f)
+		{
+			release();
+			SCENEMANAGER->changeScene("sansBattle");
+		}
+	}
+
 	_setRect->update();
+	if (!_player->getMoveStop())_player->update();
+	
+
 }
 
 void stage7::render()
 {
 	_backGround->mapRender(0, 0);
+	if (_player->getY() <= 700)
+	{
+		_end.img->FrameRender(_end.rc.left, _end.rc.top, _end.currentFrame, 0);
+	}
 	_player->render();
 
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
