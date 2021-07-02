@@ -531,11 +531,6 @@ void battleUI::render()
 	//========================================================================================gkxm
 	D2DRENDER->RenderText(10, 395, L"PLAYER : ¿ìÀü¾ø", 20, D2DRenderer::DefaultBrush::White);
 	D2DRENDER->RenderText(230, 395, L"H  P", 20, D2DRenderer::DefaultBrush::White);
-	D2DRENDER->DrawRectangle
-	(
-		_heartPlayer.rc,
-		D2DRenderer::DefaultBrush::Red
-	);
 	if (isTurn == TALK_BUBBLE|| isTurn == INGAME)_heartPlayer.img->autoFrameRender(_heartPlayer.rc.left, _heartPlayer.rc.top, _heartPlayer.currentFrameX, _heartPlayer.currentFrameY);
 
 }
