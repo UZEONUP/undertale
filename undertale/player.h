@@ -86,6 +86,7 @@ public:
 	bool getBattlechk() { return _player.isBattle; }
 	void setBattlechk(bool isBattle) { _player.isBattle = isBattle; }
 	bool getChangeScene() { return _player.changeScene; }
+	void setChangeScene(bool changeScene) { _player.changeScene = changeScene; }
 	float getX() { return _player.x; }
 	float getY() { return _player.y; }
 	void setPlayerX(float x) { _player.x = x; }

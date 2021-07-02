@@ -8,12 +8,12 @@ undyneState * undyneIdle::inputHandle(undybattle * undybattle)
 	battleUI* _bui = undybattle->getUI();
 	if (_bui->getState() == INGAME)
 	{
-		if (_bui->getBattle_turn() == 0)
+		if (_bui->getBattle_turn()%2 ==0)
 		{
 			return new undyneFireArrowState();
 		}
 
-		if (_bui->getBattle_turn() >0)
+		if (_bui->getBattle_turn()%2 != 0)
 		{
 			return new undynePattern2();
 		}

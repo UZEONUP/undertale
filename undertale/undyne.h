@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
 
 
 struct tagUndy
@@ -20,7 +21,7 @@ private:
 	int _count;
 
 	tagUndy _fullbody; //얘는 일반스테이지에서
-
+	player* _player;
 
 public:
 	 HRESULT init();
@@ -28,7 +29,6 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void inPutHandle();
 
 
 	RECT getRect() { return _fullbody.rc; }

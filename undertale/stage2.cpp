@@ -13,6 +13,10 @@ HRESULT stage2::init()
 
 	_player = new player;
 	_player->init(WINSIZEX / 2, 1200);
+	
+	_undy = new undyne;
+	_undy->init();
+	
 
 
 	SAVELOADMANAGER->linkPlayer(_player);
@@ -24,6 +28,8 @@ HRESULT stage2::init()
 
 	_sceneRect = RectMake(250,980, 70, 30);
 
+	_changeScene = RectMakeCenter(WINSIZEX / 2, 1100, 10, 10);
+
 	_setRect->linkPlayer(_player);
 
 
@@ -34,6 +40,7 @@ HRESULT stage2::init()
 
 void stage2::release()
 {
+	_undy->release();
 	_player->release();
 	_setRect->release();
 }
@@ -47,17 +54,37 @@ void stage2::update()
 		if (_player->getAlpha() <= 0.f)
 		{
 			release();
-			SCENEMANAGER->changeScene("undybattle");
+			SCENEMANAGER->changeScene("stage3");
 		}
+	}
+
+	if (IsCollision(_player->getHRect(), _changeScene))
+	{
+		release();
+		SCENEMANAGER->changeScene("undybattle");
 	}
 	if (!_player->getMoveStop())_player->update(); 
 	_setRect->update();
+	_undy->update();
+
+	float x = _player->getX();
+	float y = _player->getY();
+	float angle;
+	RECT temp;
+	if (IntersectRect(&temp, &_player->getRect(), &_undy->getRect()))
+		_player->setBattlechk(true);
+
+	if (_player->getBattlechk())
+	{
+		_player->setHeart(x, y);
+	}
 }
 
 void stage2::render()
 {
 	_backGround->mapRender(0, 0);
-
+	_undy->render();
+	if (_player->getBattlechk())D2DRENDER->FillRectangle(_bg, D2DRenderer::DefaultBrush::Black);
 	_player->render();
 	if (keyManager::getSingleton()->isToggleKey(VK_F1))
 	{

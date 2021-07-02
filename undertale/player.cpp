@@ -95,7 +95,7 @@ HRESULT player::init(float x, float y)
 	_player.alpha = 1.0f;
 	_heart.img = IMAGEMANAGER->FindImage("RED");
 	_heart.currentFrameX = 0;
-
+	_imageON = false;
 	_vObject.push_back(&_player);
 
 	IMAGEMANAGER->AddFrameImage("bush1", L"오브젝트이미지/bush1.png", 1, 1);
@@ -108,18 +108,13 @@ HRESULT player::init(float x, float y)
 	{
 		ImageManager::GetInstance()->AddFrameImage("undyneEyespark", L"Undyne/Und_eyeSpark.png", 9, 1);
 		_undy.x = WINSIZEX / 2;
-		_undy.y = 400;
+		_undy.y = 800;
 		_undy.rc = RectMakeCenter(_undy.x, _undy.y, 80, 100);
 		_undy.img = ImageManager::GetInstance()->FindImage("undyneEyespark");
 		_undy.currentFrameX = _undy.currentFrameY = 0;
 
 		_vObject.push_back(&_undy);
 	}
-
-
-	_blink = 0;
-	_index = 0;
-	_timer = 0;
 	return S_OK;
 }
 
@@ -138,24 +133,25 @@ void player::update()
 	if (SCENEMANAGER->isCurrentScene("stage1")) setBush();
 	for (int i = 0; i < _vObject.size(); i++)
 	{
-		_vObject[i]->count++;
-
 		sort(_vObject.begin(), _vObject.end(), compare);
-
-		if (_vObject[i]->count % 10 == 0)
-		{
-			_vObject[i]->currentFrameX++;
-			if (_vObject[i]->currentFrameX >= _vObject[i]->img->GetMaxFrameX()) _vObject[i]->currentFrameX = 0;
-			_vObject[i]->currentFrameY = 0;
-
-			_vObject[i]->count = 0;
-		}
-		_vObject[i]->rc = RectMakeCenter(_vObject[i]->x, _vObject[i]->y, _vObject[i]->img->GetFrameWidth(), _vObject[i]->img->GetFrameHeight());
 	}
 	collisionBush();
 
 	if (!_player.isBattle)
 	{
+		for (int i = 0; i < _vObject.size(); i++)
+		{
+			_vObject[i]->count++;
+			if (_vObject[i]->count % 10 == 0)
+			{
+				_vObject[i]->currentFrameX++;
+				if (_vObject[i]->currentFrameX >= _vObject[i]->img->GetMaxFrameX()) _vObject[i]->currentFrameX = 0;
+				_vObject[i]->currentFrameY = 0;
+
+				_vObject[i]->count = 0;
+			}
+			_vObject[i]->rc = RectMakeCenter(_vObject[i]->x, _vObject[i]->y, _vObject[i]->img->GetFrameWidth(), _vObject[i]->img->GetFrameHeight());
+		}
 		//_player.count++;
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
@@ -273,50 +269,40 @@ void player::update()
 
 	if (_blink >= 3)
 	{
-
-		_heart.angle = GetAngle(_heart.x, _heart.y, WINSIZEX / 2, WINSIZEY / 2);
+		_heart.angle = GetAngle(_heart.x, _heart.y, WINSIZEX/2,1100);
 		_heart.x -= cosf(_heart.angle) * -_player.speed;
 		_heart.y -= -sinf(_heart.angle) * -_player.speed;
 		_heart.rc = RectMakeCenter(_heart.x, _heart.y, 20, 20);
-		if (_heart.x >= WINSIZEX / 2 + 100 || _heart.x <= WINSIZEX / 2 - 100)
-		{
-			_player.changeScene = true;
-		}
 	}
 	CAMERAMANAGER->updateCamera(_player.x, _player.y);
 }
 
 void player::render()
 {
-	for (int i = 0; i < _vObject.size(); i++)
+	if (!_player.deletepl)
 	{
-		_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY, _vObject[i]->alpha);
+		for (int i = 0; i < _vObject.size(); i++)
+		{
+			_vObject[i]->img->FrameRender(_vObject[i]->rc.left, _vObject[i]->rc.top, _vObject[i]->currentFrameX, _vObject[i]->currentFrameY, _vObject[i]->alpha);
+		}
 	}
-
-	
-	//if (!_player.deletepl)
-	//{
-	//	//
-	//	_player.rc = RectMakeCenter(_player.x, _player.y, 40, 60);
-	//	_player.balpan = RectMake(_player.rc.left, _player.rc.bottom-10, 40, 10);
-	//	_player.img->FrameRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
-	//}
+	if(_timer % 10 <5)
 	_heart.img->FrameRender(_heart.rc.left, _heart.rc.top, _heart.currentFrameX, _heart.currentFrameY);
 
-	D2DRENDER->DrawRectangle
-	(
-		_player.rc,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
-	D2DRENDER->DrawRectangle
-	(
-		_player.balpan,
-		D2DRenderer::DefaultBrush::Red,
-		1.f
-		//angle
-	);
+	//D2DRENDER->DrawRectangle
+	//(
+	//	_player.rc,
+	//	D2DRenderer::DefaultBrush::Red,
+	//	1.f
+	//	//angle
+	//);
+	//D2DRENDER->DrawRectangle
+	//(
+	//	_player.balpan,
+	//	D2DRenderer::DefaultBrush::Red,
+	//	1.f
+	//	//angle
+	//);
 
 
 
@@ -403,17 +389,8 @@ void player::setHeart(float x, float y)
 	{
 		if (_timer % 10 == 0)
 		{
-			if (!_imageON)
-			{
-				_imageON = true;
-				_timer = 0;
-			}
-			else
-			{
-				_blink++;
-				_imageON = false;
-				_timer = 0;
-			}
+			_blink++;
+			
 		}
 		_heart.x = _player.x;
 		_heart.y = _player.y;

@@ -253,8 +253,8 @@ void undybattle::update()
 	_legs.rc = RectMakeCenter(_legs.x, _legs.y, 39, 37);
 	_torso.rc = RectMakeCenter(_torso.x, _torso.y, 66, 33);
 
-	if (_shieldLine.angle == 0 || _shieldLine.angle == PI)rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 1, 150);
-	else  rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 150, 1);
+	if (_shieldLine.angle == 0 || _shieldLine.angle == PI)rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 1, 45);
+	else  rc_shield = RectMakeCenter(_shieldLine.lineEnd.x, _shieldLine.lineEnd.y, 45, 1);
 	
 	_bui->update();
 }

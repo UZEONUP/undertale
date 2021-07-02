@@ -49,23 +49,23 @@ void undyneFireArrowState::update(undybattle* undybattle)
 			switch (_vUBullet[i]._bulletDirect)
 			{
 			case LEFTFIRE:
-					_vUBullet[i].x += 5;
+					_vUBullet[i].x += 5+undybattle->getUI()->getBattle_turn();
 					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
 				break;
 
 			case RIGHTFIRE:
-					_vUBullet[i].x -= 5;
+					_vUBullet[i].x -= 5 + undybattle->getUI()->getBattle_turn();
 					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
 				
 				break;
 			case UPFIRE:
 				
-					_vUBullet[i].y += 5;
+					_vUBullet[i].y += 5 + undybattle->getUI()->getBattle_turn();
 					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
 				
 				break;
 			case DOWNFIRE:
-					_vUBullet[i].y -= 5;
+					_vUBullet[i].y -= 5 + undybattle->getUI()->getBattle_turn();
 					_vUBullet[i].rc = RectMake(_vUBullet[i].x, _vUBullet[i].y, _vUBullet[i].image->GetWidth(), _vUBullet[i].image->GetHeight());
 				break;
 
