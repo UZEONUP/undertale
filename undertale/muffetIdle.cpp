@@ -50,8 +50,8 @@ muffetStateBase * muffetIdle::inputHandle(muffetBattle * muffet)
 
 void muffetIdle::update(muffetBattle * muffet)
 {
-	if (_minispider.x >= 450) _minispider.x -= _minispider.speed;
-	if (_minispider.x <= 450)
+	if (_minispider.x <= 220) _minispider.x += _minispider.speed;
+	if (_minispider.x >= 220)
 	{
 		_menuPan.image = IMAGEMANAGER->FindImage("muffet_next_open");
 		_menuPan.x = _minispider.x - _menuPan.image->GetFrameWidth() / 2;
@@ -74,7 +74,7 @@ void muffetIdle::enter(muffetBattle * muffet)
 		_menu2 = IMAGEMANAGER->FindImage("muffet_dounut");
 	}
 	_minispider.image = IMAGEMANAGER->FindImage("muffet_spider_move");
-	_minispider.x = WINSIZEX;
+	_minispider.x = 0;
 	_minispider.y = 175;
 	_minispider.currentFrameX = 0;
 	_minispider.count = 0;
@@ -85,7 +85,7 @@ void muffetIdle::render(muffetBattle * muffet)
 {
 	battleUI* ui = muffet->getUI();
 	if (ui->get_bubble_talk_count() >= 2) _minispider.image->autoFrameRender(_minispider.x, _minispider.y, _minispider.currentFrameX, 0);
-	if (ui->get_bubble_talk_count() >= 2 && _minispider.x <= 450)
+	if (ui->get_bubble_talk_count() >= 2 && _minispider.x >= 220)
 	{
 		_menuPan.image->autoFrameRender(_menuPan.x, _menuPan.y, _menuPan.currentFrameX, 0, 10, false);
 		//_menu->Render(_menuPan.x, _menuPan.y);
