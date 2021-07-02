@@ -47,7 +47,7 @@ void stage2::update()
 		if (_player->getAlpha() <= 0.f)
 		{
 			release();
-			SCENEMANAGER->changeScene("stage3");
+			SCENEMANAGER->changeScene("undybattle");
 		}
 	}
 	if (!_player->getMoveStop())_player->update(); 

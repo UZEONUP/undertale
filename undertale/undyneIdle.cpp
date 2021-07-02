@@ -13,7 +13,7 @@ undyneState * undyneIdle::inputHandle(undybattle * undybattle)
 			return new undyneFireArrowState();
 		}
 
-		if (_bui->getBattle_turn() == 1)
+		if (_bui->getBattle_turn() >0)
 		{
 			return new undynePattern2();
 		}

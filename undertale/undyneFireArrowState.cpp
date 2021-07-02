@@ -123,14 +123,13 @@ void undyneFireArrowState::render(undybattle * undybattle)
 	{
 		for (int i = 0; i < _vUBullet.size(); i++)
 		{
-			if (_vUBullet[i].x >= 135)
-			{
+			
 				_vUBullet[i].image->Render(_vUBullet[i].x, _vUBullet[i].y);
 				if (KEYMANAGER->isToggleKey(VK_F1))
 				{
 					D2DRENDER->DrawRectangle(_vUBullet[i].rc, D2DRenderer::DefaultBrush::Red);
 				}
-			}
+		
 		}
 	}
 }

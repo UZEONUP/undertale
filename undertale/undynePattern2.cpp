@@ -106,14 +106,12 @@ void undynePattern2::render(undybattle * undybattle)
 	{
 		for (int i = 0; i < _vUBullet.size(); i++)
 		{
-			if (_vUBullet[i].x >= 135)
-			{
+			
 				_vUBullet[i].image->Render(_vUBullet[i].x, _vUBullet[i].y);
 				if (KEYMANAGER->isToggleKey(VK_F1))
 				{
 					D2DRENDER->DrawRectangle(_vUBullet[i].rc, D2DRenderer::DefaultBrush::Red);
 				}
-			}
 		}
 	}
 }
@@ -175,12 +173,12 @@ void undynePattern2::mindist(undybattle * undybattle)
 	{
 		distance = GetDistance(_vUBullet[i].x, _vUBullet[i].y, undybattle->getUI()->getIGH().x, undybattle->getUI()->getIGH().y);
 
-		if (distance <= 100)
+		
 		{
 			switch (_vUBullet[i]._bulletDirect)
 			{
 			case 0:
-				if (_vUBullet[i].y <= 175)
+				if (_vUBullet[i].y > 175)
 				{
 					_vUBullet[i].angle=1.5;
 				}
